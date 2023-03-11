@@ -1,0 +1,62 @@
+[
+  {
+    "id": "870fa70a-0e76-47e3-9c01-7655dec255c4",
+    "title": "pan",
+    "description": "trincha",
+    "code": "pan123",
+    "price": 100,
+    "status": true,
+    "stock": 5,
+    "category": "panificados",
+    "thumbnails": [
+      "./img/panificados/pan/1.png",
+      "./img/panificados/pan/2.png",
+      "./img/panificados/pan/3.png"
+    ]
+  },
+  {
+    "id": "c0021ac5-0d47-4664-a106-c4c7fa06260b",
+    "title": "pan",
+    "description": "trincha",
+    "code": "pan1",
+    "price": 100,
+    "status": true,
+    "stock": 5,
+    "category": "panificados",
+    "thumbnails": [
+      "./img/panificados/pan/1.png",
+      "./img/panificados/pan/2.png",
+      "./img/panificados/pan/3.png"
+    ]
+  },
+  {
+    "id": "8d8a37de-5b9c-4430-8578-d3b3453b4d95",
+    "title": "pan",
+    "description": "trincha",
+    "code": "pan12",
+    "price": 100,
+    "status": true,
+    "stock": 5,
+    "category": "panificados",
+    "thumbnails": [
+      "./img/panificados/pan/1.png",
+      "./img/panificados/pan/2.png",
+      "./img/panificados/pan/3.png"
+    ]
+  },
+  {
+    "id": "c7fbd6cb-10ab-4ca7-8a09-f78fec663d78",
+    "title": "pan",
+    "description": "trincha",
+    "code": "pan124",
+    "price": 100,
+    "status": true,
+    "stock": 5,
+    "category": "panificados",
+    "thumbnails": [
+      "./img/panificados/pan/1.png",
+      "./img/panificados/pan/2.png",
+      "./img/panificados/pan/3.png"
+    ]
+  }
+]
