@@ -73,7 +73,6 @@ export class CartManager{
             const cart = await this.getCartById(cid);
             cart["products"].push(productAdded);
             await this.saveCartsFile();
-
             return productAdded;
         }
 

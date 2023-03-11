@@ -25,20 +25,13 @@ export class ProductManager{
             throw new Error (error.message);  
         }
     }
-
-
-
+    
     productoValido(product){
         let stringsValidos =typeof(product.id) === "string" && typeof(product.title) === "string" && typeof(product.description) === "string"&& typeof(product.code) === "string" && typeof(product.category) === "string"; 
-
-
-
-        /* typeof(product.thumbnail) === "string" &&  => DEBERIA SER UN ARRAY */ 
-
-
+        let arrayValido = product.thumbnail === undefined? true : Array.isArray(product.thumbnail);
         let numerosValidos = typeof(product.price) === "number" && product.price > 0 && typeof(product.stock) === "number" && product.stock > 0;
 
-        if(!stringsValidos || !numerosValidos) throw new Error ("Producto con campos incompletos o erroneos");
+        if(!stringsValidos || !numerosValidos || !arrayValido) throw new Error ("Producto con campos incompletos o erroneos");
         return true;
     }
 
@@ -56,7 +49,6 @@ export class ProductManager{
             if (this.#products.length === 0){
                 this.#products.push(product);
                 await this.saveProductsFile();
-                console.log("<<< Producto agregado a base de datos >>>");
                 return product;
             } else {
                 for (const pr of this.#products){
@@ -64,7 +56,6 @@ export class ProductManager{
                 }
                 this.#products.push(product);
                 await this.saveProductsFile();
-                console.log("<<< Producto agregado a base de datos >>>");
                 return product;
             }
         }

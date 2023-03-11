@@ -8,9 +8,9 @@ export const productsRouter = Router();
 productsRouter.use(express.json()); 
 productsRouter.use(express.urlencoded({ extended: true })); 
 
-const productManager = new ProductManager ("database/products.txt"); // DEBERIA SER .JSON??????
+const productManager = new ProductManager ("database/products.json");
 
-productsRouter.get("/" , async (req, res) => { // localhost:8080/products?limit=2
+productsRouter.get("/" , async (req, res) => {
    try {
     const products = await productManager.getProducts(req.query.limit);
     res.json(products);
@@ -19,28 +19,22 @@ productsRouter.get("/" , async (req, res) => { // localhost:8080/products?limit=
     }
 });
 
-productsRouter.post('/', async (req, res) => { // localhost:8080/products
+productsRouter.post('/', async (req, res) => {
     try {
         const id = randomUUID();
         const product = new Product({
             id : id,
             ...req.body
         }) 
-
-        /*        
-        const product= new Product (id, req.body.title, req.body.description , req.body.code ,req.body.price ,req.body.stock ,req.body.category, req.body.thumbnails);
-        */
-
         const productAdded = await productManager.addProduct(product);
-        res.json(productAdded);
-        
+        res.json(productAdded);        
     } catch (error) {
         res.status(500).json({menssage: error.message});
 
-        // ver 
-        //maneras nuevas 
-        //de manejar error
+        // ver maneras nuevas de manejar error en video de clase ROUTER Y MULTER
+        
     }
+
 /* Product post prueba
 {
   "title" : "pan",
@@ -59,7 +53,7 @@ productsRouter.post('/', async (req, res) => { // localhost:8080/products
 
 });
 
-productsRouter.get('/:pid', async (req, res)=>{ // localhost:8080/products/b1c5e6f6-e44c-4b39-973d-53c735377d5d
+productsRouter.get('/:pid', async (req, res)=>{
     try {
         const product = await productManager.getProductById(req.params.pid);
         res.json(product);
@@ -68,7 +62,7 @@ productsRouter.get('/:pid', async (req, res)=>{ // localhost:8080/products/b1c5e
     }
 });
 
-productsRouter.put('/:pid', async (req, res)=>{ // localhost:8080/products/b1c5e6f6-e44c-4b39-973d-53c735377d5d
+productsRouter.put('/:pid', async (req, res)=>{
     let newProduct;
     try {
         newProduct = new Product({
@@ -78,7 +72,7 @@ productsRouter.put('/:pid', async (req, res)=>{ // localhost:8080/products/b1c5e
     } catch (error) {
         res.status(400).json({menssage: error.message})
     }
-
+    
     try {
         const productUpdated = await productManager.updateProductById(req.params.pid, newProduct);
         res.json(productUpdated);

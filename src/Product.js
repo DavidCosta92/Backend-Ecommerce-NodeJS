@@ -4,10 +4,10 @@ export class Product{
         this.title = title;
         this.description = description;        
         this.code = code;
-        this.price = price; // number
+        this.price = price;
         this.status = true;        
-        this.stock = stock; // number
+        this.stock = stock;
         this.category = category;
-        this.thumbnails = thumbnails; // NO ES OBLIGATORIO => array de strings con rutas donde estan las imagenes
+        this.thumbnails = thumbnails;
     }
 }
