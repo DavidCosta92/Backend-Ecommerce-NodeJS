@@ -5,7 +5,7 @@ export class ProductManager{
     #products = [];
 
     constructor (path){
-        this.path = path;
+        this.path = path +"/products.json";
     }
 
     async readProductsFile(){

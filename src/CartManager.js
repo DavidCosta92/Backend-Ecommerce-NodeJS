@@ -1,12 +1,15 @@
 import fs from 'fs/promises';
 import { Cart } from './Cart.js';
+import { ProductManager } from './ProductManager.js';
 export class CartManager{
     path = "";
     carts;
+    productManager;
 
     constructor (path){
         this.carts = [];
-        this.path = path;
+        this.path = path + "/carrito.json";
+        this.productManager = new ProductManager(path)
     }
 
     async createCart(idCart){
@@ -64,6 +67,9 @@ export class CartManager{
         }
 
         const productInCart = await this.getProductInCartByIds(cid,pid);
+
+        const existeProducto = await this.productManager.getProductById(pid); // SI EL PRODUCTO NO EXISTE, ENVIARA UN ERROR CORTANDO EJECUCION
+
         if(productInCart){
             productInCart["quantity"] += prQuantity;
             await this.saveCartsFile();
@@ -76,5 +82,5 @@ export class CartManager{
             return productAdded;
         }
 
-    }
+    } 
 }

@@ -7,7 +7,7 @@ export const cartsRouter = Router();
 cartsRouter.use(express.json()); 
 cartsRouter.use(express.urlencoded({ extended: true })); 
 
-const cartManager = new CartManager ("database/carrito.json"); 
+const cartManager = new CartManager ("database"); 
 
 cartsRouter.post("/", async (req, res , next) => {
     try {
