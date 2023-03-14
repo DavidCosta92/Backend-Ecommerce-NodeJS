@@ -9,30 +9,30 @@ cartsRouter.use(express.urlencoded({ extended: true }));
 
 const cartManager = new CartManager ("database/carrito.json"); 
 
-cartsRouter.post("/", async (req, res) => {
+cartsRouter.post("/", async (req, res , next) => {
     try {
         const idCart = randomUUID();
         const newCart = await cartManager.createCart(idCart);
         res.json(newCart);
     } catch (error) {
-        res.status(500).json({message: error.message})
+        next(error);
     }
 })
 
-cartsRouter.get("/:cid", async (req, res) => {
+cartsRouter.get("/:cid", async (req, res , next) => { 
     try {
         const productsInCart = await cartManager.getProductsByCartId(req.params.cid);
         res.json(productsInCart);
     } catch (error) {
-        res.status(404).json({menssage: error.message})
+        next(error);
     }
 })
 
-cartsRouter.post("/:cid/product/:pid", async (req, res) => {    
+cartsRouter.post("/:cid/product/:pid", async (req, res , next) => {    
     try {
         const productAdded = await cartManager.addProductToCart(req.params.cid , req.params.pid, req.query.quantity);
         res.json(productAdded);
     } catch (error) {
-        res.status(404).json({menssage: error.message})
+        next(error);
     }
 })

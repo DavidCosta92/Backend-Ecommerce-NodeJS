@@ -10,16 +10,16 @@ productsRouter.use(express.urlencoded({ extended: true }));
 
 const productManager = new ProductManager ("database/products.json");
 
-productsRouter.get("/" , async (req, res) => {
+productsRouter.get("/" , async (req, res , next) => {
    try {
     const products = await productManager.getProducts(req.query.limit);
     res.json(products);
     } catch (error) {
-        res.status(500).json({message: error.message})
+        next(error);        
     }
 });
 
-productsRouter.post('/', async (req, res) => {
+productsRouter.post('/', async (req, res , next) => {
     try {
         const id = randomUUID();
         const product = new Product({
@@ -29,10 +29,7 @@ productsRouter.post('/', async (req, res) => {
         const productAdded = await productManager.addProduct(product);
         res.json(productAdded);        
     } catch (error) {
-        res.status(500).json({menssage: error.message});
-
-        // ver maneras nuevas de manejar error en video de clase ROUTER Y MULTER
-        
+        next(error);
     }
 
 /* Product post prueba
@@ -53,16 +50,16 @@ productsRouter.post('/', async (req, res) => {
 
 });
 
-productsRouter.get('/:pid', async (req, res)=>{
+productsRouter.get('/:pid', async (req, res , next)=>{
     try {
         const product = await productManager.getProductById(req.params.pid);
         res.json(product);
     } catch (error) {
-        res.status(404).json({menssage: error.message})
+        next(error);
     }
 });
 
-productsRouter.put('/:pid', async (req, res)=>{
+productsRouter.put('/:pid', async (req, res , next)=>{
     let newProduct;
     try {
         newProduct = new Product({
@@ -70,24 +67,24 @@ productsRouter.put('/:pid', async (req, res)=>{
             ...req.body
         })
     } catch (error) {
-        res.status(400).json({menssage: error.message})
+        return next(error);
     }
     
     try {
         const productUpdated = await productManager.updateProductById(req.params.pid, newProduct);
         res.json(productUpdated);
     } catch (error) {
-        res.status(404).json({menssage: error.message})
+        next(error);
     }
 
 });
 
-productsRouter.delete("/:pid" , async (req, res) => {
+productsRouter.delete("/:pid" , async (req, res , next) => {
     try {
         const productDeleted = await productManager.deleteById(req.params.pid);
         res.json(productDeleted);
     } catch (error) {
-        res.status(404).json({message: error.message});        
+        next(error);        
     }
 });
 

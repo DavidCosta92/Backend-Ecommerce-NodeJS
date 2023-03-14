@@ -60,7 +60,7 @@ export class CartManager{
         } else if (Number.isInteger(Number(productQuantity)) && productQuantity >= 1){
             prQuantity = Number(productQuantity);
         } else {
-            throw new Error ("Cantidad incorrecta, el cantidad debe ser un numero, entero y mayor a 0")
+            throw new Error ("Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0")
         }
 
         const productInCart = await this.getProductInCartByIds(cid,pid);
@@ -77,6 +77,4 @@ export class CartManager{
         }
 
     }
-
-
 }
