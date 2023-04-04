@@ -8,7 +8,7 @@ export const productsRouter = Router();
 productsRouter.use(express.json()); 
 productsRouter.use(express.urlencoded({ extended: true })); 
 
-const productManager = new ProductManager ("database");
+const productManager = new ProductManager ("dao/FileSystem");
 
 productsRouter.get("/" , async (req, res , next) => {
    try {

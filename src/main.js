@@ -3,10 +3,14 @@ import { PORT } from './PORT.js';
 import { productsRouter } from './routes/productsRouter.js';
 import { cartsRouter } from './routes/cartsRouter.js';
 
+import mongoose, { Mongoose } from 'mongoose';
+
 const app = express();
 
 app.use("/api/products",productsRouter);
 app.use("/api/carts",cartsRouter);
+
+mongoose.connect("mongodb+srv://davidcst2991:davidcst2991coder@ecommerce.3iptaqr.mongodb.net/?retryWrites=true&w=majority")
 
 app.use((error, req, res , next)=>{
 
