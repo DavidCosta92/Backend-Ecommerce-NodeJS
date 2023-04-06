@@ -58,5 +58,27 @@
       "./img/panificados/pan/2.png",
       "./img/panificados/pan/3.png"
     ]
+  },
+  {
+    "id": "a156a815-697e-4e8e-8e87-cb43b7b2e719",
+    "title": "asc",
+    "description": "vs dvs",
+    "code": "sadv",
+    "price": 1,
+    "status": true,
+    "stock": 1,
+    "category": "sdv",
+    "thumbnails": "f"
+  },
+  {
+    "id": "36bde5b9-eeb5-4d66-bdec-e269b92a7b25",
+    "title": "david",
+    "description": "david prueba",
+    "code": "codigooo",
+    "price": 10,
+    "status": true,
+    "stock": 10,
+    "category": "a",
+    "thumbnails": "hola"
   }
 ]

@@ -1,6 +1,8 @@
+// @ts-nocheck
 import fs from 'fs/promises';
 import { Cart } from './Cart.js';
 import { ProductManager } from './ProductManager.js';
+import { cartstModel } from '../Dao/models/cartModel.js';
 export class CartManager{
     path = "";
     carts;
@@ -83,4 +85,29 @@ export class CartManager{
         }
 
     } 
+
+    async addProductToCartMONGOOSE (cid,pid, productQuantity){
+        let prQuantity;
+        if(productQuantity === undefined){
+            prQuantity = 1;
+        } else if (Number.isInteger(Number(productQuantity)) && productQuantity >= 1){
+            prQuantity = Number(productQuantity);
+        } else {
+            throw new Error ("Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0")
+        }
+        
+        const cart = await cartstModel.findById(cid)      
+
+        if(cart){
+            const productInCart= false;
+
+            if(productInCart){
+
+            } else {
+                cart.products.push( { product: pid} , {quantity:productQuantity})
+                await cartstModel.replaceOne( { _id: cid } , cart)
+            }
+        }
+        return await cartstModel.findById(cid).populate("products.product")
+    }
 }
