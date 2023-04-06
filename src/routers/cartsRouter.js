@@ -53,3 +53,20 @@ cartsRouter.post("/:cid/product/:pid", async (req, res , next) => {
     }
 })
 
+cartsRouter.delete("/:cid", async (req, res , next) => {
+    try {
+        const deleted = await cartManager.deleteCartById(req.params.cid)
+        res.json(deleted);
+    } catch (error) {        
+        next(error);
+    }
+})
+
+cartsRouter.delete("/:cid/product/:pid", async (req, res , next) => {
+    try {
+        const actualProducts = await cartManager.deleteProductInCartMONGOOSE(req.params.cid , req.params.pid)
+        res.json(actualProducts);
+    } catch (error) {        
+        next(error);
+    }
+})

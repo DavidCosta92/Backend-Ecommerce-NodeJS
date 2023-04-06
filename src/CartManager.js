@@ -3,6 +3,8 @@ import fs from 'fs/promises';
 import { Cart } from './Cart.js';
 import { ProductManager } from './ProductManager.js';
 import { cartstModel } from '../Dao/models/cartModel.js';
+import { productModel } from '../Dao/models/productModel.js';
+import mongoose from 'mongoose';
 export class CartManager{
     path = "";
     carts;
@@ -86,6 +88,18 @@ export class CartManager{
 
     } 
 
+
+    // MONGOOSE
+    async productInCart (cid,pid){
+        let productInCart= false;      
+        const cart = await cartstModel.findById(cid);
+        const product = await productModel.findById(pid);        
+        cart["products"].filter((obj)=>{
+        if( obj["product"].equals(product._id) ){ productInCart = true; }
+       })
+       return productInCart;
+    }
+
     async addProductToCartMONGOOSE (cid,pid, productQuantity){
         let prQuantity;
         if(productQuantity === undefined){
@@ -96,18 +110,50 @@ export class CartManager{
             throw new Error ("Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0")
         }
         
-        const cart = await cartstModel.findById(cid)      
+        const cart = await cartstModel.findById(cid)     
 
-        if(cart){
-            const productInCart= false;
-
+        if(cart){            
+            const productInCart = await this.productInCart(cid,pid);
             if(productInCart){
-
+                const product = await productModel.findById(pid);
+                cart["products"].map(obj=>{
+                    if( obj["product"].equals(product._id) ){ 
+                        obj["quantity"] += parseInt(productQuantity)
+                    }
+                })                
+                await cartstModel.replaceOne( { _id: cid } , cart)
             } else {
-                cart.products.push( { product: pid} , {quantity:productQuantity})
+                cart.products.push( { product: pid , quantity:productQuantity})
                 await cartstModel.replaceOne( { _id: cid } , cart)
             }
         }
         return await cartstModel.findById(cid).populate("products.product")
     }
+    
+    async deleteCartById(cid){
+        return await cartstModel.findByIdAndDelete(cid);
+    }
+
+
+
+
+    async deleteProductInCartMONGOOSE (cid,pid) {
+        const cart = await cartstModel.findById(cid)  
+
+        // LUEGO ESTO DEBERA TIRAR UN ERROR SI NO EXISTE EL PRODUCTO EN CARTA
+        this.productInCart(cid,pid);
+
+        if(cart){
+            const productosRestantes = cart.products.filter((product)=>{
+                console.log( product !==   pid)
+            })
+            cart.products = productosRestantes;
+            await cartstModel.replaceOne({ _id: cid } , cart)
+        }
+        return await cartstModel.findById(cid).populate("products.product")
+    }
+
+
+
+
 }

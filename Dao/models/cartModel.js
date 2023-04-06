@@ -3,7 +3,15 @@ import { Schema } from 'mongoose'
 
 const cartsCollection = "carts"
 const cartsSchema = new mongoose.Schema({
-    products:[{product:{pr : {type: Schema.Types.ObjectId,ref:"products"}, q : Number}}],
+    products:[
+        {
+            product:{
+                type: Schema.Types.ObjectId,
+                ref:"products"                
+            },
+            quantity:Number
+        }
+    ],
     default : [],
 
 }, { versionKey: false})

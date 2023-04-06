@@ -12,7 +12,7 @@ app.use("/api/products",productsRouter);
 app.use("/api/carts",cartsRouter);
 
 
-mongoose.connect("mongodb+srv://davidcst2991:davidcst2991coder@ecommerce.3iptaqr.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://davidcst2991:davidcst2991coder@ecommerce.3iptaqr.mongodb.net/?retryWrites=true&w=majority") ///ecommerce
 
 // SETEAR CARPETA PUBLICA PARA LEVANTARLA DESDE FRONT
 app.use(express.static('./public'))
