@@ -2,32 +2,50 @@ import express, { Router } from 'express';
 import {randomUUID} from 'crypto';
 import { Product } from '../Product.js';
 import { ProductManager } from '../ProductManager.js';
+import { productModel } from '../../Dao/models/productModel.js';
 
 export const productsRouter = Router();
 
 productsRouter.use(express.json()); 
-productsRouter.use(express.urlencoded({ extended: true })); 
+// solo para cuando enviamos la info por la url
+//productsRouter.use(express.urlencoded({ extended: true })); 
 
-const productManager = new ProductManager ("database");
+const productManager = new ProductManager ("Dao/FileSystem");
 
 productsRouter.get("/" , async (req, res , next) => {
    try {
-    const products = await productManager.getProducts(req.query.limit);
+    //const products = await productManager.getProducts(req.query.limit);
+    const products = await productModel.find(); 
     res.json(products);
     } catch (error) {
         next(error);        
     }
 });
 
+productsRouter.get("/formCargaProd", (req, res, next)=>{
+    res.render("uploadProduct", {title: "carga productooooos"})
+})
+
 productsRouter.post('/', async (req, res , next) => {
     try {
+        /*
         const id = randomUUID();
+        const precio = parseInt(req.body.price);
+        const stock = parseInt(req.body.stock);
         const product = new Product({
             id : id,
             ...req.body
         }) 
-        const productAdded = await productManager.addProduct(product);
-        res.json(productAdded);        
+        product.price=precio;
+        product.stock=stock;
+        const productAdded = await productManager.addProduct(product);        
+        */
+        const {title, description,code, category, thumbnails} = req.body;        
+        const price = parseInt(req.body.price);
+        const stock = parseInt(req.body.stock);
+        const productAdded = await productModel.create({title, description,code, price, stock, category, thumbnails})
+
+        res.json(productAdded);    
     } catch (error) {
         next(error);
     }
@@ -39,7 +57,7 @@ productsRouter.post('/', async (req, res , next) => {
   "code" : "pan124",
   "price" : 100,
   "stock" : 5,
-  "category" : "panificados",
+  "category" : "comestibles",
   "thumbnails" : [
                   "./img/panificados/pan/1.png",
                   "./img/panificados/pan/2.png",

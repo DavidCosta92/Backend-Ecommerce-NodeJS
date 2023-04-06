@@ -30,7 +30,6 @@ export class ProductManager{
         let stringsValidos =typeof(product.id) === "string" && typeof(product.title) === "string" && typeof(product.description) === "string"&& typeof(product.code) === "string" && typeof(product.category) === "string"; 
         let arrayValido = product.thumbnail === undefined? true : Array.isArray(product.thumbnail);
         let numerosValidos = typeof(product.price) === "number" && product.price > 0 && typeof(product.stock) === "number" && product.stock > 0;
-
         if(!stringsValidos || !numerosValidos || !arrayValido) throw new Error ("Producto con campos incompletos o erroneos");
         return true;
     }
