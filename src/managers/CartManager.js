@@ -1,10 +1,8 @@
 // @ts-nocheck
 import fs from 'fs/promises';
-import { Cart } from './Cart.js';
+import { Cart } from '../entities/Cart.js';
 import { ProductManager } from './ProductManager.js';
-import { cartstModel } from '../Dao/models/cartModel.js';
-import { productModel } from '../Dao/models/productModel.js';
-import mongoose from 'mongoose';
+
 export class CartManager{
     path = "";
     carts;
@@ -33,8 +31,11 @@ export class CartManager{
         }
     }
 
+    hola = async function name(params) {
+        
+    }
     async saveCartsFile(){
-        try {            
+        try {      
             const cartsFileJson = JSON.stringify(this.carts, null, 2);
             await fs.writeFile(this.path, cartsFileJson);
         } catch (error) {
@@ -50,8 +51,10 @@ export class CartManager{
     }
     async deleteCartById(id){
         await this.readCartsFile();
-        //const cartSearch = this.carts.find(cart => cart.id === id);       
-        // HACER LOGIA DE BORRADO DE CARTA     
+        const cartSearch = this.carts.find(cart => cart.id === id);   
+         const index = this.carts.findIndex(cart => cart.id === id)
+         this.carts.splice(index , 1)
+         this.saveCartsFile()
         if(cartSearch === undefined) throw new Error("ID no encontrado");              
         return cartSearch;
     }
@@ -95,28 +98,25 @@ export class CartManager{
 
     } 
 
-
-
     async deleteProductInCart (cid,pid) {
         const cart = await this.getCartById(cid)  
-
         // LUEGO ESTO DEBERA TIRAR UN ERROR SI NO EXISTE EL PRODUCTO EN CARTA
         // this.productInCart(cid,pid);
         const productosRestantes=[];
         if(cart){
-            const productsInCart = this.getProductsByCartId(cid)
-
-            console.log("porducts ", productsInCart)
-
+            const productsInCart = await this.getProductsByCartId(cid)
             productsInCart.filter((product)=>{
                 if( pid !== product.pid){
                     productosRestantes.push(product)
                 }
             }) 
-           // this.cart.products = productosRestantes;
-            this.cart["products"] = productosRestantes;
-            await this.saveCartsFile
+           this.carts.filter(cart=>{
+                if (cart.id === cid){
+                    cart.products=productosRestantes
+                }
+           })     
         }
+        this.saveCartsFile()
         return await this.getCartById(cid) ;
     }
 

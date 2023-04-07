@@ -16,13 +16,13 @@ cartsRouter.delete("/:cid", deleteCartByIDMongoose)
 cartsRouter.post("/:cid/product/:pid", postProductToCartsMongoose)
 cartsRouter.delete("/:cid/product/:pid", deleteProductInCartsMongoose)
 
-
 // file system
+/*
 cartsRouter.get("/fs/", getCartsFileSystem)
+
 cartsRouter.post("/fs/", postCartsFileSystem)
 cartsRouter.get("/fs/:cid", getCartsByIDFileSystem)
 cartsRouter.delete("/fs/:cid", deleteCartByIDFileSystem)
-
-//funciones pendientes
 cartsRouter.post("/fs/:cid/product/:pid", postProductToCartsFileSystem)
 cartsRouter.delete("/fs/:cid/product/:pid", deleteProductInCartsFileSystem)
+*/

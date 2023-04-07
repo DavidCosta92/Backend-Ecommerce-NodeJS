@@ -1,6 +1,6 @@
-import { ProductManager } from "../../ProductManager.js";
+import { ProductManager } from "../../managers/ProductManager.js";
 import { randomUUID } from "crypto";
-import { Product } from "../../Product.js";
+import { Product } from "../../entities/Product.js";
 
 const productManager = new ProductManager ("Dao/FileSystem");
 

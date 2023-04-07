@@ -1,7 +1,7 @@
-import { CartManager } from "../../CartManager.js";
+import { CartManager } from "../../managers/CartManager.js";
 import { randomUUID } from "crypto";
 
-const cartManager = new CartManager ("database"); 
+const cartManager = new CartManager ("./Dao/FileSystem"); 
 
 
 export async function getCartsFileSystem (req, res , next){
@@ -50,9 +50,6 @@ export async function postProductToCartsFileSystem (req, res , next){
          next(error);
      }
 }
-
-//funcion Pendiente
-
 
 export async function deleteProductInCartsFileSystem (req, res , next){
     try {

@@ -1,5 +1,5 @@
-import { productModel } from "../../../Dao/models/productModel.js";
-import { Product } from "../../Product.js";
+import { productModel } from "../../../Dao/DBaaS/models/productModel.js";
+import { Product } from "../../entities/Product.js";
 
 export async function getProductsMongoose (req, res , next){
     try {

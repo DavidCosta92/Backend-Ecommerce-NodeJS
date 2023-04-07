@@ -4,18 +4,20 @@ import { productsRouter } from "../routers/productsRouter.js";
 import { engine } from 'express-handlebars'
 import { cartsRouter } from "../routers/cartsRouter.js";
 import { viewsRouter } from "../routers/viewsRouter.js";
-import mongoose, { Mongoose } from 'mongoose';
+import { cartsRouterFileSystem } from "../routers/cartsRouterFileSystem.js";
+import mongoose from 'mongoose';
 
 import {Server as IOServer} from 'socket.io'
-import { productModel } from "../../Dao/models/productModel.js";
-import { chatModel } from "../../Dao/models/chatModel.js";
-
+import { productModel } from "../../Dao/DBaaS/models/productModel.js";
+import { chatModel } from "../../Dao/DBaaS/models/chatModel.js";
 
 const app = express();
 
 app.use("/api/products",productsRouter);
 app.use("/api/carts",cartsRouter);
 app.use("/api/views",viewsRouter);
+app.use("/api/fs/carts",cartsRouterFileSystem);
+
 
 
 mongoose.connect(mongooseConnectString)
@@ -26,9 +28,6 @@ app.use(express.static('./public'))
 app.engine('handlebars', engine())
 app.set('views', './views')
 app.set('view engine', 'handlebars')
-
-
-
 
 
 app.use((error, req, res , next)=>{

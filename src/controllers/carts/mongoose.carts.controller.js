@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { cartstModel } from "../../../Dao/models/cartModel.js";
-import { productModel } from "../../../Dao/models/productModel.js";
+import { cartstModel } from "../../../Dao/DBaaS/models/cartModel.js";
+import { productModel } from "../../../Dao/DBaaS/models/productModel.js";
 
 
 export async function getCartsMongoose (req, res , next){
@@ -25,7 +25,6 @@ export async function postCartsMongoose (req, res , next){
 
 export async function getCartsByIDMongoose (req, res , next){
     try {
-        // const productsInCart = await cartManager.getProductsByCartId(req.params.cid);
         const cart = await cartstModel.findById(req.params.cid).populate("products.product");
          res.json(cart);
      } catch (error) {
@@ -44,9 +43,6 @@ export async function deleteCartByIDMongoose (req, res , next){
 
 export async function postProductToCartsMongoose (req, res , next){
     try {
-
-        // const productAdded = await cartManager.addProductToCart(req.params.cid , req.params.pid, req.query.quantity);
-
         const cid = req.params.cid 
         const pid = req.params.pid
         let productQuantity = req.query.quantity;
@@ -89,11 +85,10 @@ export async function postProductToCartsMongoose (req, res , next){
 
 export async function deleteProductInCartsMongoose (req, res , next){
     try {
-        //const actualProducts = await cartManager.deleteProductInCart(req.params.cid , req.params.pid)
         const cart = await cartstModel.findById(req.params.cid)
 
         // LUEGO ESTO DEBERA TIRAR UN ERROR SI NO EXISTE EL PRODUCTO EN CARTA
-        //this.productInCart(cid,pid);
+        // this.productInCart(cid,pid);
     
         if(cart){
             let productosRestantes=[];
