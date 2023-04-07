@@ -3,13 +3,19 @@ import { PORT } from "../config/servidor.config.js"
 import { productsRouter } from "../routers/productsRouter.js";
 import { engine } from 'express-handlebars'
 import { cartsRouter } from "../routers/cartsRouter.js";
+import { viewsRouter } from "../routers/viewsRouter.js";
 import mongoose, { Mongoose } from 'mongoose';
+
+import {Server as IOServer} from 'socket.io'
+import { productModel } from "../../Dao/models/productModel.js";
+import { chatModel } from "../../Dao/models/chatModel.js";
 
 
 const app = express();
 
 app.use("/api/products",productsRouter);
 app.use("/api/carts",cartsRouter);
+app.use("/api/views",viewsRouter);
 
 
 mongoose.connect("mongodb+srv://davidcst2991:davidcst2991coder@ecommerce.3iptaqr.mongodb.net/?retryWrites=true&w=majority") ///ecommerce
@@ -50,10 +56,61 @@ app.use((error, req, res , next)=>{
     }
 })
 
+const httpServer = app.listen(PORT, () => console.log("Servidor activo"))
+
+export const io = new IOServer(httpServer)
+
+
+io.on('connection', async clientSocket=>{ 
+    //ACTUALIZAR AL CONECTARSE
+
+
+    //conexion chat
+    io.emit('nuevaConexChat', await chatModel.find())
+
+    //ACTUALIZAR AL HABER CAMBIOS
+    clientSocket.on('actualizarChat', async ()=>{  
+        io.emit('actualizarRender', await chatModel.find())
+   })
+
+   clientSocket.on('nuevoMensaje', async mensaje=>{  
+    
+
+    const mensajeCreado = await chatModel.create({ user:  mensaje["user"] , message:  mensaje["message"] })
+    console.log("mensajeCreado=>", mensajeCreado)
+
+    io.emit("actualizarMensajes", await chatModel.find() )
+})
+
+
+    console.log("nuevo cliente conectado", clientSocket.id)
+    io.emit('nuevaConex', await productModel.find())
 
 
 
+    //ACTUALIZAR AL HABER CAMBIOS
+    clientSocket.on('actualizar', async ()=>{  
+        io.emit('actualizarRender', await productModel.find())
+   })
+
+   clientSocket.on('actualizarProductsRenders', async () =>{    
+    const prodUpdated = await productModel.find();
+    io.emit('actualizarRender', await productModel.find() )    
+    })
+
+   clientSocket.on('eliminarProducto', async id=>{
+        await productModel.findByIdAndDelete(id);
+        io.emit('actualizarRender', await productModel.find())
+   })
+
+   clientSocket.on('eliminarProducto', async () =>{
+    io.emit('actualizarRender', await productModel.find())    
+    })
+
+
+    
 
 
 
-app.listen(PORT, () => console.log("Servidor activo"))
+})
+

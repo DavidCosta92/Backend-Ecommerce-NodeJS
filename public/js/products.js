@@ -18,8 +18,13 @@ if(form instanceof HTMLFormElement){
                 "Content-Type": "application/json",
             }
         })
+        actualizarProductsRenders();
+
     })
 }
+
+
+
 // FINALIZA para cargar producto con METODO POST
 
 
@@ -48,7 +53,7 @@ const plantilla = `
         <td>{{this.description}}</td>  
         <td>{{this.id}}</td>
         <td>
-            <button onClick=eliminarProducto("{{this.id}}") id={{this.id}} type="button" class="btn btn-danger">
+            <button onClick=eliminarProducto("{{this._id}}") id={{this._id}} type="button" class="btn btn-danger">
                 Eliminar
             </button>
         </td>
@@ -63,6 +68,7 @@ const plantilla = `
 `
 const armarHtmlDinamico = Handlebars.compile(plantilla) 
 
+
 function obtenerDatosForm(){
     const title = document.getElementById('title').value
     const description = document.getElementById('description').value
@@ -74,17 +80,28 @@ function obtenerDatosForm(){
     const productoNuevo = {title : title , description : description , code : code , price : price , category : category , stock : stock , thumbnails : thumbnails}
     crearProducto(productoNuevo)
 }
+/*
 function crearProducto(productoNuevo){    
     serverSocket.emit('crearProducto', productoNuevo)
   }
 
+*/
 function eliminarProducto(id){
     serverSocket.emit('eliminarProducto', id)
 }
+serverSocket.on('nuevaConex', productos=>{
+    console.log("CONECTADO A SERVIDOR")
+    const div = document.getElementById("productosRealTime")
+    if(div) div.innerHTML = armarHtmlDinamico({productos, hayProductos: productos.length > 0 })
+} )
 
 serverSocket.on('actualizarRender', productos=>{
     const div = document.getElementById("productosRealTime")
     if(div) div.innerHTML = armarHtmlDinamico({productos, hayProductos: productos.length > 0 })
 } )
 
+
+function actualizarProductsRenders(){
+    serverSocket.emit('actualizarProductsRenders')
+}
 

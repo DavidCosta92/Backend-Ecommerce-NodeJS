@@ -3,6 +3,7 @@ import {randomUUID} from 'crypto';
 import { Product } from '../Product.js';
 import { ProductManager } from '../ProductManager.js';
 import { productModel } from '../../Dao/models/productModel.js';
+import { io } from '../app/servidor.js';
 
 export const productsRouter = Router();
 
@@ -22,10 +23,13 @@ productsRouter.get("/" , async (req, res , next) => {
     }
 });
 
+/*
+boorraaar
 productsRouter.get("/formCargaProd", (req, res, next)=>{
     res.render("uploadProduct", {title: "carga productooooos"})
 })
 
+*/
 productsRouter.post('/', async (req, res , next) => {
     try {
         /*
@@ -105,4 +109,3 @@ productsRouter.delete("/:pid" , async (req, res , next) => {
         next(error);        
     }
 });
-

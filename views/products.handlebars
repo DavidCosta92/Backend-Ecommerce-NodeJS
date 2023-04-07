@@ -1,5 +1,6 @@
-<h1 class=" p-3">Form para agregar productos</h1>
 
+<!--
+<h1 class=" p-3">Form para agregar productos</h1>
 <div class=" p-3 text-end">
     <form class="d-flex flex-wrap">
         <div class="mb-3 d-flex w-50">
@@ -34,8 +35,9 @@
     </form>
     <button class="btn btn-primary w-50 translate-middle mt-3" onclick="obtenerDatosForm()">Crear producto</button>
 </div>
+-->
 
-<h1 class=" p-3">Form para agregar mediante metodo post a ==== /api/products </h1>
+<h1 class=" p-3">Form para agregar mediante metodo post al endpoint /api/products </h1>
 <div class=" p-3 text-end">
     <form class="d-flex flex-wrap" id="formCargaProducto" action="/api/products" method="post">
         <div class="mb-3 d-flex w-50">
@@ -67,14 +69,16 @@
             <label for="thumbnails" class="form-label p-1 ">Thumbnails</label>
             <input type="text" class="form-control" id="thumbnails" name="thumbnails" aria-describedby="thumbnails">
         </div>     
-        <button type="submit" class="btn btn-primary w-50 translate-middle mt-3">enviar form? </button>
+        <button type="submit" class="btn btn-primary w-50 mt-3">Enviar</button>
     </form>
 </div>
 
 <div class="p-3">
     <h1>Productos existentes</h1>
-    <div id="productosRealTime">   </div>
+    <div id="productosRealTime">
+        
+     </div>
 </div>
 
 <script src="/socket.io/socket.io.js"></script>
-<script src="/js/uploadProduct.js"></script>
+<script src="/js/products.js"></script>
