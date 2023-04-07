@@ -18,8 +18,7 @@ app.use("/api/carts",cartsRouter);
 app.use("/api/views",viewsRouter);
 
 
-mongoose.connect("mongodb+srv://davidcst2991:davidcst2991coder@ecommerce.3iptaqr.mongodb.net/?retryWrites=true&w=majority") ///ecommerce
-
+mongoose.connect("mongodb+srv://davidcst2991:davidcst2991coder@ecommerce.3iptaqr.mongodb.net/ecommerce?retryWrites=true&w=majority") ///ecommerce
 // SETEAR CARPETA PUBLICA PARA LEVANTARLA DESDE FRONT
 app.use(express.static('./public'))
 
@@ -62,31 +61,23 @@ export const io = new IOServer(httpServer)
 
 
 io.on('connection', async clientSocket=>{ 
-    //ACTUALIZAR AL CONECTARSE
-
-
     //conexion chat
-    io.emit('nuevaConexChat', await chatModel.find())
+    io.emit('newChatClient', await chatModel.find())
 
-    //ACTUALIZAR AL HABER CAMBIOS
-    clientSocket.on('actualizarChat', async ()=>{  
-        io.emit('actualizarRender', await chatModel.find())
-   })
+    clientSocket.on('newMessage', async message=>{     
+    await chatModel.create({ user:  message["user"] , message:  message["message"] })
+    io.emit("updateMessages", await chatModel.find() )
+    })
 
-   clientSocket.on('nuevoMensaje', async mensaje=>{  
-    
+    clientSocket.on('newUser', async user=>{    
+        clientSocket.broadcast.emit("newUser", user)
+    })
 
-    const mensajeCreado = await chatModel.create({ user:  mensaje["user"] , message:  mensaje["message"] })
-    console.log("mensajeCreado=>", mensajeCreado)
 
-    io.emit("actualizarMensajes", await chatModel.find() )
-})
 
 
     console.log("nuevo cliente conectado", clientSocket.id)
-    io.emit('nuevaConex', await productModel.find())
-
-
+    io.emit('newClient', await productModel.find())
 
     //ACTUALIZAR AL HABER CAMBIOS
     clientSocket.on('actualizar', async ()=>{  

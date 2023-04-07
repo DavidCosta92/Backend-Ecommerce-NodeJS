@@ -1,20 +1,7 @@
 // @ts-nocheck
-const serverSocket = io(); // io('http://localhost:8080');  =>esta forma es para que sea local... io sin argumentos, toma la raiz del servidor!!! para deploy
+const serverSocket = io();
 
 const button = document.querySelector('#btnEnviar')
-
-/*
-serverSocket.on("algoEnFormatoSerializable", datosAdjuntos => {
-    console.log("mensaje enviado desde server...")
-    console.log("datosAdjuntos", datosAdjuntos)
-})
-
-serverSocket.on("alertaaa",datosAdjuntos => {
-    alert(datosAdjuntos)
-} )
-
-*/
-
 
 Swal.fire({
     title: "Identificate",
@@ -24,30 +11,26 @@ Swal.fire({
     },
     allowOutsideClick: false
 }).then(result=>{
-    const inputAutor = document.querySelector('#inputAutor')
-    if (!(inputAutor instanceof HTMLInputElement)) return
-    inputAutor.value = result.value
+    const inputUser = document.querySelector('#inputUser')
+    if (!(inputUser instanceof HTMLInputElement)) return
+    inputUser.value = result.value    
+    serverSocket.emit('newUser', inputUser.value)
 })
 
 if (button){
-    button.addEventListener ('click', evento => {
+    button.addEventListener ('click', e => {
+        const inputUser = document.querySelector('#inputUser')
+        const inputMessage = document.querySelector('#inputMessage')
 
-        //serverSocket.emit("mensajeCliente", {datos: [1,2,3]})
-        console.log("ENVIANDO MENSAJE A SERVER")
+        if (!(inputUser instanceof HTMLInputElement) || !(inputMessage instanceof HTMLInputElement)) return
 
-        const inputAutor = document.querySelector('#inputAutor')
-        const inputMensaje = document.querySelector('#inputMensaje')
-
-        if (!(inputAutor instanceof HTMLInputElement) || !(inputMensaje instanceof HTMLInputElement)) return
-
-        const user = inputAutor.value
-        const message = inputMensaje.value
+        const user = inputUser.value
+        const message = inputMessage.value
 
         if(!user || !message) return
         
-        const emitMsj =  {user, message}
-        console.log("emitMsjemitMsjemitMsjemitMsj" , emitMsj)
-        serverSocket.emit('nuevoMensaje', emitMsj)
+        const dataMessage =  {user, message}
+        serverSocket.emit('newMessage', dataMessage)
         
     })
 }
@@ -67,34 +50,29 @@ const plantillaMensajes = `
 
 const armarHtml = Handlebars.compile(plantillaMensajes)
 
-serverSocket.on('nuevaConexChat', mensajes => {
+serverSocket.on('newChatClient', mensajes => {
     const divMensajes = document.getElementById("mensajes")
     if(divMensajes){
         divMensajes.innerHTML = armarHtml({mensajes, hayMensajes: mensajes.length > 0 })
     }
 })
 
-
-
-
-
-serverSocket.on('actualizarMensajes', mensajes => {
+serverSocket.on('updateMessages', mensajes => {
     const divMensajes = document.getElementById("mensajes")
     if(divMensajes){
         divMensajes.innerHTML = armarHtml({mensajes, hayMensajes: mensajes.length > 0 })
     }
 })
 
-serverSocket.on('nuevoUsuario', nombreUsuario => {
+serverSocket.on('newUser', user => {
     Swal.fire({
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
         timer:2000,
-        title:`${nombreUsuario} se unio al chat`,
+        title:`${user} se unio al chat`,
         icon: 'success'
     })
-
 })
 
 
