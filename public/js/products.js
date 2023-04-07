@@ -65,19 +65,6 @@ const plantilla = `
 `
 const armarHtmlDinamico = Handlebars.compile(plantilla) 
 
-
-function obtenerDatosForm(){
-    const title = document.getElementById('title').value
-    const description = document.getElementById('description').value
-    const code = document.getElementById('code').value
-    const price = document.getElementById('price').value
-    const category = document.getElementById('category').value
-    const stock = document.getElementById('stock').value
-    const thumbnails = document.getElementById('thumbnails').value
-    const productoNuevo = {title : title , description : description , code : code , price : price , category : category , stock : stock , thumbnails : thumbnails}
-    crearProducto(productoNuevo)
-}
-
 function eliminarProducto(id){
     serverSocket.emit('eliminarProducto', id)
 }

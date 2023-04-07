@@ -1,5 +1,5 @@
 import express from "express"
-import { PORT } from "../config/servidor.config.js"
+import { PORT , mongooseConnectString } from "../config/servidor.config.js"
 import { productsRouter } from "../routers/productsRouter.js";
 import { engine } from 'express-handlebars'
 import { cartsRouter } from "../routers/cartsRouter.js";
@@ -18,7 +18,7 @@ app.use("/api/carts",cartsRouter);
 app.use("/api/views",viewsRouter);
 
 
-mongoose.connect("mongodb+srv://davidcst2991:davidcst2991coder@ecommerce.3iptaqr.mongodb.net/ecommerce?retryWrites=true&w=majority") ///ecommerce
+mongoose.connect(mongooseConnectString)
 // SETEAR CARPETA PUBLICA PARA LEVANTARLA DESDE FRONT
 app.use(express.static('./public'))
 
@@ -26,6 +26,8 @@ app.use(express.static('./public'))
 app.engine('handlebars', engine())
 app.set('views', './views')
 app.set('view engine', 'handlebars')
+
+
 
 
 
@@ -76,6 +78,7 @@ io.on('connection', async clientSocket=>{
 
 
 
+    //PRODUCT SOCKET
     console.log("nuevo cliente conectado", clientSocket.id)
     io.emit('newClient', await productModel.find())
 
