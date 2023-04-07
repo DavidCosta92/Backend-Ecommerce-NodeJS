@@ -22,9 +22,6 @@ if(form instanceof HTMLFormElement){
 
     })
 }
-
-
-
 // FINALIZA para cargar producto con METODO POST
 
 
@@ -51,7 +48,7 @@ const plantilla = `
         <td>{{this.title}}</td>
         <td>{{this.price}}</td>
         <td>{{this.description}}</td>  
-        <td>{{this.id}}</td>
+        <td>{{this._id}}</td>
         <td>
             <button onClick=eliminarProducto("{{this._id}}") id={{this._id}} type="button" class="btn btn-danger">
                 Eliminar
@@ -80,16 +77,11 @@ function obtenerDatosForm(){
     const productoNuevo = {title : title , description : description , code : code , price : price , category : category , stock : stock , thumbnails : thumbnails}
     crearProducto(productoNuevo)
 }
-/*
-function crearProducto(productoNuevo){    
-    serverSocket.emit('crearProducto', productoNuevo)
-  }
 
-*/
 function eliminarProducto(id){
     serverSocket.emit('eliminarProducto', id)
 }
-serverSocket.on('nuevaConex', productos=>{
+serverSocket.on('newClient', productos=>{
     console.log("CONECTADO A SERVIDOR")
     const div = document.getElementById("productosRealTime")
     if(div) div.innerHTML = armarHtmlDinamico({productos, hayProductos: productos.length > 0 })
