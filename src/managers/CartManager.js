@@ -31,9 +31,6 @@ export class CartManager{
         }
     }
 
-    hola = async function name(params) {
-        
-    }
     async saveCartsFile(){
         try {      
             const cartsFileJson = JSON.stringify(this.carts, null, 2);

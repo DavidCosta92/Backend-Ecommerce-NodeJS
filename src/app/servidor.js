@@ -75,8 +75,6 @@ io.on('connection', async clientSocket=>{
     })
 
 
-
-
     //PRODUCT SOCKET
     console.log("nuevo cliente conectado", clientSocket.id)
     io.emit('newClient', await productModel.find())
@@ -100,10 +98,17 @@ io.on('connection', async clientSocket=>{
     io.emit('actualizarRender', await productModel.find())    
     })
 
-
-    
-
-
-
 })
 
+/*
+
+// estoy usando un midleware para poder agregar el socket a todas las peticiones que pasen?
+// ESTO PERMITE QUE LUEGO PUEDA REQUERIR EL IO EN CUALQUIER CONTROLLER?
+// PARA REQUERIR.. => podria ponerlo en el controlador de productos req['io'].sockets.emit("unMENSAJE", await productModel.find())
+
+app.use((req,res,next)=>{
+    req['io'] = io
+    next()
+})
+
+*/

@@ -86,10 +86,6 @@ export async function postProductToCartsMongoose (req, res , next){
 export async function deleteProductInCartsMongoose (req, res , next){
     try {
         const cart = await cartstModel.findById(req.params.cid)
-
-        // LUEGO ESTO DEBERA TIRAR UN ERROR SI NO EXISTE EL PRODUCTO EN CARTA
-        // this.productInCart(cid,pid);
-    
         if(cart){
             let productosRestantes=[];
             const productSearch = await productModel.findById(req.params.pid)
@@ -100,8 +96,6 @@ export async function deleteProductInCartsMongoose (req, res , next){
                 }
             })            
             cart.products = productosRestantes;
-            console.log("cart.products", cart.products)
-
             await cartstModel.replaceOne({ _id: req.params.cid } , cart)
         }
         res.json(await cartstModel.findById(req.params.cid).populate("products.product"));
