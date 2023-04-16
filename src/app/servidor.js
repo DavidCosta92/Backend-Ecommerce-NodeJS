@@ -11,6 +11,9 @@ import {Server as IOServer} from 'socket.io'
 import { productModel } from "../../Dao/DBaaS/models/productModel.js";
 import { chatModel } from "../../Dao/DBaaS/models/chatModel.js";
 
+import { postProductToCartsMongoose } from "../controllers/carts/mongoose.carts.controller.js";
+
+
 const app = express();
 
 app.use("/api/products",productsRouter);
@@ -77,13 +80,12 @@ io.on('connection', async clientSocket=>{
 
     //PRODUCT SOCKET
     console.log("nuevo cliente conectado", clientSocket.id)
-    io.emit('newClient', await productModel.find())
+    io.emit('newClient',  await productModel.find())
 
     //ACTUALIZAR AL HABER CAMBIOS
     clientSocket.on('actualizar', async ()=>{  
         io.emit('actualizarRender', await productModel.find())
    })
-
    clientSocket.on('actualizarProductsRenders', async () =>{    
     const prodUpdated = await productModel.find();
     io.emit('actualizarRender', await productModel.find() )    

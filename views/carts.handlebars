@@ -1,19 +1,94 @@
 
-
-<div>
-    <h1 class=" p-3">Boton para agregar new cart</h1>
-    <button class="btn btn-primary w-50  mt-3" onclick="obtenerDatosForm()">Crear producto</button>
-</div>
-
-<div>
-
-    <h1 class=" p-3">Form para agregar productos a la carta</h1>
-
-</div>
-
-
 <div class="p-3">
-    <h1>Cartas existentes</h1>
+    
+    <h1 class="text-center"> Carritos</h1> 
+    <button class="btn btn-primary m-3" onclick="createNewCart()">Crear nuevo carrito</button>
+    {{#if hayResultados}}
+    <table class="table table-dark table-striped text-center">
+    <thead>
+        <tr>
+        <th scope="col">ID Carrito</th>
+        <th scope="col">Productos</th>
+        <th scope="col">Acciones Carrito</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each payload}}
+            <tr  id="{{this._id}}">    
+            <td>{{this._id}}</td>
+            <td>
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID Producto</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio Un</th>
+                            <th scope="col">Acciones de Producto</th>
+                        </tr>
+                    </thead>
+                    {{#each this.products}}
+                        <tbody id="{{this.product._id}}">
+                            <td>{{this.product._id}}</td>
+                            <td>{{this.product.title}}</td>
+                            <td>{{this.product.description}}</td>
+                            <td>{{this.quantity}}</td>
+                            <td>{{this.product.price}}</td>
+                            <td>
+                                <label for="quantity">Cant:</label>
+                                <input type="number" id="quantity{{this.product._id}}" name="quantity" min="1">
+                                <button onClick=elegirUnidades("{{this.product._id}}") type="button" class="btn btn-success">
+                                    Elegir Cantidad
+                                </button>
+                                <button onClick=eliminarProducto("{{this.product._id}}") type="button" class="btn btn-danger">
+                                    Eliminar producto
+                                </button>
+                            </td>
+                        </tbody>
+                    {{/each}}
+                </table>
+
+            </td>
+            <td>
+                <button  onClick=vaciarCarrito("{{this._id}}") type="button" class="btn btn-warning w-75 m-1">
+                    Vaciar
+                </button>
+                <button onClick=eliminarCarrito("{{this._id}}") type="button" class="btn btn-danger w-75 m-1">
+                    Eliminar
+                </button>
+            </td>
+            </tr>
+        {{/each}}
+    </tbody>
+    </table>
+
+    <div class="botoneraPaginado">
+        {{#if hasPrevPage}}
+            <a href="/api/views/products?limit={{limit}}&page={{prevPage}}" type="button" class="btn btn-outline-primary">
+                Pagina previa
+            </a>
+            {{else}}
+            <a type="button" class="btn btn-outline-secondary">
+                Pagina previa
+            </a>
+            {{/if}}
+            <div>
+                <p>{{limit}} productos por pagina, pagina actual: {{page}} , total de paginas: {{totalPages}}</p>
+            </div>
+            {{#if hasNextPage}}
+            <a href="/api/views/products?limit={{limit}}&page={{nextPage}}" type="button" class="btn btn-outline-primary">
+                Pagina Siguiente
+            </a>
+            {{else}}
+            <a type="button" class="btn btn-outline-secondary">
+                Pagina Siguiente
+            </a>
+            {{/if}}
+        </div>
+        {{else}}
+        <h1 > parece que no hay carritos aun</h1>
+        {{/if}}
     <div id="cartsRealTime">  
         
     </div>

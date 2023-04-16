@@ -19,7 +19,7 @@ productsRouter.delete("/fs/:pid" , deleteProductsByIDFileSystem);
 
  // >>>>>>>> MONGOOSE ATLAS DBaaS <<<<<<<<<<
 
-productsRouter.get("/" , getProductsMongoose);
+productsRouter.get("/" , getProductsMongoose)
  
 productsRouter.post('/',postProductsMongoose);
 

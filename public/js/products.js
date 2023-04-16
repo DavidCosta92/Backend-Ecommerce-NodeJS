@@ -24,10 +24,6 @@ if(form instanceof HTMLFormElement){
 }
 // FINALIZA para cargar producto con METODO POST
 
-
-
-
-
 /// para web socket 
 const serverSocket = io('http://localhost:8080');
 const plantilla = `
@@ -63,16 +59,30 @@ const plantilla = `
 <p>NO HAY PRODUCTOS AUN...</p>
 {{/if}}
 `
+
+
 const armarHtmlDinamico = Handlebars.compile(plantilla) 
 
-function eliminarProducto(id){
-    serverSocket.emit('eliminarProducto', id)
+function eliminarProducto(pid){
+    serverSocket.emit('eliminarProducto', pid)
 }
-serverSocket.on('newClient', productos=>{
+
+function agregarProductoAlCarrito(pid){    
+    const cid = document.getElementById(`cid${pid}`).value  
+    const productQuantity = document.getElementById(`quantity${pid}`).value  
+    fetch(`/api/carts/${cid}/products/${pid}?quantity=${productQuantity}`,{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+}
+
+serverSocket.on('newClient', productos =>{
     console.log("CONECTADO A SERVIDOR")
-    const div = document.getElementById("productosRealTime")
-    if(div) div.innerHTML = armarHtmlDinamico({productos, hayProductos: productos.length > 0 })
-} )
+    const div = document.getElementById("productosRealTime")    
+    if(div) div.innerHTML = armarHtmlDinamico({productos, hayProductos: productos.length > 0 })  
+})
 
 serverSocket.on('actualizarRender', productos=>{
     const div = document.getElementById("productosRealTime")
