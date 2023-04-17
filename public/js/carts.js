@@ -37,8 +37,8 @@ function vaciarCarrito (cid){
     })
 }
 function elegirUnidades (pid){    
-    const cid = document.getElementById(pid).parentNode.parentNode.parentNode.id;
     const productQuantity = document.getElementById(`quantity${pid}`).value   
+    const cid = document.getElementById(pid).parentNode.parentNode.parentNode.id;
     fetch(`/api/carts/${cid}/products/${pid}?quantity=${productQuantity}`,{
         method: "PUT",
         headers: {
@@ -46,6 +46,20 @@ function elegirUnidades (pid){
         }
     })
 }
+function elegirUnidadesDesdeCartById (pid){    
+    const productQuantity = document.getElementById(`quantity${pid}`).value  
+    const cid = document.getElementById(pid).parentNode.parentNode.id;
+    console.log("cid", cid)
+    console.log("pid", pid)
+    fetch(`/api/carts/${cid}/products/${pid}?quantity=${productQuantity}`,{
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    
+}
+
 function eliminarProducto (pid){
     const cid = document.getElementById(pid).parentNode.parentNode.parentNode.id;
     fetch(`/api/carts/${cid}/products/${pid}`,{
@@ -54,4 +68,15 @@ function eliminarProducto (pid){
             "Content-Type": "application/json",
         }
     })
+}
+
+function eliminarProductosDesdeCartById (pid){    
+    const cid = document.getElementById(pid).parentNode.parentNode.id;
+    fetch(`/api/carts/${cid}/products/${pid}`,{
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    
 }

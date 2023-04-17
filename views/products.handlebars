@@ -61,12 +61,12 @@
 
                 <label for="quantity">Cant:</label>
                 <input type="number" id="quantity{{this._id}}" name="quantity" min="1">
-                
+
                 <button onClick=agregarProductoAlCarrito("{{this._id}}") id={{this._id}} type="button" class="btn btn-success">
                     Agregar a carrito
                 </button>
                 <button onClick=eliminarProducto("{{this._id}}") id={{this._id}} type="button" class="btn btn-danger">
-                    Eliminar ==== funciona, pero no actualiza el listado.. hace falta hacerla reactiva con sockets???
+                    Eliminar
                 </button>
             </td>
             </tr>

@@ -143,11 +143,11 @@ export async function updateQuantityProductInCartsMongoose (req, res , next) {
     
         if(cart){            
             let productInCart= false;      
-            const product = await productModel.findById(pid);        
+            const product = await productModel.findById(pid);     
             cart["products"].filter((obj)=>{
             if( obj["product"].equals(product._id) ){ productInCart = true; }
            })
-
+           
             if(productInCart){
                 cart["products"].map(obj=>{
                     if( obj["product"].equals(product._id) ){ 

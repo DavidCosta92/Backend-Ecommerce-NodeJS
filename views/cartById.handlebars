@@ -1,0 +1,69 @@
+
+<div class="p-3">    
+    <h1 class="text-center"> Carrito por ID</h1> 
+    {{#if hayResultados}}
+    
+    <table class="table table-dark table-striped text-center" id="{{cart._id}}">
+    <thead>
+        <tr>
+            <th scope="col">Productos en carrito {{cart._id}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each cart.products}}
+            <tr  id="{{this.product._id}}"> 
+            <td>
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID Producto</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col" class="w-25">Descripcion</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio Un</th>
+                            <th scope="col" >Acciones de Producto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td>{{this.product._id}}</td>
+                        <td>{{this.product.title}}</td>
+                        <td>{{this.product.description}}</td>
+                        <td>{{this.quantity}}</td>
+                        <td>{{this.product.price}}</td>
+                        <td>
+                            <label for="quantity">Cant:</label>
+                            <input type="number" id="quantity{{this.product._id}}" name="quantity" min="1">
+                            <button onClick=elegirUnidadesDesdeCartById("{{this.product._id}}") type="button" class="btn btn-success">
+                                Elegir Cantidad
+                            </button>
+                            <button onClick=eliminarProductosDesdeCartById("{{this.product._id}}") type="button" class="btn btn-danger">
+                                Eliminar producto
+                            </button>
+                        </td>
+                    </tbody>
+
+
+                </table>
+
+            </td>
+            </tr>
+        {{/each}}
+                    <td>
+                <button  onClick=vaciarCarrito("{{this._id}}") type="button" class="btn btn-warning w-25 m-1">
+                    Vaciar el carrito
+                </button>
+                <button onClick=eliminarCarrito("{{this._id}}") type="button" class="btn btn-danger w-25 m-1">
+                    Eliminar el carrito
+                </button>
+            </td>
+    </tbody>
+    </table>
+
+        {{else}}
+        <h1 > parece que no hay carritos aun</h1>
+        {{/if}}
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/carts.js"></script>
+

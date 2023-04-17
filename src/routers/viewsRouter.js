@@ -2,7 +2,6 @@
 import express, { Router } from 'express';
 import { cartstModel } from '../../Dao/DBaaS/models/cartModel.js';
 import { productModel } from '../../Dao/DBaaS/models/productModel.js';
-import { getProductsMongoose } from '../controllers/products/mongoose.products.controller.js';
 
 
 export const viewsRouter = Router();
@@ -55,6 +54,11 @@ viewsRouter.get("/carts", async (req, res, next)=>{
     res.render("carts", response)
 })
 
+viewsRouter.get("/carts/:cid", async (req, res, next)=>{         
+    const pageOptions = {lean : true, populate: 'products.product'}        
+    const cart = await cartstModel.find({_id : req.params.cid}).populate('products.product').lean()
+    res.render("cartById", {cart: cart[0] , hayResultados: cart[0].products.length>0})
+})
 
 viewsRouter.get("/chat", (req, res, next)=>{
     res.render("chats", {title: "Chat"})
