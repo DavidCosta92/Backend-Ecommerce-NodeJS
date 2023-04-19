@@ -9,7 +9,7 @@ export const viewsRouter = Router();
 viewsRouter.use(express.json()); 
 
 /* http://localhost:8080/api/views/products?limit=2&page=3 */
-viewsRouter.get("/api/views", async (req, res, next)=>{
+viewsRouter.get("/products", async (req, res, next)=>{
 
     /* paginado y ordenamiento */   
     const queryLimit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 10 : req.query.limit
@@ -31,6 +31,7 @@ viewsRouter.get("/api/views", async (req, res, next)=>{
         nextLink : products.nextPage? `/api/products/?limit=${queryLimit}&page=${products.nextPage}`: null,
         hayResultados : products.docs.length > 0
     }
+    console.log("PRODUCTOS", response)
     res.render("products", response)
 })
 

@@ -30,22 +30,6 @@ export async function postProductsFileSystem (req, res , next){
     } catch (error) {
         next(error);
     }
-
-    /* Product post prueba
-{
-  "title" : "pan",
-  "description" : "trincha",
-  "code" : "pan124",
-  "price" : 100,
-  "stock" : 5,
-  "category" : "comestibles",
-  "thumbnails" : [
-                  "./img/panificados/pan/1.png",
-                  "./img/panificados/pan/2.png",
-                  "./img/panificados/pan/3.png"
-                  ]
-}
-*/
 }
 
 export async function getProductsByIDFileSystem (req, res , next){

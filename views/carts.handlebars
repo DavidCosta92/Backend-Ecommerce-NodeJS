@@ -12,10 +12,10 @@
         <th scope="col">Acciones Carrito</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody >
         {{#each payload}}
             <tr  id="{{this._id}}">    
-            <td>{{this._id}}</td>
+            <td >{{this._id}}</td>
             <td>
                 <table class="table table-dark table-striped">
                     <thead>
@@ -24,7 +24,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Descripcion</th>
                             <th scope="col">Cantidad</th>
-                            <th scope="col">Precio Un</th>
+                            <th scope="col">Precio </th>
                             <th scope="col">Acciones de Producto</th>
                         </tr>
                     </thead>
@@ -35,9 +35,9 @@
                             <td>{{this.product.description}}</td>
                             <td>{{this.quantity}}</td>
                             <td>{{this.product.price}}</td>
-                            <td>
+                            <td class="w-50">
                                 <label for="quantity">Cant:</label>
-                                <input type="number" id="quantity{{this.product._id}}" name="quantity" min="1">
+                                <input type="number" id="quantity{{this.product._id}}" name="quantity" min="1" class="w-25" value="{{this.quantity}}">
                                 <button onClick=elegirUnidades("{{this.product._id}}") type="button" class="btn btn-success">
                                     Elegir Cantidad
                                 </button>

@@ -20,6 +20,10 @@ productsRouter.delete("/fs/:pid" , deleteProductsByIDFileSystem);
  // >>>>>>>> MONGOOSE ATLAS DBaaS <<<<<<<<<<
 
 productsRouter.get("/" , getProductsMongoose)
+
+productsRouter.get("/add/form" , (req, res, next)=>{
+    res.render("formularioProductos")
+})
  
 productsRouter.post('/',postProductsMongoose);
 

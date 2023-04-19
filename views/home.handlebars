@@ -1,0 +1,61 @@
+
+<h3 class=" m-5 text-center">Hola, esta es una pagina para redireccionar a cada endpoint de manera mas facil</h3>
+
+<div>
+    <div  class=" m-5 p-5 border border-dark">
+        <h5>Productos</h5>
+            <div class=" m-2 p-2 border border-ligth">
+                    <a href="http://localhost:8080/api/products/add/form"><h6>Formulario para agregar productos a moongose</h6></a>
+                    <a href="http://localhost:8080/api/products/"><h6>Api para ver productos</h6></a>
+            </div>
+                    
+            <div class=" m-2 p-2 border border-ligth">
+                <h6>Api para ver producto por ID</h6>
+                <label for="idProducto">ID producto:</label>
+                <p>Ejemplo de ID producto : 64300d3d4238e8b125d61976</p>
+                <input type="text" id="idProducto" name="idProducto" min="1">
+                <button onClick=redirigirPagProductoPorID() type="button" class="btn btn-outline-primary">
+                VER PRODUCTO
+                </button>     
+            </div>
+            <div class=" m-2 p-2 border border-ligth">
+                <h6>Api para ver productos de forma grafica , Elegir paginado</h6>
+                <label for="limit">Cantidad de productos por pagina</label>
+                <input type="number" id="limit" name="limit" min="1" >
+                <label for="page">Numero de pagina</label>
+                <input type="number" id="page" name="page" min="1">                
+                <button onClick=redirigirPagProductos() type="button" class="btn btn-outline-primary">VER PRODUCTO</button>
+            </div>
+    </div>
+
+    <div  class=" m-5 p-5 border border-dark">
+        <h5>Carritos</h5>
+            <div class=" m-2 p-2 border border-ligth">
+                <h6>Api para ver todas los carritos de forma grafica , Elegir paginado</h6>
+                <label for="limitCart">Cantidad de carritos por pagina</label>
+                <input type="number" id="limitCart" name="limitCart" min="1">
+                <label for="pageCart">Numero de pagina</label>
+                <input type="number" id="pageCart" name="pageCart" min="1">                
+                <button onClick=redirigirPagCarritos() type="button" class="btn btn-outline-primary">VER CARRITOS</button>
+            </div>
+            <div class=" m-2 p-2 border border-ligth">
+                <h6>Api para ver un Carrito por ID</h6>
+                <label for="idCart">ID carrito:</label>
+                <p>Ejemplo de ID carrito : 643be9502744fd9c6fcdd7ec</p>
+                <input type="text" id="idCart" name="idCart" min="1">
+                <button onClick=redirigirPagCarritosPorID() type="button" class="btn btn-outline-primary">
+                VER PRODUCTO
+                </button> 
+            </div>
+    </div>
+    <div  class=" m-5 p-5 border border-dark">
+        <h5>Chat</h5>
+        <div class=" m-2 p-2 border border-ligth">
+                <a href="http://localhost:8080/api/views/chat"><h6>Acceso al chat</h6></a>
+        </div>
+    </div>
+<div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/home.js"></script>

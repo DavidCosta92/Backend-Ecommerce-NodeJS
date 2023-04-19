@@ -21,13 +21,14 @@ app.use("/api/carts",cartsRouter);
 app.use("/api/views",viewsRouter);
 app.use("/api/fs/carts",cartsRouterFileSystem);
 
+app.get("/", (req, res, next)=>{
+    res.render("home")
+})
 
 
 mongoose.connect(mongooseConnectString)
-// SETEAR CARPETA PUBLICA PARA LEVANTARLA DESDE FRONT
 app.use(express.static('./public'))
 
-// CONFIG INICIAL HANDLEBARS
 app.engine('handlebars', engine())
 app.set('views', './views')
 app.set('view engine', 'handlebars')
@@ -101,16 +102,3 @@ io.on('connection', async clientSocket=>{
     })
 
 })
-
-/*
-
-// estoy usando un midleware para poder agregar el socket a todas las peticiones que pasen?
-// ESTO PERMITE QUE LUEGO PUEDA REQUERIR EL IO EN CUALQUIER CONTROLLER?
-// PARA REQUERIR.. => podria ponerlo en el controlador de productos req['io'].sockets.emit("unMENSAJE", await productModel.find())
-
-app.use((req,res,next)=>{
-    req['io'] = io
-    next()
-})
-
-*/

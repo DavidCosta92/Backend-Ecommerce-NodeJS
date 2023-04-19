@@ -18,6 +18,7 @@ if(form instanceof HTMLFormElement){
                 "Content-Type": "application/json",
             }
         })
+        alert("Producto creado")
         actualizarProductsRenders();
 
     })
