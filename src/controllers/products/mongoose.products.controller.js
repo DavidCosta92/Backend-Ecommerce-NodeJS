@@ -2,26 +2,25 @@
 import { productModel } from "../../../Dao/DBaaS/models/productModel.js";
 import { Product } from "../../entities/Product.js";
 
-/* http://localhost:8080/api/products/?category=comestibles&limit=2&page=2&sort=asc */
+/* http://localhost:8080/api/products?limit=10&page=1&category=comestibles&stock=true&sort=asc */
 export async function getProductsMongoose (req, res , next){
     try {
-        const categorySearch = (req.query.category == "" || req.query.category == undefined) ? "" : { category: {$eq:req.query.category}};
-        const stock = (req.query.stock == "" || req.query.stock == undefined || req.query.stock != "true" ) ? "" : { stock: {$gt:10}};      
+        /*  Busqueda por categoria y por stock (true o  false) */
+        const categorySearch = (req.query.category == "" || req.query.category == undefined) ? null : {$eq:req.query.category};
+        const stock = (req.query.stock == "" || req.query.stock == undefined || req.query.stock != "true" ) ? null : {$gt:0};
+        let searchParams = {}
+        if (categorySearch) searchParams["category"] = categorySearch;
+        if (stock) searchParams["stock"] = stock;        
         
-
-        /* PENDIENTE, CATEGORY Y STOCK FUNCIONAN POR SEPARADO PERO NO JUNTAS.. */
-        //const searchParams = {$and:[{categorySearch , stock}]}
-
-        const searchParams = {}// {category: {$eq:req.query.category} ,  stock: {$gt:3} }
-        
-
-        const limit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 1 : req.query.limit
+        /* paginado y ordenamiento */        
+        const limit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 10 : req.query.limit
         const page =  (isNaN(Number(req.query.page)) || req.query.page == "" ) ? 1 : req.query.page
         let sortByPrice = null;
         if(req.query.sort!= undefined) sortByPrice = (req.query.sort === "asc" )? { price : 1} : { price : -1} 
-        const pageOptions = { limit: limit, page: page, sort : sortByPrice , lean : true/* ESTO SI O SI PARA QUE HANDLEBARS PUEDA RENDERIZAR.. */  }
+        const pageOptions = { limit: limit, page: page, sort : sortByPrice , lean : true}
+        
+        
         const products = await productModel.paginate( searchParams ,pageOptions)
-
         const response ={
             status : res?.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`,
             payload : products.docs,

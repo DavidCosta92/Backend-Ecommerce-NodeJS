@@ -3,11 +3,14 @@ import { cartstModel } from "../../../Dao/DBaaS/models/cartModel.js";
 import { productModel } from "../../../Dao/DBaaS/models/productModel.js";
 
 
+/* http://localhost:8080/api/carts?limit=10&page=1*/
 export async function getCartsMongoose (req, res , next){
-    try {  
+    try { 
+        /* paginado y ordenamiento */   
         const queryLimit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 10 : req.query.limit
         const queryPage =  (isNaN(Number(req.query.page)) || req.query.page == "" ) ? 1 : req.query.page            
-        const pageOptions = { limit: queryLimit, page: queryPage, lean : true, populate: 'products.product'/* ESTO SI O SI PARA QUE HANDLEBARS PUEDA RENDERIZAR.. */  }        
+        const pageOptions = { limit: queryLimit, page: queryPage, lean : true, populate: 'products.product'}     
+
         const carts = await cartstModel.paginate({},pageOptions)
         const response ={
             status : res.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`,

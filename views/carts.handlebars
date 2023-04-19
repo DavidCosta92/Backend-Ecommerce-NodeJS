@@ -65,7 +65,7 @@
 
     <div class="botoneraPaginado">
         {{#if hasPrevPage}}
-            <a href="/api/views/products?limit={{limit}}&page={{prevPage}}" type="button" class="btn btn-outline-primary">
+            <a href="/api/views/carts?limit={{limit}}&page={{prevPage}}" type="button" class="btn btn-outline-primary">
                 Pagina previa
             </a>
             {{else}}
@@ -77,7 +77,7 @@
                 <p>{{limit}} productos por pagina, pagina actual: {{page}} , total de paginas: {{totalPages}}</p>
             </div>
             {{#if hasNextPage}}
-            <a href="/api/views/products?limit={{limit}}&page={{nextPage}}" type="button" class="btn btn-outline-primary">
+            <a href="/api/views/carts?limit={{limit}}&page={{nextPage}}" type="button" class="btn btn-outline-primary">
                 Pagina Siguiente
             </a>
             {{else}}
