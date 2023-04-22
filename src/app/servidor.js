@@ -1,5 +1,5 @@
 import express from "express"
-import { PORT , mongooseConnectString } from "../config/servidor.config.js"
+import { PORT , mongooseConnectStringToAtlas } from "../config/servidor.config.js"
 import { productsRouter } from "../routers/productsRouter.js";
 import { engine } from 'express-handlebars'
 import { cartsRouter } from "../routers/cartsRouter.js";
@@ -22,7 +22,7 @@ app.get("/", (req, res, next)=>{
 })
 
 
-mongoose.connect(mongooseConnectString)
+mongoose.connect(mongooseConnectStringToAtlas) // =>  REEMPLAZAR PARA CONECTAR A BD ATLAS..
 app.use(express.static('./public'))
 
 app.engine('handlebars', engine())
