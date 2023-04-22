@@ -6,13 +6,9 @@ import { cartsRouter } from "../routers/cartsRouter.js";
 import { viewsRouter } from "../routers/viewsRouter.js";
 import { cartsRouterFileSystem } from "../routers/cartsRouterFileSystem.js";
 import mongoose from 'mongoose';
-
 import {Server as IOServer} from 'socket.io'
 import { productModel } from "../../Dao/DBaaS/models/productModel.js";
 import { chatModel } from "../../Dao/DBaaS/models/chatModel.js";
-
-import { postProductToCartsMongoose } from "../controllers/carts/mongoose.carts.controller.js";
-
 
 const app = express();
 
