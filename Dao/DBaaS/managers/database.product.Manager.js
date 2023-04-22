@@ -74,7 +74,7 @@ class DB_product_manager{
 
     async deleteProductByID (pid,next){
         try {
-            const productDeleted = await productModel.findByIdAndDelete(req.params.pid);
+            const productDeleted = await productModel.findByIdAndDelete(pid);
             return productDeleted;
         } catch (error) {
             next(error);        

@@ -8,11 +8,9 @@ export async function getProductsMongoose (req, res , next){
     res.json(response);
 }    
 
-
 export async function postProductsMongoose (req, res , next){
-    res.json(await DB_mongo_product_manager.getProducts(req,next));
+    res.json(await DB_mongo_product_manager.postProduct(req,next));
 }
-
 
 export async function getProductsByIDMongoose (req, res , next){
     res.json(await DB_mongo_product_manager.getProductById(req.params.pid,next));
@@ -23,7 +21,6 @@ export async function getProductsByIDMongoose (req, res , next){
         next(error);
     }
 }
-
 
 export async function deleteProductsByIDMongoose (req, res , next){
     res.json(await DB_mongo_product_manager.deleteProductByID(req.params.pid,next));
