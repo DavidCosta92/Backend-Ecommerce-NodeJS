@@ -4,31 +4,34 @@ import { productsRouter } from "../routers/productsRouter.js";
 import { engine } from 'express-handlebars'
 import { cartsRouter } from "../routers/cartsRouter.js";
 import { viewsRouter } from "../routers/viewsRouter.js";
+import { userRouter } from "../routers/userRouter.js";
 import { cartsRouterFileSystem } from "../routers/cartsRouterFileSystem.js";
 import mongoose from 'mongoose';
 import {Server as IOServer} from 'socket.io'
 import { productModel } from "../../Dao/DBaaS/models/productModel.js";
 import { chatModel } from "../../Dao/DBaaS/models/chatModel.js";
+import  session  from "../middlewares/session.js"
+
+
+mongoose.connect(mongooseConnectStringToAtlas) // =>  REEMPLAZAR PARA CONECTAR A BD ATLAS..
 
 const app = express();
-
 app.use("/api/products",productsRouter);
 app.use("/api/carts",cartsRouter);
 app.use("/api/views",viewsRouter);
 app.use("/api/fs/carts",cartsRouterFileSystem);
-
-app.get("/", (req, res, next)=>{
-    res.render("home")
-})
-
-
-mongoose.connect(mongooseConnectStringToAtlas) // =>  REEMPLAZAR PARA CONECTAR A BD ATLAS..
+app.use("/api/users" ,userRouter) 
 app.use(express.static('./public'))
+app.use(express.json())
+app.use(session)
 
 app.engine('handlebars', engine())
 app.set('views', './views')
 app.set('view engine', 'handlebars')
 
+app.get("/", (req, res, next)=>{
+    res.render("home")
+})
 
 app.use((error, req, res , next)=>{
 

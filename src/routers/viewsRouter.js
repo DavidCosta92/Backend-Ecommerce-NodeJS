@@ -31,7 +31,6 @@ viewsRouter.get("/products", async (req, res, next)=>{
         nextLink : products.nextPage? `/api/products/?limit=${queryLimit}&page=${products.nextPage}`: null,
         hayResultados : products.docs.length > 0
     }
-    console.log("PRODUCTOS", response)
     res.render("products", response)
 })
 
