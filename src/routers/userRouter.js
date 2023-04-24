@@ -13,5 +13,4 @@ userRouter.post("/", postUser)
 userRouter.get("/login", userLogin)
 userRouter.post("/session", postSession)
 userRouter.delete("/session", deleteSession)
-
 userRouter.get("/products", authenticator, productsView)

@@ -292,6 +292,35 @@ Debo confesar que proyecto esta enfocado en el backend, por lo  que front solo s
 	-Muestra **todos los productos en un carrito**, ademas de acciones como modificar cantidades de productos, eliminarlos del carrito, vaciar el carrito completo y eliminar el carrito.
 	
 ------------
-  
+  *** Ruta: "/:chat", method: GET: **
+	-Solicita el nombre de usuario, y lo habilita para poder enviar y recibir mensajes usando socket. Permite ver el historial de mensajes enviados.
+	
+------------
+#### Api de sesiones, url base (/api/users/)
+
+*** Ruta: "/:register", method: GET: **
+	-Muestra vista para poder registrar un nuevo usuario mediante formulario, todos los campos son requeridos, y el** email tiene que ser unico**. Todos los usuarios poseen rol de usuario normal, excepto el usuario *adminCoder@coder.com*, y la contraseña *adminCod3r123*, quien tiene rol de administrador, permitiendo que modifique productos.
+
+------------
+*** Ruta: "/", method: POST: **
+	-Esta ruta es usada para enviar la informacion del formulario de registro unicamente.
+	
+------------
+*** Ruta: "/login", method: GET: **
+-Muestra formulario para ingresar email y contraseña, para iniciar sesion en sitio. Credenciales erroneas mostraran una alerta. Las credenciales correctas redirigiran a la vista de productos, mostrando un cartel con la informacion del usuario logueado.
+
+------------
+*** Ruta: "/session", method: POST: **
+-Esta ruta corrobora usuario y contraseña, y en caso de ser correcta guardara una cookie con los datos de sesion.
+
+------------
+*** Ruta: "/delete", method: POST: **
+-Esta ruta sirve unicamente para eliminar la sesion de las cookies, osea hara la funcion de cerrar la sesion
+
+------------
+*** Ruta: "/products", method: POST: **
+-Esta ruta **posee un middleware para corroborar que el usuario este logueado, en caso de no estar logueado, sera redirigido a la pagina de login**. Si estuviese logueado, sera dirigido a la pagina de productos, donde se podra ver su informacion de logueo, un boton de cierre de sesion y el listado de productos disponibles. 
+
+------------
   
   --------------------- EN CONSTRUCCION  --------------------- 
