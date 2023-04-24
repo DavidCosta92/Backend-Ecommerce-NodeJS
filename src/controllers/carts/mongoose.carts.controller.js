@@ -38,6 +38,6 @@ export async function updateQuantityProductInCartsMongoose (req, res , next) {
 }
 
 export async function updateAllProductsInCartsMongoose (req, res , next) {
-    res.json(await DB_mongo_cart_manager.updateQuantityProductInCart(req.params.cid,next));
+    res.json(await DB_mongo_cart_manager.updateAllProductsInCart(req.params.cid,next));
 
 }

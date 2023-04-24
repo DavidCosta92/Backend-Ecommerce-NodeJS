@@ -18,6 +18,7 @@ mongoose.connect(mongooseConnectStringToAtlas) // =>  REEMPLAZAR PARA CONECTAR A
 const app = express();
 app.use("/api/products",productsRouter);
 app.use("/api/carts",cartsRouter);
+
 app.use("/api/views",viewsRouter);
 app.use("/api/fs/carts",cartsRouterFileSystem);
 app.use("/api/users" ,userRouter) 

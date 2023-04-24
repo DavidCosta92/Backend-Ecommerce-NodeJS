@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { cartstModel } from "../models/cartModel.js"
+import { productModel } from "../models/productModel.js"
 
 
 class DB_cart_manager{
@@ -53,7 +54,7 @@ class DB_cart_manager{
 
     async deleteCartById (cid, next){
         try {
-             const deleted = await cartstModel.findByIdAndDelete(req.params.cid)
+             const deleted = await cartstModel.findByIdAndDelete(cid)
             return deleted;
         } catch (error) {
             next(error);
@@ -129,7 +130,7 @@ class DB_cart_manager{
                 cart["products"]=[];
                 await cartstModel.replaceOne({ _id: cid } , cart)
             }
-            res.json(await cartstModel.findById(cid).populate("products.product"));
+            return await cartstModel.findById(cid).populate("products.product");
         } catch (error) {        
             next(error);
         }    
@@ -164,7 +165,7 @@ class DB_cart_manager{
                 await cartstModel.replaceOne( { _id: cid } , cart)
             }
                 
-        res.json(await cartstModel.findById(cid).populate("products.product"));
+        return await cartstModel.findById(cid).populate("products.product");
         }
      } catch (error) {
          next(error);
