@@ -1,6 +1,17 @@
 
 <h3 class=" m-5 text-center">Hola, esta es una pagina para redireccionar a cada endpoint de manera mas facil</h3>
 
+<h5 class="text-center mt-5">FORMULARIO DE LOGIN</h5>
+<form id="formUserLogin" action="" class="p-4 m-4 border border-success rounded d-flex flex-wrap justify-content-around">
+    <label for="input_email"class="w-50 mt-2">Email</label>
+    <input id="input_email" type="text" placeholder="input_email"class="w-50 mt-2">
+
+    <label for="input_password"class="w-50 mt-2">Contraseña</label>
+    <input id="input_password" type="password" placeholder="input_password"class="w-50 mt-2">
+    <button type="submit" class="btn btn-success w-50 mt-4">¡ Iniciar sesion! </button>
+    <button class="btn btn-outline-success w-25 mt-4" onClick=goToRegister()>¡ Quiero registrarme! </button>
+</form>
+
 <div>
     <div  class=" m-5 p-5 border border-dark">
         <h5>Productos</h5>
@@ -59,3 +70,4 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/home.js"></script>
+<script src="/js/userLogin.js"> </script>

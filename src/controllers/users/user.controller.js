@@ -8,6 +8,7 @@ export function registerView(req,res,next){
  export function userLogin(req,res,next){    
     res.render("userLogin", {pageTitle: "Login"})
  }
+ 
  export async function productsView(req,res,next){ 
    const paginatedProducts = await DB_mongo_product_manager.getProducts(req,next)
    const dataRender = {title: `${req.session['user'].first_name} - productos`, loguedUser: true , user: req.session['user'] , ...paginatedProducts}

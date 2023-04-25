@@ -8,6 +8,20 @@ Debo confesar que proyecto esta enfocado en el backend, por lo  que front solo s
 ------------
 
 ### Endpoints
+#### RUTA PRINCIPAL inicio, url "/" 
+ * Ruta: "/", method: GET: 
+	-Landing page, que muestra graficamente los accesos al resto de rutas.
+		-Formulario de logueo y link para registro de nuevo usuario
+		-Productos:
+			-Link para agregar nuevos productos por formulario
+			-Link para ver productos en JSON
+			-Formulario para ver productos por ID, y un ID de ejemplo
+			-Formulario para ver productos eligiendo paginado
+		-Carritos:
+			-Formulario para ver carritos y sus productos, eligiendo paginado
+			-Formulario para ver carrito y sus productos, por ID, y un ID de ejemplo
+		-Acceso al chat con socket
+------------
 #### Api de Productos, url base (/api/products/) 
  * Ruta: "/", method: GET: 
     -Response: { 

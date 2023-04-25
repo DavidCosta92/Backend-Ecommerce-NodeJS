@@ -8,7 +8,7 @@ if (formLogOut instanceof HTMLFormElement){
             method: 'DELETE'
           })      
           if (status === 200) {
-            window.location.href = '/api/users/login'
+            window.location.href = '/'
           } else {
             console.log('[logout] estado inesperado: ' + status)
           }

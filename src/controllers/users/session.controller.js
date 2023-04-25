@@ -13,10 +13,10 @@ export async function postSession(req, res, next) {
         email: userBD.email,
         age: userBD.age,
         rol : userBD.rol
-    }
-  
+    }  
     res.status(201).json(req.session.user)
   }
+  
 
 export async function deleteSession (req, res, next){
     req.session.destroy(err => {
