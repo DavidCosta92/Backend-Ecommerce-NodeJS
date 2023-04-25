@@ -25,7 +25,7 @@ productsRouter.get("/add/form" , (req, res, next)=>{
     res.render("formularioProductos")
 })
  
-productsRouter.post('/',postProductsMongoose);
+productsRouter.post('/', postProductsMongoose);
 
 productsRouter.get('/:pid', getProductsByIDMongoose);
 
