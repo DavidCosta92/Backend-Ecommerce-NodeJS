@@ -19,7 +19,7 @@ export async function postSession(req, res, next) {
   
 
 export async function deleteSession (req, res, next){
-    req.logout(err => {
+    req.session.destroy(err => {
         res.sendStatus(200)
       })
 }

@@ -12,12 +12,19 @@ export function registerView(req,res,next){
  
  export async function productsView(req,res,next){ 
    const paginatedProducts = await DB_mongo_product_manager.getProducts(req,next)
+
+   let dataRender
+   const user = req.session?.passport?.user;
+   console.log("MOSTRANDO PASSPORT", user)
+   console.log("MOSTRANDO req.session['user']", req.session['user'])
+
+   if(user){
+      dataRender = {title: `${user.first_name} - productos`, loguedUser: true , user: user , ...paginatedProducts}
+   } else{
+      dataRender = {title: `${req.session['user'].first_name} - productos`, loguedUser: true , user: req.session['user'] , ...paginatedProducts}
+   }
    
-   //const dataRender = {title: `${req.session['user'].first_name} - productos`, loguedUser: true , user: req.session['user'] , ...paginatedProducts}
-   const user = req.session.passport.user;
-   const dataRender = {title: `${user.first_name} - productos`, loguedUser: true , user: user , ...paginatedProducts}
-   
-   if (user.rol === "admin") {
+   if (user?.rol === "admin" || req.session['user'] === "admin" ) {
       res.render("productsForAdmin", dataRender)
    } else {
       res.render("products", dataRender)      

@@ -9,13 +9,7 @@ import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as GithubStrategy } from 'passport-github2'
 import { githubCallbackUrl, githubClientSecret, githubClienteId } from '../config/auth.config.js'
 
-
-
-
 passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
-
-    // esto es lo que estaba en el controller de login
-    
     const user = await userManager.searchByEmail(username)
     if (!user)
         return done(new AuthenticationError())
@@ -31,10 +25,7 @@ passport.use('github', new GithubStrategy({
     clientSecret: githubClientSecret,
     callbackURL: githubCallbackUrl,
 }, async (accessToken, refreshToken, profile, done) => {
-    console.log("INFO ENVIADA POR GITHUB",profile)
-
-    let user = await userManager.searchByEmail(profile.username);
-    
+    let user = await userManager.searchByEmail(profile.username);    
     if(user === null){
         user = {
             email : profile.username ,
@@ -58,10 +49,6 @@ passport.deserializeUser((user, next) => { next(null, user) })
 export const passportInitialize = passport.initialize()
 export const passportSession = passport.session()
 
-
-
-// estos son para cargar como middlewares antes de los controladores correspondientes
-// export const authenticateLocal = 
 // estos midlewares son para cada url de github y el otro para la estrategia local
 export const authLocal = passport.authenticate('local', { failWithError: true })
 export const authGithub = passport.authenticate('github', { scope: ['user:email'] })
