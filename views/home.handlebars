@@ -6,12 +6,18 @@
     <label for="input_email"class="w-50 mt-2">Email</label>
     <input id="input_email" type="text" placeholder="input_email"class="w-50 mt-2">
 
-    <label for="input_password"class="w-50 mt-2">Contraseña</label>
+    <label for="input_password"class=" mt-2">Contraseña</label>
     <input id="input_password" type="password" placeholder="input_password"class="w-50 mt-2">
-    <button type="submit" class="btn btn-success w-50 mt-4">¡ Iniciar sesion! </button>
-    <button class="btn btn-outline-success w-25 mt-4" onClick=goToRegister()>¡ Quiero registrarme! </button>
+    <button type="submit" class="btn btn-success  mt-4">¡ Iniciar sesion! </button>
 </form>
-
+ <div>
+    <button class="btn btn-outline-success  mt-4" onClick=goToRegister()>¡ Quiero registrarme! </button> 
+ </div>
+  <div>
+    <a href="/api/users/session/github">
+        <button  class="btn btn-outline-dark  mt-4" onClick=singInGithub()>¡ Ingresar con GITHUB! </button>
+    </a>    
+ </div>
 <div>
     <div  class=" m-5 p-5 border border-dark">
         <h5>Productos</h5>

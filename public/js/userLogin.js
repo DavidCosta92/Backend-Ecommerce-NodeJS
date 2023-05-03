@@ -2,6 +2,7 @@
 const formUserLogin = document.getElementById("formUserLogin")
 
 if (formUserLogin instanceof HTMLFormElement){
+    console.log("ENVIANDO FORM PARA LOGIN")
     formUserLogin.addEventListener("submit", async event =>{
         event.preventDefault()
         const email = document.getElementById("input_email")        
@@ -34,4 +35,14 @@ if (formUserLogin instanceof HTMLFormElement){
 
 function goToRegister(){    
     window.location.href = '/api/users/register'
+}
+
+
+function logInGithub(){
+    console.log("DEBO ESTAR LOGUEANDOME EN GIT")
+}
+
+function singInGithub(){
+    console.log("DEBO ESTAR REGISTRANDOME EN GIT")
+    
 }

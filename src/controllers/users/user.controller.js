@@ -1,5 +1,6 @@
 import { userModel } from "../../../Dao/DBaaS/models/userModel.js"
 import { DB_mongo_product_manager } from "../../../Dao/DBaaS/managers/database.product.Manager.js"
+import { userManager } from "../../managers/UserManager.js"
 
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})
@@ -11,21 +12,25 @@ export function registerView(req,res,next){
  
  export async function productsView(req,res,next){ 
    const paginatedProducts = await DB_mongo_product_manager.getProducts(req,next)
-   const dataRender = {title: `${req.session['user'].first_name} - productos`, loguedUser: true , user: req.session['user'] , ...paginatedProducts}
    
-   if (req.session['user'].rol === "admin") {
+   //const dataRender = {title: `${req.session['user'].first_name} - productos`, loguedUser: true , user: req.session['user'] , ...paginatedProducts}
+   const user = req.session.passport.user;
+   const dataRender = {title: `${user.first_name} - productos`, loguedUser: true , user: user , ...paginatedProducts}
+   
+   if (user.rol === "admin") {
       res.render("productsForAdmin", dataRender)
    } else {
-      res.render("products", dataRender)
+      res.render("products", dataRender)      
    }
  }
 
  export async function postUser(req,res,next){   
    const user = {rol:"usuario", ...req.body }
-
+   
    if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.rol = "admin"
 
-   const newUser = await userModel.create(user)
+   const newUser = await userManager.createUser(user)
+
     req.session.user = {
         first_name : newUser.first_name, 
         last_name : newUser.last_name ,

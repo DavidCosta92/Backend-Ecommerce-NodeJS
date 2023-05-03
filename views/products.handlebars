@@ -16,6 +16,11 @@
         <h5>NO HAY USUARIO LOGUEADO AUN..</h5>
         <button type="submit" class="btn btn-primary"  onClick=goToLogin()>¿Quieres loguearte?</button>
     </div>  
+    <div>
+        <a href="/api/users/session/github">
+            <button  class="btn btn-outline-dark  mt-4" onClick=singInGithub()>¡ Ingresar con GITHUB! </button>
+        </a>    
+    </div>
 {{/if}}
 
 {{#if hayResultados}}
