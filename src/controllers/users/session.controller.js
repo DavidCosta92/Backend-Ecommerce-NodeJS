@@ -1,12 +1,14 @@
-import { userModel } from "../../../Dao/DBaaS/models/userModel.js"
+import { userManager } from "../../managers/UserManager.js"
+import { comparePasswords } from "../../utils/encrypter.js"
 
 
 export async function postSession(req, res, next) {  
-    const userBD = await userModel.findOne({ email: req.body.email }).lean()
+    const userBD = await userManager.searchByEmail(req.body.email)
 
     if (!userBD) return res.sendStatus(401)  
-    if (userBD.password !== req.body.password)  return res.sendStatus(401)
-  
+    const correctPassword = comparePasswords(req.body.password , userBD.password)
+    if (!correctPassword)  return res.sendStatus(401)  
+
     req.session.user = {
         first_name: userBD.first_name,
         last_name: userBD.last_name,

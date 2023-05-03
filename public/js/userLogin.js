@@ -36,13 +36,3 @@ if (formUserLogin instanceof HTMLFormElement){
 function goToRegister(){    
     window.location.href = '/api/users/register'
 }
-
-
-function logInGithub(){
-    console.log("DEBO ESTAR LOGUEANDOME EN GIT")
-}
-
-function singInGithub(){
-    console.log("DEBO ESTAR REGISTRANDOME EN GIT")
-    
-}

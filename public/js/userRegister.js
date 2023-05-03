@@ -28,8 +28,3 @@ if (formUserRegister instanceof HTMLFormElement){
           }).then(res => res.json())
     })
 }
-
-function singInGithub(){
-  console.log("DEBO ESTAR REGISTRANDOME EN GIT")
-  
-}

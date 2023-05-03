@@ -1,4 +1,3 @@
-import { userModel } from "../../../Dao/DBaaS/models/userModel.js"
 import { DB_mongo_product_manager } from "../../../Dao/DBaaS/managers/database.product.Manager.js"
 import { userManager } from "../../managers/UserManager.js"
 
@@ -15,8 +14,6 @@ export function registerView(req,res,next){
 
    let dataRender
    const user = req.session?.passport?.user;
-   console.log("MOSTRANDO PASSPORT", user)
-   console.log("MOSTRANDO req.session['user']", req.session['user'])
 
    if(user){
       dataRender = {title: `${user.first_name} - productos`, loguedUser: true , user: user , ...paginatedProducts}
@@ -36,7 +33,7 @@ export function registerView(req,res,next){
    
    if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.rol = "admin"
 
-   const newUser = await userManager.createUser(user)
+   const newUser = await userManager.createUser({user})
 
     req.session.user = {
         first_name : newUser.first_name, 
