@@ -12,7 +12,6 @@ export class UserManager{
     // async postUser(user){    }   
 
     async searchByEmail(email){
-        console.log("entrando a user...")
         const user = await userModel.findOne({ email: email }).lean()
         return user;        
     }    

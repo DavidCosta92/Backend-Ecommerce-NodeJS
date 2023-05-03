@@ -2,10 +2,10 @@ import { Router } from "express";
 import express from "express"
 
 import { registerView, postUser, userLogin, productsView } from "../controllers/users/user.controller.js";
-import { postSession , deleteSession } from "../controllers/users/session.controller.js";
+import { postSession , localRegister , deleteSession } from "../controllers/users/session.controller.js";
 import { authenticator } from "../middlewares/authenticator.js";
 import session from "../middlewares/session.js";
-import { authLocal , authGithub , callbackAuthGithub } from "../middlewares/passport.js";
+import { authLocal , authLocalRegister , authGithub , callbackAuthGithub } from "../middlewares/passport.js";
 import { passportInitialize , passportSession } from "../middlewares/passport.js";
 
 
@@ -24,8 +24,9 @@ userRouter.get("/products", authenticator, productsView, (req, res, next)=>{})
 userRouter.use(passportInitialize, passportSession)
 
 
-//--- login con local ---
+//--- passport con local ---
 userRouter.post('/session/localLogin', authLocal, postSession)
+userRouter.post('/session/localRegister', authLocalRegister, localRegister)
 
 
 //--- login con github ---

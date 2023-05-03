@@ -24,4 +24,15 @@ export async function deleteSession (req, res, next){
     req.session.destroy(err => {
         res.sendStatus(200)
       })
+
+}
+export async function localRegister (req, res, next){
+    req.session.user = {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        age: req.body.age,
+        rol : req.body.rol
+    }
+    res.redirect('/api/users/products') 
 }
