@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { DB_mongo_product_manager } from "../../../Dao/DBaaS/managers/database.product.Manager.js"
 import { userManager } from "../../managers/UserManager.js"
 
@@ -30,18 +31,18 @@ export function registerView(req,res,next){
 
  export async function postUser(req,res,next){   
     try {
-      const user = {rol:"usuario", ...req.body }
+      const userAttempt = {rol:"usuario", ...req.body }
    
-      if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.rol = "admin"
+      if ( userAttempt.email === "adminCoder@coder.com" && userAttempt.password === "adminCod3r123") userAttempt.rol = "admin"
    
-      const {newUser , code} = await userManager.createUser({user})
+      const {user , code} = await userManager.createUser({userAttempt})
    
        req.session.user = {
-           first_name : newUser.first_name, 
-           last_name : newUser.last_name ,
-           email : newUser.email ,
-           age : newUser.age,
-           rol : newUser.rol
+           first_name : user.first_name, 
+           last_name : user.last_name ,
+           email : user.email ,
+           age : user.age,
+           rol : user.rol
        }       
        res.status(code).json({ message: 'USUARIO SE LOGUEO', loguedUser: code === 201 })
     } catch (error) {

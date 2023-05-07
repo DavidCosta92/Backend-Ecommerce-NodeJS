@@ -14,22 +14,29 @@ import { githubCallbackUrl, githubClientSecret, githubClienteId } from '../confi
 passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
     const user = await userManager.searchByEmail(username)
     if (!user)
-        return done(new AuthenticationError())
+        return done(new AuthenticationError("Error de logueo, revisa las credenciales"))
     if (!comparePasswords(password, user.password))
-        return done(new AuthenticationError())
+        return done(new AuthenticationError("Error de logueo, revisa las credenciales"))
     delete user.password
     done(null, user)
 }))
 
-passport.use('register', new LocalStrategy(
-    { passReqToCallback: true, usernameField: 'email' }, async (req, _u, _p, done) => {
+passport.use('register', new LocalStrategy({ passReqToCallback: true, usernameField: 'email' }, async (req, _u, _p, done) => {
       try {
-        const { email, password, age, first_name, last_name } = req.body
-        const { user } = await userManager.createUser({ email, password, age, first_name, last_name })
-  
-        done(null, user)
-      } catch (err) {
-        done(err.message)
+        const user = {rol:"usuario", ...req.body }
+        if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.rol = "admin"
+        const {newUser} = await userManager.createUser({user})
+        /* para guardar session y loguear a la vez*/
+        req.session.user = {
+            first_name: newUser.first_name,
+            last_name: newUser.last_name,
+            email: newUser.email,
+            age: newUser.age,
+            rol : newUser.rol
+        }
+        done(null, newUser)
+      } catch (error) {
+        done(error)
       }
     }
 ))
@@ -39,21 +46,22 @@ passport.use('github', new GithubStrategy({
     clientSecret: githubClientSecret,
     callbackURL: githubCallbackUrl,
 }, async (accessToken, refreshToken, profile, done) => {
-    let user = await userManager.searchByEmail(profile.username);    
+    console.log(profile)
+    let user = await userManager.searchByGitHubUsername(profile.username);   
     if(user === null){
         user = {
             email : profile.username ,
             password  : "",
-            first_name : profile.displayName,
-            last_name  : profile.displayName,
+            first_name : profile.displayName , 
+            last_name  : profile.displayName ,
             age  : 0,
             rol : "usuario"
         } 
-        await userManager.createUser({user});
+        user = await userManager.createGitHubUser({user});
     } 
-    done(null, user)
+    let userGit = await userManager.searchByGitHubUsername(profile.username);   
+    done(null, userGit)
 }))
-
 
 // esto lo tengo que agregar para que funcione passport! copiar y pegar, nada mas.
 passport.serializeUser((user, next) => { next(null, user) })

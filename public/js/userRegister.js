@@ -18,7 +18,8 @@ if (formUserRegister instanceof HTMLFormElement){
             password :password 
         }
 
-        const userCreated = await fetch('/api/users/', {
+        // actualmente los formularios estan seteados para trabajar con passport.. cambiar ruta del form post
+        const userCreated = await fetch(/*'/api/users/'*/'/api/users/session/localRegister', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
@@ -26,12 +27,11 @@ if (formUserRegister instanceof HTMLFormElement){
               'Content-Type': 'application/json'
             }           
           })
-          const userStatus = await userCreated.json()
-          if(userStatus.loguedUser){              
+          if(userCreated.status === 201){              
             alert("Registro y logueo exitoso, te enviaremos a productos..")
             window.location.assign('/api/users/products')
           } else{
-            alert(userStatus.errorMessage + "Vuelve a intentar por favor!")
+            alert("Error de registro, vuelve a intentar por favor! (Codigo: " + userCreated.status + ")")
           }
     })
 }
