@@ -12,6 +12,7 @@ import { productModel } from "../../Dao/DBaaS/models/productModel.js";
 import { chatModel } from "../../Dao/DBaaS/models/chatModel.js";
 import { passportInitialize , passportSession } from "../middlewares/passport.js";
 import session from "../middlewares/session.js";
+import { errorMiddleware } from "../middlewares/errorMiddleware.js";
 
 mongoose.connect(mongooseConnectStringToAtlas) // =>  REEMPLAZAR PARA CONECTAR A BD ATLAS..
 
@@ -37,33 +38,7 @@ app.get("/", (req, res, next)=>{
     res.render("home")
 })
 
-
-// ENVIAR LOGICA DE MANEJO DE ERRORES A UN MIDLEWARE SEPARADO..
-app.use((error, req, res , next)=>{
-
-    switch (error.message){
-        case "ID no encontrado" : 
-            res.status(404).json({menssage: error.message});
-            break;
-        case "Producto no encontrado" : 
-            res.status(404).json({menssage: error.message});
-            break;
-        case "Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0" : 
-            res.status(400).json({menssage: error.message});
-            break;
-        case "Producto con campos incompletos o erroneos" : 
-            res.status(400).json({menssage: error.message});
-            break;
-        case "Producto ya se encuentra en base de datos" : 
-            res.status(400).json({menssage: error.message});
-            break;
-        case "Limite incorrecto, el limite debe ser un numero, entero y mayor a 0" : 
-            res.status(404).json({menssage: error.message});
-            break;
-        default : 
-            res.status(500).json({menssage: error.message});
-    }
-})
+app.use(errorMiddleware)
 
 
 const httpServer = app.listen(PORT, () => console.log("Servidor activo"))

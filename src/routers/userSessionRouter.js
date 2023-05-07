@@ -17,7 +17,9 @@ userRouter.use(express.urlencoded({ extended: true }))
 userRouter.get("/register", registerView)
 userRouter.post("/", postUser)
 userRouter.get("/login", userLogin)
+
 userRouter.post("/session", postSession)
+
 userRouter.delete("/session", deleteSession)
 userRouter.get("/products", authenticator, productsView, (req, res, next)=>{})
 
@@ -26,6 +28,7 @@ userRouter.use(passportInitialize, passportSession)
 
 //--- passport con local ---
 userRouter.post('/session/localLogin', authLocal, postSession)
+
 userRouter.post('/session/localRegister', authLocalRegister, localRegister)
 
 

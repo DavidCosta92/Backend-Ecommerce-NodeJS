@@ -29,18 +29,22 @@ export function registerView(req,res,next){
  }
 
  export async function postUser(req,res,next){   
-   const user = {rol:"usuario", ...req.body }
+    try {
+      const user = {rol:"usuario", ...req.body }
    
-   if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.rol = "admin"
-
-   const newUser = await userManager.createUser({user})
-
-    req.session.user = {
-        first_name : newUser.first_name, 
-        last_name : newUser.last_name ,
-        email : newUser.email ,
-        age : newUser.age,
-        rol : newUser.rol
+      if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.rol = "admin"
+   
+      const {newUser , code} = await userManager.createUser({user})
+   
+       req.session.user = {
+           first_name : newUser.first_name, 
+           last_name : newUser.last_name ,
+           email : newUser.email ,
+           age : newUser.age,
+           rol : newUser.rol
+       }       
+       res.status(code).json({ message: 'USUARIO SE LOGUEO', loguedUser: code === 201 })
+    } catch (error) {
+      next(error)
     }
-    res.status(201).json(newUser)
  }

@@ -25,6 +25,13 @@ if (formUserRegister instanceof HTMLFormElement){
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             }           
-          }).then(res => res.json())
+          })
+          const userStatus = await userCreated.json()
+          if(userStatus.loguedUser){              
+            alert("Registro y logueo exitoso, te enviaremos a productos..")
+            window.location.assign('/api/users/products')
+          } else{
+            alert(userStatus.errorMessage + "Vuelve a intentar por favor!")
+          }
     })
 }

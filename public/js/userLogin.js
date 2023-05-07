@@ -2,7 +2,6 @@
 const formUserLogin = document.getElementById("formUserLogin")
 
 if (formUserLogin instanceof HTMLFormElement){
-    console.log("ENVIANDO FORM PARA LOGIN")
     formUserLogin.addEventListener("submit", async event =>{
         event.preventDefault()
         const email = document.getElementById("input_email")        
@@ -17,7 +16,7 @@ if (formUserLogin instanceof HTMLFormElement){
         */
         const dataUser = {email: email.value, password : password.value}   
 
-        const { status } = await fetch('/api/users/session', {
+        const session = await fetch('/api/users/session', {
             method: 'POST',
             headers: {
             'Accept': 'application/json',
@@ -25,10 +24,13 @@ if (formUserLogin instanceof HTMLFormElement){
             },
             body: JSON.stringify(dataUser)
         })        
-        if (status === 201) {
+
+        const statusSession = await session.json()
+        if (session.status === 201) {
+            alert("Registro y logueo exitoso, te enviaremos a productos..")
             window.location.href = '/api/users/products'
         } else {
-            alert('¡Login erroneo!: codigo' + status)
+            alert(statusSession.errorMessage)
         }
     })
 }
