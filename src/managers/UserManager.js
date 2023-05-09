@@ -1,10 +1,9 @@
 // @ts-nocheck
 import { hashPassword , comparePasswords } from "../utils/encrypter.js";
 import { userModel , userModelGitHub} from "../../Dao/DBaaS/models/userModel.js";
-import { RegisterErrorAlreadyExistUser } from "../entities/error/registerError.js";
+import { RegisterError, RegisterErrorAlreadyExistUser } from "../entities/error/registerError.js";
        
 export class UserManager{
-    // revisar en user.controller.js los metodos que deberian estar aqui... se supone que en el controller no deberian haber llamados directos al modelo ( no debe haber cosas como estas => userModel.create(user))
     async createUser({user}){
         const alreadyExistUser = await this.searchByEmail(user.email)
 
@@ -12,15 +11,15 @@ export class UserManager{
        
         user.password = hashPassword(user.password);  
         await userModel.create(user)   
-        const newUser = await this.searchByEmail(user.email)
+        const newUser = await this.searchByEmail(user.email).lean()
+
+        if (!newUser) throw new RegisterError("Error al crear nuevo usuario")
+
         return {newUser , code:201}
     }   
-    
-    // async postUser(user){    }   
-    // async postUser(user){    }   
-    // async postUser(user){    }   
 
     async searchByEmail(email){
+        if (!user) throw new Error("USER NOT FOUND")
         const user = await userModel.findOne({ email: email }).lean()
         return user;        
     }

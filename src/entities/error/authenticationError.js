@@ -5,3 +5,11 @@ export class AuthenticationError extends Error {
         this.type = 'AUTHETICATION_ERROR';
     }
 }
+
+
+export class AuthenticationExpiredError extends Error {
+    constructor(mensaje = 'Autenticacion expirada') {
+        super(mensaje);
+        this.type = 'AUTHETICATION_EXPIRED_ERROR';
+    }
+}

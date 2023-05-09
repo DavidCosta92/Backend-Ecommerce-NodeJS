@@ -17,24 +17,27 @@ userRouter.use(express.urlencoded({ extended: true }))
 userRouter.get("/register", registerView)
 userRouter.post("/", postUser)
 userRouter.get("/login", userLogin)
-userRouter.post("/session", postSession)
-
-
-userRouter.delete("/session", deleteSession)
 userRouter.get("/products", authenticator, productsView, (req, res, next)=>{})
 
 userRouter.use(passportInitialize, passportSession)
 
 
+
+// --- ----- ----- DEBO ARMAR UN ROUTER DE SESSIONES  --- ----- ----- 
+// --- ----- ----- DEBO ARMAR UN ROUTER DE SESSIONES  --- ----- ----- 
+// --- ----- ----- DEBO ARMAR UN ROUTER DE SESSIONES  --- ----- ----- 
+userRouter.post("/session", postSession)
+userRouter.delete("/session", deleteSession)
 //--- passport con local ---
 // actualmente los formularios estan seteados para trabajar con passport.. cambiar ruta del form post
 userRouter.post('/session/localLogin', authLocal, postSession)
 userRouter.post('/session/localRegister', authLocalRegister , sendStatus)
-
-
 //--- login con github ---
 userRouter.get('/session/github', authGithub)
 userRouter.get('/session/githubAuth', callbackAuthGithub, (req, res, next) => { 
     res.redirect('/api/users/products') 
 })
+// --- ----- ----- DEBO ARMAR UN ROUTER DE SESSIONES  --- ----- ----- 
+// --- ----- ----- DEBO ARMAR UN ROUTER DE SESSIONES  --- ----- ----- 
+// --- ----- ----- DEBO ARMAR UN ROUTER DE SESSIONES  --- ----- ----- 
 

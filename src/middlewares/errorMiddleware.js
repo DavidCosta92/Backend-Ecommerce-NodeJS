@@ -12,6 +12,9 @@ export function errorMiddleware(error, req, res , next){
             break
         case 'AUTHORIZATION_ERROR':
             res.status(403)
+            break            
+        case 'AUTHETICATION_EXPIRED_ERROR':
+            res.status(401)
             break
         default:
             res.status(500)

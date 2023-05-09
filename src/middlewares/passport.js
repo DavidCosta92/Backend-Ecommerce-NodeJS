@@ -7,7 +7,7 @@ import { comparePasswords } from '../utils/encrypter.js'
 import { Strategy as LocalStrategy } from 'passport-local'
 // imports GITHUB
 import { Strategy as GithubStrategy } from 'passport-github2'
-import { githubCallbackUrl, githubClientSecret, githubClienteId } from '../config/auth.config.js'
+import { GITHUB_CALLBACK_URL, GITHUB_CLIENT_SECRET, GITHUB_CLIENTE_ID } from '../config/auth.config.js'
 
 
 
@@ -42,9 +42,9 @@ passport.use('register', new LocalStrategy({ passReqToCallback: true, usernameFi
 ))
 
 passport.use('github', new GithubStrategy({
-    clientID: githubClienteId,
-    clientSecret: githubClientSecret,
-    callbackURL: githubCallbackUrl,
+    clientID: GITHUB_CLIENTE_ID,
+    clientSecret: GITHUB_CLIENT_SECRET,
+    callbackURL: GITHUB_CALLBACK_URL,
 }, async (accessToken, refreshToken, profile, done) => {
     console.log(profile)
     let user = await userManager.searchByGitHubUsername(profile.username);   
@@ -72,7 +72,7 @@ export const passportInitialize = passport.initialize()
 export const passportSession = passport.session()
 
 // estos midlewares son para cada url de github y los otros para la estrategia local
-export const authLocal = passport.authenticate('local', { failWithError: true })
-export const authLocalRegister = passport.authenticate('register', { failWithError: true })
-export const authGithub = passport.authenticate('github', { scope: ['user:email'] })
-export const callbackAuthGithub = passport.authenticate('github', { failWithError: true }) // { failWithError: true } => en caso de que falle deberia llamar al next()
+export const authLocal = passport.authenticate('local', { failWithError: true })  // PARA JWT, AL ELIMINAR TODO LO DE SESSION, ESTAS CONFIG DEBERAN LLEVAR session en false ('local', { session:false ,failWithError: true }) 
+export const authLocalRegister = passport.authenticate('register', { failWithError: true })  // PARA JWT, AL ELIMINAR TODO LO DE SESSION, ESTAS CONFIG DEBERAN LLEVAR session en false ('local', { session:false ,failWithError: true }) 
+export const authGithub = passport.authenticate('github', { scope: ['user:email'] })  // PARA JWT, AL ELIMINAR TODO LO DE SESSION, ESTAS CONFIG DEBERAN LLEVAR session en false ('local', { session:false ,failWithError: true }) 
+export const callbackAuthGithub = passport.authenticate('github', { failWithError: true })   // PARA JWT, AL ELIMINAR TODO LO DE SESSION, ESTAS CONFIG DEBERAN LLEVAR session en false ('local', { session:false ,failWithError: true }) // { failWithError: true } => en caso de que falle deberia llamar al next()

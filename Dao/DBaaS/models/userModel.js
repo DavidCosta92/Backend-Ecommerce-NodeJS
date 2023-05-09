@@ -6,10 +6,12 @@ const userSchema = new mongoose.Schema({
     first_name : { type: String, required: true},
     last_name  : { type: String, required: true},
     age  : { type: Number, required: true},
-    rol : { 
+    cart  : { type: String, required: false},  // REALIZE CAMBIOS, REVISAR FUNCIONAMIENTO GENERAL
+    role : {   // REALIZE CAMBIOS, REVISAR FUNCIONAMIENTO GENERAL
         type: String,
         enum: {
-            values: ['usuario', 'admin'],
+            values: ['user', 'admin'],   // REALIZE CAMBIOS, REVISAR FUNCIONAMIENTO GENERAL
+            default:'user',
             message: '{VALUE} no es correcto'
             },
         required:true
@@ -27,9 +29,10 @@ const userSchemaGitHub = new mongoose.Schema({
     first_name : { type: String, required: false},
     last_name  : { type: String, required: false},
     age  : { type: Number, required: false},
-    rol : { 
+    cart  : { type: String, required: false},   // REALIZE CAMBIOS, REVISAR FUNCIONAMIENTO GENERAL
+    role : {    // REALIZE CAMBIOS, REVISAR FUNCIONAMIENTO GENERAL
         type: String,
-        default:'usuario',
+        default:'user',
         required:true
         }       
         

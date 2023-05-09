@@ -45,6 +45,11 @@ const httpServer = app.listen(PORT, () => console.log("Servidor activo"))
 
 export const io = new IOServer(httpServer)
 
+/* envio de socket al req, PARA PODER USAR EL SOCKET EN CUALQUIER PETICION? */
+app.use((req, res, next) => {
+    req['io'] = io
+    next()
+})
 
 io.on('connection', async clientSocket=>{ 
     //conexion chat
