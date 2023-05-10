@@ -2,6 +2,7 @@
 import { DB_mongo_product_manager } from "../../../Dao/DBaaS/managers/database.product.Manager.js"
 import { userManager } from "../../managers/UserManager.js"
 import { User } from "../../entities/User.js"
+import { encrypter } from "../../utils/encrypter.js"
 
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})
@@ -13,20 +14,27 @@ export function registerView(req,res,next){
  
  export async function productsView(req,res,next){ 
    const paginatedProducts = await DB_mongo_product_manager.getProducts(req,next)
-
    let dataRender
-   const user = req.session?.passport?.user;
+   let user = req.session?.passport?.user;
 
-   if(user){
-      dataRender = {title: `${user.first_name} - productos`, loguedUser: true , user: user , ...paginatedProducts}
-   } else{
-      dataRender = {title: `${req.session['user'].first_name} - productos`, loguedUser: true , user: req.session['user'] , ...paginatedProducts}
-   }
-   
-   if (user?.role === "admin" || req.session['user'] === "admin" ) {
-      res.render("productsForAdmin", dataRender)
-   } else {
-      res.render("products", dataRender)      
+   try {
+      if (req.session.user){
+         user = req.session.user 
+      } else if (req.signedCookies.authToken){      
+         user = encrypter.getDataFromToken(req.signedCookies.authToken);
+      }
+      if(user){
+         dataRender = {title: `${user.first_name} - productos`, loguedUser: true , user: user , ...paginatedProducts}
+      } else{
+         dataRender = {title: `${req.session['user'].first_name} - productos`, loguedUser: true , user: req.session['user'] , ...paginatedProducts}
+      }      
+      if (user?.role === "admin" || req.session['user'] === "admin" ) {
+         res.render("productsForAdmin", dataRender)
+      } else {
+         res.render("products", dataRender)      
+      }
+   } catch (error) {
+      next(error)
    }
  }
 
@@ -41,13 +49,11 @@ export function registerView(req,res,next){
 
       const {user , code} = await userManager.createUser({newUser})
    
-       req.session.user = {
-           first_name : user.first_name, 
-           last_name : user.last_name ,
-           email : user.email ,
-           age : user.age,
-           role : user.role
-       }  
+       ///--------------------------------------------- SI AL GUARDAR LA COOKIE, ESTA SE GUARDA CON CONTRASEÑA, EL ERROR ESTA AQUI...
+
+       /* session en cookie */
+       const token = encrypter.createToken(user)
+       res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60})
            
 
        /* EN TEORIA CON ESTO ESTOY AVISANDO QUE REFRESQUE EL LISTADO DE USUARIOS EL SOCKET*/

@@ -6,18 +6,13 @@ if (formUserLogin instanceof HTMLFormElement){
         event.preventDefault()
         const email = document.getElementById("input_email")        
         const password = document.getElementById("input_password")
-
-        /*
-        deberia validar email y pass, para luego enviar data user..
-        if (
-            input_email instanceof HTMLInputElement &&
-            input_password instanceof HTMLInputElement
-          ) { }
-        */
         const dataUser = {email: email.value, password : password.value}   
-
-        // actualmente los formularios estan seteados para trabajar con passport.. cambiar ruta del form post
-        const session = await fetch(/*'/api/users/session'*/'/api/users/session/localLogin', {
+        
+        const session = await fetch(
+            /*'/api/users/session'*/                //setea para trabajar con login manual 
+            /*'/api/users/session/localLogin' */    //setea para trabajar con passport 
+            '/api/users/session/signedCookie'       //setea para trabajar con sgined cookies 
+            , {
             method: 'POST',
             headers: {
             'Accept': 'application/json',
@@ -26,13 +21,21 @@ if (formUserLogin instanceof HTMLFormElement){
             body: JSON.stringify(dataUser)
         })        
 
+        if (session.status === 201 ) {
+            alert("Logueo exitoso, te enviaremos a productos..")
+            window.location.href = '/api/users/products'
+        } else {
+            alert(session.errorMessage)
+        }
+
         const statusSession = await session.json()
-        if (session.status === 201) {
+        if (statusSession === 201) {
             alert("Logueo exitoso, te enviaremos a productos..")
             window.location.href = '/api/users/products'
         } else {
             alert(statusSession.errorMessage)
         }
+       
     })
 }
 

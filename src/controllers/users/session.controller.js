@@ -1,5 +1,5 @@
 import { userManager } from "../../managers/UserManager.js"
-import { comparePasswords } from "../../utils/encrypter.js"
+import { encrypter } from "../../utils/encrypter.js"
 import { AuthenticationError } from "../../entities/error/authenticationError.js"
 
 
@@ -8,7 +8,7 @@ export async function postSession(req, res, next) {
         const userBD = await userManager.searchByEmail(req.body.email)
         if (!userBD) throw new AuthenticationError("Error de logueo, revisa las credenciales")
      
-         const correctPassword = comparePasswords(req.body.password , userBD.password)
+         const correctPassword = encrypter.comparePasswords(req.body.password , userBD.password)
          if (!correctPassword)  throw new AuthenticationError("Error de logueo, revisa las credenciales")
      
          req.session.user = {
@@ -16,8 +16,9 @@ export async function postSession(req, res, next) {
              last_name: userBD.last_name,
              email: userBD.email,
              age: userBD.age,
-             rol : userBD.rol
-         }  
+             cart : userBD.cart,
+             role : userBD.role
+         }
          res.status(201).json(req.session.user)
         
     } catch (error) {
@@ -25,11 +26,35 @@ export async function postSession(req, res, next) {
     }
   }
   
+export async function postSessionCookie(req, res, next) {  
+    try {
+        const userBD = await userManager.searchByEmail(req.body.email)
+        if (!userBD) throw new AuthenticationError("Error de logueo, revisa las credenciales")     
+         const correctPassword = encrypter.comparePasswords(req.body.password , userBD.password)
+         if (!correctPassword)  throw new AuthenticationError("Error de logueo, revisa las credenciales")     
+         const token = encrypter.createToken(userBD)
 
-export async function deleteSession (req, res, next){
-    req.session.destroy(err => {
+         res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60 * 24 })
+         res.status(201).json(req.session.user)
+         next()
+    } catch (error) {
+        next(new AuthenticationError("Error de logueo, revisa las credenciales"))
+    }
+}
+
+export async function deleteSession (req, res, next){    
+    if(req.signedCookies?.authToken!==undefined) {
+        res.clearCookie('authToken')        
         res.sendStatus(200)
-      })
+    }
+    if(req.session?.user !==undefined) {
+        req.session.destroy()        
+        res.sendStatus(200)
+    }
+    if(req.session?.passport!==undefined) {
+        req.session.destroy()        
+        res.sendStatus(200)
+    }
 
 }
 export async function localRegister (req, res, next){
@@ -38,7 +63,8 @@ export async function localRegister (req, res, next){
         last_name: req.body.last_name,
         email: req.body.email,
         age: req.body.age,
-        rol : req.body.rol
+        cart : req.body.cart,
+        role : req.body.role
     }
     res.redirect('/api/users/products') 
 }

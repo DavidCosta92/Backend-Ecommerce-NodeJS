@@ -1,5 +1,4 @@
-// ENVIAR LOGICA DE MANEJO DE ERRORES A UN MIDLEWARE SEPARADO..
-export function errorMiddleware(error, req, res , next){    
+export function errorHandlerAPI(error, req, res , next){    
     switch (error.type) {
         case 'REGISTER_ERROR_USER_EXIST':
             res.status(409)
@@ -14,6 +13,7 @@ export function errorMiddleware(error, req, res , next){
             res.status(403)
             break            
         case 'AUTHETICATION_EXPIRED_ERROR':
+            console.log("ERROR SALLLLLLE POR AQUI?")
             res.status(401)
             break
         default:
@@ -22,3 +22,12 @@ export function errorMiddleware(error, req, res , next){
     console.log(error)
     res.json({ errorMessage: error.message })
 }
+/*
+export function errorHandlerWEB(error, req, res , next){    
+    if (error.message === 'NOT FOUND') {
+        res.render("notFound", error)
+       // return res.status(404).send('<H1>No encontrado</H1>')
+    }
+}
+
+*/

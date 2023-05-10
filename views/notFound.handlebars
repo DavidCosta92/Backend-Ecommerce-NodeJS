@@ -1,0 +1,11 @@
+<div class="container">
+    <h1> Hubo un error, lo sentimos... </h1>
+    <h3> Lo que sucedio fue: {{error}}</h3>
+    <button  class="btn btn-outline-success  mt-4" onClick=goToRegister()> Ir a inicio</button>
+</div>
+
+<script>
+    function goToRegister(){    
+    window.location.href = '/api/users/register'
+    }
+</script>

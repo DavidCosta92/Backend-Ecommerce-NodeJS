@@ -1,6 +1,19 @@
 
 <h3 class=" m-5 text-center">Hola, esta es una pagina para redireccionar a cada endpoint de manera mas facil</h3>
 
+{{#if loguedUser}}
+<div class=" d-flex flex-wrap border border-success rounded p-4 m-4 justify-content-around">
+    <h5 class="w-100">USUARIO LOGUEADO</h5>
+    <p class="pe-5 w-25">Nombre: {{user.first_name}}</p>
+    <p class="pe-5 w-25">Apellido: {{user.last_name}}</p> 
+    <p class="pe-5 w-25">Email: {{user.email}}</p>
+    <p class="pe-5 w-25">Edad: {{user.age}}</p>       
+    <p class="pe-5 w-50">Rol de usuario : {{user.role}}</p>    
+    <form id="formLogOut" class=" w-50">
+        <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
+    </form>
+</div>
+{{else}}
 <h5 class="text-center mt-5">FORMULARIO DE LOGIN</h5>
 <form id="formUserLogin" action="" class="p-4 m-4 border border-success rounded d-flex flex-wrap justify-content-around">
     <label for="input_email"class="w-50 mt-2">Email</label>
@@ -16,6 +29,7 @@
         <button  class="btn btn-outline-dark  mt-4" >¡ Ingresar con GITHUB! </button>
     </a>   
  </div>
+{{/if}}
 
 <div>
     <div  class=" m-5 p-5 border border-dark">
@@ -76,3 +90,4 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/home.js"></script>
 <script src="/js/userLogin.js"> </script>
+<script src="/js/formLogOut.js"></script>

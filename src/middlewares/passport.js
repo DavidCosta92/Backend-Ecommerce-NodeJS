@@ -2,20 +2,18 @@
 import passport from 'passport'
 import { AuthenticationError } from "../entities/error/authenticationError.js"
 import { userManager } from '../managers/UserManager.js'
-import { comparePasswords } from '../utils/encrypter.js'
+import { encrypter } from '../utils/encrypter.js'
 // imports LOCAL
 import { Strategy as LocalStrategy } from 'passport-local'
 // imports GITHUB
 import { Strategy as GithubStrategy } from 'passport-github2'
 import { GITHUB_CALLBACK_URL, GITHUB_CLIENT_SECRET, GITHUB_CLIENTE_ID } from '../config/auth.config.js'
 
-
-
 passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
     const user = await userManager.searchByEmail(username)
     if (!user)
         return done(new AuthenticationError("Error de logueo, revisa las credenciales"))
-    if (!comparePasswords(password, user.password))
+    if (!encrypter.comparePasswords(password, user.password))
         return done(new AuthenticationError("Error de logueo, revisa las credenciales"))
     delete user.password
     done(null, user)
@@ -23,8 +21,8 @@ passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (usern
 
 passport.use('register', new LocalStrategy({ passReqToCallback: true, usernameField: 'email' }, async (req, _u, _p, done) => {
       try {
-        const user = {rol:"usuario", ...req.body }
-        if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.rol = "admin"
+        const user = {role:"user", ...req.body }
+        if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.role = "admin"
         const {newUser} = await userManager.createUser({user})
         /* para guardar session y loguear a la vez*/
         req.session.user = {
@@ -32,7 +30,7 @@ passport.use('register', new LocalStrategy({ passReqToCallback: true, usernameFi
             last_name: newUser.last_name,
             email: newUser.email,
             age: newUser.age,
-            rol : newUser.rol
+            role : newUser.role
         }
         done(null, newUser)
       } catch (error) {
@@ -46,7 +44,6 @@ passport.use('github', new GithubStrategy({
     clientSecret: GITHUB_CLIENT_SECRET,
     callbackURL: GITHUB_CALLBACK_URL,
 }, async (accessToken, refreshToken, profile, done) => {
-    console.log(profile)
     let user = await userManager.searchByGitHubUsername(profile.username);   
     if(user === null){
         user = {
@@ -55,7 +52,7 @@ passport.use('github', new GithubStrategy({
             first_name : profile.displayName , 
             last_name  : profile.displayName ,
             age  : 0,
-            rol : "usuario"
+            role : "usuario"
         } 
         user = await userManager.createGitHubUser({user});
     } 

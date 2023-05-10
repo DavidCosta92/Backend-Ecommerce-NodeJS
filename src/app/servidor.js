@@ -12,21 +12,30 @@ import { productModel } from "../../Dao/DBaaS/models/productModel.js";
 import { chatModel } from "../../Dao/DBaaS/models/chatModel.js";
 import { passportInitialize , passportSession } from "../middlewares/passport.js";
 import session from "../middlewares/session.js";
-import { errorMiddleware } from "../middlewares/errorMiddleware.js";
+import { errorHandlerAPI } from "../middlewares/errorMiddleware.js";
+import cookieParser from "cookie-parser";
+import { COOKIE_SECRET } from "../config/auth.config.js";
+import { getCredentialsCookie } from "../middlewares/authenticator.js";
+import { getCurrentUser } from "../middlewares/authenticator.js";
 
 mongoose.connect(mongooseConnectStringToAtlas) // =>  REEMPLAZAR PARA CONECTAR A BD ATLAS..
 
 const app = express();
 app.use(session)
+
+app.use(cookieParser(COOKIE_SECRET))
+
 app.use("/api/products",productsRouter);
 app.use("/api/carts",cartsRouter);
 app.use("/api/views",viewsRouter);
-
 app.use("/api/fs/carts",cartsRouterFileSystem);
 app.use("/api/users" ,userRouter) 
+
 app.use(express.static('./public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+
 
 app.engine('handlebars', engine())
 app.set('views', './views')
@@ -37,8 +46,9 @@ app.use(passportInitialize, passportSession)
 app.get("/", (req, res, next)=>{
     res.render("home")
 })
+app.get("/api/session/current", getCurrentUser)
 
-app.use(errorMiddleware)
+app.use(errorHandlerAPI)
 
 
 const httpServer = app.listen(PORT, () => console.log("Servidor activo"))

@@ -1,8 +1,7 @@
 import bcrypt from 'bcrypt'
-import { JWT_SECRET } from '../config/auth.config'
+import { JWT_SECRET } from '../config/auth.config.js'
 import jwt from 'jsonwebtoken'
-import { AuthenticationExpiredError } from '../entities/error/authenticationError'
-
+import { AuthenticationExpiredError } from '../entities/error/authenticationError.js'
 
 class Encrypter {
     hashPassword(password) {
@@ -17,11 +16,12 @@ class Encrypter {
         return jwt.sign(data, JWT_SECRET, { expiresIn: '1h' })
       }
 
-    verifyToken(token) {
+    getDataFromToken(token) {
         try {
           return jwt.verify(token, JWT_SECRET)
         } catch (error) {
-          throw new AuthenticationExpiredError()
+          console.log(error)
+          new AuthenticationExpiredError(error) 
         }
     }    
 }
