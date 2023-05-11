@@ -104,7 +104,7 @@ viewsRouter.get("/carts/:cid", onlyAuthenticated, async (req, res, next)=>{
     if(req.session?.passport !=undefined){ user = req.session.passport.user }
     
     const cart = await cartstModel.find({_id : req.params.cid}).populate('products.product').lean()
-    res.render("cartById", {cart: cart[0] , hayResultados: cart[0].products.length>0 , loguedUser : user!=undefined , user : user})
+    res.render("cartById", {cart: cart[0] , hayResultados: cart[0].products.length>0})
 })
 
 viewsRouter.get("/chat", (req, res, next)=>{

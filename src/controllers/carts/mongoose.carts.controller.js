@@ -8,8 +8,8 @@ export async function getCartsMongoose (req, res , next){
     res.json(response);
 }
 
-export async function postCartsMongoose (req, res , next){
-    res.json(await DB_mongo_cart_manager.postCarts(req,next));
+export async function postCartMongoose (req, res , next){
+    res.json(await DB_mongo_cart_manager.postCart(req,next));
 }
 
 export async function getCartsByIDMongoose (req, res , next){     
@@ -25,7 +25,7 @@ export async function postProductToCartsMongoose (req, res , next){
 }
 
 export async function deleteProductInCartsMongoose (req, res , next){
-    res.json(await DB_mongo_cart_manager.deleteProductInCart(req,next));
+    res.status(200).json(await DB_mongo_cart_manager.deleteProductInCart(req,next));
 }
 
 export async function deleteAllProductsInCartByIDMongoose (req, res , next) {

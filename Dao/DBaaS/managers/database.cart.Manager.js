@@ -34,7 +34,15 @@ class DB_cart_manager{
         }
     }
 
-    async postCarts (req, next){
+    async postCart (req, next){
+        try {
+            const newCart = await cartstModel.create({});
+            return newCart;
+        } catch (error) {
+            next(error);
+        }
+    }
+    async createCart (next){
         try {
             const newCart = await cartstModel.create({});
             return newCart;

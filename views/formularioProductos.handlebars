@@ -7,9 +7,12 @@
             <p class="pe-5 w-25">Email: {{user.email}}</p>
             <p class="pe-5 w-25">Edad: {{user.age}}</p>       
             <p class="pe-5 w-50">Rol de usuario : {{user.role}}</p>    
-            <form id="formLogOut" class=" w-50">
-                <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
-            </form>
+            <div class="container  w-50 d-flex">
+                <button class="btn btn-outline-primary w-50 me-2" onclick="goToUserProfile()">Ver perfil</button>
+                <form id="formLogOut" class="w-50">
+                    <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
+                </form>
+            </div>
         </div>
     {{/if}}
 <div class=" p-3 text-end">

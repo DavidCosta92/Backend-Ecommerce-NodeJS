@@ -1,7 +1,9 @@
 // @ts-nocheck
+import { DB_mongo_cart_manager } from "../../Dao/DBaaS/managers/database.cart.Manager.js"
 import { AuthenticationError } from "../entities/error/authenticationError.js"
 import { AuthorizationError } from "../entities/error/authorizationError.js"
 import { encrypter } from "../utils/encrypter.js"
+
 
 export function authenticator( req, res, next){
     if (req.session.passport || req.session.user || req.signedCookies.authToken){ 
@@ -49,7 +51,7 @@ export function onlyAuthenticated /*Api */(req, res, next) {
   next()
 }
 
-export function getCurrentUser (req , res , next){
+export async function getCurrentUser (req , res , next){
   try {    
     let user = undefined
     /* PARA CUANDO INICIO SESSION, PORQUE USO EL ENDPOINT signedCookie que guarda una signed cookie */
@@ -58,14 +60,21 @@ export function getCurrentUser (req , res , next){
         const dataUser = encrypter.getDataFromToken(token)
         user = dataUser
     }
-
     /* PARA localRegister */
     if(req.user !=undefined){ user = req.user }    
 
     /* PARA CUANDO ME REGISTRO, PORQUE USO PASSPORT... */
     if(req.session?.passport !=undefined){ user = req.session.passport.user }
-    
-    res.render("currentUser", {loguedUser : user!=undefined, user : user})      
+
+    if(user === undefined){
+      res.render("currentUser", {loguedUser :false}) 
+    }else{
+      const cartById = await DB_mongo_cart_manager.findCartById(user.cart)      
+      /* Necesario para solucionar error handlebars "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas*/
+      const productsInCart = []
+      cartById.products.forEach(p=>{ productsInCart.push( p.toObject()) })
+      res.render("currentUser", {loguedUser : user!=undefined, user : user, products : productsInCart})
+    }       
  } catch (error) {
     next(error)
  }

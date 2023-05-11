@@ -22,12 +22,3 @@ function redirigirPagCarritosPorID(){
     const idCart = document.getElementById("idCart")
     window.location.href = `http://localhost:8080/api/views/carts/${idCart.value}`;
 }
-
-function logInGithub(){
-    console.log("DEBO ESTAR LOGUEANDOME EN GIT")
-}
-
-function singInGithub(){
-    console.log("DEBO ESTAR REGISTRANDOME EN GIT")
-    
-}

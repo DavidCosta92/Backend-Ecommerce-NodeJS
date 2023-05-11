@@ -28,6 +28,7 @@ if (formUserLogin instanceof HTMLFormElement){
             alert(session.errorMessage)
         }
 
+
         const statusSession = await session.json()
         if (statusSession === 201) {
             alert("Logueo exitoso, te enviaremos a productos..")
@@ -41,4 +42,7 @@ if (formUserLogin instanceof HTMLFormElement){
 
 function goToRegister(){    
     window.location.href = '/api/users/register'
+}
+function goToProducts(){    
+    window.location.href = '/api/users/products'
 }

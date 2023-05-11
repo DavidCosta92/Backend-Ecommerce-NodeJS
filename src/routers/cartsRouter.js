@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import { getCartsFileSystem , postCartsFileSystem , getCartsByIDFileSystem ,deleteCartByIDFileSystem , postProductToCartsFileSystem , deleteProductInCartsFileSystem} from '../controllers/carts/fileSystem.carts.controller.js';
-import { getCartsMongoose , postCartsMongoose , getCartsByIDMongoose ,deleteCartByIDMongoose , postProductToCartsMongoose , updateAllProductsInCartsMongoose , deleteProductInCartsMongoose , updateQuantityProductInCartsMongoose , deleteAllProductsInCartByIDMongoose} from '../controllers/carts/mongoose.carts.controller.js';
+import { getCartsMongoose , postCartMongoose , getCartsByIDMongoose ,deleteCartByIDMongoose , postProductToCartsMongoose , updateAllProductsInCartsMongoose , deleteProductInCartsMongoose , updateQuantityProductInCartsMongoose , deleteAllProductsInCartByIDMongoose} from '../controllers/carts/mongoose.carts.controller.js';
 import { onlyAuthenticated } from '../middlewares/authenticator.js';
 export const cartsRouter = Router();
 
@@ -10,7 +10,7 @@ cartsRouter.use(express.urlencoded({ extended: true }));
 
 // mongoose
 cartsRouter.get("/",onlyAuthenticated, getCartsMongoose)
-cartsRouter.post("/", postCartsMongoose)
+cartsRouter.post("/", postCartMongoose)
 cartsRouter.get("/:cid", getCartsByIDMongoose)
 cartsRouter.delete("/:cid", deleteCartByIDMongoose)
 cartsRouter.post("/:cid/products/:pid", postProductToCartsMongoose)

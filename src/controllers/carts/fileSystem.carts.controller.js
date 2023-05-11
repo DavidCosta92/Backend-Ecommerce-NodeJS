@@ -54,7 +54,7 @@ export async function postProductToCartsFileSystem (req, res , next){
 export async function deleteProductInCartsFileSystem (req, res , next){
     try {
         const actualProducts = await cartManager.deleteProductInCart(req.params.cid , req.params.pid)
-        res.json(actualProducts);
+        res.status(200).json(actualProducts);
     } catch (error) {        
         next(error);
     }

@@ -15,7 +15,6 @@ import session from "../middlewares/session.js";
 import { errorHandlerAPI } from "../middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
 import { COOKIE_SECRET } from "../config/auth.config.js";
-import { getCredentialsCookie } from "../middlewares/authenticator.js";
 import { getCurrentUser } from "../middlewares/authenticator.js";
 
 mongoose.connect(mongooseConnectStringToAtlas) // =>  REEMPLAZAR PARA CONECTAR A BD ATLAS..

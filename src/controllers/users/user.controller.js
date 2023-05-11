@@ -3,6 +3,7 @@ import { DB_mongo_product_manager } from "../../../Dao/DBaaS/managers/database.p
 import { userManager } from "../../managers/UserManager.js"
 import { User } from "../../entities/User.js"
 import { encrypter } from "../../utils/encrypter.js"
+import { DB_mongo_cart_manager } from "../../../Dao/DBaaS/managers/database.cart.Manager.js"
 
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})
@@ -37,30 +38,27 @@ export function registerView(req,res,next){
       next(error)
    }
  }
-
  export async function postUser(req,res,next){   
     try {
+         
+      const idNewCart = await DB_mongo_cart_manager.createCart(next)
+
       const {first_name, last_name, email, age, password, cart, role} = req.body
-     // const userAttempt = {rol:"usuario", ...req.body }
-   
-      if ( req.body.email === "adminCoder@coder.com" && req.body.password === "adminCod3r123") role="admin"
-   
+
+      if ( req.body.email === "adminCoder@coder.com" && req.body.password === "adminCod3r123") role="admin"   
+
+      cart = idNewCart;
+
       const newUser = new User({first_name, last_name, email, age, password, cart, role})
-
       const {user , code} = await userManager.createUser({newUser})
-   
-       ///--------------------------------------------- SI AL GUARDAR LA COOKIE, ESTA SE GUARDA CON CONTRASEÑA, EL ERROR ESTA AQUI...
-
        /* session en cookie */
        const token = encrypter.createToken(user)
        res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60})
            
-
-       /* EN TEORIA CON ESTO ESTOY AVISANDO QUE REFRESQUE EL LISTADO DE USUARIOS EL SOCKET*/
-      
+      // PENDIENTE TIEMPO REAL
+       /* EN TEORIA CON ESTO ESTOY AVISANDO QUE REFRESQUE EL LISTADO DE USUARIOS EL SOCKET*/      
       // req['io'].sockets.emit('usuarios', await usuariosManager.obtenerTodos())
-      // tendria que poder recibir el evento de socket para poder actualizar
-      
+      // tendria que poder recibir el evento de socket para poder actualizar      
       /* EN TEORIA CON ESTO ESTOY AVISANDO QUE REFRESQUE EL LISTADO DE USUARIOS EL SOCKET*/
 
        res.status(code).json({ message: 'USUARIO SE LOGUEO', loguedUser: code === 201 })

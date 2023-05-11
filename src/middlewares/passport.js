@@ -8,6 +8,9 @@ import { Strategy as LocalStrategy } from 'passport-local'
 // imports GITHUB
 import { Strategy as GithubStrategy } from 'passport-github2'
 import { GITHUB_CALLBACK_URL, GITHUB_CLIENT_SECRET, GITHUB_CLIENTE_ID } from '../config/auth.config.js'
+import { DB_mongo_cart_manager } from '../../Dao/DBaaS/managers/database.cart.Manager.js'
+
+
 
 passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
     const user = await userManager.searchByEmail(username)
@@ -20,8 +23,10 @@ passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (usern
 }))
 
 passport.use('register', new LocalStrategy({ passReqToCallback: true, usernameField: 'email' }, async (req, _u, _p, done) => {
-      try {
-        const user = {role:"user", ...req.body }
+    try {
+        const idNewCart = await DB_mongo_cart_manager.createCart(done)
+        
+        const user = {role: "user", cart: idNewCart, ...req.body }
         if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.role = "admin"
         const {newUser} = await userManager.createUser({user})
         /* para guardar session y loguear a la vez*/
@@ -30,6 +35,7 @@ passport.use('register', new LocalStrategy({ passReqToCallback: true, usernameFi
             last_name: newUser.last_name,
             email: newUser.email,
             age: newUser.age,
+            cart: newUser.cart,
             role : newUser.role
         }
         done(null, newUser)
@@ -46,11 +52,14 @@ passport.use('github', new GithubStrategy({
 }, async (accessToken, refreshToken, profile, done) => {
     let user = await userManager.searchByGitHubUsername(profile.username);   
     if(user === null){
+
+    const idNewCart = await DB_mongo_cart_manager.createCart(done)
         user = {
             email : profile.username ,
             password  : "",
             first_name : profile.displayName , 
             last_name  : profile.displayName ,
+            cart : idNewCart,
             age  : 0,
             role : "usuario"
         } 

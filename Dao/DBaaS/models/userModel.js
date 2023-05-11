@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Schema } from 'mongoose'
 
 const userSchema = new mongoose.Schema({
     email  : { type: String, required: true, unique : true, index:true},
@@ -6,11 +7,11 @@ const userSchema = new mongoose.Schema({
     first_name : { type: String, required: true},
     last_name  : { type: String, required: true},
     age  : { type: Number, required: true},
-    cart  : { type: String, required: false},  // REALIZE CAMBIOS, REVISAR FUNCIONAMIENTO GENERAL
-    role : {   // REALIZE CAMBIOS, REVISAR FUNCIONAMIENTO GENERAL
+    cart  : { type: Schema.Types.ObjectId, ref:"carts" , required: false},  
+    role : {
         type: String,
         enum: {
-            values: ['user', 'admin'],   // REALIZE CAMBIOS, REVISAR FUNCIONAMIENTO GENERAL
+            values: ['user', 'admin'],
             default:'user',
             message: '{VALUE} no es correcto'
             },
@@ -29,13 +30,12 @@ const userSchemaGitHub = new mongoose.Schema({
     first_name : { type: String, required: false},
     last_name  : { type: String, required: false},
     age  : { type: Number, required: false},
-    cart  : { type: String, required: false},   // REALIZE CAMBIOS, REVISAR FUNCIONAMIENTO GENERAL
-    role : {    // REALIZE CAMBIOS, REVISAR FUNCIONAMIENTO GENERAL
+    cart  : { type: Schema.Types.ObjectId, ref:"carts" , required: false},  
+    role : {
         type: String,
         default:'user',
         required:true
-        }       
-        
+        }              
 }, {versionKey : false})
 
 export const userModelGitHub = mongoose.model("gitHubUsers", userSchemaGitHub)

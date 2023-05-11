@@ -9,11 +9,16 @@
             <p class="pe-5 w-25">Email: {{user.email}}</p>
             <p class="pe-5 w-25">Edad: {{user.age}}</p>       
             <p class="pe-5 w-50">Rol de usuario : {{user.role}}</p>    
-            <form id="formLogOut" class=" w-50">
-                <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
-            </form>
+            <p class="pe-5 w-50">ID carrito: {{user.cart}}</p>                
+            <div class="container  w-50 d-flex">
+                <button class="btn btn-outline-primary w-50 me-2" onclick="goToUserProfile()">Ver perfil</button>
+                <form id="formLogOut" class="w-50">
+                    <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
+                </form>
+            </div>
         </div>
     {{/if}}
+
     {{#if hayResultados}}
     
     <table class="table table-dark table-striped text-center" id="{{cart._id}}">
@@ -72,9 +77,9 @@
     </tbody>
     </table>
 
-        {{else}}
+    {{else}}
         <h1 > parece que no hay carritos aun</h1>
-        {{/if}}
+    {{/if}}
 </div>
 
 <script src="/socket.io/socket.io.js"></script>
