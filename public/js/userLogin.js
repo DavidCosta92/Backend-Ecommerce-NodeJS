@@ -12,7 +12,7 @@ if (formUserLogin instanceof HTMLFormElement){
             /*'/api/users/session'*/                //setea para trabajar con login manual 
             /*'/api/users/session/localLogin' */    //setea para trabajar con passport 
             '/api/users/session/signedCookie'       //setea para trabajar con sgined cookies 
-            , {
+            ,{
             method: 'POST',
             headers: {
             'Accept': 'application/json',

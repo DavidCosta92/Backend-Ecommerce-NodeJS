@@ -26,14 +26,13 @@ export async function postSession(req, res, next) {
     }
   }
   
-export async function postSessionCookie(req, res, next) {  
+export async function postSessionTokenCookie(req, res, next) {  
     try {
         const userBD = await userManager.searchByEmail(req.body.email)
         if (!userBD) throw new AuthenticationError("Error de logueo, revisa las credenciales")     
          const correctPassword = encrypter.comparePasswords(req.body.password , userBD.password)
          if (!correctPassword)  throw new AuthenticationError("Error de logueo, revisa las credenciales")     
          const token = encrypter.createToken(userBD)
-
          res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60 * 24 })
          res.status(201).json(req.session.user)
          next()
