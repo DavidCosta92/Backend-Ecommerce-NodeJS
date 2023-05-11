@@ -29,12 +29,12 @@ export async function deleteProductInCartsMongoose (req, res , next){
 }
 
 export async function deleteAllProductsInCartByIDMongoose (req, res , next) {
-    res.json(await DB_mongo_cart_manager.deleteAllProductsInCartById(req.params.cid,next));
+    res.status(200).json(await DB_mongo_cart_manager.deleteAllProductsInCartById(req.params.cid,next));
 
 }
 
 export async function updateQuantityProductInCartsMongoose (req, res , next) {
-    res.json(await DB_mongo_cart_manager.updateQuantityProductInCart(req,next));
+    res.status(200).json(await DB_mongo_cart_manager.updateQuantityProductInCart(req,next));
 }
 
 export async function updateAllProductsInCartsMongoose (req, res , next) {

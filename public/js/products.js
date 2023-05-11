@@ -24,7 +24,7 @@ if(form instanceof HTMLFormElement){
 function goToLogin(){
     window.location.href = '/api/users/login'
 }
-/*
+
 function agregarProductoAlCarrito(pid){    
     const cid = document.getElementById(`cid${pid}`).value  
     const productQuantity = document.getElementById(`quantity${pid}`).value  
@@ -35,7 +35,6 @@ function agregarProductoAlCarrito(pid){
         }
     })
 }
-*/
 async function agregarProductoAlCarritoUsuario(pid){    
     const cid = document.getElementById("cidUser").textContent
     const productQuantity = document.getElementById(`quantity${pid}`).value  

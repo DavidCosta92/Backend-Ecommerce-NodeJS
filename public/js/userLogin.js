@@ -21,19 +21,11 @@ if (formUserLogin instanceof HTMLFormElement){
             body: JSON.stringify(dataUser)
         })        
 
-        if (session.status === 201 ) {
+        if (session.status === 201) {
             alert("Logueo exitoso, te enviaremos a productos..")
             window.location.href = '/api/users/products'
         } else {
-            alert(session.errorMessage)
-        }
-
-
-        const statusSession = await session.json()
-        if (statusSession === 201) {
-            alert("Logueo exitoso, te enviaremos a productos..")
-            window.location.href = '/api/users/products'
-        } else {
+            const statusSession = await session.json()
             alert(statusSession.errorMessage)
         }
        

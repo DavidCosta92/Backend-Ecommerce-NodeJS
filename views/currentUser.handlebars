@@ -6,13 +6,14 @@
     <p class="pe-5 w-25">Email: {{user.email}}</p>
     <p class="pe-5 w-25">Edad: {{user.age}}</p>       
     <p class="pe-5 w-50">Rol de usuario : {{user.role}}</p>
-    <p class="pe-5 w-50">ID carrito: {{user.cart}}</p>        
+    <p class="pe-5 w-50">ID carrito: <span id="cidUser">{{user.cart}}</span> </p>   
     <form id="formLogOut" class=" w-50">
         <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
     </form>
 </div>
     {{#if products}}
         <table class="table table-dark table-striped text-center" id="{{user.cart}}">
+        <button class="btn btn-outline-success  mt-4" onClick=goToProducts()> ¿Quieres ver mas productos? </button> 
         <thead>
             <tr>
                 <th scope="col">Productos en carrito</th>
@@ -55,11 +56,8 @@
                 </tr>
             {{/each}}
                 <td>
-                    <button  onClick=vaciarCarrito("{{this._id}}") type="button" class="btn btn-warning w-25 m-1">
+                    <button  onClick=vaciarCarritoUsuario() type="button" class="btn btn-warning w-25 m-1">
                         Vaciar el carrito
-                    </button>
-                    <button onClick=eliminarCarrito("{{this._id}}") type="button" class="btn btn-danger w-25 m-1">
-                        Eliminar el carrito
                     </button>
                 </td>
         </tbody>

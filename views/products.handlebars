@@ -45,11 +45,9 @@
             <td>{{this.description}}</td>  
             <td>{{this._id}}</td>
             <td>
-                <div class="d-flex flex-wrap">
-                    <label for="quantity" class="w-50">Cant:</label>
-                    <input type="number" id="quantity{{this._id}}" name="quantity" min="1" class="w-50">
-                    <label for="carrito" class="w-50">ID carrito</label>
-                    <input type="text" id="cid{{this._id}}" name="carrito" class="w-50">                    
+                <div class="d-flex ">
+                    <label for="quantity" class="me-5">Cant:</label>
+                    <input type="number" id="quantity{{this._id}}" name="quantity" min="1" class="me-5">                    
                     <button onClick=agregarProductoAlCarritoUsuario("{{this._id}}") id={{this._id}} type="button" class="btn btn-success w-100 my-1 ">
                         Agregar a carrito DEL USUARIO
                     </button>

@@ -36,6 +36,20 @@ function vaciarCarrito (cid){
         }
     })
 }
+async function vaciarCarritoUsuario (){
+    const cid = document.getElementById("cidUser").textContent    
+    const emptyCart = await fetch(`/api/carts/${cid}/products`,{
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    if (emptyCart.status ===200) {
+        alert("¡Carrito vacio!")
+        location.reload()
+    }
+
+}
 function elegirUnidades (pid){    
     const productQuantity = document.getElementById(`quantity${pid}`).value   
     const cid = document.getElementById(pid).parentNode.parentNode.parentNode.id;
@@ -61,7 +75,6 @@ async function elegirUnidadesDesdeCartById (pid){
     }
     
 }
-
 async function eliminarProducto (pid){
     const cid = document.getElementById(pid).parentNode.parentNode.parentNode.id;
     const deleted = await fetch(`/api/carts/${cid}/products/${pid}`,{
@@ -75,7 +88,6 @@ async function eliminarProducto (pid){
         location.reload()
     }
 }
-
 async function eliminarProductosDesdeCartById (pid){    
     const cid = document.getElementById(pid).parentNode.parentNode.id;
     const deleted = await fetch(`/api/carts/${cid}/products/${pid}`,{
