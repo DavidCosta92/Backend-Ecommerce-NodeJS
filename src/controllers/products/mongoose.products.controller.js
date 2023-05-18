@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { productModel } from "../../../Dao/DBaaS/models/productModel.js";
-import { DB_mongo_product_manager } from "../../../Dao/DBaaS/managers/database.product.Manager.js";
+import { productModel } from "../../db/mongoose/models/productModel.js";
+import { DB_mongo_product_manager } from "../../managers/mongoose/database.product.Manager.js";
 
 export async function getProductsMongoose (req, res , next){    
     const status = res?.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`;    

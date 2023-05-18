@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { DB_mongo_cart_manager } from "../../../Dao/DBaaS/managers/database.cart.Manager.js";
+import { DB_mongo_cart_manager } from "../../managers/mongoose/database.cart.Manager.js";
 
 
 export async function getCartsMongoose (req, res , next){

@@ -1,9 +1,9 @@
 // @ts-nocheck
-import { DB_mongo_product_manager } from "../../../Dao/DBaaS/managers/database.product.Manager.js"
-import { userManager } from "../../managers/UserManager.js"
+import { DB_mongo_product_manager } from "../../managers/mongoose/database.product.Manager.js"
+import { UserManager } from "../../managers/mongoose/UserManager.js"
 import { User } from "../../entities/User.js"
 import { encrypter } from "../../utils/encrypter.js"
-import { DB_mongo_cart_manager } from "../../../Dao/DBaaS/managers/database.cart.Manager.js"
+import { DB_mongo_cart_manager } from "../../managers/mongoose/database.cart.Manager.js"
 
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})

@@ -1,4 +1,4 @@
-import { ProductManager } from "../../managers/ProductManager.js";
+import { ProductManager } from "../../managers/fileSystem/ProductManager.js";
 import { randomUUID } from "crypto";
 import { Product } from "../../entities/Product.js";
 

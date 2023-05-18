@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { encrypter } from "../utils/encrypter.js";
-import { userModel , userModelGitHub} from "../../Dao/DBaaS/models/userModel.js";
-import { RegisterError, RegisterErrorAlreadyExistUser } from "../entities/error/registerError.js";
+import { encrypter } from "../../utils/encrypter.js";
+import { userModel , userModelGitHub} from "../../db/mongoose/models/userModel.js";
+import { RegisterError, RegisterErrorAlreadyExistUser } from "../../entities/error/registerError.js";
        
 export class UserManager{
     async createUser({user}){
@@ -16,8 +16,7 @@ export class UserManager{
         if (!newUser) throw new RegisterError("Error al crear nuevo usuario")
 
         return {newUser , code:201}
-    }   
-
+    }
     async existByEmail(email){
         return await userModel.findOne({ email: email }) !==null? true : false;        
     }

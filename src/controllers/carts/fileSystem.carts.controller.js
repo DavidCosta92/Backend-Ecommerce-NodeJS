@@ -1,4 +1,4 @@
-import { CartManager } from "../../managers/CartManager.js";
+import { CartManager } from "../../managers/fileSystem/CartManager.js";
 import { randomUUID } from "crypto";
 
 const cartManager = new CartManager ("./Dao/FileSystem"); 

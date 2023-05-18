@@ -1,7 +1,7 @@
 // @ts-nocheck
 import express, { Router } from 'express';
-import { cartstModel } from '../../Dao/DBaaS/models/cartModel.js';
-import { productModel } from '../../Dao/DBaaS/models/productModel.js';
+import { cartstModel } from '../db/mongoose/models/cartModel.js';
+import { productModel } from '../db/mongoose/models/productModel.js';
 import { onlyAuthenticated , getCredentialsCookie} from '../middlewares/authenticator.js';
 import { encrypter } from '../utils/encrypter.js';
 

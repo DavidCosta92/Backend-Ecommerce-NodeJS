@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { cartstModel } from "../models/cartModel.js"
-import { productModel } from "../models/productModel.js"
+import { cartstModel } from "../../db/mongoose/models/cartModel.js"
+import { productModel } from "../../db/mongoose/models/productModel.js"
 
 
 class DB_cart_manager{

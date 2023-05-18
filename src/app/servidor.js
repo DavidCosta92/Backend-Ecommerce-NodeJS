@@ -8,8 +8,8 @@ import { userRouter } from "../routers/userSessionRouter.js";
 import { cartsRouterFileSystem } from "../routers/cartsRouterFileSystem.js";
 import mongoose from 'mongoose';
 import {Server as IOServer} from 'socket.io'
-import { productModel } from "../../Dao/DBaaS/models/productModel.js";
-import { chatModel } from "../../Dao/DBaaS/models/chatModel.js";
+import { productModel } from "../db/mongoose/models/productModel.js";
+import { chatModel } from "../db/mongoose/models/chatModel.js";
 import { passportInitialize , passportSession } from "../middlewares/passport.js";
 import session from "../middlewares/session.js";
 import { errorHandlerAPI } from "../middlewares/errorMiddleware.js";

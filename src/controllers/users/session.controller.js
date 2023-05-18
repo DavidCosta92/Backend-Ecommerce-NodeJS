@@ -1,4 +1,4 @@
-import { userManager } from "../../managers/UserManager.js"
+import { userManager } from "../../managers/mongoose/UserManager.js"
 import { encrypter } from "../../utils/encrypter.js"
 import { AuthenticationError } from "../../entities/error/authenticationError.js"
 

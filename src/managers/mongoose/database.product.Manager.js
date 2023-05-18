@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { productModel } from "../models/productModel.js";
-import { Product } from "../../../src/entities/Product.js";
+import { productModel } from "../../db/mongoose/models/productModel.js";
+import { Product } from "../../entities/Product.js";
 
 
 class DB_product_manager{

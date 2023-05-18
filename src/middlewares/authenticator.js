@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { DB_mongo_cart_manager } from "../../Dao/DBaaS/managers/database.cart.Manager.js"
+import { DB_mongo_cart_manager } from "../managers/mongoose/database.cart.Manager.js"
 import { AuthenticationError } from "../entities/error/authenticationError.js"
 import { AuthorizationError } from "../entities/error/authorizationError.js"
 import { encrypter } from "../utils/encrypter.js"

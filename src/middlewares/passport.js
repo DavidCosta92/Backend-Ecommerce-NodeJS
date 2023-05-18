@@ -1,14 +1,14 @@
 // @ts-nocheck
 import passport from 'passport'
 import { AuthenticationError } from "../entities/error/authenticationError.js"
-import { userManager } from '../managers/UserManager.js'
 import { encrypter } from '../utils/encrypter.js'
+import { userManager } from '../managers/mongoose/UserManager.js'
 // imports LOCAL
 import { Strategy as LocalStrategy } from 'passport-local'
 // imports GITHUB
 import { Strategy as GithubStrategy } from 'passport-github2'
 import { GITHUB_CALLBACK_URL, GITHUB_CLIENT_SECRET, GITHUB_CLIENTE_ID } from '../config/auth.config.js'
-import { DB_mongo_cart_manager } from '../../Dao/DBaaS/managers/database.cart.Manager.js'
+import { DB_mongo_cart_manager } from '../managers/mongoose/database.cart.Manager.js'
 
 
 
