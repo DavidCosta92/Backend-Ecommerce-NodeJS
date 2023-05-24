@@ -4,6 +4,7 @@ import { User_dao_mongo_manager } from "../../managers/mongoose/UserManager.js"
 import { User } from "../../entities/User.js"
 import { encrypter } from "../../utils/encrypter.js"
 import { DB_mongo_cart_manager } from "../../managers/mongoose/database.cart.Manager.js"
+import { userService } from "../../services/userService.js"
 
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})
@@ -39,18 +40,9 @@ export function registerView(req,res,next){
    }
  }
  export async function postUser(req,res,next){   
-    try {
-         
-      const idNewCart = await DB_mongo_cart_manager.createCart(next)
-
-      const {first_name, last_name, email, age, password, cart, role} = req.body
-
-      if ( req.body.email === "adminCoder@coder.com" && req.body.password === "adminCod3r123") role="admin"   
-
-      cart = idNewCart;
-
-      const newUser = new User({first_name, last_name, email, age, password, cart, role})
-      const {user , code} = await userManager.createUser({newUser})
+    try {         
+      const {user , code} = userService.createUser(req,res,next)
+      
        /* session en cookie */
        const token = encrypter.createToken(user)
        res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60})

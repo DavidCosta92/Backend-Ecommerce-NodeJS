@@ -11,6 +11,7 @@ class SessionService {
          const token = encrypter.createToken(userBD)
          return token
     }
+    
 
 
 } 

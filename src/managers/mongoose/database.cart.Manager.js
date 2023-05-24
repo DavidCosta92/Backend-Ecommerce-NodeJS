@@ -4,6 +4,7 @@ import { productModel } from "../../db/mongoose/models/productModel.js"
 
 
 class DB_cart_manager{
+    // DEBO MODIFICARLO POR NOMBRE CON DAO
     model
     constructor (model){
         this.model = model
@@ -195,3 +196,5 @@ class DB_cart_manager{
 }
 
 export const DB_mongo_cart_manager = new DB_cart_manager(cartstModel);
+
+    // DEBO MODIFICARLO POR NOMBRE CON DAO
