@@ -1,5 +1,5 @@
+// @ts-nocheck
 import express from "express"
-import { PORT , mongooseConnectStringToAtlas } from "../config/servidor.config.js"
 import { productsRouter } from "../routers/productsRouter.js";
 import { engine } from 'express-handlebars'
 import { cartsRouter } from "../routers/cartsRouter.js";
@@ -14,15 +14,18 @@ import { passportInitialize , passportSession } from "../middlewares/passport.js
 import session from "../middlewares/session.js";
 import { errorHandlerAPI } from "../middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
-import { COOKIE_SECRET } from "../config/auth.config.js";
 import { getCurrentUser } from "../middlewares/authenticator.js";
+import { MONGOOSE_STRING_ATLAS } from "../config/config.js";
 
-mongoose.connect(mongooseConnectStringToAtlas) // =>  REEMPLAZAR PARA CONECTAR A BD ATLAS..
+import dotenv from 'dotenv'
+dotenv.config({path: 'src/.env'});
+
+mongoose.connect(MONGOOSE_STRING_ATLAS)
 
 const app = express();
 app.use(session)
 
-app.use(cookieParser(COOKIE_SECRET))
+app.use(cookieParser(process.env.COOKIE_SECRET))
 
 app.use("/api/products",productsRouter);
 app.use("/api/carts",cartsRouter);
@@ -49,8 +52,8 @@ app.get("/api/session/current", getCurrentUser)
 
 app.use(errorHandlerAPI)
 
+const httpServer = app.listen(process.env.PORT, () => console.log("Servidor activo",process.env.PORT))
 
-const httpServer = app.listen(PORT, () => console.log("Servidor activo"))
 
 export const io = new IOServer(httpServer)
 

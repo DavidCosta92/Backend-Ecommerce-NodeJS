@@ -3,7 +3,7 @@ import { encrypter } from "../../utils/encrypter.js";
 import { userModel , userModelGitHub} from "../../db/mongoose/models/userModel.js";
 import { RegisterError, RegisterErrorAlreadyExistUser } from "../../entities/error/registerError.js";
        
-export class UserManager{
+export class UserDAOMongoose{ 
     async createUser({user}){
         const alreadyExistUser = await this.existByEmail(user.email)
 
@@ -34,4 +34,4 @@ export class UserManager{
         return {gitHubUser , code:201}
     }        
 }       
-export const userManager = new UserManager()
+export const User_dao_mongo_manager = new UserDAOMongoose()

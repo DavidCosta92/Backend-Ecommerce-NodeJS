@@ -1,15 +1,15 @@
 // @ts-nocheck
 import session from "express-session"
 import MongoStore from "connect-mongo"
-import { mongooseConnectStringToAtlas } from "../config/servidor.config.js"
+import { MONGOOSE_STRING_ATLAS ,MONGO_SECRET} from "../config/config.js"
 
 export default session({
     store: MongoStore.create({
-        mongoUrl: mongooseConnectStringToAtlas,
+        mongoUrl: MONGOOSE_STRING_ATLAS,
         mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
         ttl: 30
     }),
     saveUninitialized:false,
     resave:false,
-    secret:"soy el secreto"
+    secret:MONGO_SECRET
  })

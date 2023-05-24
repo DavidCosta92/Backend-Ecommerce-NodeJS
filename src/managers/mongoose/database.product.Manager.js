@@ -3,27 +3,29 @@ import { productModel } from "../../db/mongoose/models/productModel.js";
 import { Product } from "../../entities/Product.js";
 
 
-class DB_product_manager{
+class Product_dao_mongo{
+    // DB_mongo_product_manager
     model
     constructor(model){
         this.model = model;
     }
 
-    async getProducts (req,next){
+    async getProducts (req ,next){
+        const {category, stock, limit, page, sort} = req.query
         try {
             /*  Busqueda por categoria y por stock (true o  false) */
-            const categorySearch = (req.query.category == "" || req.query.category == undefined) ? null : {$eq:req.query.category};
-            const stock = (req.query.stock == "" || req.query.stock == undefined || req.query.stock != "true" ) ? null : {$gt:0};
+            const categorySearch = (category == "" || category == undefined) ? null : {$eq:category};
+            const searchStock = (stock == "" || stock == undefined || stock != "true" ) ? null : {$gt:0};
             let searchParams = {}
             if (categorySearch) searchParams["category"] = categorySearch;
-            if (stock) searchParams["stock"] = stock;        
+            if (searchStock) searchParams["stock"] = stock;        
             
             /* paginado y ordenamiento */        
-            const limit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 10 : req.query.limit
-            const page =  (isNaN(Number(req.query.page)) || req.query.page == "" ) ? 1 : req.query.page
+            const searchLimit = (isNaN(Number(limit)) || limit == "" ) ? 10 : limit
+            const searchPage =  (isNaN(Number(page)) || page == "" ) ? 1 : page
             let sortByPrice = null;
-            if(req.query.sort!= undefined) sortByPrice = (req.query.sort === "asc" )? { price : 1} : { price : -1} 
-            const pageOptions = { limit: limit, page: page, sort : sortByPrice , lean : true}
+            if(sort!= undefined) sortByPrice = (sort === "asc" )? { price : 1} : { price : -1} 
+            const pageOptions = { limit: searchLimit, page: searchPage, sort : sortByPrice , lean : true}
             
             
             const products = await productModel.paginate( searchParams ,pageOptions)
@@ -99,4 +101,4 @@ class DB_product_manager{
     }
 }
 
-export const DB_mongo_product_manager = new DB_product_manager (productModel);
+export const Product_dao_mongo_manager = new Product_dao_mongo (productModel);
