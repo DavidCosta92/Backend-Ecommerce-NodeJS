@@ -1,5 +1,4 @@
 // @ts-nocheck
-import { productModel } from "../../db/mongoose/models/productModel.js";
 import { Product_dao_mongo_manager } from "../../managers/mongoose/database.product.Manager.js";
 
 export async function getProductsMongoose (req, res , next){  
@@ -13,13 +12,7 @@ export async function postProductsMongoose (req, res , next){
 }
 
 export async function getProductsByIDMongoose (req, res , next){
-    res.json(await Product_dao_mongo_manager.getProductById(req.params.pid,next));
-    try {
-        const product = await productModel.findById(req.params.pid);
-        res.json(product);
-    } catch (error) {
-        next(error);
-    }
+        res.json(await Product_dao_mongo_manager.getProductById(req.params.pid,next));
 }
 
 export async function deleteProductsByIDMongoose (req, res , next){

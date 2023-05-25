@@ -55,6 +55,10 @@ app.use(errorHandlerAPI)
 const httpServer = app.listen(process.env.PORT, () => console.log("Servidor activo",process.env.PORT))
 
 
+
+
+
+
 export const io = new IOServer(httpServer)
 
 /* envio de socket al req, PARA PODER USAR EL SOCKET EN CUALQUIER PETICION? */

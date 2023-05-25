@@ -1,9 +1,6 @@
 // @ts-nocheck
 import { Product_dao_mongo_manager } from "../../managers/mongoose/database.product.Manager.js"
-import { User_dao_mongo_manager } from "../../managers/mongoose/UserManager.js"
-import { User } from "../../entities/User.js"
 import { encrypter } from "../../utils/encrypter.js"
-import { DB_mongo_cart_manager } from "../../managers/mongoose/database.cart.Manager.js"
 import { userService } from "../../services/userService.js"
 
 export function registerView(req,res,next){    
@@ -18,14 +15,13 @@ export function registerView(req,res,next){
    const paginatedProducts = await Product_dao_mongo_manager.getProducts(req,next)
    let dataRender
    let user = req.session?.passport?.user;
-
    try {
       if (req.session.user){
          user = req.session.user 
       } else if (req.signedCookies.authToken){      
          user = encrypter.getDataFromToken(req.signedCookies.authToken);
       }
-      if(user){
+      if(user !== undefined){
          dataRender = {title: `${user.first_name} - productos`, loguedUser: true , user: user , ...paginatedProducts}
       } else{
          dataRender = {title: `${req.session['user'].first_name} - productos`, loguedUser: true , user: req.session['user'] , ...paginatedProducts}

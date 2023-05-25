@@ -1,7 +1,7 @@
 // @ts-nocheck
 import express, { Router } from 'express';
 import { onlyAuthenticated} from '../middlewares/authenticator.js';
-import { renderCartsView, renderProductsView, renderProductsViewById } from '../controllers/views/views.controller.js';
+import { renderCartsView, renderProductsView, renderCartViewById } from '../controllers/views/views.controller.js';
 
 
 export const viewsRouter = Router();
@@ -15,7 +15,10 @@ viewsRouter.get("/products", onlyAuthenticated, renderProductsView)
 viewsRouter.get("/carts", onlyAuthenticated, renderCartsView)
 
 /* http://localhost:8080/api/views/carts?limit=1&page=2 */
-viewsRouter.get("/carts/:cid", onlyAuthenticated, renderProductsViewById)
+//viewsRouter.get("/carts/:cid", onlyAuthenticated, renderProductsViewById)
+
+/* http://localhost:8080/api/views/carts?limit=1&page=2 */
+viewsRouter.get("/carts/:cid", onlyAuthenticated, renderCartViewById)
 
 viewsRouter.get("/chat", (req, res, next)=>{
     res.render("chats", {title: "Chat"})

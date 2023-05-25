@@ -1,17 +1,11 @@
-import { User_dao_mongo_manager } from "../../managers/mongoose/UserManager.js"
-import { encrypter } from "../../utils/encrypter.js"
 import { AuthenticationError } from "../../entities/error/authenticationError.js"
 import { sessionService } from "../../services/sessionService.js"
 
 
 export async function postSession(req, res, next) {  
     try {
-        const userBD = await User_dao_mongo_manager.searchByEmail(req.body.email)
-        if (!userBD) throw new AuthenticationError("Error de logueo, revisa las credenciales")
-     
-         const correctPassword = encrypter.comparePasswords(req.body.password , userBD.password)
-         if (!correctPassword)  throw new AuthenticationError("Error de logueo, revisa las credenciales")
-     
+         const userBD = await sessionService.checkUserAndPassword(req.body.email , req.body.password)
+
          req.session.user = {
              first_name: userBD.first_name,
              last_name: userBD.last_name,
@@ -29,7 +23,7 @@ export async function postSession(req, res, next) {
   
 export async function postSessionTokenCookie(req, res, next) {  
     try {
-        const token = sessionService.getSessionToken(req.body.email , req.body.password)
+        const token = await sessionService.getSessionToken(req.body.email , req.body.password)
          res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60 * 24 })
          res.status(201).json(req.session.user)
          next()
@@ -53,6 +47,7 @@ export async function deleteSession (req, res, next){
         req.session.destroy()        
         res.sendStatus(200)
     }
+    res.sendStatus(200)
 }
 export async function localRegister (req, res, next){
     req.session.user = {

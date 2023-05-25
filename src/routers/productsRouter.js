@@ -4,6 +4,7 @@ import { getProductsFileSystem , postProductsFileSystem , getProductsByIDFileSys
 import { getProductsMongoose , postProductsMongoose , getProductsByIDMongoose , deleteProductsByIDMongoose , updateProductsByIDMongoose} from '../controllers/products/mongoose.products.controller.js';
 import { onlyAuthenticated } from '../middlewares/authenticator.js';
 import { encrypter } from '../utils/encrypter.js';
+import { sessionService } from '../services/sessionService.js';
 export const productsRouter = Router();
 
 productsRouter.use(express.json()); 
@@ -25,17 +26,7 @@ productsRouter.delete("/fs/:pid" ,onlyAuthenticated, deleteProductsByIDFileSyste
 productsRouter.get("/" ,  getProductsMongoose)
 
 productsRouter.get("/add/form" ,onlyAuthenticated, (req, res, next)=>{    
-    let user = false
-    /* PARA CUANDO INICIO SESSION, PORQUE USO EL ENDPOINT JWT que guarda una signed cookie */
-    if(req.signedCookies.authToken !=undefined){
-        const token = req.signedCookies.authToken
-        const dataUser = encrypter.getDataFromToken(token)
-        user = dataUser
-    }
-    /* PARA localRegister */
-    if(req.user !=undefined){ user = req.user }    
-    /* PARA CUANDO ME REGISTRO, PORQUE USO PASSPORT... */
-    if(req.session?.passport !=undefined){ user = req.session.passport.user }
+    const user = sessionService.getLoguedUser(req)
     res.render("formularioProductos", {loguedUser : user!=undefined, user : user})
 })
  

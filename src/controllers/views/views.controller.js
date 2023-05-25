@@ -1,5 +1,7 @@
 // @ts-nocheck
-
+import { cartstModel } from "../../db/mongoose/models/cartModel.js"
+import { productModel } from "../../db/mongoose/models/productModel.js"
+import { sessionService } from "../../services/sessionService.js"
 
 export async function renderProductsView(req,res,next){    
         /* paginado y ordenamiento */   
@@ -9,19 +11,7 @@ export async function renderProductsView(req,res,next){
             
         const products = await productModel.paginate({},pageOptions)
     
-        let user = false
-        /* PARA CUANDO INICIO SESSION, PORQUE USO EL ENDPOINT JWT que guarda una signed cookie */
-        if(req.signedCookies.authToken !=undefined){
-            const token = req.signedCookies.authToken
-            const dataUser = encrypter.getDataFromToken(token)
-            user = dataUser
-        }
-        /* PARA localRegister */
-        if(req.user !=undefined){ user = req.user }    
-        /* PARA CUANDO ME REGISTRO, PORQUE USO PASSPORT... */
-        if(req.session?.passport !=undefined){ user = req.session.passport.user }
-    
-    
+        const user = sessionService.getLoguedUser(req)
     
         const response ={
             status : res.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`,
@@ -52,17 +42,7 @@ export async function renderProductsView(req,res,next){
     const pageOptions = { limit: queryLimit, page: queryPage, lean : true, populate: 'products.product'}        
     const carts = await cartstModel.paginate({},pageOptions)
 
-    let user = false
-    /* PARA CUANDO INICIO SESSION, PORQUE USO EL ENDPOINT JWT que guarda una signed cookie */
-    if(req.signedCookies.authToken !=undefined){
-        const token = req.signedCookies.authToken
-        const dataUser = encrypter.getDataFromToken(token)
-        user = dataUser
-    }
-    /* PARA localRegister */
-    if(req.user !=undefined){ user = req.user }    
-    /* PARA CUANDO ME REGISTRO, PORQUE USO PASSPORT... */
-    if(req.session?.passport !=undefined){ user = req.session.passport.user }
+    const user = sessionService.getLoguedUser(req)
 
     const response ={
         status : res.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`,
@@ -85,20 +65,7 @@ export async function renderProductsView(req,res,next){
  }
 
  
-export async function renderProductsViewById(req,res,next){
-    
-        let user = false
-        /* PARA CUANDO INICIO SESSION, PORQUE USO EL ENDPOINT JWT que guarda una signed cookie */
-        if(req.signedCookies.authToken !=undefined){
-            const token = req.signedCookies.authToken
-            const dataUser = encrypter.getDataFromToken(token)
-            user = dataUser
-        }
-        /* PARA localRegister */
-        if(req.user !=undefined){ user = req.user }    
-        /* PARA CUANDO ME REGISTRO, PORQUE USO PASSPORT... */
-        if(req.session?.passport !=undefined){ user = req.session.passport.user }
-        
+export async function renderCartViewById(req,res,next){            
         const cart = await cartstModel.find({_id : req.params.cid}).populate('products.product').lean()
-        res.render("cartById", {cart: cart[0] , hayResultados: cart[0].products.length>0})
+        res.render("cartById", {cart: cart[0] , hayResultados: cart[0]})
 }
