@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { DB_mongo_cart_manager } from "../managers/mongoose/database.cart.Manager.js"
+import { cartDAOMongoose } from "../managers/mongoose/CartDAOMongoose.js"
 import { AuthenticationError } from "../entities/error/authenticationError.js"
 import { AuthorizationError } from "../entities/error/authorizationError.js"
 import { encrypter } from "../utils/encrypter.js"
@@ -69,7 +69,7 @@ export async function getCurrentUser (req , res , next){
     if(user === undefined){
       res.render("currentUser", {loguedUser :false}) 
     }else{
-      const cartById = await DB_mongo_cart_manager.findCartById(user.cart)      
+      const cartById = await cartDAOMongoose.findCartById(user.cart)      
       /* Necesario para solucionar error handlebars "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas*/
       const productsInCart = []
       cartById.products.forEach(p=>{ productsInCart.push( p.toObject()) })

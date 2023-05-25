@@ -1,6 +1,6 @@
 // @ts-nocheck
 import fs from 'fs/promises';
-import { Cart } from '../../entities/Cart.js';
+import { Cart } from '../../models/Cart.js';
 import { ProductManager } from './ProductManager.js';
 
 export class CartManager{

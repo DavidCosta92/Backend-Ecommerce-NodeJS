@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Product_dao_mongo_manager } from "../../managers/mongoose/database.product.Manager.js"
+import { productDAOMongo } from "../../managers/mongoose/ProductDAOMongoose.js"
 import { encrypter } from "../../utils/encrypter.js"
 import { userService } from "../../services/userService.js"
 
@@ -12,7 +12,7 @@ export function registerView(req,res,next){
  }
  
  export async function productsView(req,res,next){ 
-   const paginatedProducts = await Product_dao_mongo_manager.getProducts(req,next)
+   const paginatedProducts = await productDAOMongo.getProducts(req,next)
    let dataRender
    let user = req.session?.passport?.user;
    try {

@@ -1,11 +1,11 @@
 // @ts-nocheck
 import { AuthenticationError } from "../entities/error/authenticationError.js"
-import { User_dao_mongo_manager } from "../managers/mongoose/UserManager.js"
+import { user_dao_mongo_manager } from "../managers/mongoose/UserDAOMongoose.js"
 import { encrypter } from "../utils/encrypter.js"
 
 class SessionService {
     async getSessionToken(email, password) {
-        const userBD = await User_dao_mongo_manager.searchByEmail(email)
+        const userBD = await user_dao_mongo_manager.searchByEmail(email)
         if (!userBD) throw new AuthenticationError("Error de logueo, revisa las credenciales")     
          const correctPassword = encrypter.comparePasswords(password , userBD.password)
          if (!correctPassword)  throw new AuthenticationError("Error de logueo, revisa las credenciales")
@@ -14,7 +14,7 @@ class SessionService {
     }
     
     async checkUserAndPassword(email , password){
-        const userBD = await User_dao_mongo_manager.searchByEmail(email)
+        const userBD = await user_dao_mongo_manager.searchByEmail(email)
         if (!userBD) throw new AuthenticationError("Error de logueo, revisa las credenciales")
      
          const correctPassword = encrypter.comparePasswords(password, userBD.password)

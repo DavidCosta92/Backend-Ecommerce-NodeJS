@@ -1,6 +1,6 @@
 import { ProductManager } from "../../managers/fileSystem/ProductManager.js";
 import { randomUUID } from "crypto";
-import { Product } from "../../entities/Product.js";
+import { Product } from "../../models/Product.js";
 
 const productManager = new ProductManager ("Dao/FileSystem");
 

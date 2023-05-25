@@ -2,16 +2,16 @@
 import passport from 'passport'
 import { AuthenticationError } from "../entities/error/authenticationError.js"
 import { encrypter } from '../utils/encrypter.js'
-import { User_dao_mongo_manager } from '../managers/mongoose/UserManager.js'
+import { user_dao_mongo_manager } from '../managers/mongoose/UserDAOMongoose.js'
 // imports LOCAL
 import { Strategy as LocalStrategy } from 'passport-local'
 // imports GITHUB
 import { Strategy as GithubStrategy } from 'passport-github2'
 import {GITHUB_CALLBACK_URL,GITHUB_CLIENT_SECRET, GITHUB_CLIENTE_ID } from '../config/config.js'
-import { DB_mongo_cart_manager } from '../managers/mongoose/database.cart.Manager.js'
+import { cartDAOMongoose } from '../managers/mongoose/CartDAOMongoose.js'
 
 passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
-    const user = await User_dao_mongo_manager.searchByEmail(username)
+    const user = await user_dao_mongo_manager.searchByEmail(username)
     if (!user)
         return done(new AuthenticationError("Error de logueo, revisa las credenciales"))
     if (!encrypter.comparePasswords(password, user.password))
@@ -22,11 +22,11 @@ passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (usern
 
 passport.use('register', new LocalStrategy({ passReqToCallback: true, usernameField: 'email' }, async (req, _u, _p, done) => {
     try {
-        const idNewCart = await DB_mongo_cart_manager.createCart(done)
+        const idNewCart = await cartDAOMongoose.createCart(done)
         
         const user = {role: "user", cart: idNewCart, ...req.body }
         if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.role = "admin"
-        const {newUser} = await User_dao_mongo_manager.createUser({user})
+        const {newUser} = await user_dao_mongo_manager.createUser({user})
         /* para guardar session y loguear a la vez*/
         req.session.user = {
             first_name: newUser.first_name,
@@ -48,10 +48,10 @@ passport.use('github', new GithubStrategy({
     clientSecret: GITHUB_CLIENT_SECRET,
     callbackURL: GITHUB_CALLBACK_URL,
 }, async (accessToken, refreshToken, profile, done) => {
-    let user = await User_dao_mongo_manager.searchByGitHubUsername(profile.username);   
+    let user = await user_dao_mongo_manager.searchByGitHubUsername(profile.username);   
     if(user === null){
 
-    const idNewCart = await DB_mongo_cart_manager.createCart(done)
+    const idNewCart = await cartDAOMongoose.createCart(done)
         user = {
             email : profile.username ,
             password  : "",
@@ -61,9 +61,9 @@ passport.use('github', new GithubStrategy({
             age  : 0,
             role : "usuario"
         } 
-        user = await User_dao_mongo_manager.createGitHubUser({user});
+        user = await user_dao_mongo_manager.createGitHubUser({user});
     } 
-    let userGit = await User_dao_mongo_manager.searchByGitHubUsername(profile.username);   
+    let userGit = await user_dao_mongo_manager.searchByGitHubUsername(profile.username);   
     done(null, userGit)
 }))
 

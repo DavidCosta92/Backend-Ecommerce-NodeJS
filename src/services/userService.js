@@ -1,13 +1,11 @@
 // @ts-nocheck
-import { User } from "../entities/User.js"
-import { AuthenticationError } from "../entities/error/authenticationError.js"
-import { User_dao_mongo_manager } from "../managers/mongoose/UserManager.js"
-import { DB_mongo_cart_manager } from "../managers/mongoose/database.cart.Manager.js"
-import { encrypter } from "../utils/encrypter.js"
+import { User } from "../models/User.js"
+import { user_dao_mongo_manager } from "../managers/mongoose/UserDAOMongoose.js"
+import { cartDAOMongoose } from "../managers/mongoose/CartDAOMongoose.js"
 
 class UserService {
     async createUser(req,next) {
-        const idNewCart = await DB_mongo_cart_manager.createCart(next)
+        const idNewCart = await cartDAOMongoose.createCart(next)
 
         let {first_name, last_name, email, age, password, cart, role} = req.body
   
@@ -16,7 +14,7 @@ class UserService {
         cart = idNewCart;
   
         const newUser = new User({first_name, last_name, email, age, password, cart, role})
-        const {user , code} = await User_dao_mongo_manager.createUser({newUser})
+        const {user , code} = await user_dao_mongo_manager.createUser({newUser})
 
 
         return {user, code}

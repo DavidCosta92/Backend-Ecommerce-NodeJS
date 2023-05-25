@@ -34,4 +34,4 @@ export class UserDAOMongoose{
         return {gitHubUser , code:201}
     }        
 }       
-export const User_dao_mongo_manager = new UserDAOMongoose()
+export const user_dao_mongo_manager = new UserDAOMongoose()

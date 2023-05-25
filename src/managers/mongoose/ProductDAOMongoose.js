@@ -1,10 +1,7 @@
 // @ts-nocheck
 import { productModel } from "../../db/mongoose/models/productModel.js";
-import { Product } from "../../entities/Product.js";
-
-
-class Product_dao_mongo{
-    // DB_mongo_product_manager
+import { Product } from "../../models/Product.js";
+class ProductDAOMongo{
     model
     constructor(model){
         this.model = model;
@@ -101,4 +98,4 @@ class Product_dao_mongo{
     }
 }
 
-export const Product_dao_mongo_manager = new Product_dao_mongo (productModel);
+export const productDAOMongo = new ProductDAOMongo(productModel);
