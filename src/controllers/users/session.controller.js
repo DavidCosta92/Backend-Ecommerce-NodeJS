@@ -38,16 +38,15 @@ export async function deleteSession (req, res, next){
         res.clearCookie('authToken')        
         res.sendStatus(200)
     }
-    if(req.session?.user !==undefined) {
+     else if(req.session?.user !==undefined) {
         req.session.destroy()        
         res.sendStatus(200)
     }
     /* CUANDO ME REGISTRO, Y QUEDO LOGUEADO -- REGISTRO Y LOGOUT DE GITHUB*/
-    if(req.session?.passport!==undefined) {
+    else if(req.session?.passport!==undefined) {
         req.session.destroy()        
         res.sendStatus(200)
     }
-    res.sendStatus(200)
 }
 export async function localRegister (req, res, next){
     req.session.user = {
