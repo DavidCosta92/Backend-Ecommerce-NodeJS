@@ -106,15 +106,15 @@ async function comprarCarrito(){
     const cid = document.getElementById("cidUser").textContent
     console.log(`COMPRANDO CARRITO ${cid}` )
 
-    const cartStatus = await fetch(`/api/carts/${cid}`,{
-        method: "POST",
+    const cartStatus = await fetch(`/api/carts/${cid}/purchase`,{
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
         }
     })
-    if (cartStatus.status ===200 ){
-        alert("carrito comprado!, DEBERIA SER REDIRIGIDO A RESUMEN DE COMPRA SUPONGO... ")
-        // window.location.href = '/api/carts/summary' ???
-       // location.reload()
+    if (cartStatus.status === 200 ){
+        console.log(cartStatus)
+        //alert("carrito comprado!, Te enviaremos al resumen de tu compra")
+        //window.location.href = `/api/carts/${cid}/purchase`
     }
 }    

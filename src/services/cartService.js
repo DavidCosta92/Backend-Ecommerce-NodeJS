@@ -1,12 +1,18 @@
 import { cartRepository } from "../repositories/cartRepository.js";
 import { productService } from "./productService.js";
+import { ticketRepository } from "../repositories/ticketRepository.js";
+import { sessionService } from "./sessionService.js";
 
 class CartService{
     cartRepository
     productService
-    constructor(cartRepo , productService){    
+    ticketRepository
+    sessionService
+    constructor(cartRepo , productService, ticketRepository ,sessionService){    
         this.cartRepository = cartRepo; 
-        this.productService = productService; 
+        this.productService = productService;  
+        this.ticketRepository = ticketRepository;
+        this.sessionService = sessionService
     }
 
 
@@ -83,17 +89,16 @@ class CartService{
         return totalCost
     }
 
-    async buyCart (cid , next) {
-        const cart = await this.cartRepository.getCartsByID(cid,next)
+    async buyCart (req , next) {
+        const cart = await this.cartRepository.getCartsByID(req.params.cid,next)
         const productsInCart = cart.products
-
         const { acceptedProds , rejectedProds } = await this.verifyProducts(productsInCart)
         const amount = this.calculateProductTotalCost(acceptedProds)
 
         this.updateProductsStocks(acceptedProds)
 
         //cambiar productos en carrito por los rechazados y enviar alerta
-        this.cartRepository.setProductsInCart(cid, rejectedProds, next)
+        this.cartRepository.setProductsInCart(req.params.cid, rejectedProds, next)
 
         if(rejectedProds.length>0){
             console.log("+++++++++++++++++++++++")
@@ -102,17 +107,16 @@ class CartService{
             console.log("+++++++++++++++++++++++")
             console.log("+++++++++++++++++++++++")
         }
+                   
+        const purchaser = this.sessionService.getLoguedUser(req).email
         
-        // - crear nuevo ticket, persistirlo y enviarlo a renderizar como json
-        console.log("+++++++++++++++++++++++")
-        console.log("****** TICKET A CREAR ********")
-        console.log("DATOS=> aceptados:", acceptedProds,"Rechazados:", rejectedProds, "Precio:",amount, "deberia enviarl mail, created at, randomUUID")
-        console.log("******* TICKET A CREAR *******") 
+        const purchaseTicket = await this.ticketRepository.createTicket(acceptedProds , rejectedProds , amount , purchaser, next) 
         
-        
-        // return { ticket : new ticket} => deberia llevar toda la info..
-    
+        const user = sessionService.getLoguedUser(req)
+
+        return { purchaseTicket , user }
     }
 
+
 } 
-export const cartService = new CartService(cartRepository , productService)
+export const cartService = new CartService(cartRepository , productService, ticketRepository, sessionService)

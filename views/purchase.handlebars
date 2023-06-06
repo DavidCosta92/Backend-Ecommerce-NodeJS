@@ -1,0 +1,40 @@
+
+<div class=" d-flex flex-wrap border border-success rounded p-4 m-4 justify-content-around rounded">
+    <h5 class="w-100">USUARIO LOGUEADO</h5>
+    <p class="pe-5 w-25">Nombre: {{user.first_name}}</p>
+    <p class="pe-5 w-25">Apellido: {{user.last_name}}</p> 
+    <p class="pe-5 w-25">Email: {{user.email}}</p>
+    <p class="pe-5 w-25">Edad: {{user.age}}</p>       
+    <p class="pe-5 w-50">Rol de usuario : {{user.role}}</p>
+    <p class="pe-5 w-50">ID carrito: <span id="cidUser">{{user.cart}}</span> </p>   
+    <form id="formLogOut" class=" w-50">
+        <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
+    </form>
+</div>
+
+
+{{#if rejectedProds}}
+    <ul>
+        {{#each rejectedProds}}
+            <li>PRODUCTO RECHAZADO: {{this.product}} / {{this.quantity}}</li>     
+        {{/each}}
+    </ul>
+{{/if}}
+
+<div>
+    <ul>
+        {{#each acceptedProds}}
+            <li>PRODUCTO ACEPTADO: {{this.product}} / {{this.quantity}}</li>     
+        {{/each}}
+    </ul>
+</div>
+<div>
+    <h3>PRECIO DE PRODUCTOS: {{amount}}</h3>
+    <h3>PRECIO DE COMPRADOR: {{purchaser}}</h3>
+</div>
+
+
+
+<script src="/js/products.js"></script>
+<script src="/js/userLogin.js"> </script>
+<script src="/js/formLogOut.js"></script>

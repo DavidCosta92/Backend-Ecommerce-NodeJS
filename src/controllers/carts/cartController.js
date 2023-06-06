@@ -41,7 +41,38 @@ export async function updateAllProductsInCarts (req, res , next) {
     res.json(await cartService.updateAllProductsInCarts(req.params.cid,next));
 
 }
-
+/*
 export async function buyCart (req, res , next) {
-    res.json(await cartService.buyCart(req.params.cid,next));
+    res.json(await cartService.buyCart(req,next));
+}
+*/
+export async function buyCart (req, res , next) {
+    const { purchaseTicket , user } = await cartService.buyCart(req,next)
+    const {code , purchase_datetime , amount , purcharser , acceptedProds , rejectedProds} = purchaseTicket
+
+//Necesario para solucionar error handlebars "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas
+    const acceptedProducts = []
+    acceptedProds.forEach(pr => { acceptedProducts.push( pr.toObject()) });
+
+    const rejectedProducts = []
+    rejectedProds.forEach(pr => { rejectedProducts.push( pr.toObject()) });
+
+    const data ={
+        title: "Resumen de compra", 
+        code : code, 
+        purchase_datetime : purchase_datetime, 
+        amount : amount, 
+        purcharser : purcharser, 
+        acceptedProds : acceptedProducts, 
+        rejectedProds : rejectedProducts, 
+        user : user }
+        
+    console.log("------------------------- ESTOY MANDANDO A RENDERIZAR ------------------------- ")
+    console.log(data)
+    
+    //res.render("purchase", data)      
+    
+    res.redirect('/api/users/products') 
+    console.log("------------------------- ESTOY MANDANDO A RENDERIZAR ------------------------- ")
+    // res.render("purchase", {title: "Resumen de compra", purchaseTicket : purchaseTicket, user : user })
 }
