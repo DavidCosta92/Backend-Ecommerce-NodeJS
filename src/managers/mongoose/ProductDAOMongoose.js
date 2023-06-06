@@ -96,6 +96,16 @@ class ProductDAOMongo{
             next(error);
         }
     }
+    async updateStockSoldByID(pid,quantity,next){
+        let product = await productModel.findById(pid)
+        product.stock -= quantity
+        try {
+            await productModel.findByIdAndUpdate(pid, product)
+            return await productModel.findById(pid);
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 export const productDAOMongo = new ProductDAOMongo(productModel);

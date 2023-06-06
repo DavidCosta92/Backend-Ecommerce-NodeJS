@@ -193,6 +193,18 @@ class CartDAOMongoose{
         }    
     }
 
+    async setProductsInCart (cid, products, next){
+        try {
+            const cart = await cartstModel.findById(cid)
+            if(cart){
+                cart["products"]=products;
+                await cartstModel.replaceOne({ _id: cid } , cart)
+            }
+        } catch (error) {       
+            next(error);            
+        }
+    }
+
 }
 
 export const cartDAOMongoose = new CartDAOMongoose(cartstModel);

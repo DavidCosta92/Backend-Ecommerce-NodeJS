@@ -26,6 +26,9 @@ class ProductService{
     async updateProductByID (pid, next){    
         return await this.productRepository.updateProductByID(pid,next);
     }
+    async updateStockSoldByID (pid, quantity, next){    
+        return await this.productRepository.updateStockSoldByID(pid, quantity,next);
+    }
 
 } 
 export const productService = new ProductService(productRepository)

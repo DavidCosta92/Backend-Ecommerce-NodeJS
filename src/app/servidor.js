@@ -26,29 +26,19 @@ const app = express();
 app.use(session)
 app.use(cookieParser(process.env.COOKIE_SECRET))
 
-
-
-
 app.use("/api/products",productsRouter);
-
-
-
-
-// ESTOS YA ESTAN LISTOS CON PATRON REPOSITORY O NO ES NECESARIO
-app.use("/api/views", viewsRouter);
-app.use("/api/users" , userRouter);
 app.use("/api/carts", cartsRouter);
+app.use("/api/users" , userRouter);
+app.use("/api/views", viewsRouter);
 
 
-/// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio
+/// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio 
 /// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio
 /// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio
 app.use("/api/fs/carts",cartsRouterFileSystem);
 /// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio
 /// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio
 /// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio
-
-
 
 
 app.use(express.static('./public'))

@@ -43,13 +43,5 @@ export async function updateAllProductsInCarts (req, res , next) {
 }
 
 export async function buyCart (req, res , next) {
-    // aca debo llamar a servicio.. y que servicio se encargue de hacer todo,
-        // - hacer validaciones de productos
-        // - hacer calculos de costo
-        // - sacar los productos comprados del carrito
-        // - los que no se hayan comprado, dejarlos en el carrito..
-        // - mandar a guardar la info en la bd
-        // - crear nuevo ticket, persistirlo y enviarlo a renderizar como json
-    
-    res.json(await cartService.buyCart(req.params,next));
+    res.json(await cartService.buyCart(req.params.cid,next));
 }

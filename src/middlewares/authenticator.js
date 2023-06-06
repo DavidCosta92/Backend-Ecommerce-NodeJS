@@ -12,6 +12,7 @@ export function authenticator( req, res, next){
         res.redirect('/api/users/login')
     }    
 }
+/*
 export function getCredentialsCookie(req, res, next) {
     try {
       const token = req.signedCookies.authToken
@@ -20,52 +21,59 @@ export function getCredentialsCookie(req, res, next) {
       next()
     } catch (error) {}
 }
-export function getCredentialsBody(req, res, next) {
-    try {
-      /* 
-      ..
-      pendiente
-      ..
-      */
-    next()
-    } catch (error) {
-        next( new AuthenticationError("Credenciales invalidas o inexistentes"))
-     }
-}
-export function getCredentialsHeader(req, res, next) {
-    try {
-      /* 
-      ..
-      pendiente
-      ..
-      */
-    next()
-    } catch (error) {
-        next( new AuthenticationError("Credenciales invalidas o inexistentes"))
-     }
-}  
+*/
+
 export function onlyAuthenticated /*Api */(req, res, next) {  
   if (!req.user  && !req.session.passport  && !req.session.user && !req.signedCookies.authToken) {
     return next(new AuthorizationError ("Debes estar logueado para ver el recurso"))
   }
   next()
 }
+export async function onlyAdmin/*Api */(req, res, next) {    
+  let user = getUser(req , res , next)
+  if(user.role !== "admin"){
+    return next(new AuthorizationError ("Debes ser administrador"))
+  }
+  next()
+}
+export async function onlyUser/*Api */(req, res, next) {
+  let user = getUser(req , res , next)
+  if(user.role !== "user"){
+    return next(new AuthorizationError ("Debes ser USUARIO"))
+  }
+  next()
+}
 
-export async function getCurrentUser (req , res , next){
+/////     PENDIENTE MIDS PARA WEB     /////          
+/*
+export function onlyAuthenticatedWeb(req, res, next) {
+    if (!req.user) {
+      res.redirect("/api/users/login")
+    }
+    next()
+  }
+*/
+
+export function getUser (req, res, next){
   try {    
     let user = undefined
-    /* PARA CUANDO INICIO SESSION, PORQUE USO EL ENDPOINT signedCookie que guarda una signed cookie */
+    /* PARA CUANDO INICIO SESSION, PORQUE USO EL ENDPOINT signedCookie que guarda cookie */
     if(req.signedCookies.authToken !=undefined){
         const token = req.signedCookies.authToken
         const dataUser = encrypter.getDataFromToken(token)
         user = dataUser
     }
-    /* PARA localRegister */
-    if(req.user !=undefined){ user = req.user }    
+    if(req.user !=undefined){ user = req.user }//PARA localRegister
+    if(req.session?.passport !=undefined){ user = req.session.passport.user } //PARA CUANDO ME REGISTRO, PORQUE USO PASSPORT...
+    return user    
+ } catch (error) {
+    next(error)
+ }
+}
 
-    /* PARA CUANDO ME REGISTRO, PORQUE USO PASSPORT... */
-    if(req.session?.passport !=undefined){ user = req.session.passport.user }
-
+export async function getCurrentUser (req , res , next){
+  try {    
+    let user = getUser(req , res , next)
     if(user === undefined){
       res.render("currentUser", {loguedUser :false}) 
     }else{
@@ -79,15 +87,3 @@ export async function getCurrentUser (req , res , next){
     next(error)
  }
 }
-
-
-
-
-/*
-export function onlyAuthenticatedWeb(req, res, next) {
-    if (!req.user) {
-      res.redirect("/api/users/login")
-    }
-    next()
-  }
-*/

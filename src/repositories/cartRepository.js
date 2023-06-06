@@ -43,6 +43,9 @@ class CartRepository{
         return await this.cartDao.updateAllProductsInCart(cid,next)    
     }
     
+    async setProductsInCart(cid, products, next){
+        return await this.cartDao.setProductsInCart(cid, products, next)
+    }
 
 }
 // en esta parte debo elegir si es mongo o fs o otra persistencia... POR EL MOMENTO SOLO MONGOOSE

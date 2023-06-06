@@ -115,6 +115,6 @@ async function comprarCarrito(){
     if (cartStatus.status ===200 ){
         alert("carrito comprado!, DEBERIA SER REDIRIGIDO A RESUMEN DE COMPRA SUPONGO... ")
         // window.location.href = '/api/carts/summary' ???
-        location.reload()
+       // location.reload()
     }
 }    
