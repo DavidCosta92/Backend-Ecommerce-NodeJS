@@ -1,14 +1,12 @@
-// import { productDAOMongo } from "../managers/mongoose/ProductDAOMongoose"
 import { cartRepository } from "../repositories/cartRepository.js";
+import { productRepository } from "../repositories/productRepository.js";
 
 class CartService{
-
     cartRepository
     productRepository
-
-    constructor(cartRepo /*,productDAOMongo*/){    
+    constructor(cartRepo , productRepository){    
         this.cartRepository = cartRepo; 
-      //  this.productRepository = productDAOMongo; // aca debo crear una capa productRepository y mandarlo al crear el cartservice al final de este archivo!
+        this.productRepository = productRepository; 
     }
 
 
@@ -132,4 +130,4 @@ class CartService{
     }
 
 } 
-export const cartService = new CartService(cartRepository /*,productDAOMongo */)
+export const cartService = new CartService(cartRepository , productRepository)
