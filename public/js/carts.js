@@ -101,3 +101,20 @@ async function eliminarProductosDesdeCartById (pid){
         location.reload()
     }
 }
+
+async function comprarCarrito(){
+    const cid = document.getElementById("cidUser").textContent
+    console.log(`COMPRANDO CARRITO ${cid}` )
+
+    const cartStatus = await fetch(`/api/carts/${cid}`,{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    if (cartStatus.status ===200 ){
+        alert("carrito comprado!, DEBERIA SER REDIRIGIDO A RESUMEN DE COMPRA SUPONGO... ")
+        // window.location.href = '/api/carts/summary' ???
+        location.reload()
+    }
+}    
