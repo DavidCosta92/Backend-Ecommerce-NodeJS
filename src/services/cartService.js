@@ -1,15 +1,83 @@
-import { productDAOMongo } from "../managers/mongoose/ProductDAOMongoose"
-import { cartDAOMongoose } from "../managers/mongoose/CartDAOMongoose";
+// import { productDAOMongo } from "../managers/mongoose/ProductDAOMongoose"
+import { cartRepository } from "../repositories/cartRepository.js";
 
 class CartService{
 
     cartRepository
     productRepository
 
-    constructor(cartDAOMongoose,productDAOMongo){    
-        this.cartRepository = cartDAOMongoose; // aca debo crear una capa cartRepository
-        this.productRepository = productDAOMongo; // aca debo crear una capa productRepository
+    constructor(cartRepo /*,productDAOMongo*/){    
+        this.cartRepository = cartRepo; 
+      //  this.productRepository = productDAOMongo; // aca debo crear una capa productRepository y mandarlo al crear el cartservice al final de este archivo!
     }
+
+
+
+    async getCarts (req, res , next){
+        const status = res?.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`;    
+        let response ={...await this.cartRepository.getCarts(req,next) , status}
+        return response;
+    }
+    
+    async postCart (next){
+        return await this.cartRepository.postCart(next)
+    }
+    
+    async getCartsByID (cid, next){     
+        return await this.cartRepository.getCartsByID(cid,next)
+    }
+    
+    async deleteCartByID (cid , next){    
+        return await this.cartRepository.deleteCartByID(cid,next)
+    }
+    
+    async postProductToCarts (req, res , next){
+        return await this.cartRepository.postProductToCarts(req,next);
+    }
+    
+    async deleteProductInCarts (req, res , next){
+        return await this.cartRepository.deleteProductInCarts(req,next);
+    }
+    
+    async deleteAllProductsInCartByID (cid, res , next) {
+       return await this.cartRepository.deleteAllProductsInCartByID(cid,next);
+    
+    }
+    
+    async updateQuantityProductInCarts (req, res , next) {
+       return await this.cartRepository.updateQuantityProductInCarts(req,next);
+    }
+    
+    async updateAllProductsInCarts (cid, res , next) {
+        return await this.cartRepository.updateAllProductsInCarts(cid,next)
+    
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     async validateProduct(pid, quantity){
         const product = this.productRepository.getProductById(pid)
@@ -55,7 +123,7 @@ class CartService{
 
         const cart = this.cartRepository.getCartsByIDMongoose(params.cid) // este metodo se deberia llamar repository.getCartById() y repo deberia llamar a dao mongo()
         cart.setProducts(rejectedProds) // debo crear este metodo, para poder setear los productos con los rechazados...
-        
+
         cart.save() // estaria bien llamar este metodo para guardar la carta????
 
         // - crear nuevo ticket, persistirlo y enviarlo a renderizar como json
@@ -64,4 +132,4 @@ class CartService{
     }
 
 } 
-export const cartService = new CartService()
+export const cartService = new CartService(cartRepository /*,productDAOMongo */)

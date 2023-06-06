@@ -34,7 +34,7 @@ class CartDAOMongoose{
         }
     }
 
-    async postCart (req, next){
+    async postCart (next){
         try {
             const newCart = await cartstModel.create({});
             return newCart;
