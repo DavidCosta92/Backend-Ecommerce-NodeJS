@@ -12,7 +12,8 @@ class TicketDAOMongoose{
     async createTicket (acceptedProds , rejectedProds , amount , purchaser, next){
         try {
             const ticket = new Ticket (acceptedProds , rejectedProds , amount , purchaser).getAllAttr()
-            return await ticketModel.create(ticket)            
+            const newTicket = await ticketModel.create(ticket)
+            return newTicket
         } catch (error) {            
             console.log("ERROR >",error)
             next(error);

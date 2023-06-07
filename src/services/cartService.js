@@ -109,9 +109,7 @@ class CartService{
         }
                    
         const purchaser = this.sessionService.getLoguedUser(req).email
-        
-        const purchaseTicket = await this.ticketRepository.createTicket(acceptedProds , rejectedProds , amount , purchaser, next) 
-        
+        const purchaseTicket = await this.ticketRepository.createTicket(acceptedProds , rejectedProds , amount , purchaser, next)         
         const user = sessionService.getLoguedUser(req)
 
         return { purchaseTicket , user }

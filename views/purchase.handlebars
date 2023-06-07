@@ -1,6 +1,6 @@
 
 <div class=" d-flex flex-wrap border border-success rounded p-4 m-4 justify-content-around rounded">
-    <h5 class="w-100">USUARIO LOGUEADO</h5>
+    <h5 class="w-100">USUARIO</h5>
     <p class="pe-5 w-25">Nombre: {{user.first_name}}</p>
     <p class="pe-5 w-25">Apellido: {{user.last_name}}</p> 
     <p class="pe-5 w-25">Email: {{user.email}}</p>
@@ -14,27 +14,26 @@
 
 
 {{#if rejectedProds}}
+    <h2>Listado de productos rechazados, quedaran guardados en el carrito para la proxima compra</h2>
     <ul>
         {{#each rejectedProds}}
-            <li>PRODUCTO RECHAZADO: {{this.product}} / {{this.quantity}}</li>     
+            <li>Productos rechazados: {{this.product.title}} / {{this.quantity}}</li>     
         {{/each}}
     </ul>
 {{/if}}
 
-<div>
+<div> 
+    <h2>Listado de productos Aceptados</h2>
     <ul>
         {{#each acceptedProds}}
-            <li>PRODUCTO ACEPTADO: {{this.product}} / {{this.quantity}}</li>     
+            <li>Productos aceptados: {{this.product.title}} - Cantidad: {{this.quantity}}</li>     
         {{/each}}
     </ul>
 </div>
 <div>
     <h3>PRECIO DE PRODUCTOS: {{amount}}</h3>
-    <h3>PRECIO DE COMPRADOR: {{purchaser}}</h3>
+    <h3>COMPRADOR: {{purcharser}}</h3>
+    <h5>Codigo de Ticket: {{code}}</h5>
+    <h5>Fecha: {{purchase_datetime}}</h5>
 </div>
 
-
-
-<script src="/js/products.js"></script>
-<script src="/js/userLogin.js"> </script>
-<script src="/js/formLogOut.js"></script>

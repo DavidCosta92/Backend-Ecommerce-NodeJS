@@ -57,7 +57,7 @@ export async function buyCart (req, res , next) {
     const rejectedProducts = []
     rejectedProds.forEach(pr => { rejectedProducts.push( pr.toObject()) });
 
-    const data ={
+    const response ={
         title: "Resumen de compra", 
         code : code, 
         purchase_datetime : purchase_datetime, 
@@ -66,13 +66,5 @@ export async function buyCart (req, res , next) {
         acceptedProds : acceptedProducts, 
         rejectedProds : rejectedProducts, 
         user : user }
-        
-    console.log("------------------------- ESTOY MANDANDO A RENDERIZAR ------------------------- ")
-    console.log(data)
-    
-    //res.render("purchase", data)      
-    
-    res.redirect('/api/users/products') 
-    console.log("------------------------- ESTOY MANDANDO A RENDERIZAR ------------------------- ")
-    // res.render("purchase", {title: "Resumen de compra", purchaseTicket : purchaseTicket, user : user })
+    res.render("purchase", response)  
 }

@@ -2,7 +2,7 @@ import express, { Router } from 'express';
 import { onlyAuthenticated , onlyAdmin, onlyUser} from '../middlewares/authenticator.js';
 
 import { getCarts , postCart , getCartsByID ,deleteCartByID , postProductToCarts , updateAllProductsInCarts , deleteProductInCarts , updateQuantityProductInCarts , deleteAllProductsInCartByID , buyCart} from '../controllers/carts/cartController.js';
-import { renderCartViewById } from '../controllers/views/views.controller.js';
+
 
 export const cartsRouter = Router();
 
@@ -11,6 +11,7 @@ cartsRouter.use(express.urlencoded({ extended: true }));
 
 ///cartsRouter.post("/:cid", onlyAuthenticated, onlyUser, buyCart) 
 cartsRouter.get("/:cid/purchase", onlyAuthenticated, onlyUser, buyCart) // => EL DESAFIO PIDE ESTA RUTA ESPECIFICA
+
 
 cartsRouter.get("/", onlyAuthenticated, onlyUser, getCarts)  
 cartsRouter.post("/", onlyAuthenticated, onlyAdmin, postCart)

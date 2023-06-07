@@ -103,18 +103,8 @@ async function eliminarProductosDesdeCartById (pid){
 }
 
 async function comprarCarrito(){
-    const cid = document.getElementById("cidUser").textContent
-    console.log(`COMPRANDO CARRITO ${cid}` )
-
-    const cartStatus = await fetch(`/api/carts/${cid}/purchase`,{
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        }
-    })
-    if (cartStatus.status === 200 ){
-        console.log(cartStatus)
-        //alert("carrito comprado!, Te enviaremos al resumen de tu compra")
-        //window.location.href = `/api/carts/${cid}/purchase`
-    }
+    const cid = document.getElementById("cidUser").textContent  
+    window.location.href = `/api/carts/${cid}/purchase`
 }    
+
+
