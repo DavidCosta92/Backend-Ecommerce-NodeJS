@@ -1,6 +1,7 @@
 export class AuthorizationError extends Error {
-    constructor(mensaje = 'Autorizacion ERRONEA') {
-        super(mensaje);
+    constructor(description) {
+        super();
         this.type = 'AUTHORIZATION_ERROR';
+        this.description = description;
     }
 }

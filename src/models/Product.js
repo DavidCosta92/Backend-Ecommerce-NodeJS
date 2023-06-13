@@ -12,7 +12,6 @@ export class Product{
         this.status = true;        
         this.stock = validateIntegerNumber("Stock",stock);
         this.category = validateString(category);
-        this.thumbnails = thumbnails;
+        this.thumbnails = thumbnails; // CUALES SERIAN LAS VALIDACIONES CORRECTAS O NECESARIAS?
     }
-
 }

@@ -1,8 +1,8 @@
 // @ts-nocheck
 import { encrypter } from "../../utils/encrypter.js";
 import { userModel , userModelGitHub} from "../../db/mongoose/models/userModel.js";
-import { RegisterError, RegisterErrorAlreadyExistUser } from "../../entities/error/registerError.js";
-       
+import { RegisterError, RegisterErrorAlreadyExistUser } from "../../models/errors/register.error.js";
+
 export class UserDAOMongoose{ 
     async createUser({user}){
         const alreadyExistUser = await this.existByEmail(user.email)
@@ -29,7 +29,7 @@ export class UserDAOMongoose{
         const user = await userModelGitHub.findOne({ email: username }).lean()
         return user;        
     }
-    async createGitHubUser({user}){
+    async createGitHubUser(user){
         const gitHubUser = await userModelGitHub.create(user)
         return {gitHubUser , code:201}
     }        

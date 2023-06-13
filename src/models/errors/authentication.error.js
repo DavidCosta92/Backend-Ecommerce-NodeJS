@@ -1,13 +1,15 @@
 
 export class AuthenticationError extends Error {
-    constructor(mensaje = 'Autenticacion ERRONEA') {
-        super(mensaje);
+    constructor(description) {
+        super();
         this.type = 'AUTHETICATION_ERROR';
+        this.description = description;
     }
 }
 export class AuthenticationExpiredError extends Error {
-    constructor(mensaje = 'Autenticacion expirada') {
-        super(mensaje);
+    constructor(description) {
+        super();
         this.type = 'AUTHETICATION_EXPIRED_ERROR';
+        this.description = description;
     }
 }

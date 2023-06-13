@@ -1,14 +1,14 @@
-
 export class RegisterErrorAlreadyExistUser extends Error {
-    constructor(mensaje = 'Autenticacion ERRONEA') {
-        super(mensaje);
+    constructor(description) {
+        super();
         this.type = 'REGISTER_ERROR_USER_EXIST';
+        this.description = description;
     }
 }
-
 export class RegisterError extends Error {
-    constructor(mensaje = 'Autenticacion ERRONEA') {
-        super(mensaje);
+    constructor(description) {
+        super();
         this.type = 'REGISTER_ERROR';
+        this.description = description;
     }
 }

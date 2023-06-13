@@ -1,27 +1,7 @@
 
 import { randomUUID } from "crypto";
+import { validateAcceptedProd , validateRealNumber , validateEmail } from "./validations/validations.js";
 
-// validaciones tickets.
-
-function validateAcceptedProd(acceptedProds){    
-    if(acceptedProds.length==0){
-        throw new Error("DEBEN HABER PRODUCTOS ACCEPTADOS PARA CONTINUAR")
-    }
-    return acceptedProds
-}
-
-function validateAmount(amount){
-    if(isNaN(amount) || amount<0){
-        throw new Error("AMOUNT DEBE SER UN NUMERO, MAYOR A 0")
-    }
-    return amount
-}
-function validatePurcharser(purcharser){
-    if(purcharser == undefined ||purcharser.length<5){
-        throw new Error("SE REQUIERE EMAIL DE COMPRADOR, REVISA EL CAMPO PURCHARSER")
-    }
-    return purcharser
-}
 export class Ticket {
     #code
     #purchase_datetime
@@ -35,8 +15,8 @@ export class Ticket {
         this.#rejectedProds = rejectedProds
         this.#code = randomUUID();
         this.#purchase_datetime = Date.now()
-        this.#amount = validateAmount(amount)
-        this.#purcharser = validatePurcharser(purcharser)
+        this.#amount = validateRealNumber("Precio total de compra",amount)
+        this.#purcharser = validateEmail("Email de comprador",purcharser)
     }
     
     // al ser persitido reciEn ID (de mongo db),   

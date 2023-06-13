@@ -1,4 +1,4 @@
-import { AuthenticationError } from "../../entities/error/authenticationError.js"
+import { AuthenticationError } from "../../models/errors/authentication.error.js"
 import { sessionService } from "../../services/sessionService.js"
 
 

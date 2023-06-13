@@ -1,6 +1,6 @@
 // @ts-nocheck
 import passport from 'passport'
-import { AuthenticationError } from "../entities/error/authenticationError.js"
+import { AuthenticationError } from '../models/errors/authentication.error.js'
 import { encrypter } from '../utils/encrypter.js'
 import { user_dao_mongo_manager } from '../managers/mongoose/UserDAOMongoose.js'
 // imports LOCAL
@@ -9,6 +9,7 @@ import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as GithubStrategy } from 'passport-github2'
 import {GITHUB_CALLBACK_URL,GITHUB_CLIENT_SECRET, GITHUB_CLIENTE_ID } from '../config/config.js'
 import { cartDAOMongoose } from '../managers/mongoose/CartDAOMongoose.js'
+import { User } from '../models/User.js'
 
 passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
     const user = await user_dao_mongo_manager.searchByEmail(username)
@@ -25,8 +26,12 @@ passport.use('register', new LocalStrategy({ passReqToCallback: true, usernameFi
         const idNewCart = await cartDAOMongoose.createCart(done)
         
         const user = {role: "user", cart: idNewCart, ...req.body }
-        if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.role = "admin"
-        const {newUser} = await user_dao_mongo_manager.createUser({user})
+        if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.role = "admin"        
+        user.age = parseInt(user.age)
+
+        const newUserObj = new User(user)
+        
+        const {newUser} = await user_dao_mongo_manager.createUser({user:newUserObj.getAllAttr()})
         /* para guardar session y loguear a la vez*/
         req.session.user = {
             first_name: newUser.first_name,
@@ -49,21 +54,25 @@ passport.use('github', new GithubStrategy({
     callbackURL: GITHUB_CALLBACK_URL,
 }, async (accessToken, refreshToken, profile, done) => {
     let user = await user_dao_mongo_manager.searchByGitHubUsername(profile.username);   
+    let userMail
     if(user === null){
-
     const idNewCart = await cartDAOMongoose.createCart(done)
-        user = {
-            email : profile.username ,
-            password  : "",
+        userMail = `${profile.username}@github-user`
+        if(profile.email !== undefined) userMail = profile.email 
+
+        const dataUser = {
             first_name : profile.displayName , 
             last_name  : profile.displayName ,
+            email : userMail,
+            age  : 1,
+            password  : " ",
             cart : idNewCart,
-            age  : 0,
-            role : "usuario"
-        } 
-        user = await user_dao_mongo_manager.createGitHubUser({user});
+            role : "user"
+        }        
+        const newUser = new User(dataUser)
+        user = await user_dao_mongo_manager.createGitHubUser(newUser.getAllAttr());
     } 
-    let userGit = await user_dao_mongo_manager.searchByGitHubUsername(profile.username);   
+    let userGit = await user_dao_mongo_manager.searchByGitHubUsername(userMail);   
     done(null, userGit)
 }))
 

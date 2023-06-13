@@ -8,6 +8,7 @@ export class User {
     #password
     #cart
     #role
+    
     constructor ({first_name, last_name, email, age, password, cart, role}){
         this.#first_name = validateString("Nombre",first_name)
         this.#last_name = validateString("Apellido", last_name)
@@ -15,7 +16,7 @@ export class User {
         this.#age = validateIntegerNumber("Edad",age)
         this.#password = validateString("Contraseña",password)
         this.#cart = cart
-        this.#role = role
+        this.#role = validateString("Rol", role)
     }
 
     getFirst_name(){ return this.#first_name}

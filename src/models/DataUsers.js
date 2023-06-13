@@ -1,20 +1,4 @@
-function validateEmpty(value){
-    
-}
-
-function validateString(value){
-    validateEmpty(value)
-}
-
-function validateInteger(value){
-    validateEmpty(value)
-    // corroborar que es numero, entero y positivo
-}
-function validateEmail(value){
-    validateString(value)
-    // corroborar que tenga @...
-    // largo del mail.. ects--
-}
+import { validateString , validateEmail , validateIntegerNumber} from "./validations/validations.js"
 
 export class DataUser{
     #first_name
@@ -25,12 +9,12 @@ export class DataUser{
     #cart
     #role
     constructor ({first_name, last_name, email, age, password, cart, role}){
-        this.#first_name = validateString(first_name)
-        this.#last_name = validateString(last_name)
-        this.#email = validateEmail(email)
-        this.#age = validateInteger(age)
-        this.#password = password
+        this.#first_name = validateString("Nombre", first_name)
+        this.#last_name = validateString("Apellido", last_name)
+        this.#email = validateEmail("Email", email)
+        this.#age = validateIntegerNumber("Edad", age)
+        this.#password = validateString("Contraseña",password)
         this.#cart = cart
-        this.#role = validateString(role)
+        this.#role = validateString("Rol", role)
     }
 }

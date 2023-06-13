@@ -1,7 +1,7 @@
 // @ts-nocheck
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { AuthenticationExpiredError } from '../entities/error/authenticationError.js'
+import { AuthenticationExpiredError } from '../models/errors/authentication.error.js'
 
 class Encrypter {
     hashPassword(password) {

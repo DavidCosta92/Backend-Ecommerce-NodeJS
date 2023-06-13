@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { AuthenticationError } from "../entities/error/authenticationError.js"
+import { AuthenticationError } from "../models/errors/authentication.error.js"
 import { user_dao_mongo_manager } from "../managers/mongoose/UserDAOMongoose.js"
 import { encrypter } from "../utils/encrypter.js"
 

@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { cartDAOMongoose } from "../managers/mongoose/CartDAOMongoose.js"
-import { AuthenticationError } from "../entities/error/authenticationError.js"
-import { AuthorizationError } from "../entities/error/authorizationError.js"
+import { AuthorizationError } from "../models/errors/authorization.error.js"
 import { encrypter } from "../utils/encrypter.js"
 
 
