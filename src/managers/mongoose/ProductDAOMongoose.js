@@ -53,7 +53,8 @@ class ProductDAOMongo{
             const {title, description,code, category, thumbnails} = req.body;        
             const price = parseInt(req.body.price);
             const stock = parseInt(req.body.stock);
-            const productAdded = await productModel.create({title, description,code, price, stock, category, thumbnails})
+            const newProduct = new Product ({title, description,code, price, stock, category, thumbnails})
+            const productAdded = await productModel.create(newProduct)
             return productAdded;    
         } catch (error) {
             console.log("ERROR >",error)

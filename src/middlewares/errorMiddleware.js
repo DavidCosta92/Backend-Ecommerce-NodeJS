@@ -1,3 +1,23 @@
+/*
+ESTTA ES UNA FORMA MEJOR PARA MANEJAR LOS ERRORES
+
+-USAR instanceof para validar clases en vez de los mensajes.. por si cambiamos el idioma de la app por ejemplo
+-
+
+
+export function apiErrorHandler(error, req, res, next) {
+    if (error instanceof ErrorArgumentoInvalido) {
+      res.status(400)
+    } else if (error instanceof ErrorRecursoNoEncontrado) {
+      res.status(404)
+    } else {
+      res.status(500)
+    }
+    res.json({ estado: 'error', tipo: error.tipo, descripcion: error.descripcion })
+  }
+
+*/
+
 export function errorHandlerAPI(error, req, res , next){    
     switch (error.type) {
         case 'REGISTER_ERROR_USER_EXIST':

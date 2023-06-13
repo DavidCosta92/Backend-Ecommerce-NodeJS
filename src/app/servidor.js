@@ -16,6 +16,7 @@ import { errorHandlerAPI } from "../middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
 import { getCurrentUser } from "../middlewares/authenticator.js";
 import { MONGOOSE_STRING_ATLAS } from "../config/config.js";
+import { mockingproducts } from "../controllers/products/products.controller.js";
 
 import dotenv from 'dotenv'
 dotenv.config({path: 'src/.env'});
@@ -30,6 +31,7 @@ app.use("/api/products",productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/api/users" , userRouter);
 app.use("/api/views", viewsRouter);
+
 
 
 /// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio 
@@ -55,6 +57,7 @@ app.get("/", (req, res, next)=>{
     res.render("home")
 })
 app.get("/api/session/current", getCurrentUser)
+app.get("/mockingproducts", mockingproducts);
 
 app.use(errorHandlerAPI)
 

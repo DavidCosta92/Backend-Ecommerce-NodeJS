@@ -22,3 +22,9 @@ export async function deleteProductsByID (req, res , next){
 export async function updateProductsByID (req, res , next){    
     res.json(await productService.updateProductByID(req.params.pid,next));
 }
+
+export async function mockingproducts(req, res , next){    
+    let response = {}
+    
+    res.json(response);
+}

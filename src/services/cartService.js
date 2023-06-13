@@ -56,9 +56,7 @@ class CartService{
     
     async validateProduct(pid, quantity){
         const product = await this.productService.getProductById({ _id : pid})
-        if (product?.stock >= quantity){
-            return true
-        } 
+        if (product?.stock >= quantity){ return true } 
         return false
     }
 

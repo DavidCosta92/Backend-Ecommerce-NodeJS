@@ -1,24 +1,18 @@
+import { validateString , validateRealNumber , validateIntegerNumber} from "./validations/validations.js";
+import { Id } from "../utils/IdGenerator.js";
+
+
 export class Product{
-    constructor ({id, title, description,code, price, stock, category, thumbnails}){
-        this.id = id;
-        this.title = title;
-        this.description = description;        
-        this.code = code;
-        this.price = price;
+    constructor ({title, description,code, price, stock, category, thumbnails}){
+        this.id = new Id();
+        this.title = validateString("Titulo",title)
+        this.description = validateString("Descripcion",description);        
+        this.code = validateString("Codigo del producto",code);
+        this.price = validateRealNumber("Precio",price);
         this.status = true;        
-        this.stock = stock;
-        this.category = category;
+        this.stock = validateIntegerNumber("Stock",stock);
+        this.category = validateString(category);
         this.thumbnails = thumbnails;
     }
-    
-    ///////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////
-
-    // AGREGAR VALIDACIONES
-
-    ///////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////
 
 }
