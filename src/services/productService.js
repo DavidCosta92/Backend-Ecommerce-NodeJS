@@ -30,5 +30,10 @@ class ProductService{
         return await this.productRepository.updateStockSoldByID(pid, quantity,next);
     }
 
+    getMockingProducts(req, res , next){
+        let quantity = req.params.quantity !== undefined? req.params.quantity : 100
+        return this.productRepository.getMockingProducts(quantity,next);
+    }
+
 } 
 export const productService = new ProductService(productRepository)

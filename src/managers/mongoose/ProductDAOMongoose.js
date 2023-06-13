@@ -1,6 +1,8 @@
 // @ts-nocheck
 import { productModel } from "../../db/mongoose/models/productModel.js";
 import { Product } from "../../models/Product.js";
+import { faker } from '@faker-js/faker'
+
 class ProductDAOMongo{
     model
     constructor(model){
@@ -106,6 +108,30 @@ class ProductDAOMongo{
         } catch (error) {
             next(error);
         }
+    }
+
+    getMockingProducts(quantity , next){
+        try {
+            let mockingProducts = []
+            for (let i = 0; i < quantity; i++) {
+                mockingProducts.push(this.createProductMock())
+              }   
+            return mockingProducts      
+        } catch (error) {
+            next(error)
+        }
+    }
+    createProductMock(){
+        const newProduct = new Product({
+            title : faker.commerce.productName(),
+            description : faker.commerce.productAdjective(), 
+            code : faker.string.uuid(), 
+            price : parseFloat(faker.commerce.price({ min: 1, dec: 2 })), 
+            stock : faker.number.int({ min:1 , max:100 }), 
+            category : "varios",//faker.commerce.department(), 
+            thumbnails : "" 
+        })
+        return newProduct
     }
 }
 

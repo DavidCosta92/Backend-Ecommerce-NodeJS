@@ -31,6 +31,9 @@ class ProductRepository{
     async updateStockSoldByID(pid,quantity, next){
         return await this.productDao.updateStockSoldByID(pid,quantity,next)
     }
+    getMockingProducts(quantity , next){
+        return this.productDao.getMockingProducts(quantity , next)
+    }
 }
 // en esta parte debo elegir si es mongo o fs o otra persistencia... POR EL MOMENTO SOLO MONGOOSE
 export const productRepository = new ProductRepository(productDAOMongo)
