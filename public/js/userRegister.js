@@ -31,7 +31,8 @@ if (formUserRegister instanceof HTMLFormElement){
             alert("Registro y logueo exitoso, te enviaremos a productos..")
             window.location.assign('/api/users/products')
           } else{
-            alert("Error de registro, vuelve a intentar por favor! (Codigo: " + userCreated.status + ")")
+            console.log(userCreated.description)
+            alert("Error de registro, vuelve a intentar por favor! (Codigo: " + userCreated.status  + userCreated.errorMessage +")")
           }
     })
 }

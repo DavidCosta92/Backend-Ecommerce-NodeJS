@@ -7,7 +7,9 @@ import { AuthorizationError } from "../models/errors/authorization.error.js"
 import { RegisterError , RegisterErrorAlreadyExistUser} from "../models/errors/register.error.js"
 
 export function errorHandlerAPI(error, req, res , next){    
-    if (error instanceof IllegalInputArg) res.status(400)
+    
+    if (error instanceof IllegalInputArg) res.status(400).json({ type: error.type , errorMessage: error.description })
+
     else if (error instanceof TicketError) res.status(400)   
     else if (error instanceof AuthenticationError) res.status(400) 
     else if (error instanceof AuthenticationExpiredError) res.status(401)
