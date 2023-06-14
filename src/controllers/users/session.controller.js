@@ -35,18 +35,16 @@ export async function postSessionTokenCookie(req, res, next) {
 export async function deleteSession (req, res, next){    
     /* CUANDO ESTANDO REGISTRADO, INICIO SESION SOLAMENTE*/
     if(req.signedCookies?.authToken!==undefined) {
-        res.clearCookie('authToken')        
-        res.sendStatus(200)
+        res.clearCookie('authToken')    
     }
      else if(req.session?.user !==undefined) {
         req.session.destroy()        
-        res.sendStatus(200)
     }
     /* CUANDO ME REGISTRO, Y QUEDO LOGUEADO -- REGISTRO Y LOGOUT DE GITHUB*/
     else if(req.session?.passport!==undefined) {
-        req.session.destroy()        
-        res.sendStatus(200)
-    }
+        req.session.destroy()    
+    }   
+    res.sendStatus(200)
 }
 export async function localRegister (req, res, next){
     req.session.user = {

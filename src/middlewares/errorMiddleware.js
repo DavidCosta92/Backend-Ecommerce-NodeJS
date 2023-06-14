@@ -8,18 +8,13 @@ import { RegisterError , RegisterErrorAlreadyExistUser} from "../models/errors/r
 
 export function errorHandlerAPI(error, req, res , next){    
     
-    if (error instanceof IllegalInputArg) res.status(400).json({ type: error.type , errorMessage: error.description })
+    if (error instanceof IllegalInputArg) res.status(400).json({errorMessage: error.description })
+    else if (error instanceof TicketError) res.status(400).json({errorMessage: error.description })   
+    else if (error instanceof AuthenticationError) res.status(400).json({errorMessage: error.description }) 
+    else if (error instanceof AuthenticationExpiredError) res.status(401).json({errorMessage: error.description })
+    else if (error instanceof AuthorizationError) res.status(403).json({errorMessage: error.description })
+    else if (error instanceof RegisterError) res.status(400).json({errorMessage: error.description })   
+    else if (error instanceof RegisterErrorAlreadyExistUser) res.status(409).json({errorMessage: error.description }) 
 
-    else if (error instanceof TicketError) res.status(400)   
-    else if (error instanceof AuthenticationError) res.status(400) 
-    else if (error instanceof AuthenticationExpiredError) res.status(401)
-    else if (error instanceof AuthorizationError) res.status(403)
-    else if (error instanceof RegisterError) res.status(400)   
-    else if (error instanceof RegisterErrorAlreadyExistUser) res.status(409) 
-
-    else res.status(500) 
-
-    console.log(error)
-
-    res.json({ type: error.type , errorMessage: error.description })
+    else res.status(500).json({errorMessage: error.description }) 
 }

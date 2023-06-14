@@ -43,9 +43,6 @@ passport.use('register', new LocalStrategy({ passReqToCallback: true, usernameFi
         }
         done(null, newUser)
       } catch (error) {
-        console.log("-------------- ERROROROROR---------------- ")
-        console.log(error.description)
-        console.log("--------------ERROROROROR---------------- ")
         done(error)
       }
     }

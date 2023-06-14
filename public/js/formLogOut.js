@@ -7,12 +7,10 @@ if (formLogOut instanceof HTMLFormElement){
         const { status } = await fetch('/api/users/session', {
             method: 'DELETE'
           })      
-          if (status === 200) {
-            window.location.href = '/'
-          } else {
-            console.log('[logout] estado inesperado: ' + status)            
-            window.location.href = '/'
-          }
+          if (status !== 200) {
+            console.log('[logout] estado inesperado: ' + status)  
+          }          
+          window.location.href = '/'
 
     })
 }
