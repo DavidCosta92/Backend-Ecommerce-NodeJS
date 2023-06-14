@@ -7,22 +7,22 @@ export async function getProducts (req, res , next){
     res.json(response);
 }    
 
-export async function postProducts (req, res , next){
-    res.json(await productService.postProduct(req,next));
+export async function postProducts (req , res , next){
+    res.json(await productService.postProduct(req , res , next));
 }
 
-export async function getProductsByID (req, res , next){
-        res.json(await productService.getProductById(req.params.pid,next));
+export async function getProductsByID (req , res , next){
+    res.json(await productService.getProductById(req , res , next));
 }
 
-export async function deleteProductsByID (req, res , next){
-    res.json(await productService.deleteProductByID(req.params.pid,next));
+export async function deleteProductsByID (req , res , next){
+    res.json(await productService.deleteProductByID(req , res , next));
 }
 
-export async function updateProductsByID (req, res , next){    
-    res.json(await productService.updateProductByID(req.params.pid,next));
+export async function updateProductsByID (req , res , next){    
+    res.json(await productService.updateProductByID(req , res , next));
 }
 
-export function mockingproducts(req, res , next){    
-    res.json(productService.getMockingProducts(req, res,next));
+export function mockingproducts(req , res , next){    
+    res.json(productService.getMockingProducts(req , res , next));
 }

@@ -6,33 +6,32 @@ class ProductService{
         this.productRepository = productRepository; 
     }
 
-    async getProducts (req, res , next){    
-        let response ={...await this.productRepository.getProducts(req, next)}
+    async getProducts(req , res , next){    
+        let response ={...await this.productRepository.getProducts(req , res , next)}
         return response;
     }    
     
-    async postProduct (req, res , next){
-        return await this.productRepository.postProduct(req,next);
+    async postProduct(req , res , next){
+        return await this.productRepository.postProduct(req , res , next);
     }
     
-    async getProductById (pid, next){
-            return await this.productRepository.getProductById(pid,next);
+    async getProductById (req , res , next){
+            return await this.productRepository.getProductById(req , res , next);
     }
     
-    async deleteProductByID (pid, next){
-        return await this.productRepository.deleteProductByID(pid,next);
+    async deleteProductByID (req , res , next){
+        return await this.productRepository.deleteProductByID(req , res , next);
     }
     
-    async updateProductByID (pid, next){    
-        return await this.productRepository.updateProductByID(pid,next);
+    async updateProductByID (req , res , next){    
+        return await this.productRepository.updateProductByID(req , res , next);
     }
-    async updateStockSoldByID (pid, quantity, next){    
-        return await this.productRepository.updateStockSoldByID(pid, quantity,next);
+    async updateStockSoldByID (req , res , next){    
+        return await this.productRepository.updateStockSoldByID(req , res , next);
     }
 
-    getMockingProducts(req, res , next){
-        let quantity = req.params.quantity !== undefined? req.params.quantity : 100
-        return this.productRepository.getMockingProducts(quantity,next);
+    getMockingProducts(req , res , next){
+        return this.productRepository.getMockingProducts(req , res , next);
     }
 
 } 

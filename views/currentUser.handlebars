@@ -66,10 +66,12 @@
         </tbody>
         </table>
     {{else}} 
-        <div class="m-5 p-5 border border-dark">
-            <h3 class="w-100 text-center ">El usuario aun no agrego nada al carrito..</h3>
-            <button class="btn btn-outline-success  mt-4" onClick=goToProducts()> ¿Quieres ver productos? </button> 
-        </div>        
+        {{#if user.regularUser}}
+            <div class="m-5 p-5 border border-dark">
+                <h3 class="w-100 text-center ">El usuario aun no agrego nada al carrito..</h3>
+                <button class="btn btn-outline-success  mt-4" onClick=goToProducts()> ¿Quieres ver productos? </button> 
+            </div>                
+        {{/if}}        
     {{/if}}
 
 {{else}}

@@ -41,11 +41,6 @@ export async function updateAllProductsInCarts (req, res , next) {
     res.json(await cartService.updateAllProductsInCarts(req.params.cid,next));
 
 }
-/*
-export async function buyCart (req, res , next) {
-    res.json(await cartService.buyCart(req,next));
-}
-*/
 export async function buyCart (req, res , next) {
     const { purchaseTicket , user } = await cartService.buyCart(req,next)
     const {code , purchase_datetime , amount , purcharser , acceptedProds , rejectedProds} = purchaseTicket

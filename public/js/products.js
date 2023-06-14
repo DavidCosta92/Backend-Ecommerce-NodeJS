@@ -16,7 +16,16 @@ if(form instanceof HTMLFormElement){
                 "Content-Type": "application/json",
             }
         })
-        alert("Producto creado")
+        .then( res=>{
+            if(res.status === 200){                
+                alert("Producto creado")
+                window.location.assign('/api/users/products')
+            }else{
+                res.json().then(data=>{
+                    alert ("Error en la creacion del producto, intenta nuevamente! ( Detalle=> " +data.errorMessage+ ")")
+                })
+            }
+        })
     })
 }
 
@@ -36,6 +45,7 @@ function agregarProductoAlCarrito(pid){
     })
 }
 async function agregarProductoAlCarritoUsuario(pid){    
+    
     const cid = document.getElementById("cidUser").textContent
     const productQuantity = document.getElementById(`quantity${pid}`).value  
     const add = await fetch(`/api/carts/${cid}/products/${pid}?quantity=${productQuantity}`,{

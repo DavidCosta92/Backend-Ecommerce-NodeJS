@@ -8,31 +8,31 @@ class ProductRepository{
     }   
     
     async getProducts (req, res , next){    
-        let response ={...await this.productDao.getProducts(req, next)}
+        let response ={...await this.productDao.getProducts(req , res , next)}
         return response;
     }    
     
     async postProduct (req, res , next){
-        return await this.productDao.postProduct(req,next);
+        return await this.productDao.postProduct(req, res ,next);
     }
     
-    async getProductById (pid, next){
-            return await this.productDao.getProductById(pid,next);
+    async getProductById (req , res , next){
+            return await this.productDao.getProductById(req , res , next);
     }
     
-    async deleteProductByID (pid, next){
-        return await this.productDao.deleteProductByID(pid,next);
+    async deleteProductByID (req , res , next){
+        return await this.productDao.deleteProductByID(req , res , next);
     }
     
-    async updateProductByID (pid, next){    
-        return await this.productDao.updateProductByID(pid,next);
+    async updateProductByID (req , res , next){    
+        return await this.productDao.updateProductByID(req , res , next);
     }
     
-    async updateStockSoldByID(pid,quantity, next){
-        return await this.productDao.updateStockSoldByID(pid,quantity,next)
+    async updateStockSoldByID(req , res , next){
+        return await this.productDao.updateStockSoldByID(req , res , next)
     }
-    getMockingProducts(quantity , next){
-        return this.productDao.getMockingProducts(quantity , next)
+    getMockingProducts(req , res , next){
+        return this.productDao.getMockingProducts(req , res , next)
     }
 }
 // en esta parte debo elegir si es mongo o fs o otra persistencia... POR EL MOMENTO SOLO MONGOOSE

@@ -80,6 +80,7 @@ export async function getCurrentUser (req , res , next){
       /* Necesario para solucionar error handlebars "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas*/
       const productsInCart = []
       cartById.products.forEach(p=>{ productsInCart.push( p.toObject()) })
+      if (user.role === "user") user.regularUser = true
       res.render("currentUser", {loguedUser : user!=undefined, user : user, products : productsInCart})
     }       
  } catch (error) {

@@ -9,7 +9,7 @@ class ProductDAOMongo{
         this.model = model;
     }
 
-    async getProducts (req ,next){
+    async getProducts (req , res , next){
         const {category, stock, limit, page, sort} = req.query
         try {
             /*  Busqueda por categoria y por stock (true o  false) */
@@ -50,40 +50,41 @@ class ProductDAOMongo{
         }
     }
 
-    async postProduct (req,next){
+    async postProduct (req , res , next){
         try {
             const {title, description,code, category, thumbnails} = req.body;        
             const price = parseInt(req.body.price);
             const stock = parseInt(req.body.stock);
+
             const newProduct = new Product ({title, description,code, price, stock, category, thumbnails})
+
             const productAdded = await productModel.create(newProduct)
-            return productAdded;    
-        } catch (error) {
+            return productAdded;                
+        }catch (error) {
             console.log("ERROR >",error)
             next(error);
         }
     }
 
-    async getProductById(pid,next){
+    async getProductById(req , res , next){
         try {
-            const product = await productModel.findById(pid);
+            const product = await productModel.findById(req.params.pid);
             return product;
         } catch (error) {
-            console.log("ERROR >",error)
             next(error);
         }
     }
 
-    async deleteProductByID (pid,next){
+    async deleteProductByID (req , res , next){
         try {
-            const productDeleted = await productModel.findByIdAndDelete(pid);
+            const productDeleted = await productModel.findByIdAndDelete(req.params.pid);
             return productDeleted;
         } catch (error) {
             next(error);        
         }
     }
 
-    async updateProductByID (pid,next){
+    async updateProductByID (req , res , next){
         let newProduct;
         try {
             newProduct = new Product({
@@ -93,24 +94,25 @@ class ProductDAOMongo{
             return next(error);
         }        
         try {
-            await productModel.findByIdAndUpdate(pid, newProduct)
-            return await productModel.findById(pid);
+            await productModel.findByIdAndUpdate(req.params.pid, newProduct)
+            return await productModel.findById(req.params.pid);
         } catch (error) {
             next(error);
         }
     }
-    async updateStockSoldByID(pid,quantity,next){
-        let product = await productModel.findById(pid)
-        product.stock -= quantity
+    async updateStockSoldByID(req , res , next){ 
+        let product = await productModel.findById(req.params.pid)
+        product.stock -= req.params.quantity
         try {
-            await productModel.findByIdAndUpdate(pid, product)
-            return await productModel.findById(pid);
+            await productModel.findByIdAndUpdate(req.params.pid, product)
+            return await productModel.findById(req.params.pid);
         } catch (error) {
             next(error);
         }
     }
 
-    getMockingProducts(quantity , next){
+    getMockingProducts(req , res , next){        
+        let quantity = req.params.quantity !== undefined? req.params.quantity : 100
         try {
             let mockingProducts = []
             for (let i = 0; i < quantity; i++) {
