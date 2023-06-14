@@ -9,7 +9,7 @@ class CartDAOMongoose{
         this.model = model
     }
 
-    async getCarts(req, next){
+    async getCarts (req, res , next){
         try { 
             /* paginado y ordenamiento */   
             const queryLimit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 10 : req.query.limit
@@ -34,7 +34,7 @@ class CartDAOMongoose{
         }
     }
 
-    async postCart (next){
+    async postCart  (req, res , next){
         try {
             const newCart = await cartstModel.create({});
             return newCart;
@@ -42,7 +42,7 @@ class CartDAOMongoose{
             next(error);
         }
     }
-    async createCart (next){
+    async createCart  (req, res , next){
         try {
             const newCart = await cartstModel.create({});
             return newCart;
@@ -51,25 +51,25 @@ class CartDAOMongoose{
         }
     }
 
-    async findCartById (cid, next){
+    async findCartById  (req, res , next){
         try {
-            const cart = await cartstModel.findById(cid).populate("products.product");
+            const cart = await cartstModel.findById(req.params.cid).populate("products.product");
             return cart;
         } catch (error) {
             next(error);
         }
     }
 
-    async deleteCartById (cid, next){
+    async deleteCartById  (req, res , next){
         try {
-             const deleted = await cartstModel.findByIdAndDelete(cid)
+             const deleted = await cartstModel.findByIdAndDelete(req.params.cid)
             return deleted;
         } catch (error) {
             next(error);
         }
     }
 
-    async postProductToCart (req, next){
+    async postProductToCart (req, res , next){
         try {
             const cid = req.params.cid 
             const pid = req.params.pid
@@ -110,7 +110,7 @@ class CartDAOMongoose{
          }
     }
 
-    async deleteProductInCart (req, next){
+    async deleteProductInCart (req, res , next){
         try {
             const cart = await cartstModel.findById(req.params.cid)
             if(cart){
@@ -131,20 +131,20 @@ class CartDAOMongoose{
         }
     }
     
-    async deleteAllProductsInCartById (cid, next){
+    async deleteAllProductsInCartById (req, res , next){
         try {
-            const cart = await cartstModel.findById(cid)
+            const cart = await cartstModel.findById(req.params.cid)
             if(cart){
                 cart["products"]=[];
-                await cartstModel.replaceOne({ _id: cid } , cart)
+                await cartstModel.replaceOne({ _id: req.params.cid } , cart)
             }
-            return await cartstModel.findById(cid).populate("products.product");
+            return await cartstModel.findById(req.params.cid).populate("products.product");
         } catch (error) {        
             next(error);
         }    
     }
 
-    async updateQuantityProductInCart (req, next){
+    async updateQuantityProductInCart (req, res , next){
     try {
         const cid = req.params.cid 
         const pid = req.params.pid
@@ -180,20 +180,20 @@ class CartDAOMongoose{
      }
     }
 
-    async updateAllProductsInCart (cid, next){
+    async updateAllProductsInCart  (req, res , next){
         try {
-            const cart = await cartstModel.findById(cid)
+            const cart = await cartstModel.findById(req.params.cid)
             if(cart){
                 cart["products"]=req.body.products;
-                await cartstModel.replaceOne({ _id: cid } , cart)
+                await cartstModel.replaceOne({ _id: req.params.cid } , cart)
             }
-            res.json(await cartstModel.findById(cid).populate("products.product"));
+            res.json(await cartstModel.findById(req.params.cid).populate("products.product"));
         } catch (error) {        
             next(error);
         }    
     }
 
-    async setProductsInCart (cid, products, next){
+    async setProductsInCart  (cid, products, req, res , next){
         try {
             const cart = await cartstModel.findById(cid)
             if(cart){

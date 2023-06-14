@@ -9,7 +9,7 @@ class TicketDAOMongoose{
         this.model = model;
     }
 
-    async createTicket (acceptedProds , rejectedProds , amount , purchaser, next){
+    async createTicket (acceptedProds , rejectedProds , amount , purchaser,req, res, next){
         try {
             const ticket = new Ticket (acceptedProds , rejectedProds , amount , purchaser).getAllAttr()
             const newTicket = await ticketModel.create(ticket)

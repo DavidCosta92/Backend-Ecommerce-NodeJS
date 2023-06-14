@@ -18,54 +18,54 @@ class CartService{
 
     async getCarts (req, res , next){
         const status = res?.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`;    
-        let response ={...await this.cartRepository.getCarts(req,next) , status}
+        let response ={...await this.cartRepository.getCarts(req, res , next) , status}
         return response;
     }
     
-    async postCart (next){
-        return await this.cartRepository.postCart(next)
+    async postCart (req, res , next){
+        return await this.cartRepository.postCart(req, res , next)
     }
     
-    async getCartsByID (cid, next){     
-        return await this.cartRepository.getCartsByID(cid,next)
+    async getCartsByID (req, res , next){     
+        return await this.cartRepository.getCartsByID(req, res , next)
     }
     
-    async deleteCartByID (cid , next){    
-        return await this.cartRepository.deleteCartByID(cid,next)
+    async deleteCartByID (req, res , next){    
+        return await this.cartRepository.deleteCartByID(req, res , next)
     }
     
     async postProductToCarts (req, res , next){
-        return await this.cartRepository.postProductToCarts(req,next);
+        return await this.cartRepository.postProductToCarts(req, res , next);
     }
     
     async deleteProductInCarts (req, res , next){
-        return await this.cartRepository.deleteProductInCarts(req,next);
+        return await this.cartRepository.deleteProductInCarts(req, res , next);
     }
     
-    async deleteAllProductsInCartByID (cid, res , next) {
-       return await this.cartRepository.deleteAllProductsInCartByID(cid,next);    
+    async deleteAllProductsInCartByID (req, res , next) {
+       return await this.cartRepository.deleteAllProductsInCartByID(req, res , next);    
     }
     
     async updateQuantityProductInCarts (req, res , next) {
-       return await this.cartRepository.updateQuantityProductInCarts(req,next);
+       return await this.cartRepository.updateQuantityProductInCarts(req, res , next);
     }
     
-    async updateAllProductsInCarts (cid, res , next) {
-        return await this.cartRepository.updateAllProductsInCarts(cid,next)    
+    async updateAllProductsInCarts (req, res , next) {
+        return await this.cartRepository.updateAllProductsInCarts(req, res , next)    
     }
     
-    async validateProduct(pid, quantity){
-        const product = await this.productService.getProductById({ _id : pid})
+    async validateProduct(pid, quantity , req, res , next){
+        const product = await this.productService.getProductById(pid, req, res , next)
         if (product?.stock >= quantity){ return true } 
         return false
     }
 
-    async verifyProducts(products){
+    async verifyProducts(products , req , res , next){
         let acceptedProds = []
         let rejectedProds = []
         
         for (let i = 0; i < products.length; i++) {
-            if (await this.validateProduct(products[i].product._id, products[i].quantity)){
+            if (await this.validateProduct(products[i].product._id, products[i].quantity , req , res , next)){
                 acceptedProds.push(products[i])
             }else{
                 rejectedProds.push(products[i])
@@ -73,9 +73,9 @@ class CartService{
         }
         return { acceptedProds , rejectedProds }
     }
-    async updateProductsStocks(products){
+    async updateProductsStocks(products,req , res , next){
         for (let i = 0; i < products.length; i++) {           
-            this.productService.updateStockSoldByID(products[i].product._id, products[i].quantity)            
+            this.productService.updateStockSoldByID(products[i].product._id, products[i].quantity, req , res , next) //(products[i].product._id, products[i].quantity)          
         }
     }
 
@@ -87,16 +87,16 @@ class CartService{
         return totalCost
     }
 
-    async buyCart (req , next) {
-        const cart = await this.cartRepository.getCartsByID(req.params.cid,next)
+    async buyCart (req , res , next)  {
+        const cart = await this.cartRepository.getCartsByID(req,res ,next)
         const productsInCart = cart.products
-        const { acceptedProds , rejectedProds } = await this.verifyProducts(productsInCart)
+        const { acceptedProds , rejectedProds } = await this.verifyProducts(productsInCart, req , res , next)
         const amount = this.calculateProductTotalCost(acceptedProds)
 
-        this.updateProductsStocks(acceptedProds)
+        this.updateProductsStocks(acceptedProds,req , res , next)
 
         //cambiar productos en carrito por los rechazados y enviar alerta
-        this.cartRepository.setProductsInCart(req.params.cid, rejectedProds, next)
+        this.cartRepository.setProductsInCart(req.params.cid, rejectedProds, req, res, next)
 
         if(rejectedProds.length>0){
             console.log("+++++++++++++++++++++++")
@@ -107,7 +107,7 @@ class CartService{
         }
                    
         const purchaser = this.sessionService.getLoguedUser(req).email
-        const purchaseTicket = await this.ticketRepository.createTicket(acceptedProds , rejectedProds , amount , purchaser, next)         
+        const purchaseTicket = await this.ticketRepository.createTicket(acceptedProds , rejectedProds , amount , purchaser,req, res, next)         
         const user = sessionService.getLoguedUser(req)
 
         return { purchaseTicket , user }

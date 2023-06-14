@@ -16,8 +16,8 @@ class ProductRepository{
         return await this.productDao.postProduct(req, res ,next);
     }
     
-    async getProductById (req , res , next){
-            return await this.productDao.getProductById(req , res , next);
+    async getProductById (pid,req , res , next){
+            return await this.productDao.getProductById(pid,req , res , next);
     }
     
     async deleteProductByID (req , res , next){
@@ -28,8 +28,8 @@ class ProductRepository{
         return await this.productDao.updateProductByID(req , res , next);
     }
     
-    async updateStockSoldByID(req , res , next){
-        return await this.productDao.updateStockSoldByID(req , res , next)
+    async updateStockSoldByID(pid, pQty , req , res , next){
+        return await this.productDao.updateStockSoldByID(pid, pQty , req , res , next)
     }
     getMockingProducts(req , res , next){
         return this.productDao.getMockingProducts(req , res , next)

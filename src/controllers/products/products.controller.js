@@ -7,7 +7,7 @@ export async function getProducts (req, res , next){
     res.json(response);
 }    
 
-export async function postProducts (req , res , next){
+export async function postProducts (req , res , next){  
     res.json(await productService.postProduct(req , res , next));
 }
 

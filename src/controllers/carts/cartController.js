@@ -4,45 +4,45 @@ import { cartService  } from "../../services/cartService.js";
 
 export async function getCarts (req, res , next){
     const status = res?.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`;    
-    let response ={...await cartDAOMongoose.getCarts(req,next) , status}
+    let response ={...await cartDAOMongoose.getCarts (req, res , next) , status}
     res.json(response);
 }
 
 export async function postCart (req, res , next){
-    res.json(await cartService.postCart(next));
+    res.json(await cartService.postCart (req, res , next));
 }
 
 export async function getCartsByID (req, res , next){     
-    res.json(await cartService.getCartsByID(req.params.cid,next));
+    res.json(await cartService.getCartsByID (req, res , next));
 }
 
 export async function deleteCartByID (req, res , next){    
-    res.json(await cartService.deleteCartByID(req.params.cid,next));
+    res.json(await cartService.deleteCartByID (req, res , next));
 }
 
 export async function postProductToCarts (req, res , next){
-    res.json(await cartService.postProductToCarts(req,next));
+    res.json(await cartService.postProductToCarts (req, res , next));
 }
 
 export async function deleteProductInCarts (req, res , next){
-    res.status(200).json(await cartService.deleteProductInCarts(req,next));
+    res.status(200).json(await cartService.deleteProductInCarts (req, res , next));
 }
 
 export async function deleteAllProductsInCartByID (req, res , next) {
-    res.status(200).json(await cartService.deleteAllProductsInCartByID(req.params.cid,next));
+    res.status(200).json(await cartService.deleteAllProductsInCartByID (req, res , next));
 
 }
 
 export async function updateQuantityProductInCarts (req, res , next) {
-    res.status(200).json(await cartService.updateQuantityProductInCarts(req,next));
+    res.status(200).json(await cartService.updateQuantityProductInCarts (req, res , next));
 }
 
 export async function updateAllProductsInCarts (req, res , next) {
-    res.json(await cartService.updateAllProductsInCarts(req.params.cid,next));
+    res.json(await cartService.updateAllProductsInCarts (req, res , next));
 
 }
 export async function buyCart (req, res , next) {
-    const { purchaseTicket , user } = await cartService.buyCart(req,next)
+    const { purchaseTicket , user } = await cartService.buyCart (req, res , next)
     const {code , purchase_datetime , amount , purcharser , acceptedProds , rejectedProds} = purchaseTicket
 
     const acceptedProducts = []

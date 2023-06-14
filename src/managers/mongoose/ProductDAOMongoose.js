@@ -66,9 +66,9 @@ class ProductDAOMongo{
         }
     }
 
-    async getProductById(req , res , next){
+    async getProductById(pid,req , res , next){
         try {
-            const product = await productModel.findById(req.params.pid);
+            const product = await productModel.findById(pid);
             return product;
         } catch (error) {
             next(error);
@@ -100,12 +100,12 @@ class ProductDAOMongo{
             next(error);
         }
     }
-    async updateStockSoldByID(req , res , next){ 
-        let product = await productModel.findById(req.params.pid)
-        product.stock -= req.params.quantity
+    async updateStockSoldByID(pid, quantity , req , res , next){ 
+        let product = await productModel.findById(pid)
+        product.stock -= quantity
         try {
-            await productModel.findByIdAndUpdate(req.params.pid, product)
-            return await productModel.findById(req.params.pid);
+            await productModel.findByIdAndUpdate(pid, product)
+            return await productModel.findById(pid);
         } catch (error) {
             next(error);
         }

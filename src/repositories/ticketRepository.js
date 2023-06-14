@@ -5,8 +5,8 @@ class TicketRepository{
     constructor (ticketDao){
         this.ticketDao = ticketDao
     }       
-    async createTicket (acceptedProds , rejectedProds , amount , purchaser, next){            
-        return await this.ticketDao.createTicket(acceptedProds , rejectedProds , amount , purchaser, next)
+    async createTicket (acceptedProds , rejectedProds , amount , purchaser, req, res, next){            
+        return await this.ticketDao.createTicket(acceptedProds , rejectedProds , amount , purchaser, req, res, next)
     }    
 
 }

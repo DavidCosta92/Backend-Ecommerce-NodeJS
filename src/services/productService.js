@@ -15,8 +15,8 @@ class ProductService{
         return await this.productRepository.postProduct(req , res , next);
     }
     
-    async getProductById (req , res , next){
-            return await this.productRepository.getProductById(req , res , next);
+    async getProductById (pid,req , res , next){
+            return await this.productRepository.getProductById(pid,req , res , next);
     }
     
     async deleteProductByID (req , res , next){
@@ -26,8 +26,8 @@ class ProductService{
     async updateProductByID (req , res , next){    
         return await this.productRepository.updateProductByID(req , res , next);
     }
-    async updateStockSoldByID (req , res , next){    
-        return await this.productRepository.updateStockSoldByID(req , res , next);
+    async updateStockSoldByID (pid, pQty , req , res , next){    
+        return await this.productRepository.updateStockSoldByID(pid, pQty , req , res , next);
     }
 
     getMockingProducts(req , res , next){

@@ -7,44 +7,44 @@ class CartRepository{
         this.cartDao = cartDao
     }   
 
-    async getCarts (req, next){
-        return await this.cartDao.getCarts(req,next)        
+    async getCarts (req, res, next){
+        return await this.cartDao.getCarts(req, res,next)        
     }
     
-    async postCart (next){
-        return await this.cartDao.postCart(next)
+    async postCart (req, res, next){
+        return await this.cartDao.postCart(req, res,next)
     }
     
-    async getCartsByID (cid, next){     
-        return await this.cartDao.findCartById(cid,next)
+    async getCartsByID (req, res, next){     
+        return await this.cartDao.findCartById(req, res,next)
     }
     
-    async deleteCartByID (cid, next){    
-        return await this.cartDao.deleteCartById(cid,next)
+    async deleteCartByID ( req, res, next){    
+        return await this.cartDao.deleteCartById(req, res,next)
     }
     
-    async postProductToCarts (req, next){
-        return await this.cartDao.postProductToCart(req,next)
+    async postProductToCarts (req,res,next){
+        return await this.cartDao.postProductToCart(req,res,next)
     }
     
-    async deleteProductInCarts (req, next){
-        return await this.cartDao.deleteProductInCart(req,next)
+    async deleteProductInCarts (req,res, next){
+        return await this.cartDao.deleteProductInCart(req,res,next)
     }
     
-    async deleteAllProductsInCartByID (cid, next) {
-        return await this.cartDao.deleteAllProductsInCartById(cid,next)    
+    async deleteAllProductsInCartByID (cid, req,res,next) {
+        return await this.cartDao.deleteAllProductsInCartById(cid,req,res,next)    
     }
     
-    async updateQuantityProductInCarts (req, next) {
-        return await this.cartDao.updateQuantityProductInCart(req,next)
+    async updateQuantityProductInCarts (req,res, next) {
+        return await this.cartDao.updateQuantityProductInCart(req,res,next)
     }
     
-    async updateAllProductsInCarts (cid, next) {        
-        return await this.cartDao.updateAllProductsInCart(cid,next)    
+    async updateAllProductsInCarts (req,res, next) {        
+        return await this.cartDao.updateAllProductsInCart(req,res,next)    
     }
     
-    async setProductsInCart(cid, products, next){
-        return await this.cartDao.setProductsInCart(cid, products, next)
+    async setProductsInCart(cid, products, req ,res, next){
+        return await this.cartDao.setProductsInCart(cid, products, req ,res, next)
     }
 
 }

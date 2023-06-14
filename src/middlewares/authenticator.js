@@ -76,7 +76,8 @@ export async function getCurrentUser (req , res , next){
     if(user === undefined){
       res.render("currentUser", {loguedUser :false}) 
     }else{
-      const cartById = await cartDAOMongoose.findCartById(user.cart)      
+      req.params.cid = user.cart
+      const cartById = await cartDAOMongoose.findCartById(req ,res , next)      
       /* Necesario para solucionar error handlebars "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas*/
       const productsInCart = []
       cartById.products.forEach(p=>{ productsInCart.push( p.toObject()) })
@@ -84,6 +85,7 @@ export async function getCurrentUser (req , res , next){
       res.render("currentUser", {loguedUser : user!=undefined, user : user, products : productsInCart})
     }       
  } catch (error) {
+  console.log("errororororororoorororor0", error)
     next(error)
  }
 }
