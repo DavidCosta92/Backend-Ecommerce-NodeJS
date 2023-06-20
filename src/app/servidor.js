@@ -15,10 +15,13 @@ import session from "../middlewares/session.js";
 import { errorHandlerAPI } from "../middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
 import { getCurrentUser } from "../middlewares/authenticator.js";
-import { MONGOOSE_STRING_ATLAS } from "../config/config.js";
+import { MONGOOSE_STRING_ATLAS, NODE_ENV } from "../config/config.js";
 import { mockingproducts } from "../controllers/products/products.controller.js";
 
 import dotenv from 'dotenv'
+import { logger } from "../middlewares/loggerMiddleware.js";
+import { winstonLogger } from "../utils/logger.js";
+
 dotenv.config({path: 'src/.env'});
 
 mongoose.connect(MONGOOSE_STRING_ATLAS)
@@ -26,6 +29,7 @@ mongoose.connect(MONGOOSE_STRING_ATLAS)
 const app = express();
 app.use(session)
 app.use(cookieParser(process.env.COOKIE_SECRET))
+app.use(logger)
 
 app.use("/api/products",productsRouter);
 app.use("/api/carts", cartsRouter);
@@ -58,15 +62,19 @@ app.get("/", (req, res, next)=>{
 })
 app.get("/api/session/current", getCurrentUser)
 app.get("/mockingproducts", mockingproducts);
+app.get("/loggerTest", (req, res)=>{
+    req.logger.debug("Este es un ejemplo de un log de nivel debug")
+    req.logger.http("Este es un ejemplo de un log de nivel http")
+    req.logger.info("Este es un ejemplo de un log de nivel info")
+    req.logger.warning ("Este es un ejemplo de un log de nivel warning")
+    req.logger.error("Este es un ejemplo de un log de nivel error")
+    req.logger.fatal("Este es un ejemplo de un log de nivel fatal")
+    res.send({message:"PRueba de loggerees"})
+});
 
 app.use(errorHandlerAPI)
 
-const httpServer = app.listen(process.env.PORT, () => console.log("Servidor activo",process.env.PORT))
-
-
-
-
-
+const httpServer = app.listen(process.env.PORT, () => winstonLogger.info(`Servidor activo, entorno ${NODE_ENV} en host ${process.env.PORT}`))//console.log("Servidor activo",process.env.PORT,  "Enviroment =>", NODE_ENV))
 
 export const io = new IOServer(httpServer)
 
@@ -75,6 +83,7 @@ app.use((req, res, next) => {
     req['io'] = io
     next()
 })
+
 
 io.on('connection', async clientSocket=>{ 
     //conexion chat

@@ -1,0 +1,6 @@
+[34mwarning[39m: [34mEste es un ejemplo de un log de nivel warning[39m {"timestamp":"2023-06-20 11:59:08"}
+[33merror[39m: [33mEste es un ejemplo de un log de nivel error[39m {"timestamp":"2023-06-20 11:59:08"}
+[31mfatal[39m: [31mEste es un ejemplo de un log de nivel fatal[39m {"timestamp":"2023-06-20 11:59:08"}
+[34mwarning[39m: [34mEste es un ejemplo de un log de nivel warning[39m {"timestamp":"2023-06-20 12:00:15"}
+[33merror[39m: [33mEste es un ejemplo de un log de nivel error[39m {"timestamp":"2023-06-20 12:00:15"}
+[31mfatal[39m: [31mEste es un ejemplo de un log de nivel fatal[39m {"timestamp":"2023-06-20 12:00:15"}

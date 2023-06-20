@@ -85,7 +85,6 @@ export async function getCurrentUser (req , res , next){
       res.render("currentUser", {loguedUser : user!=undefined, user : user, products : productsInCart})
     }       
  } catch (error) {
-  console.log("errororororororoorororor0", error)
     next(error)
  }
 }

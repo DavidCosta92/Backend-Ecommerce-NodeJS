@@ -49,7 +49,8 @@ export function registerView(req,res,next){
       // tendria que poder recibir el evento de socket para poder actualizar      
       /* EN TEORIA CON ESTO ESTOY AVISANDO QUE REFRESQUE EL LISTADO DE USUARIOS EL SOCKET*/
 
-       res.status(code).json({ message: 'USUARIO SE LOGUEO', loguedUser: code === 201 })
+      req.logger.http(`Registro e inicio de session de ${user}`)
+      res.status(code).json({ message: 'USUARIO SE LOGUEO', loguedUser: code === 201 })
     } catch (error) {
       next(error)
     }

@@ -14,3 +14,6 @@ export const MONGO_SECRET = process.env.MONGO_SECRET
 
 //PERSISTENCE
 export const PERSISTENCE = process.env.PERSISTENCE
+
+//ENVIROMENT
+export const NODE_ENV = process.env.NODE_ENV || 'development'
