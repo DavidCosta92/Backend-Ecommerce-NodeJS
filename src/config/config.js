@@ -13,7 +13,7 @@ export const COOKIE_SECRET = process.env.COOKIE_SECRET
 export const MONGO_SECRET = process.env.MONGO_SECRET
 
 //PERSISTENCE
-export const PERSISTENCE = process.env.PERSISTENCE
+export const PERSISTENCE = process.env.PERSISTENCE || "mongo_atlas"
 
 //ENVIROMENT
 export const NODE_ENV = process.env.NODE_ENV || 'development'

@@ -34,14 +34,6 @@ class CartDAOMongoose{
         }
     }
 
-    async postCart  (req, res , next){
-        try {
-            const newCart = await cartstModel.create({});
-            return newCart;
-        } catch (error) {
-            next(error);
-        }
-    }
     async createCart  (req, res , next){
         try {
             const newCart = await cartstModel.create({});

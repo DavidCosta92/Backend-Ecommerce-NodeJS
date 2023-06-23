@@ -1,10 +1,9 @@
 // @ts-nocheck
-import { cartDAOMongoose } from "../../managers/mongoose/CartDAOMongoose.js";
 import { cartService  } from "../../services/cartService.js";
 
 export async function getCarts (req, res , next){
     const status = res?.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`;    
-    let response ={...await cartDAOMongoose.getCarts (req, res , next) , status}
+    let response ={...await cartService.getCarts (req, res , next) , status}
     res.json(response);
 }
 

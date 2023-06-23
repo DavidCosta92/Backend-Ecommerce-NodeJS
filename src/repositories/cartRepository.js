@@ -1,4 +1,6 @@
 import { cartDAOMongoose } from "../managers/mongoose/CartDAOMongoose.js"
+import { cartDAOFs } from "../managers/fileSystem/CartDAOFs.js"
+import { PERSISTENCE } from "../config/config.js"
 
 class CartRepository{
     cartDao
@@ -46,7 +48,7 @@ class CartRepository{
     async setProductsInCart(cid, products, req ,res, next){
         return await this.cartDao.setProductsInCart(cid, products, req ,res, next)
     }
-
 }
-// en esta parte debo elegir si es mongo o fs o otra persistencia... POR EL MOMENTO SOLO MONGOOSE
-export const cartRepository = new CartRepository(cartDAOMongoose)
+
+export let cartRepository = new CartRepository(cartDAOMongoose)
+if( PERSISTENCE !== "mongo_atlas") cartRepository = new CartRepository(cartDAOFs)

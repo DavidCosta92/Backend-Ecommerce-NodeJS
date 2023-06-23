@@ -5,7 +5,6 @@ import { engine } from 'express-handlebars'
 import { cartsRouter } from "../routers/cartsRouter.js";
 import { viewsRouter } from "../routers/viewsRouter.js";
 import { userRouter } from "../routers/userSessionRouter.js";
-import { cartsRouterFileSystem } from "../routers/cartsRouterFileSystem.js";
 import mongoose from 'mongoose';
 import {Server as IOServer} from 'socket.io'
 import { productModel } from "../db/mongoose/models/productModel.js";
@@ -36,17 +35,6 @@ app.use("/api/carts", cartsRouter);
 app.use("/api/users" , userRouter);
 app.use("/api/views", viewsRouter);
 
-
-
-/// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio 
-/// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio
-/// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio
-app.use("/api/fs/carts",cartsRouterFileSystem);
-/// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio
-/// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio
-/// este router deberia ir dentro del cartRouter y separaria la logica a nivel del repositorio
-
-
 app.use(express.static('./public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -69,7 +57,7 @@ app.get("/loggerTest", (req, res)=>{
     req.logger.warning ("Este es un ejemplo de un log de nivel warning")
     req.logger.error("Este es un ejemplo de un log de nivel error")
     req.logger.fatal("Este es un ejemplo de un log de nivel fatal")
-    res.send({message:"PRueba de loggerees"})
+    res.send({message:"PRueba de loggers"})
 });
 
 app.use(errorHandlerAPI)
