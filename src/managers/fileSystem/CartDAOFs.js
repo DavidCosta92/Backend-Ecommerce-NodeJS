@@ -4,23 +4,20 @@
 
 import fs from 'fs/promises'
 import { Cart } from '../../models/Cart.js'
-import { ProductManager } from './ProductManager.js'
 import { NotFoundError } from '../../models/errors/carts.error.js';
-
+import { ProductDAOFs } from './ProductDAOFs.js';
+import { validateIntegerNumber } from '../../models/validations/validations.js';
 class CartDAOFs{
     path = "";
     carts;
-    productManager; ///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
-///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
+    productManager;
     constructor (path){
         this.carts = [];
         this.path = path + "/src/db/FileSystemDB/carrito.json";
-        this.productManager = new ProductManager(path)
+        this.productManager = new ProductDAOFs(`${path}/src/db/FileSystemDB/products.json`)
     }
 
     // METODOS PROPIOS PARA MENEJO DE FS
-    // METODOS PROPIOS PARA MENEJO DE FS
-
     async readCartsFile(){
         try {
             const cartsFileJson = await fs.readFile(this.path, "utf-8");
@@ -46,9 +43,10 @@ class CartDAOFs{
         const productSearch = productsInCart.find(p => p.pid === pid ); 
         return productSearch;
     }
+    // METODOS PROPIOS PARA MENEJO DE FS
+    
 
-    // METODOS PROPIOS PARA MENEJO DE FS
-    // METODOS PROPIOS PARA MENEJO DE FS
+
     async getCarts (req, res , next){
         try { 
             /* paginado y ordenamiento */   
@@ -56,19 +54,24 @@ class CartDAOFs{
             const queryPage =  (isNaN(Number(req.query.page)) || req.query.page == "" ) ? 1 : req.query.page            
             const pageOptions = { limit: queryLimit, page: queryPage, lean : true, populate: 'products.product'}     
 
-            const carts = await cartstModel.paginate({},pageOptions)
-            const response ={
-                payload : carts.docs,
-                totalPages : carts.totalPages,
-                prevPage : carts.prevPage,
-                nextPage : carts.nextPage,
-                page : carts.page,
-                hasPrevPage : carts.hasPrevPage,
-                hasNextPage : carts.hasNextPage,
-                prevLink : carts.prevPage? `/api/carts/?limit=${queryLimit}&page=${carts.prevPage}` : null, 
-                nextLink : carts.nextPage? `/api/carts/?limit=${queryLimit}&page=${carts.nextPage}`: null,
-            }
-            return response;
+    
+            await this.readCartsFile()
+
+//  ACA DEBERIA VER LA MANERA DE NORMALIZAR LA RESPUESTA, TENDRIA QUE HACER UN PAGINADO MANUAL DE LA RESPUESTA.. dEBERIA CREAR VARIOS CARRITOS, Y REVISAR EL FUNCIONAMIENTO TOTAL DE TODO.. AL FINAL VER COMO PAGINAR..
+
+    //      const carts = await cartstModel.paginate({},pageOptions)
+    //      const response ={
+    //         payload : this.carts,
+    //         totalPages : carts.totalPages,
+    //         prevPage : carts.prevPage,
+    //         nextPage : carts.nextPage,
+    //         page : carts.page,
+    //         hasPrevPage : carts.hasPrevPage,
+    //         hasNextPage : carts.hasNextPage,
+    //         prevLink : carts.prevPage? `/api/carts/?limit=${queryLimit}&page=${carts.prevPage}`: null, 
+    //         nextLink : carts.nextPage? `/api/carts/?limit=${queryLimit}&page=${carts.nextPage}`: null,
+    //     }
+            return this.carts;
         } catch (error) {
             next(error);
         }
@@ -125,35 +128,19 @@ en teoria no estoy usando este metodo, sino el create cart
         }
     }
 
-
     async postProductToCart (req, res , next){
         try {
             const cid = req.params.cid 
             const pid = req.params.pid
-            let productQuantity = req.query.quantity;
+            let productQuantity = req.query.quantity
     
-
             if(productQuantity === undefined){
                 productQuantity = 1;
-            } else if (Number.isInteger(Number(productQuantity)) && productQuantity >= 1){
-                productQuantity = Number(productQuantity);
             } else {
-                throw new Error ("Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0")
-            }    
-            
-            ///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
-            ///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
-            ///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
-            ///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
-            ///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
-            ///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
-            const existeProducto = await this.productManager.getProductById(pid); // SI EL PRODUCTO NO EXISTE, ENVIARA UN ERROR CORTANDO EJECUCION
-            ///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
-            ///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
-            ///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
-            ///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
-            ///////////// REVISAR PRODUCT MANAGER, PROBABLEMENTE DEBA MIGRARLO TODO
-
+                validateIntegerNumber("Cantidad",req.query.quantity);
+                productQuantity = Number(productQuantity);
+            }
+            await this.productManager.getProductById(pid); // SI EL PRODUCTO NO EXISTE, ENVIARA UN ERROR CORTANDO EJECUCION
             const productInCart = await this.getProductInCartByIds(cid,pid);
 
             if(productInCart){
@@ -173,21 +160,11 @@ en teoria no estoy usando este metodo, sino el create cart
          }
     }
 
-
-
-    ////// DEBO MIGRAR LO QUE ESTA EN CART MANAGER A ESTE DAO DE FILESISYME, LUEGO DEBO REVISAR PRODUCT MANAGER! ---- AL FINAL DE TODO BORRAR TODOS LOS ARCHIVOS DE FILE SYSTEM
-
-
-    ////// DEBO MIGRAR LO QUE ESTA EN CART MANAGER A ESTE DAO DE FILESISYME, LUEGO DEBO REVISAR PRODUCT MANAGER! ---- AL FINAL DE TODO BORRAR TODOS LOS ARCHIVOS DE FILE SYSTEM
-
-    ////// DEBO MIGRAR LO QUE ESTA EN CART MANAGER A ESTE DAO DE FILESISYME, LUEGO DEBO REVISAR PRODUCT MANAGER! ---- AL FINAL DE TODO BORRAR TODOS LOS ARCHIVOS DE FILE SYSTEM
-
-    ////// DEBO MIGRAR LO QUE ESTA EN CART MANAGER A ESTE DAO DE FILESISYME, LUEGO DEBO REVISAR PRODUCT MANAGER! ---- AL FINAL DE TODO BORRAR TODOS LOS ARCHIVOS DE FILE SYSTEM
-    
     async deleteProductInCart (req, res , next){
         try {
-            // ESTO DEBERA TIRAR UN ERROR SI NO EXISTE EL PRODUCTO EN CARTA
-            this.getProductInCartByIds(cid,pid);
+            const productSearch = this.getProductInCartByIds(cid,pid);            
+            if(productSearch === undefined) throw new Error ("Producto no ecnontrado")
+
             const cart = await this.findCartById(cid)  
 
             const productosRestantes=[];
@@ -228,16 +205,9 @@ en teoria no estoy usando este metodo, sino el create cart
     try {
         const cid = req.params.cid 
         const pid = req.params.pid
-        let newPrQty = req.query.quantity;
-       
-        if (!Number.isInteger(Number(newPrQty)) && newPrQty < 0) throw new Error ("Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0")
-
+        let newPrQty = validateIntegerNumber("Cantidad",req.query.quantity);
         const cart = await this.findCartById(cid)   
-    
-        /// DEBO REVISAR BIEN ESTA LOGICA.. ES MAS COMPLICADA DE LO QUE DEBERIA PORQUE ESTUVO PENSADA PARA MONGOOSE.. PREVIO DEBO REVISAR PRODUCT MANAGER
-        /// DEBO REVISAR BIEN ESTA LOGICA.. ES MAS COMPLICADA DE LO QUE DEBERIA PORQUE ESTUVO PENSADA PARA MONGOOSE.. PREVIO DEBO REVISAR PRODUCT MANAGER
-        /// DEBO REVISAR BIEN ESTA LOGICA.. ES MAS COMPLICADA DE LO QUE DEBERIA PORQUE ESTUVO PENSADA PARA MONGOOSE.. PREVIO DEBO REVISAR PRODUCT MANAGER
-        /// DEBO REVISAR BIEN ESTA LOGICA.. ES MAS COMPLICADA DE LO QUE DEBERIA PORQUE ESTUVO PENSADA PARA MONGOOSE.. PREVIO DEBO REVISAR PRODUCT MANAGER
+        
         /// DEBO REVISAR BIEN ESTA LOGICA.. ES MAS COMPLICADA DE LO QUE DEBERIA PORQUE ESTUVO PENSADA PARA MONGOOSE.. PREVIO DEBO REVISAR PRODUCT MANAGER
         
         if(cart){            

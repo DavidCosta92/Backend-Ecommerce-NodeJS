@@ -1,7 +1,11 @@
-/*
 import fs from 'fs/promises';
+// REVISAR SI HAY ALGUN OTRO ERROR LOGICO O DE CODIGO
 
-export class ProductManager{
+// AL FINAL, BORRAR EL ARCHIVO "ProductManager.js"
+
+import { validateRealNumber , validateIntegerNumber , validateString} from '../../models/validations/validations';
+
+export class ProductDAOFs{
     path = "";
     #products = [];
 
@@ -28,10 +32,14 @@ export class ProductManager{
     }
     
     productoValido(product){
-        let stringsValidos =typeof(product.id) === "string" && typeof(product.title) === "string" && typeof(product.description) === "string"&& typeof(product.code) === "string" && typeof(product.category) === "string"; 
-        let arrayValido = product.thumbnail === undefined? true : Array.isArray(product.thumbnail);
-        let numerosValidos = typeof(product.price) === "number" && product.price > 0 && typeof(product.stock) === "number" && product.stock > 0;
-        if(!stringsValidos || !numerosValidos || !arrayValido) throw new Error ("Producto con campos incompletos o erroneos");
+        validateRealNumber("Precio",product.price)
+        validateIntegerNumber("Stock",product.stock)
+        validateString("ID",product.id)
+        validateString("Title",product.title)
+        validateString("Descripcion",product.description)
+        validateString("Codigo",product.code)
+        validateString("Categoria",product.category)
+        if(product.thumbnail !== undefined && !Array.isArray(product.thumbnail)) throw new Error("Input de thumbnails erroneo, debe ser un Array")
         return true;
     }
 
@@ -63,9 +71,10 @@ export class ProductManager{
 
     async getProducts(limit){ 
         await this.readProductsFile();
-        if(limit === undefined || limit === "") return this.#products; 
+        if((limit) === undefined || limit === "") return this.#products; 
         const limite = Number(limit);
-        if(!Number.isInteger(limite) || limit<1 ) throw new Error ("Limite incorrecto, el limite debe ser un numero, entero y mayor a 0");
+        validateIntegerNumber("limite",limite) 
+        if(limit<1 ) throw new Error ("Limite incorrecto, debe ser mayor a 0");
         return this.#products.slice(0,limit);        
     }
 
@@ -109,7 +118,4 @@ export class ProductManager{
         await this.saveProductsFile();
         return productDeleted;
     }
-    
-
 }
-*/

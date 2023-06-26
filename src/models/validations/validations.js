@@ -19,7 +19,13 @@ export function validateEmail(field, value){
 export function validateIntegerNumber(field, value){
     noEmpty(field, value)    
     if( typeof value !== "number" ) throw new IllegalInputArg(`${field} es un campo numerico`) 
-    if( !Number.isInteger(Number(value)) || value<0 || value > 120) throw new IllegalInputArg(`${field} debe ser entero, mayor a cero y menor a 120 años.`) 
+    if( !Number.isInteger(Number(value)) || value<0 ) throw new IllegalInputArg(`${field} debe ser entero, mayor a cero`) 
+    return value
+}
+export function validateAge(field, value){
+    noEmpty(field, value)    
+    validateIntegerNumber(field, value)    
+    if(value<120 ) throw new IllegalInputArg(`${field} no puede ser mayor a 120`) 
     return value
 }
 export function validateRealNumber(field, value){
