@@ -1,4 +1,6 @@
 import { productDAOMongo } from "../managers/mongoose/ProductDAOMongoose.js"
+import { ProductDAOFs } from "../managers/fileSystem/ProductDAOFs.js"
+import { PERSISTENCE } from "../config/config.js"
 
 class ProductRepository{
     productDao
@@ -36,4 +38,5 @@ class ProductRepository{
     }
 }
 // en esta parte debo elegir si es mongo o fs o otra persistencia... POR EL MOMENTO SOLO MONGOOSE
-export const productRepository = new ProductRepository(productDAOMongo)
+export let productRepository = new ProductRepository(productDAOMongo)
+if( PERSISTENCE !== "mongo_atlas") productRepository = new ProductRepository(ProductDAOFs)

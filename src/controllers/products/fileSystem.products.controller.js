@@ -1,3 +1,4 @@
+/*
 import { ProductManager } from "../../managers/fileSystem/ProductManager.js";
 import { randomUUID } from "crypto";
 import { Product } from "../../models/Product.js";
@@ -68,3 +69,5 @@ export async function updateProductsByIDFileSystem (req, res , next){
         next(error);
     }
 }
+
+*/

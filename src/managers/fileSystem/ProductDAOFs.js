@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 
 // AL FINAL, BORRAR EL ARCHIVO "ProductManager.js"
 
-import { validateRealNumber , validateIntegerNumber , validateString} from '../../models/validations/validations';
+import { validateRealNumber , validateIntegerNumber , validateString} from '../../models/validations/validations.js';
 
 export class ProductDAOFs{
     path = "";

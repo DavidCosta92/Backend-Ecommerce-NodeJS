@@ -16,29 +16,3 @@ productsRouter.post('/', onlyAuthenticated, onlyAdmin, postProducts);
 productsRouter.get('/:pid', onlyAuthenticated, onlyAdmin , getProductsByID);
 productsRouter.delete("/:pid" , onlyAuthenticated, onlyAdmin , deleteProductsByID);
 productsRouter.put('/:pid', onlyAuthenticated, onlyAdmin , updateProductsByID);
-
-
-
-
-
-// ESTOS IMPORT LOS DEBO BORRAR Y CAMBIAR TODO SOLO POR product CONTROLERS, pero antes debo migrar la logica al repositorio quien determinara si va a ser fs o mongo, y debo elimianr todas las rutas al pedo de fs ya que dejaran de existir..
-import { getProductsFileSystem , postProductsFileSystem , getProductsByIDFileSystem ,updateProductsByIDFileSystem , deleteProductsByIDFileSystem} from '../controllers/products/fileSystem.products.controller.js';
-
-
-// TODAS ESTAS RUTAS DEBEN BORRARSE Y METERSE AL DAO DE FS, YA QUE EL REPOSITORIO ELIGIRA A QUE DAO SE CONECTARA SI MONGO O FS
-// TODAS ESTAS RUTAS DEBEN BORRARSE Y METERSE AL DAO DE FS, YA QUE EL REPOSITORIO ELIGIRA A QUE DAO SE CONECTARA SI MONGO O FS
-// TODAS ESTAS RUTAS DEBEN BORRARSE Y METERSE AL DAO DE FS, YA QUE EL REPOSITORIO ELIGIRA A QUE DAO SE CONECTARA SI MONGO O FS
-// TODAS ESTAS RUTAS DEBEN BORRARSE Y METERSE AL DAO DE FS, YA QUE EL REPOSITORIO ELIGIRA A QUE DAO SE CONECTARA SI MONGO O FS
-// TODAS ESTAS RUTAS DEBEN BORRARSE Y METERSE AL DAO DE FS, YA QUE EL REPOSITORIO ELIGIRA A QUE DAO SE CONECTARA SI MONGO O FS
-// TODAS ESTAS RUTAS DEBEN BORRARSE Y METERSE AL DAO DE FS, YA QUE EL REPOSITORIO ELIGIRA A QUE DAO SE CONECTARA SI MONGO O FS
-productsRouter.get("/fs/" , getProductsFileSystem);
-productsRouter.post('/fs/', postProductsFileSystem);
-productsRouter.get('/fs/:pid', getProductsByIDFileSystem);
-productsRouter.put('/fs/:pid', updateProductsByIDFileSystem);
-productsRouter.delete("/fs/:pid" , deleteProductsByIDFileSystem);
-// TODAS ESTAS RUTAS DEBEN BORRARSE Y METERSE AL DAO DE FS, YA QUE EL REPOSITORIO ELIGIRA A QUE DAO SE CONECTARA SI MONGO O FS
-// TODAS ESTAS RUTAS DEBEN BORRARSE Y METERSE AL DAO DE FS, YA QUE EL REPOSITORIO ELIGIRA A QUE DAO SE CONECTARA SI MONGO O FS
-// TODAS ESTAS RUTAS DEBEN BORRARSE Y METERSE AL DAO DE FS, YA QUE EL REPOSITORIO ELIGIRA A QUE DAO SE CONECTARA SI MONGO O FS
-// TODAS ESTAS RUTAS DEBEN BORRARSE Y METERSE AL DAO DE FS, YA QUE EL REPOSITORIO ELIGIRA A QUE DAO SE CONECTARA SI MONGO O FS
-// TODAS ESTAS RUTAS DEBEN BORRARSE Y METERSE AL DAO DE FS, YA QUE EL REPOSITORIO ELIGIRA A QUE DAO SE CONECTARA SI MONGO O FS
-// TODAS ESTAS RUTAS DEBEN BORRARSE Y METERSE AL DAO DE FS, YA QUE EL REPOSITORIO ELIGIRA A QUE DAO SE CONECTARA SI MONGO O FS
