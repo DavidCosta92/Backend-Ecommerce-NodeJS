@@ -17,3 +17,17 @@ export const PERSISTENCE = process.env.PERSISTENCE || "mongo_atlas"
 
 //ENVIROMENT
 export const NODE_ENV = process.env.NODE_ENV || 'development'
+
+//EMAIL SERVICE
+export const EMAIL_CONFIG = {
+    service: 'gmail' ,
+    secure: false,
+    port: 587,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS_GMAIL
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+}

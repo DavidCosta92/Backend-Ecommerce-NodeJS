@@ -1,5 +1,6 @@
 import { AuthenticationError } from "../../models/errors/authentication.error.js"
 import { sessionService } from "../../services/sessionService.js"
+import { emailService } from "../../utils/email.service.js"
 
 
 export async function postSession(req, res, next) {  
@@ -27,6 +28,12 @@ export async function postSessionTokenCookie(req, res, next) {
         const token = await sessionService.getSessionToken(req.body.email , req.body.password)
          res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60 * 24 })         
          req.logger.http(`Inicio de session por token`)
+
+         emailService.sendTextEmail("davidcst2991@gmail.com", "hola este es uin segundo maaaaillll diciendo que alguien se logueo en el tp")         
+         emailService.sendHtmlEmail("davidcst2991@gmail.com", "<a href='http://localhost:8080/api/users/products'> <h1> hola este es uin segundo maaaaillll diciendo que alguien se logueo en el tp </h1> </a>")
+         
+         req.logger.warning(`Inicio de session por token`)
+
          res.status(201).json(req.session.user)
          next()
     } catch (error) {

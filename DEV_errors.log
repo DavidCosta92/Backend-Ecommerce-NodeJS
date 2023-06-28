@@ -7,3 +7,8 @@
 [34mwarning[39m: [34mEste es un ejemplo de un log de nivel warning[39m {"timestamp":"2023-06-20 20:30:44"}
 [33merror[39m: [33mEste es un ejemplo de un log de nivel error[39m {"timestamp":"2023-06-20 20:30:44"}
 [31mfatal[39m: [31mEste es un ejemplo de un log de nivel fatal[39m {"timestamp":"2023-06-20 20:30:44"}
+[34mwarning[39m: [34mInicio de session por token[39m {"timestamp":"2023-06-28 10:24:13"}
+[34mwarning[39m: [34mInicio de session por token[39m {"timestamp":"2023-06-28 10:25:01"}
+[34mwarning[39m: [34mError en envio mail =>  self-signed certificate in certificate chain[39m {"code":"ESOCKET","command":"CONN","stack":"Error: self-signed certificate in certificate chain\n    at TLSSocket.onConnectSecure (node:_tls_wrap:1540:34)\n    at TLSSocket.emit (node:events:513:28)\n    at TLSSocket._finishInit (node:_tls_wrap:959:8)\n    at ssl.onhandshakedone (node:_tls_wrap:743:12)","timestamp":"2023-06-28 10:25:01"}
+[34mwarning[39m: [34mInicio de session por token[39m {"timestamp":"2023-06-28 10:27:43"}
+[34mwarning[39m: [34mInicio de session por token[39m {"timestamp":"2023-06-28 10:31:41"}
