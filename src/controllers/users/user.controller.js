@@ -6,11 +6,9 @@ import { userService } from "../../services/userService.js"
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})
  }
-
  export function userLogin(req,res,next){    
     res.render("userLogin", {pageTitle: "Login"})
  }
- 
  export async function productsView(req,res,next){ 
    const paginatedProducts = await productDAOMongo.getProducts(req,next)
    let dataRender
@@ -55,7 +53,6 @@ export function registerView(req,res,next){
       next(error)
     }
  }
-
 export async function renderPasswordReset (req,res,next){   
    res.render("restore-password", {pageTitle: "Reset password"})
 }
@@ -67,7 +64,6 @@ export async function sendEmailResetPassword (req,res,next){
       next(error)
    }
 }
-
 export async function renderFormNewPassword(req,res,next){
    try {
       const validToken = await userService.validateToken(req.query.email , req.query.token)
@@ -79,9 +75,7 @@ export async function renderFormNewPassword(req,res,next){
    } catch (error) {
       next(error)
    }
-
 }
-
 export async function createNewPassword(req,res,next){
    try {      
       await userService.createNewPassword(req.body.password ,  req.body.email)

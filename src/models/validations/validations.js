@@ -10,6 +10,11 @@ export function validateString(field, value){
     if (typeof value !== 'string' ) throw new IllegalInputArg(`${field} debe ser una cadena de caracteres`) 
     return value
 }
+export function validatePasswords(field, value){
+    validateString(field, value)    
+    if (value.length<5) throw new IllegalInputArg(`${field} debe tener al menos 5 caracteres`) 
+    return value
+}
 export function validateEmail(field, value){
     validateString(field, value)
     if (!value.includes('@') && !value.includes('github-user')) throw new IllegalInputArg(`${field} debe contener el simbolo '@'`) 

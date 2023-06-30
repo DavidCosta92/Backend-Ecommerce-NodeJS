@@ -1,6 +1,3 @@
-import { AuthenticationError } from "../../models/errors/authentication.error.js"
-import { emailService } from "../../utils/email.service.js"
-
 import { userSessionService } from "../../services/sessionService.js"
 
 export async function postSession(req, res, next) {  

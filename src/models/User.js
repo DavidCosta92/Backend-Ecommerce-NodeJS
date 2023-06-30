@@ -1,5 +1,5 @@
 import { validateString , validateEmail , validateIntegerNumber} from "./validations/validations.js"
-
+import { Password } from "./Password.js"
 export class User {
     #first_name
     #last_name
@@ -14,7 +14,7 @@ export class User {
         this.#last_name = validateString("Apellido", last_name)
         this.#email = validateEmail("Email", email)
         this.#age = validateIntegerNumber("Edad",age)
-        this.#password = validateString("Contraseña",password)
+        this.#password = new Password(password).getPassword()
         this.#cart = cart
         this.#role = validateString("Rol", role)
     }

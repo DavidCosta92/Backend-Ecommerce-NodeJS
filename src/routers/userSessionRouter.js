@@ -25,7 +25,6 @@ userRouter.use(passportInitialize, passportSession)
 //--- reset password ---
 userRouter.get('/restore-password', renderPasswordReset)
 userRouter.post('/restore-password', sendEmailResetPassword)
-
 userRouter.get('/new-password/', renderFormNewPassword)
 userRouter.post('/new-password/', createNewPassword)
 
