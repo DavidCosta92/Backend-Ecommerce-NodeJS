@@ -15,3 +15,5 @@
 [34mwarning[39m: [34mInicio de session por token[39m {"timestamp":"2023-06-28 10:32:54"}
 [31mfatal[39m: [31m*** entity.parse.failed -->> undefined[39m {"timestamp":"2023-06-28 17:31:05"}
 [31mfatal[39m: [31m*** entity.parse.failed -->> undefined[39m {"timestamp":"2023-06-28 17:33:04"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-06-29 22:37:24"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-06-29 22:38:39"}

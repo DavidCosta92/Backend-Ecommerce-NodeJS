@@ -60,11 +60,15 @@ export async function renderPasswordReset (req,res,next){
    res.render("restore-password", {pageTitle: "Reset password"})
 }
 export async function sendEmailResetPassword (req,res,next){
-   const status = await userService.sendEmailResetPassword(req.body.email)
-   console.log("statusstatusstatusstatusstatus => ", status)
-   
-  // const email = userService.
+   try {
+      const response = await userService.sendEmailResetPassword(req.body.email)
+      console.log("response => ", response)
+      
+      res.status(response.status).json({ message: response.mensaje})
 
+   } catch (error) {
+      next(error)
+   }
 }
 
 export async function renderFormNewPassword(req,res,next){

@@ -23,6 +23,7 @@ class UserService {
     }
 
     async sendEmailResetPassword(email){
+        let response
         try {
             // revisar si existe email
             const usuario = await this.findUserByEmail(email)
@@ -34,11 +35,14 @@ class UserService {
                 <a href='http://localhost:8080/api/users/new-password/?email=${email}&token=${token}'> 
                     <p>este es un email para que resetes tu password, te pedimos que hagas click en este enlace para crear un nuevo password </p>
                 </a>`
-                emailService.sendHtmlEmail(email, templateEmail, "Reseteo de password")            
-            }                
+                emailService.sendHtmlEmail(email, templateEmail, "Reseteo de password")      
+                response = {status:200 , mensaje: "Email enviado"}        
+            }   
         } catch (error) {
+            response = {status:500 , mensaje: error}        
             new Error("USER NOT FOUND")
         }
+        return response
     }
 
     async findUserByEmail(email){

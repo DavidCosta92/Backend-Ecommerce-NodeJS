@@ -13,15 +13,15 @@ class EmailService {
         const options ={
             from : "Email desde TP Final Coderhouse Nodejs",
             to : to ,
-            subject : subject , // se supone que si no envio subject, ira uno por defecto
+            subject : subject ,
             text : msj             
         }
         try {
             const sentEmail = await this.#nodeMailer.sendMail(options)
-            winstonLogger.info("SUPUESTAMENTE ENVIE MAIL => ", sentEmail)
+            winstonLogger.info("Envio de email a =>", sentEmail.accepted)
             return sentEmail
         } catch (error) {
-            winstonLogger.warning("Error en envio mail => ", error)
+            winstonLogger.warning("Error en envio email ", error)
             throw error
         }
 
@@ -30,7 +30,7 @@ class EmailService {
         const options ={
             from : "Email desde TP Final Coderhouse Nodejs",
             to : to ,
-            subject : subject , // se supone que si no envio subject, ira uno por defecto
+            subject : subject ,
             html : html ,      
             attachments:[] // para enviar los archivos que necesite, ver info en carpeta "pendientes coder"
         }

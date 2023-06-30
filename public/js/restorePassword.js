@@ -4,9 +4,7 @@ const formResetPassword = document.getElementById("formResetPassword")
 if (formResetPassword instanceof HTMLFormElement){
     formResetPassword.addEventListener("submit", async event =>{
         event.preventDefault()
-        const email = document.getElementById("input_email").value   
-        console.log("intentando enviar input_email", email)     
-        
+        const email = document.getElementById("input_email").value           
         const restore = await fetch('/api/users/restore-password',{
             method: 'POST',
             headers: {
@@ -15,9 +13,9 @@ if (formResetPassword instanceof HTMLFormElement){
             },
             body: JSON.stringify({email : email})
         })        
-
+        console.log("restore", restore)
         if (restore.status === 200) {
-            alert("Revisa tu casilla de correo, hemos enviado un emal con pasos a seguir!")
+            alert("Revisa tu casilla de correo, hemos enviado un email con pasos a seguir!")
             window.location.href = 'http://localhost:8080/'
         } else {
             const restoreStatus = await restore.json()
