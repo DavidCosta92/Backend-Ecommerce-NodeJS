@@ -55,3 +55,32 @@ export function registerView(req,res,next){
       next(error)
     }
  }
+
+export async function renderPasswordReset (req,res,next){   
+   res.render("restore-password", {pageTitle: "Reset password"})
+}
+export async function sendEmailResetPassword (req,res,next){
+   const status = await userService.sendEmailResetPassword(req.body.email)
+   console.log("statusstatusstatusstatusstatus => ", status)
+   
+  // const email = userService.
+
+}
+
+export async function renderFormNewPassword(req,res,next){
+   const validToken = await userService.validateToken(req.query.email , req.query.token)
+
+   if(validToken){      
+      res.render("create-new-password", {pageTitle: "Crear nuevo password", email : req.query.email})
+   } else{
+      res.render("errororrororor")
+   }
+
+}
+export async function createNewPassword(req,res,next){
+
+   console.log("req.body.password", req.body.password)
+   console.log("req.body.email", req.body.email)
+
+   userService.createNewPassword(req.body.password ,  req.body.email)
+}

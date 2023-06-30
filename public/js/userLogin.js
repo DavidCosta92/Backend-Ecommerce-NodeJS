@@ -38,3 +38,7 @@ function goToRegister(){
 function goToProducts(){    
     window.location.href = '/api/users/products'
 }
+
+function goToRestorePassword(){
+    window.location.href = '/api/users/restore-password'
+}

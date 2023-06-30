@@ -4,6 +4,7 @@ import { userModel , userModelGitHub} from "../../db/mongoose/models/userModel.j
 import { RegisterError, RegisterErrorAlreadyExistUser } from "../../models/errors/register.error.js";
 
 export class UserDAOMongoose{ 
+    
     async createUser({user}){
         const alreadyExistUser = await this.existByEmail(user.email)
 
@@ -33,5 +34,18 @@ export class UserDAOMongoose{
         const gitHubUser = await userModelGitHub.create(user)
         return {gitHubUser , code:201}
     }        
+    async updatePasswordUser(email , password){
+        try {
+            const user = await userModel.findOne({email : email})
+            const encryptedPassword = encrypter.hashPassword(password)
+            await userModel.updateOne({ email: email }, {
+                $set: { password: encryptedPassword }
+            })
+            user.save()
+            return await userModel.findOne({email : email})
+        } catch (error) {
+            throw new Error (error)
+        }
+    }
 }       
 export const user_dao_mongo_manager = new UserDAOMongoose()

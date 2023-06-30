@@ -18,7 +18,6 @@ class EmailService {
         }
         try {
             const sentEmail = await this.#nodeMailer.sendMail(options)
-            console.log("En teoria envie email =>" , sentEmail)
             winstonLogger.info("SUPUESTAMENTE ENVIE MAIL => ", sentEmail)
             return sentEmail
         } catch (error) {
@@ -32,7 +31,8 @@ class EmailService {
             from : "Email desde TP Final Coderhouse Nodejs",
             to : to ,
             subject : subject , // se supone que si no envio subject, ira uno por defecto
-            html : html             
+            html : html ,      
+            attachments:[] // para enviar los archivos que necesite, ver info en carpeta "pendientes coder"
         }
         try {
             const sentEmail = await this.#nodeMailer.sendMail(options)

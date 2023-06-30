@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { Router } from "express";
 import express from "express"
-import { registerView, postUser, userLogin, productsView } from "../controllers/users/user.controller.js";
+import { registerView, postUser, userLogin, productsView , renderPasswordReset , sendEmailResetPassword , renderFormNewPassword , createNewPassword} from "../controllers/users/user.controller.js";
 import { authenticator } from "../middlewares/authenticator.js";
 import session from "../middlewares/session.js";
 import { passportInitialize , passportSession } from "../middlewares/passport.js";
@@ -21,3 +21,12 @@ userRouter.get("/login", userLogin)
 userRouter.get("/products", authenticator, productsView, (req, res, next)=>{})
 
 userRouter.use(passportInitialize, passportSession)
+
+//--- reset password ---
+userRouter.get('/restore-password', renderPasswordReset)
+userRouter.post('/restore-password', sendEmailResetPassword)
+
+userRouter.get('/new-password/', renderFormNewPassword)//resetPassword)
+
+userRouter.post('/new-password/', createNewPassword)
+

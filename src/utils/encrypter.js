@@ -24,6 +24,9 @@ class Encrypter {
           new AuthenticationExpiredError(error) 
         }
     }    
+    createTokenToRestorePassword(data){
+      return jwt.sign(data, process.env.JWT_SECRET, { expiresIn: '3600s' })
+    }
 }
 
 export const encrypter = new Encrypter()
