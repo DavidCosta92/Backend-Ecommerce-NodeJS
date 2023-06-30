@@ -7,7 +7,6 @@ if (formUserLogin instanceof HTMLFormElement){
         const email = document.getElementById("input_email")        
         const password = document.getElementById("input_password")
         const dataUser = {email: email.value, password : password.value}   
-        
         const session = await fetch(
             /*'/api/users/session'*/                //setea para trabajar con login manual 
             /*'/api/users/session/localLogin' */    //setea para trabajar con passport 
@@ -27,8 +26,7 @@ if (formUserLogin instanceof HTMLFormElement){
         } else {
             const statusSession = await session.json()
             alert(statusSession.errorMessage)
-        }
-       
+        }       
     })
 }
 

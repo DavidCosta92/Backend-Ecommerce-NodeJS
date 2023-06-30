@@ -36,11 +36,10 @@ class EmailService {
         }
         try {
             const sentEmail = await this.#nodeMailer.sendMail(options)
-            console.log("En teoria envie email =>" , sentEmail)
-            winstonLogger.info("SUPUESTAMENTE ENVIE MAIL => ", sentEmail)
+            winstonLogger.warning("SUPUESTAMENTE ENVIE MAIL => ",sentEmail.accepted)
             return sentEmail
         } catch (error) {
-            winstonLogger.warn("Error en envio mail => ", error)
+            winstonLogger.warning("Error en envio mail => ", error)
             throw error
         }
 

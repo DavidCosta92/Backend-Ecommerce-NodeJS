@@ -13,15 +13,15 @@ if (formResetPassword instanceof HTMLFormElement){
             },
             body: JSON.stringify({email : email})
         })        
-        console.log("restore", restore)
-        if (restore.status === 200) {
-            alert("Revisa tu casilla de correo, hemos enviado un email con pasos a seguir!")
-            window.location.href = 'http://localhost:8080/'
-        } else {
-            const restoreStatus = await restore.json()
-            alert(restoreStatus.errorMessage)
-        }
-       
+        restore.json().then(data =>{
+            console.log(data)
+            if (restore.status === 200) {
+                alert(`Revisa tu casilla de correo, hemos enviado un email con pasos a seguir! : ${data.mensaje}`)
+                window.location.href = 'http://localhost:8080/'
+            }else {
+                alert(`Parece que hubo un error ${data.errorMessage}`)
+            }   
+        })
     })
 }
 

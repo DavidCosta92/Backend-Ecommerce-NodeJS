@@ -11,7 +11,7 @@ import { productModel } from "../db/mongoose/models/productModel.js";
 import { chatModel } from "../db/mongoose/models/chatModel.js";
 import { passportInitialize , passportSession } from "../middlewares/passport.js";
 import session from "../middlewares/session.js";
-import { errorHandlerAPI } from "../middlewares/errorMiddleware.js";
+import { errorHandlerAPI , errorHandlerWEB} from "../middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
 import { getCurrentUser } from "../middlewares/authenticator.js";
 import { MONGOOSE_STRING_ATLAS, NODE_ENV } from "../config/config.js";
@@ -60,7 +60,9 @@ app.get("/loggerTest", (req, res)=>{
     res.send({message:"PRueba de loggers"})
 });
 
-app.use(errorHandlerAPI)
+
+app.use(errorHandlerWEB) 
+app.use(errorHandlerAPI) 
 
 const httpServer = app.listen(process.env.PORT, () => winstonLogger.info(`Servidor activo, entorno ${NODE_ENV} en host ${process.env.PORT}`))//console.log("Servidor activo",process.env.PORT,  "Enviroment =>", NODE_ENV))
 

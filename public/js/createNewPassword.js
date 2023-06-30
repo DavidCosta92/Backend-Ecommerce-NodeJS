@@ -15,14 +15,17 @@ if (formNewPassword instanceof HTMLFormElement){
             },
             body: JSON.stringify({password : password , email : email})
         })        
-
-        if (newPassword.status === 200) {
-            alert("Revisa tu casilla de correo, hemos enviado un emal con pasos a seguir!")
-            window.location.href = 'http://localhost:8080/'
-        } else {
-            const newPasswordStatus = await newPassword.json()
-            alert(newPasswordStatus.errorMessage)
-        }
+        
+        newPassword.json().then(data =>{
+            console.log("newPassword =>", newPassword)
+            console.log("data =>",data)
+            if (newPassword.status === 200) {
+                alert(`Perfecto! ${data.mensaje}`)
+                window.location.href = 'http://localhost:8080/'
+            }else {
+                alert(`Parece que hubo un error ${data.errorMessage}`)
+            }   
+        })
        
     })
 }

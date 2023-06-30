@@ -13,8 +13,8 @@ class CartRepository{
         return await this.cartDao.getCarts(req, res,next)        
     }
     
-    async postCart (req, res, next){
-        return await this.cartDao.postCart(req, res,next)
+    async postCart (){
+        return await this.cartDao.createCart()
     }
     
     async getCartsByID (req, res, next){     

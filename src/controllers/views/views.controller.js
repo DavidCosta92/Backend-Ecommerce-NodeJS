@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { cartstModel } from "../../db/mongoose/models/cartModel.js"
 import { productModel } from "../../db/mongoose/models/productModel.js"
-import { sessionService } from "../../services/sessionService.js"
+import { userSessionService } from "../../services/sessionService.js"
 
 export async function renderProductsView(req,res,next){    
         /* paginado y ordenamiento */   
@@ -11,7 +11,7 @@ export async function renderProductsView(req,res,next){
             
         const products = await productModel.paginate({},pageOptions)
     
-        const user = sessionService.getLoguedUser(req)
+        const user = userSessionService.getLoguedUser(req)
     
         const response ={
             status : res.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`,
@@ -42,7 +42,7 @@ export async function renderProductsView(req,res,next){
     const pageOptions = { limit: queryLimit, page: queryPage, lean : true, populate: 'products.product'}        
     const carts = await cartstModel.paginate({},pageOptions)
 
-    const user = sessionService.getLoguedUser(req)
+    const user = userSessionService.getLoguedUser(req)
 
     const response ={
         status : res.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`,

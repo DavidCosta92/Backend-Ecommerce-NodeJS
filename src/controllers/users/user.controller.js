@@ -62,29 +62,33 @@ export async function renderPasswordReset (req,res,next){
 export async function sendEmailResetPassword (req,res,next){
    try {
       const response = await userService.sendEmailResetPassword(req.body.email)
-      console.log("response => ", response)
-      
-      res.status(response.status).json({ message: response.mensaje})
-
+      res.status(response.status).json({ mensaje: response.mensaje})
    } catch (error) {
       next(error)
    }
 }
 
 export async function renderFormNewPassword(req,res,next){
-   const validToken = await userService.validateToken(req.query.email , req.query.token)
-
-   if(validToken){      
-      res.render("create-new-password", {pageTitle: "Crear nuevo password", email : req.query.email})
-   } else{
-      res.render("errororrororor")
+   try {
+      const validToken = await userService.validateToken(req.query.email , req.query.token)
+      if(validToken){      
+         res.render("create-new-password", {pageTitle: "Crear nuevo password", email : req.query.email})
+      } else{
+         res.render("restore-password", {pageTitle: "Error de token", error : true})
+      }
+   } catch (error) {
+      next(error)
    }
 
 }
+
 export async function createNewPassword(req,res,next){
-
-   console.log("req.body.password", req.body.password)
-   console.log("req.body.email", req.body.email)
-
-   userService.createNewPassword(req.body.password ,  req.body.email)
+   try {      
+      await userService.createNewPassword(req.body.password ,  req.body.email)
+      res.status(200).json({ mensaje : "Password cambiado"})
+   } catch (error) {
+      res.status(400).json({ errorMessage : error.description})
+      //next(error)
+   }
+   
 }

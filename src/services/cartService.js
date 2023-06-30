@@ -1,18 +1,18 @@
 import { cartRepository } from "../repositories/cartRepository.js";
 import { productService } from "./productService.js";
 import { ticketRepository } from "../repositories/ticketRepository.js";
-import { sessionService } from "./sessionService.js";
+import { userSessionService } from "./sessionService.js";
 
 class CartService{
     cartRepository
     productService
     ticketRepository
-    sessionService
-    constructor(cartRepo , productService, ticketRepository ,sessionService){    
+    userSessionService
+    constructor(cartRepo , productService, ticketRepository ,userSessionService){    
         this.cartRepository = cartRepo; 
         this.productService = productService;  
         this.ticketRepository = ticketRepository;
-        this.sessionService = sessionService
+        this.userSessionService = userSessionService
     }
 
 
@@ -106,13 +106,13 @@ class CartService{
             console.log("+++++++++++++++++++++++")
         }
                    
-        const purchaser = this.sessionService.getLoguedUser(req).email
+        const purchaser = this.userSessionService.getLoguedUser(req).email
         const purchaseTicket = await this.ticketRepository.createTicket(acceptedProds , rejectedProds , amount , purchaser,req, res, next)         
-        const user = sessionService.getLoguedUser(req)
+        const user = userSessionService.getLoguedUser(req)
 
         return { purchaseTicket , user }
     }
 
 
 } 
-export const cartService = new CartService(cartRepository , productService, ticketRepository, sessionService)
+export const cartService = new CartService(cartRepository , productService, ticketRepository, userSessionService)

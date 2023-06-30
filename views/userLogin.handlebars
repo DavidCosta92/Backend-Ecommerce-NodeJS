@@ -1,4 +1,16 @@
 <h5 class="text-center mt-5">FORMULARIO DE LOGIN</h5>
+
+{{#if error}}
+<div>
+    <h3>Parece que hubo un error, intenta loguandote nuevamente</h3>
+</div>
+{{/if}}
+{{#if success}}
+<div>
+    <h3>Perfecto {{success}} </h3>
+</div>
+{{/if}}
+
 <form id="formUserLogin" action="" class="p-4 m-4 border border-success rounded d-flex flex-wrap justify-content-around">
     <label for="input_email"class="w-50 mt-2">Email</label>
     <input id="input_email" type="text" placeholder="input_email"class="w-50 mt-2">

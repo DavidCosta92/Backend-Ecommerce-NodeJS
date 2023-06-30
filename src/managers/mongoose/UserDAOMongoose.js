@@ -1,15 +1,14 @@
 // @ts-nocheck
 import { encrypter } from "../../utils/encrypter.js";
 import { userModel , userModelGitHub} from "../../db/mongoose/models/userModel.js";
-import { RegisterError, RegisterErrorAlreadyExistUser } from "../../models/errors/register.error.js";
+import { NotFoundUserWeb, RegisterError, RegisterErrorAlreadyExistUser } from "../../models/errors/register.error.js";
 
 export class UserDAOMongoose{ 
     
     async createUser({user}){
         const alreadyExistUser = await this.existByEmail(user.email)
-
-       if(alreadyExistUser) throw new RegisterErrorAlreadyExistUser("Error de registro, usuario YA EXISTE")
-       
+        console.log("LLEGUE HASTRA AQUI?")
+       if(alreadyExistUser) throw new RegisterErrorAlreadyExistUser("Error de registro, usuario YA EXISTE")       
         user.password = encrypter.hashPassword(user.password);  
         await userModel.create(user)   
         const newUser = await this.searchByEmail(user.email)
@@ -22,8 +21,8 @@ export class UserDAOMongoose{
         return await userModel.findOne({ email: email }) !==null? true : false;        
     }
     async searchByEmail(email){
-        const user = await userModel.findOne({ email: email }).lean()
-        if (!user) throw new Error("USER NOT FOUND")
+        const user = await userModel.findOne({ email: email }).lean()    
+        if (!user) throw new NotFoundUserWeb("Usuario no encontrado")
         return user;        
     }
     async searchByGitHubUsername(username){
@@ -48,4 +47,4 @@ export class UserDAOMongoose{
         }
     }
 }       
-export const user_dao_mongo_manager = new UserDAOMongoose()
+export const userDaoMongo = new UserDAOMongoose()

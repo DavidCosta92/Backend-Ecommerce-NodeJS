@@ -1,11 +1,14 @@
 // @ts-nocheck
 import { User } from "../models/User.js"
-import { user_dao_mongo_manager } from "../managers/mongoose/UserDAOMongoose.js"
-import { cartDAOMongoose } from "../managers/mongoose/CartDAOMongoose.js"
 import { userRepository } from "../repositories/userRepository.js"
 import { emailService } from "../utils/email.service.js"
 import { encrypter } from "../utils/encrypter.js"
 import { AuthorizationError } from "../models/errors/authorization.error.js"
+import { AuthenticationExpiredError , AuthenticationExpiredErrorWEB } from "../models/errors/authentication.error.js"
+import { IllegalInputArgWEB } from "../models/errors/validations.errors.js"
+import { Password } from "../models/Password.js"
+import { NotFoundUserWeb } from "../models/errors/register.error.js"
+import { cartRepository } from "../repositories/cartRepository.js"
 
 class UserService {
     userRepository
@@ -13,21 +16,17 @@ class UserService {
         this.userRepository = userRepository
     }
     async createUser(req,next) {
-        const idNewCart = await cartDAOMongoose.createCart(next)
+        const idNewCart = await cartRepository.postCart()
         let {first_name, last_name, email, age, password, cart, role} = req.body  
         if ( req.body.email === "adminCoder@coder.com" && req.body.password === "adminCod3r123") role="admin"     
         cart = idNewCart;
         const newUser = new User({first_name, last_name, email, age, password, cart, role})
-        const {user , code} = await user_dao_mongo_manager.createUser({newUser})
+        const {user , code} = await userRepository.createUser({newUser})
         return {user, code}
     }
-
-    async sendEmailResetPassword(email){
-        let response
+    async sendEmailResetPassword(email){        
         try {
-            // revisar si existe email
             const usuario = await this.findUserByEmail(email)
-            // si existe, enviar email con token
             if(usuario){
                 const email = usuario.email
                 const token =  encrypter.createTokenToRestorePassword({email}) 
@@ -36,49 +35,39 @@ class UserService {
                     <p>este es un email para que resetes tu password, te pedimos que hagas click en este enlace para crear un nuevo password </p>
                 </a>`
                 emailService.sendHtmlEmail(email, templateEmail, "Reseteo de password")      
-                response = {status:200 , mensaje: "Email enviado"}        
+                return {status:200 , mensaje: "Email enviado"}        
             }   
-        } catch (error) {
-            response = {status:500 , mensaje: error}        
-            new Error("USER NOT FOUND")
+        } catch (error) {     
+            throw new NotFoundUserWeb("Usuario no encontrado")
         }
-        return response
     }
-
     async findUserByEmail(email){
         const user = this.userRepository.findUserByEmail(email)
         return user;
     }
     async validateToken(email , token){
+        // Solo valido para restaurar contraseña por web
         try {
             let validToken = false
             const userEmail = await this.userRepository.findUserByEmail(email)
             const userToken = encrypter.getDataFromToken(token)
             if(userToken.email === userEmail.email) validToken = true
-
             return validToken
         } catch (error) {
-            throw new AuthenticationExpiredError("Token no valido")
+            throw new AuthenticationExpiredErrorWEB("Token no valido")
         }
     }
     async createNewPassword(password , email){
         const userDb = await this.userRepository.findUserByEmail(email)
 
-        // HACER VALIDACIONES DE PASSWORD.. CANTIDAD DE DIGITOS, Y OTRAS COSAS PARECIDAS...
-        // HACER VALIDACIONES DE PASSWORD.. CANTIDAD DE DIGITOS, Y OTRAS COSAS PARECIDAS...
-        // HACER VALIDACIONES DE PASSWORD.. CANTIDAD DE DIGITOS, Y OTRAS COSAS PARECIDAS...
-        // HACER VALIDACIONES DE PASSWORD.. CANTIDAD DE DIGITOS, Y OTRAS COSAS PARECIDAS...
-        // HACER VALIDACIONES DE PASSWORD.. CANTIDAD DE DIGITOS, Y OTRAS COSAS PARECIDAS...
-        // HACER VALIDACIONES DE PASSWORD.. CANTIDAD DE DIGITOS, Y OTRAS COSAS PARECIDAS...
-        // HACER VALIDACIONES DE PASSWORD.. CANTIDAD DE DIGITOS, Y OTRAS COSAS PARECIDAS...
-        // HACER VALIDACIONES DE PASSWORD.. CANTIDAD DE DIGITOS, Y OTRAS COSAS PARECIDAS...
+        const newPassword = new Password(password).getPassword()
 
-        const validPass = !encrypter.comparePasswords(password , userDb.password)
-        
+        const validPass = !encrypter.comparePasswords(newPassword , userDb.password)
+
         if(validPass){
-            user_dao_mongo_manager.updatePasswordUser(email , password)
+            userRepository.updatePasswordUser(email , newPassword)
         }else {
-            throw new Error ("Password no valido para ser ingresado")
+            throw new IllegalInputArgWEB("Password no valido para ser ingresado")
         }
     }
 } 

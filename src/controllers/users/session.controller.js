@@ -1,11 +1,11 @@
 import { AuthenticationError } from "../../models/errors/authentication.error.js"
-import { sessionService } from "../../services/sessionService.js"
 import { emailService } from "../../utils/email.service.js"
 
+import { userSessionService } from "../../services/sessionService.js"
 
 export async function postSession(req, res, next) {  
     try {
-         const userBD = await sessionService.checkUserAndPassword(req.body.email , req.body.password)
+         const userBD = await userSessionService.checkUserAndPassword(req.body.email , req.body.password)
 
          req.session.user = {
              first_name: userBD.first_name,
@@ -25,13 +25,13 @@ export async function postSession(req, res, next) {
   
 export async function postSessionTokenCookie(req, res, next) {  
     try {
-        const token = await sessionService.getSessionToken(req.body.email , req.body.password)
-         res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60 * 24 })         
-         req.logger.http(`Inicio de session por token`)
-         res.status(201).json(req.session.user)
-         next()
+        const token = await userSessionService.getSessionToken(req.body.email , req.body.password)
+        res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60 * 24 })         
+        req.logger.http(`Inicio de session por token`)
+        res.status(201).json(req.session.user)
+        next()
     } catch (error) {
-        next(new AuthenticationError("Error de logueo, revisa las credenciales"))
+        next(error)
     }
 }
 

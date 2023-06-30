@@ -17,3 +17,15 @@
 [31mfatal[39m: [31m*** entity.parse.failed -->> undefined[39m {"timestamp":"2023-06-28 17:33:04"}
 [31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-06-29 22:37:24"}
 [31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-06-29 22:38:39"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> Token no valido[39m {"timestamp":"2023-06-30 09:15:55"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> Token no valido[39m {"timestamp":"2023-06-30 09:16:07"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> Token no valido[39m {"timestamp":"2023-06-30 09:16:35"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-06-30 09:57:31"}
+[34mwarning[39m: [34mSUPUESTAMENTE ENVIE MAIL => [39m {"timestamp":"2023-06-30 13:16:18"}
+[34mwarning[39m: [34mSUPUESTAMENTE ENVIE MAIL => [39m {"0":"davidcst2991@gmail.com","timestamp":"2023-06-30 13:17:34"}
+[34mwarning[39m: [34mSUPUESTAMENTE ENVIE MAIL => [39m {"timestamp":"2023-06-30 13:19:04"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> Token no valido[39m {"timestamp":"2023-06-30 17:48:07"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> Token no valido[39m {"timestamp":"2023-06-30 17:48:21"}
+[34mwarning[39m: [34mSUPUESTAMENTE ENVIE MAIL => [39m {"0":"davidcst2991@gmail.com","timestamp":"2023-06-30 17:48:28"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-06-30 18:01:21"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-06-30 18:09:40"}

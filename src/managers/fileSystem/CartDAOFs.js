@@ -76,31 +76,12 @@ class CartDAOFs{
             next(error);
         }
     }
-/*
-en teoria no estoy usando este metodo, sino el create cart
-
-    async postCart  (req, res , next){
-        try {
-            await this.readCartsFile();
-            const newCart = new Cart()
-            this.carts.push(newCart)
-            await this.saveCartsFile();
-            return newCart;
-        } catch (error) {
-            next(error);
-        }
-    }
-*/
-    async createCart  (req, res , next){
-        try {
-            await this.readCartsFile();
-            const newCart = new Cart()
-            this.carts.push(newCart)
-            await this.saveCartsFile();
-            return newCart;
-        } catch (error) {
-            next(error);
-        }
+    async createCart  (){        
+        await this.readCartsFile();
+        const newCart = new Cart()
+        this.carts.push(newCart)
+        await this.saveCartsFile();
+        return newCart;
     }
 
     async findCartById  (req, res , next){

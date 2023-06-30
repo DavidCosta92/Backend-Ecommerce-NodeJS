@@ -2,7 +2,7 @@
 import passport from 'passport'
 import { AuthenticationError } from '../models/errors/authentication.error.js'
 import { encrypter } from '../utils/encrypter.js'
-import { user_dao_mongo_manager } from '../managers/mongoose/UserDAOMongoose.js'
+import { userRepository } from '../repositories/userRepository.js'
 // imports LOCAL
 import { Strategy as LocalStrategy } from 'passport-local'
 // imports GITHUB
@@ -12,7 +12,7 @@ import { cartDAOMongoose } from '../managers/mongoose/CartDAOMongoose.js'
 import { User } from '../models/User.js'
 
 passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
-    const user = await user_dao_mongo_manager.searchByEmail(username)
+    const user = await userRepository.searchByEmail(username)
     if (!user)
         return done(new AuthenticationError("Error de logueo, revisa las credenciales"))
     if (!encrypter.comparePasswords(password, user.password))
@@ -31,7 +31,7 @@ passport.use('register', new LocalStrategy({ passReqToCallback: true, usernameFi
 
         const newUserObj = new User(user)
         
-        const {newUser} = await user_dao_mongo_manager.createUser({user:newUserObj.getAllAttr()})
+        const {newUser} = await userRepository.createUser({user:newUserObj.getAllAttr()})
         /* para guardar session y loguear a la vez*/
         req.session.user = {
             first_name: newUser.first_name,
@@ -53,7 +53,7 @@ passport.use('github', new GithubStrategy({
     clientSecret: GITHUB_CLIENT_SECRET,
     callbackURL: GITHUB_CALLBACK_URL,
 }, async (accessToken, refreshToken, profile, done) => {
-    let user = await user_dao_mongo_manager.searchByGitHubUsername(profile.username);   
+    let user = await userRepository.searchByGitHubUsername(profile.username);   
     let userMail
     if(user === null){
     const idNewCart = await cartDAOMongoose.createCart(done)
@@ -70,9 +70,9 @@ passport.use('github', new GithubStrategy({
             role : "user"
         }        
         const newUser = new User(dataUser)
-        user = await user_dao_mongo_manager.createGitHubUser(newUser.getAllAttr());
+        user = await userRepository.createGitHubUser(newUser.getAllAttr());
     } 
-    let userGit = await user_dao_mongo_manager.searchByGitHubUsername(userMail);   
+    let userGit = await userRepository.searchByGitHubUsername(userMail);   
     done(null, userGit)
 }))
 
