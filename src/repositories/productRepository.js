@@ -39,4 +39,4 @@ class ProductRepository{
 }
 // en esta parte debo elegir si es mongo o fs o otra persistencia... POR EL MOMENTO SOLO MONGOOSE
 export let productRepository = new ProductRepository(productDAOMongo)
-if( PERSISTENCE !== "mongo_atlas") productRepository = new ProductRepository(ProductDAOFs)
+if( PERSISTENCE !== "mongoose") productRepository = new ProductRepository(ProductDAOFs)

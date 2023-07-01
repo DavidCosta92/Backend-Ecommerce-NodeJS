@@ -52,12 +52,15 @@ class ProductDAOMongo{
 
     async postProduct (req , res , next){
         try {
-            const {title, description,code, category, thumbnails} = req.body;        
+            const {title, description,code, category, thumbnails , owner} = req.body;        
             const price = parseInt(req.body.price);
             const stock = parseInt(req.body.stock);
 
-            const newProduct = new Product ({title, description,code, price, stock, category, thumbnails})
+// aca deberia validar que el codigo pasado es aceptable, en el sentido de si no esta repetido.. por el momento esto lo valida solo mongoose, pero para filesystem no es aplicable.. debo validar a mano antes de crear el newProduct.. hacer metodo tipo existByCode(code), respuesta boolean que permita crear o no..
+            console.log("owner ====>>>>>>>>",owner,"owner ====>>>>>>>>")
 
+
+            const newProduct = new Product ({title, description,code, price, stock, category, thumbnails, owner}).getAllAttr()
             const productAdded = await productModel.create(newProduct)
             return productAdded;                
         }catch (error) {

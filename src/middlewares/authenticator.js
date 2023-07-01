@@ -28,6 +28,13 @@ export function onlyAuthenticated /*Api */(req, res, next) {
   }
   next()
 }
+export async function onlyAdminOrOwner/*Api */(req, res, next) {    
+  let user = getUser(req , res , next)
+  if(user.role === "user"){
+    return next(new AuthorizationError ("Debes ser usuario PREMIUM o Administrador"))
+  }
+  next()
+}
 export async function onlyAdmin/*Api */(req, res, next) {    
   let user = getUser(req , res , next)
   if(user.role !== "admin"){

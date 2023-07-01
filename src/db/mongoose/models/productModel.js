@@ -12,6 +12,7 @@ const productSchema = new mongoose.Schema({
     category:{ type: String, enum: {   values: ['comestibles', 'varios'],
           message: '{VALUE} no es una categoria correcta, elige entre: comestibles o varios'},
         required:true}, 
+    owner : { type:String, required:true},
     thumbnails:Array    
 }, { versionKey: false})
 
