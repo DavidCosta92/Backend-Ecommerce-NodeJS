@@ -8,8 +8,9 @@ import { Strategy as LocalStrategy } from 'passport-local'
 // imports GITHUB
 import { Strategy as GithubStrategy } from 'passport-github2'
 import {GITHUB_CALLBACK_URL,GITHUB_CLIENT_SECRET, GITHUB_CLIENTE_ID } from '../config/config.js'
-import { cartDAOMongoose } from '../managers/mongoose/CartDAOMongoose.js'
+import { cartRepository } from '../repositories/cartRepository.js'
 import { User } from '../models/User.js'
+import { userService } from '../services/userService.js'
 
 passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
     const user = await userRepository.searchByEmail(username)
@@ -23,23 +24,17 @@ passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (usern
 
 passport.use('register', new LocalStrategy({ passReqToCallback: true, usernameField: 'email' }, async (req, _u, _p, done) => {
     try {
-        const idNewCart = await cartDAOMongoose.createCart(done)
-        
-        const user = {role: "user", cart: idNewCart, ...req.body }
-        if ( user.email === "adminCoder@coder.com" && user.password === "adminCod3r123") user.role = "admin"        
-        user.age = parseInt(user.age)
-
-        const newUserObj = new User(user)
-        
-        const {newUser} = await userRepository.createUser({user:newUserObj.getAllAttr()})
-        /* para guardar session y loguear a la vez*/
+        let {first_name, last_name, email, age, password} = {...req.body}
+        const {newUser, code} = await userService.createUser({first_name, last_name, email, age, password})
+//       /* para guardar session y loguear a la vez*/
         req.session.user = {
             first_name: newUser.first_name,
             last_name: newUser.last_name,
             email: newUser.email,
             age: newUser.age,
             cart: newUser.cart,
-            role : newUser.role
+            role : newUser.
+            role
         }
         done(null, newUser)
       } catch (error) {
@@ -56,7 +51,7 @@ passport.use('github', new GithubStrategy({
     let user = await userRepository.searchByGitHubUsername(profile.username);   
     let userMail
     if(user === null){
-    const idNewCart = await cartDAOMongoose.createCart(done)
+    const idNewCart = await cartRepository.postCart(done)
         userMail = `${profile.username}@github-user`
         if(profile.email !== undefined) userMail = profile.email 
 

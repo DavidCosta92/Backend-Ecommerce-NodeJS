@@ -15,14 +15,16 @@ class UserService {
     constructor(userRepository){
         this.userRepository = userRepository
     }
-    async createUser(req,next) {
-        const idNewCart = await cartRepository.postCart()
-        let {first_name, last_name, email, age, password, cart, role} = req.body  
-        if ( req.body.email === "adminCoder@coder.com" && req.body.password === "adminCod3r123") role="admin"     
-        cart = idNewCart;
-        const newUser = new User({first_name, last_name, email, age, password, cart, role})
-        const {user , code} = await userRepository.createUser({newUser})
-        return {user, code}
+    async createUser(user) {
+        const cart = await cartRepository.postCart()
+        let {first_name, last_name, email, age, password} = user
+        let role = "user"
+        age = parseInt(age)
+        if (email === "adminCoder@coder.com" && password === "adminCod3r123") role="admin"     
+        const newUserObj = new User({first_name, last_name, email, age, password, cart, role}).getAllAttr()
+
+        const {newUser , code} = await userRepository.createUser({newUserObj})
+        return {newUser, code}
     }
     async sendEmailResetPassword(email){        
         try {

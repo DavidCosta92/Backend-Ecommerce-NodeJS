@@ -8,8 +8,8 @@ class UserRepository{
     constructor (userDao){
         this.userDao = userDao
     }   
-    async createUser({user}){    
-        return await this.userDao.createUser({user})
+    async createUser({newUserObj}){    
+        return await this.userDao.createUser({newUserObj})
     }    
     async existByEmail (email){    
         return this.userDao.existByEmail(email)         

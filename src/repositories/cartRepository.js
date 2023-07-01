@@ -13,7 +13,7 @@ class CartRepository{
         return await this.cartDao.getCarts(req, res,next)        
     }
     
-    async postCart (){
+    async postCart(){
         return await this.cartDao.createCart()
     }
     
@@ -51,4 +51,4 @@ class CartRepository{
 }
 
 export let cartRepository = new CartRepository(cartDAOMongoose)
-if( PERSISTENCE !== "mongo_atlas") cartRepository = new CartRepository(cartDAOFs)
+if( PERSISTENCE !== "mongoose") cartRepository = new CartRepository(cartDAOFs)

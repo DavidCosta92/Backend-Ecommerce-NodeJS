@@ -5,16 +5,16 @@ import { NotFoundUserWeb, RegisterError, RegisterErrorAlreadyExistUser } from ".
 
 export class UserDAOMongoose{ 
     
-    async createUser({user}){
-        const alreadyExistUser = await this.existByEmail(user.email)
-        console.log("LLEGUE HASTRA AQUI?")
-       if(alreadyExistUser) throw new RegisterErrorAlreadyExistUser("Error de registro, usuario YA EXISTE")       
-        user.password = encrypter.hashPassword(user.password);  
-        await userModel.create(user)   
-        const newUser = await this.searchByEmail(user.email)
+    async createUser({newUserObj}){
+        const alreadyExistUser = await this.existByEmail(newUserObj.email)
+        if(alreadyExistUser) throw new RegisterErrorAlreadyExistUser("Error de registro, usuario YA EXISTE")     
+
+        newUserObj.password = encrypter.hashPassword(newUserObj.password); 
+
+        await userModel.create(newUserObj)   
+        const newUser = await this.searchByEmail(newUserObj.email)
 
         if (!newUser) throw new RegisterError("Error al crear nuevo usuario")
-
         return {newUser , code:201}
     }
     async existByEmail(email){
