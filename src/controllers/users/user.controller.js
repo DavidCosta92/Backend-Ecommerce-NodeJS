@@ -2,6 +2,7 @@
 import { productDAOMongo } from "../../managers/mongoose/ProductDAOMongoose.js"
 import { encrypter } from "../../utils/encrypter.js"
 import { userService } from "../../services/userService.js"
+import { viewService } from "../../services/viewService.js"
 
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})
@@ -10,25 +11,9 @@ export function registerView(req,res,next){
     res.render("userLogin", {pageTitle: "Login"})
  }
  export async function productsView(req,res,next){ 
-   const paginatedProducts = await productDAOMongo.getProducts(req,next)
-   let dataRender
-   let user = req.session?.passport?.user;
    try {
-      if (req.session.user){
-         user = req.session.user 
-      } else if (req.signedCookies.authToken){      
-         user = encrypter.getDataFromToken(req.signedCookies.authToken);
-      }
-      if(user !== undefined){
-         dataRender = {title: `${user.first_name} - productos`, loguedUser: true , user: user , ...paginatedProducts}
-      } else{
-         dataRender = {title: `${req.session['user'].first_name} - productos`, loguedUser: true , user: req.session['user'] , ...paginatedProducts}
-      }      
-      if (user?.role === "admin" || req.session['user'] === "admin" ) {
-         res.render("productsForAdmin", dataRender)
-      } else {
-         res.render("products", dataRender)      
-      }
+      const dataRender = await viewService.getProducts(req, res, next)
+      res.render("productsView", dataRender)        
    } catch (error) {
       next(error)
    }

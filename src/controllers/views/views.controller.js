@@ -61,7 +61,6 @@ export async function renderProductsView(req,res,next){
         user : user
     }
     res.render("carts", response)
-
  }
 
  

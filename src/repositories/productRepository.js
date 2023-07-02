@@ -9,8 +9,8 @@ class ProductRepository{
         this.productDao = productDao
     }   
     
-    async getProducts (req, res , next){    
-        let response ={...await this.productDao.getProducts(req , res , next)}
+    async getProducts (user, req, res, next){    
+        let response ={...await this.productDao.getProducts(user, req, res, next)}
         return response;
     }    
     

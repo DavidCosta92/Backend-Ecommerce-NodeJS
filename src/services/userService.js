@@ -71,5 +71,17 @@ class UserService {
             throw new IllegalInputArgWEB("Password no valido para ser ingresado")
         }
     }
+
+    async getLoguedUser(req){
+        let user = req.session?.passport?.user;        
+        if (req.session.user){
+           user = req.session.user 
+        } else if (req.signedCookies.authToken){      
+           user = encrypter.getDataFromToken(req.signedCookies.authToken);
+        } else{
+           user = req.session['user']
+        }
+        return user
+    }
 } 
   export const userService = new UserService(userRepository)

@@ -2,6 +2,7 @@
 import { productModel } from "../../db/mongoose/models/productModel.js";
 import { Product } from "../../models/Product.js";
 import { faker } from '@faker-js/faker'
+import { encrypter } from "../../utils/encrypter.js";
 
 class ProductDAOMongo{
     model
@@ -9,7 +10,7 @@ class ProductDAOMongo{
         this.model = model;
     }
 
-    async getProducts (req , res , next){
+    async getProducts (user, req , res , next){
         const {category, stock, limit, page, sort} = req.query
         try {
             /*  Busqueda por categoria y por stock (true o  false) */
@@ -24,10 +25,17 @@ class ProductDAOMongo{
             const searchPage =  (isNaN(Number(page)) || page == "" ) ? 1 : page
             let sortByPrice = null;
             if(sort!= undefined) sortByPrice = (sort === "asc" )? { price : 1} : { price : -1} 
-            const pageOptions = { limit: searchLimit, page: searchPage, sort : sortByPrice , lean : true}
-            
+            const pageOptions = { limit: searchLimit, page: searchPage, sort : sortByPrice , lean : true}            
             
             const products = await productModel.paginate( searchParams ,pageOptions)
+            for (let i = 0; i < products.docs.length; i++) {
+                if(products.docs[i].owner === user.email){
+                    products.docs[i]["userIsOwner"] = true
+                }
+                if(user.role === "admin"){
+                    products.docs[i]["userIsAdmin"] = true
+                }
+            }
 
             const response ={
                 payload : products.docs,
@@ -49,7 +57,62 @@ class ProductDAOMongo{
                 next(error);        
         }
     }
+    /*
+    
+    async getProductsByUserEmail (req , res , next){
 
+        let user = req.session?.passport?.user;        
+        if (req.session.user){
+            user = req.session.user 
+         } else if (req.signedCookies.authToken){      
+            user = encrypter.getDataFromToken(req.signedCookies.authToken);
+         } else{
+            user = req.session['user']
+         }
+
+        const {category, stock, limit, page, sort} = req.query
+        try {
+            const categorySearch = (category == "" || category == undefined) ? null : {$eq:category};
+            const searchStock = (stock == "" || stock == undefined || stock != "true" ) ? null : {$gt:0};
+
+            let searchParams = {}
+         
+            console.log("Usuario premium con Email => ", user.email)
+
+            searchParams["owner"] = {$eq: user.email}; 
+            if (categorySearch) searchParams["category"] = categorySearch;
+            if (searchStock) searchParams["stock"] = stock;        
+            
+            // paginado y ordenamiento     
+            const searchLimit = (isNaN(Number(limit)) || limit == "" ) ? 10 : limit
+            const searchPage =  (isNaN(Number(page)) || page == "" ) ? 1 : page
+            let sortByPrice = null;
+            if(sort!= undefined) sortByPrice = (sort === "asc" )? { price : 1} : { price : -1} 
+            const pageOptions = { limit: searchLimit, page: searchPage, sort : sortByPrice , lean : true}            
+            
+            const products = await productModel.paginate( searchParams ,pageOptions)   
+
+            const response ={
+                payload : products.docs,
+                totalPages : products.totalPages,
+                prevPage : products.prevPage,
+                nextPage : products.nextPage,
+                page : products.page,
+                hasPrevPage : products.hasPrevPage,
+                hasNextPage : products.hasNextPage,
+                prevLink : products.prevPage? `/api/products/?limit=${limit}&page=${products.prevPage}` : null, 
+                nextLink : products.nextPage? `/api/products/?limit=${limit}&page=${products.nextPage}`: null,
+                limit: limit,
+                hayResultados : products.docs.length > 0
+            }     
+            return response;       
+            
+            } catch (error) {
+                console.log("ERROR >",error)
+                next(error);        
+        }
+    }
+    */
     async postProduct (req , res , next){
         try {
             const {title, description,code, category, thumbnails , owner} = req.body;        

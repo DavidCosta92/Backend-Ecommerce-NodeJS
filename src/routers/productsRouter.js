@@ -7,7 +7,7 @@ import { userSessionService } from '../services/sessionService.js';
 export const productsRouter = Router();
 productsRouter.use(express.json()); 
 
-productsRouter.get("/",  getProducts)
+productsRouter.get("/", onlyAuthenticated, getProducts)
 
 productsRouter.get("/add/form" , onlyAuthenticated, onlyAdminOrOwner , (req, res, next)=>{    
     const user = userSessionService.getLoguedUser(req)
@@ -17,5 +17,5 @@ productsRouter.get("/add/form" , onlyAuthenticated, onlyAdminOrOwner , (req, res
 productsRouter.post('/', onlyAuthenticated, onlyAdminOrOwner, postProducts);
 
 productsRouter.get('/:pid', onlyAuthenticated, onlyAdmin , getProductsByID);
-productsRouter.delete("/:pid" , onlyAuthenticated, onlyAdmin , deleteProductsByID);
+productsRouter.delete("/:pid" , onlyAuthenticated, onlyAdminOrOwner , deleteProductsByID);
 productsRouter.put('/:pid', onlyAuthenticated, onlyAdmin , updateProductsByID);

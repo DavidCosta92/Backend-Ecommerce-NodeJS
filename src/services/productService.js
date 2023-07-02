@@ -6,8 +6,8 @@ class ProductService{
         this.productRepository = productRepository; 
     }
 
-    async getProducts(req , res , next){    
-        let response ={...await this.productRepository.getProducts(req , res , next)}
+    async getProducts(user, req, res, next){    
+        let response ={...await this.productRepository.getProducts(user, req, res, next)}
         return response;
     }    
     
