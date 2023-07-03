@@ -16,6 +16,6 @@ productsRouter.get("/add/form" , onlyAuthenticated, onlyAdminOrOwner , (req, res
 
 productsRouter.post('/', onlyAuthenticated, onlyAdminOrOwner, postProducts);
 
-productsRouter.get('/:pid', onlyAuthenticated, onlyAdmin , getProductsByID);
+productsRouter.get('/:pid', onlyAuthenticated, onlyAdminOrOwner , getProductsByID);
 productsRouter.delete("/:pid" , onlyAuthenticated, onlyAdminOrOwner , deleteProductsByID);
-productsRouter.put('/:pid', onlyAuthenticated, onlyAdmin , updateProductsByID);
+productsRouter.put('/:pid', onlyAuthenticated, onlyAdminOrOwner , updateProductsByID);
