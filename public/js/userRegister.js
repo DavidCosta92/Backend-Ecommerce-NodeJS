@@ -40,3 +40,6 @@ if (formUserRegister instanceof HTMLFormElement){
           })
     })
 }
+function goToHome(){
+  window.location.href = '/'
+}

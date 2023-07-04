@@ -12,7 +12,9 @@
         <form id="formLogOut" class="w-50">
             <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
         </form>
+        <button class="btn btn-outline-primary  m-2 w-50" onClick=goToHome()> Home </button>
     </div>
+    <button class="btn btn-outline-primary  m-2 w-50" onClick=goToHome()> Home </button>
 </div> 
 {{/if}}
 
@@ -24,6 +26,7 @@
         <th scope="col">Precio</th>
         <th scope="col">Descripcion</th>
         <th scope="col">Id</th>
+        <th scope="col">Stock</th>
         <th scope="col">Owner</th>
         <th scope="col">Acciones</th>
         </tr>
@@ -35,6 +38,7 @@
                 <td>{{this.price}}</td>
                 <td>{{this.description}}</td>  
                 <td>{{this._id}}</td>
+                <td>{{this.stock}}</td>
                 <td>{{this.owner}}</td>
                 <td>
                     <div class="d-flex ">
@@ -50,12 +54,19 @@
                                     Eliminar
                                 </button>
                             </div>
-                        {{else}}                        
-                            <label for="quantity" class="me-5">Cant:</label>
-                            <input type="number" id="quantity{{this._id}}" name="quantity" min="1" class="me-5" max={{this.stock}}>                    
-                            <button onClick=agregarProductoAlCarritoUsuario("{{this._id}}") id={{this._id}} type="button" class="btn btn-outline-success w-100 my-1 ">
-                                AGREGAR A CARRITO (PENDIENTE)
-                            </button>   
+                        {{else}}  
+                            {{#if this.stock}}         
+                                <div>                                             
+                                    <label for="quantity" class="me-5">Cant:</label>
+                                    <input type="number" id="quantity{{this._id}}" name="quantity" min="1" class="me-5" max={{this.stock}}>                    
+                                </div>  
+                                <button onClick=agregarProductoAlCarritoUsuario("{{this._id}}") id={{this._id}} type="button" class="btn btn-outline-success w-100 my-1 ">
+                                AGREGAR A CARRITO
+                            </button> 
+                            {{else}}    
+                            <button class="btn btn-outline-secondary w-100 my-1 " disabled> Sin stock</button>                    
+                            {{/if}}
+
                             {{#if this.userIsAdmin}}
                             <div class="d-flex flex-wrap">
                                 <button onClick=eliminarProductoAdmin("{{this._id}}") id={{this._id}} type="button" class="btn btn-outline-danger w-100 m-1">

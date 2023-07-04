@@ -18,3 +18,6 @@ if (formLogOut instanceof HTMLFormElement){
 function goToUserProfile(){
   window.location.href = '/api/session/current'
 }
+function goToHome(){
+  window.location.href = '/'
+}

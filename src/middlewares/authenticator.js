@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { cartDAOMongoose } from "../managers/mongoose/CartDAOMongoose.js"
 import { AuthorizationError } from "../models/errors/authorization.error.js"
+import { cartService } from "../services/cartService.js"
 import { encrypter } from "../utils/encrypter.js"
 
 
@@ -28,7 +29,8 @@ export function onlyAuthenticated /*Api */(req, res, next) {
   }
   next()
 }
-export async function onlyAdminOrOwner/*Api */(req, res, next) {    
+export async function onlyAdminOrPremium/*Api */(req, res, next) {    
+  // solo corrobora rol, el owner sera chequeado a nivel de servicios
   let user = getUser(req , res , next)
   if(user.role === "user"){
     return next(new AuthorizationError ("Debes ser usuario PREMIUM o Administrador"))
@@ -49,6 +51,14 @@ export async function onlyUser/*Api */(req, res, next) {
   }
   next()
 }
+export async function notAdmin/*Api */(req, res, next) {
+  let user = getUser(req , res , next)
+  if(user.role === "admin"){
+    return next(new AuthorizationError ("Un administrador no puede agregar al carrito"))
+  }
+  next()
+}
+
 
 /////     PENDIENTE MIDS PARA WEB     /////          
 /*
@@ -84,11 +94,12 @@ export async function getCurrentUser (req , res , next){
       res.render("currentUser", {loguedUser :false}) 
     }else{
       req.params.cid = user.cart
-      const cartById = await cartDAOMongoose.findCartById(req ,res , next)      
+      const cartById = await cartService.getCartsByID(req ,res , next)  
       /* Necesario para solucionar error handlebars "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas*/
       const productsInCart = []
       cartById.products.forEach(p=>{ productsInCart.push( p.toObject()) })
-      if (user.role === "user") user.regularUser = true
+      if (user.role === "user" || user.role === "premium" ) user.cartAllowed = true
+      if (user.role === "admin" || user.role === "premium" ) user.addProductsAllowed = true
       res.render("currentUser", {loguedUser : user!=undefined, user : user, products : productsInCart})
     }       
  } catch (error) {

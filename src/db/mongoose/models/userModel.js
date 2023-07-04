@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     role : {
         type: String,
         enum: {
-            values: ['user', 'admin'],
+            values: ['user', 'admin' , 'premium'],
             default:'user',
             message: '{VALUE} no es correcto'
             },

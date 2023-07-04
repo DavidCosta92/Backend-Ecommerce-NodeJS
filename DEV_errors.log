@@ -86,3 +86,5 @@
 [31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-01 22:00:20"}
 [31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-02 01:29:54"}
 [31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-02 01:30:03"}
+[34mwarning[39m: [34mSUPUESTAMENTE ENVIE MAIL => [39m {"0":"davidcst2991@gmail.com","timestamp":"2023-07-04 09:33:40"}
+[33merror[39m: [33m*** Ticket Error -->> No existen productos en condiciones de ser comprados, no puede continuar con la compra[39m {"timestamp":"2023-07-04 11:15:12"}

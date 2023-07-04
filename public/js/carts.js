@@ -107,4 +107,6 @@ async function comprarCarrito(){
     window.location.href = `/api/carts/${cid}/purchase`
 }    
 
-
+function goToAddProducts(){
+    window.location.href = '/api/products/add/form'
+}

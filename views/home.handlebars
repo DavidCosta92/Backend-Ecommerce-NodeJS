@@ -15,27 +15,34 @@
             <form id="formLogOut" class="w-50">
                 <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
             </form>
+            <button class="btn btn-outline-primary  m-2 w-50" onClick=goToHome()> Home </button>
         </div>
 </div>
 {{else}}
 <h5 class="text-center mt-5">FORMULARIO DE LOGIN</h5>
 <form id="formUserLogin" action="" class="p-4 m-4 border border-success rounded d-flex flex-wrap justify-content-around">
-    <label for="input_email"class="w-50 mt-2">Email</label>
-    <input id="input_email" type="text" placeholder="input_email"class="w-50 mt-2">
-
-    <label for="input_password"class=" mt-2">Contraseña</label>
-    <input id="input_password" type="password" placeholder="input_password"class="w-50 mt-2">
-    <button type="submit" class="btn btn-success  mt-4">¡ Iniciar sesion! </button>
+    <div class="w-100 m-2  d-flex  flex-wrap align-items-center justify-content-around">
+        <span class=" m-4  d-flex justify-content-center">
+            <label for="input_email"class=" m-2  text-end">Email</label>
+            <input id="input_email" type="text" placeholder="input_email"class=" m-2 ms-2">
+        </span>
+        <span class=" m-4  d-flex justify-content-center">
+            <label for="input_password"class="  m-2   text-end">Contraseña</label>
+            <input id="input_password" type="password" placeholder="input_password"class=" m-2 ms-2">
+        </span>
+    </div>
+    <span class=" m-2 d-flex justify-content-center">
+        <button type="submit" class="btn btn-success">¡ Iniciar sesion! </button>
+    </span>
+     <div class="w-100 m-2  d-flex justify-content-around">
+        <button class="btn btn-outline-success  mt-4 " onClick=goToRegister()>¡ Quiero registrarme! </button> 
+        <a href="/api/users/session/github">
+            <button  class="btn btn-outline-dark  mt-4 " >¡ Ingresar con GITHUB! </button>
+        </a>  
+        <button class="btn btn-outline-danger  mt-4 " onClick=goToRestorePassword()>Olvide mi contraseña...</button> 
+    </div>
 </form>
- <div>
-    <button class="btn btn-outline-success  mt-4" onClick=goToRegister()>¡ Quiero registrarme! </button> 
-    <a href="/api/users/session/github">
-        <button  class="btn btn-outline-dark  mt-4" >¡ Ingresar con GITHUB! </button>
-    </a>  
-    <div>
-        <button class="btn btn-outline-dark  mt-4" onClick=goToRestorePassword()>Olvide mi contraseña...</button> 
-    </div> 
- </div>
+
 {{/if}}
 
 <div>

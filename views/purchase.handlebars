@@ -10,31 +10,66 @@
     <form id="formLogOut" class=" w-50">
         <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
     </form>
+    <button class="btn btn-outline-primary  m-2 w-50" onClick=goToHome()> Home </button>
 </div>
 
 
 {{#if rejectedProds}}
-    <h2>Listado de productos rechazados, quedaran guardados en el carrito para la proxima compra</h2>
-    <ul>
-        {{#each rejectedProds}}
-            <li>Productos rechazados: {{this.product.title}} / {{this.quantity}}</li>     
-        {{/each}}
-    </ul>
+    <h5 class="text-center">Listado de productos rechazados, quedaran guardados en el carrito para la proxima compra</h6>
+    <table class="table table-striped text-center">
+        <thead>
+            <tr>                
+                <th scope="col">Producto</th>
+                <th scope="col">Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each rejectedProds}}
+                <tr>                
+                    <td>{{this.product.title}}</td>
+                    <td>{{this.quantity}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
 {{/if}}
 
 <div> 
-    <h2>Listado de productos Aceptados</h2>
-    <ul>
-        {{#each acceptedProds}}
-            <li>Productos aceptados: {{this.product.title}} - Cantidad: {{this.quantity}}</li>     
-        {{/each}}
-    </ul>
+    <h5 class="text-center">Listado de productos Aceptados</h5>
+    <table class="table table-striped text-center">
+        <thead>
+            <tr>                
+                <th scope="col">Producto</th>
+                <th scope="col">Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each acceptedProds}}
+                <tr>                
+                    <td>{{this.product.title}}</td>
+                    <td>{{this.quantity}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>
-<div>
-    <h3>PRECIO DE PRODUCTOS: {{amount}}</h3>
-    <h3>COMPRADOR: {{purcharser}}</h3>
-    <h5>Codigo de Ticket: {{code}}</h5>
-    <h5>Fecha: {{purchase_datetime}}</h5>
+<div class=" border border-success rounded p-4 m-4 ">
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item">Precio productos comprados</li>
+      <li class="list-group-item">{{amount}}</li>
+    </ul>
+    <ul class="list-group list-group-horizontal-sm">
+      <li class="list-group-item">Comprador</li>
+      <li class="list-group-item">{{purcharser}}</li>
+    </ul>
+    <ul class="list-group list-group-horizontal-md">
+      <li class="list-group-item">Codigo de Ticket</li>
+      <li class="list-group-item">{{code}}</li>
+    </ul>
+    <ul class="list-group list-group-horizontal-lg">
+      <li class="list-group-item">Fecha compra</li>
+      <li class="list-group-item">{{purchase_datetime}}</li>
+    </ul>
 </div>
 
 
