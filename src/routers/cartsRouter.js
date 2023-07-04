@@ -15,8 +15,8 @@ cartsRouter.get("/", onlyAuthenticated, onlyAdminOrPremium, getCarts)
 cartsRouter.post("/", onlyAuthenticated, onlyAdmin, postCart)
 cartsRouter.get("/:cid", onlyAuthenticated, onlyAdminOrPremium, getCartsByID) 
 cartsRouter.delete("/:cid", onlyAuthenticated, onlyAdmin, deleteCartByID) 
-cartsRouter.post("/:cid/products/:pid", onlyAuthenticated, notAdmin, postProductToCarts)
+cartsRouter.post("/:cid/products/:pid", onlyAuthenticated, notAdmin, postProductToCarts)  // aca debo revisar si el usuario es owner, no podra agregarlo a carrito
 cartsRouter.delete("/:cid/products/:pid", onlyAuthenticated, notAdmin, deleteProductInCarts)
 cartsRouter.delete("/:cid/products", onlyAuthenticated, notAdmin, deleteAllProductsInCartByID)
 cartsRouter.put("/:cid/products/:pid", onlyAuthenticated, notAdmin, updateQuantityProductInCarts)
-cartsRouter.put("/:cid", onlyAuthenticated, notAdmin, updateAllProductsInCarts)
+cartsRouter.put("/:cid", onlyAuthenticated, notAdmin, updateAllProductsInCarts)  // aca debo revisar si el usuario es owner, no podra agregarlo a carrito

@@ -84,15 +84,11 @@ class CartDAOFs{
         return newCart;
     }
 
-    async findCartById  (req, res , next){
-        try {
-            await this.readCartsFile();
-            const cart = this.carts.find(cart => cart.id === id);            
-            if(cart === undefined) throw new NotFoundError("ID de carta no encontrado")           
-            return cart;
-        } catch (error) {
-            next(error);
-        }
+    async findCartById  (cid){
+        await this.readCartsFile();
+        const cart = this.carts.find(cart => cart.id === cid);            
+        if(cart === undefined) throw new NotFoundError("ID de carta no encontrado")           
+        return cart;
     }
 
     async deleteCartById  (req, res , next){
@@ -109,6 +105,10 @@ class CartDAOFs{
         }
     }
 
+    async replaceOneCart (cid , cart){
+        console.log("FUNCIONALIDAD PENDIENTEEEEE!!!! ")
+       // await cartstModel.replaceOne( { _id: cid } , cart)
+    }
     async postProductToCart (req, res , next){
         try {
             const cid = req.params.cid 

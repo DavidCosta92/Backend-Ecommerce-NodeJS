@@ -1,7 +1,8 @@
 // @ts-nocheck
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { AuthenticationExpiredError } from '../models/errors/authentication.error.js'
+import { AuthenticationExpiredError, AuthenticationExpiredErrorWEB } from '../models/errors/authentication.error.js'
+import { logger } from '../middlewares/loggerMiddleware.js'
 
 class Encrypter {
     hashPassword(password) {
@@ -20,8 +21,7 @@ class Encrypter {
         try {
           return jwt.verify(token, process.env.JWT_SECRET)
         } catch (error) {
-          console.log(error)
-          new AuthenticationExpiredError(error) 
+          throw new AuthenticationExpiredErrorWEB(error) 
         }
     }    
     createTokenToRestorePassword(data){

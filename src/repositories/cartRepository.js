@@ -17,8 +17,11 @@ class CartRepository{
         return await this.cartDao.createCart()
     }
     
-    async getCartsByID (req, res, next){     
-        return await this.cartDao.findCartById(req, res,next)
+    async getCartsByID (cid){     
+        return await this.cartDao.findCartById(cid)
+    }
+    async replaceOneCart (cid , cart){     
+        return await this.cartDao.replaceOneCart(cid, cart)
     }
     
     async deleteCartByID ( req, res, next){    

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { cartstModel } from "../../db/mongoose/models/cartModel.js"
 import { productModel } from "../../db/mongoose/models/productModel.js"
+import { NotFoundError } from "../../models/errors/carts.error.js"
 
 
 class CartDAOMongoose{
@@ -39,12 +40,12 @@ class CartDAOMongoose{
         return newCart;
     }
 
-    async findCartById  (req, res , next){
+    async findCartById  (cid){
         try {
-            const cart = await cartstModel.findById(req.params.cid).populate("products.product");
+            const cart = await cartstModel.findById(cid).populate("products.product");
             return cart;
         } catch (error) {
-            next(error);
+            throw new NotFoundError(error)
         }
     }
 
@@ -57,7 +58,19 @@ class CartDAOMongoose{
         }
     }
 
+    async replaceOneCart (cid , cart){
+        await cartstModel.replaceOne( { _id: cid } , cart)
+    }
+
     async postProductToCart (req, res , next){
+        /*
+
+
+        TODA ESTA LOGICA ESTA EN SERVICE... ACA DEBO DEJAR SOLO LO RELACIONADO AL ACCESO DE DATOS...
+
+
+
+
         try {
             const cid = req.params.cid 
             const pid = req.params.pid
@@ -96,6 +109,7 @@ class CartDAOMongoose{
          } catch (error) {
              next(error);
          }
+         */
     }
 
     async deleteProductInCart (req, res , next){

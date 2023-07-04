@@ -48,9 +48,6 @@ async function agregarProductoAlCarritoUsuario(pid){
     
     const cid = document.getElementById("cidUser").textContent
     const productQuantity = document.getElementById(`quantity${pid}`).value  
-    console.log("AGREGANDO PRODUCTO AL CARRITO", pid, cid)
-    console.log("ACA DEBO VALIDAR QUE EL OWNER NO PUEDA AGREGAR SU PROPIO PRODUCTO AL CARRITO!!")
-
     const add = await fetch(`/api/carts/${cid}/products/${pid}?quantity=${productQuantity}`,{
         method: "POST",
         headers: {

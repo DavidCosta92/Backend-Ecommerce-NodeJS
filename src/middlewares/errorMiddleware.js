@@ -7,22 +7,18 @@ import { RegisterError , RegisterErrorAlreadyExistUser , NotFoundUserWeb} from "
 
 export function errorHandlerWEB(error, req, res , next){
     if (error instanceof AuthenticationExpiredErrorWEB) { 
-        console.log("a")
         req.logger.warning(`*** ${error.type} -->> ${error.description}`)
-        res.render("restore-password", {pageTitle: "Error de token", error : true})
+        res.render("userLogin", {pageTitle: "Error token expirado ", error : true})
     }    
     else if (error instanceof AuthenticationErrorWEB) {
-        console.log("b")
         req.logger.info(`*** ${error.type} -->> ${error.description}`)
         res.render("userLogin", {pageTitle: "Error de autenticacion", error : true})
     }     
     else if (error instanceof IllegalInputArgWEB) {
-        console.log("c")
         req.logger.info(`*** ${error.type} -->> ${error.description}`)
         res.render("create-new-password", {pageTitle: "Error de password", error : true})
     }     
     else if (error instanceof NotFoundUserWeb) {
-        console.log("d")
         req.logger.info(`*** ${error.type} -->> ${error.description}`)
         res.status(404).json({errorMessage: error.description })
 
@@ -38,6 +34,10 @@ export function errorHandlerAPI(error, req, res , next){
     if (error instanceof IllegalInputArg) {
         req.logger.debug(`*** ${error.type} -->> ${error.description}`)
         res.status(400).json({errorMessage: error.description })
+    } 
+    else if (error instanceof TicketError) {
+        req.logger.error(`*** ${error.type} -->> ${error.description}`)
+        res.status(400).json({errorMessage: error.description })   
     }
     else if (error instanceof TicketError) {
         req.logger.error(`*** ${error.type} -->> ${error.description}`)

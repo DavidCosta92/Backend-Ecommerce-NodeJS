@@ -1,7 +1,9 @@
+// @ts-nocheck
 import { cartRepository } from "../repositories/cartRepository.js";
 import { productService } from "./productService.js";
 import { ticketRepository } from "../repositories/ticketRepository.js";
 import { userSessionService } from "./sessionService.js";
+import { AuthorizationError } from "../models/errors/authorization.error.js";
 
 class CartService{
     cartRepository
@@ -26,8 +28,8 @@ class CartService{
         return await this.cartRepository.postCart(req, res , next)
     }
     
-    async getCartsByID (req, res , next){     
-        return await this.cartRepository.getCartsByID(req, res , next)
+    async getCartsByID (cid){     
+        return await this.cartRepository.getCartsByID(cid)
     }
     
     async deleteCartByID (req, res , next){    
@@ -35,7 +37,50 @@ class CartService{
     }
     
     async postProductToCarts (req, res , next){
-        return await this.cartRepository.postProductToCarts(req, res , next);
+        try {            
+            const cid = req.params.cid 
+            const pid = req.params.pid                  
+            const product = await this.productService.getProductById(pid)
+            const loguedUser = this.userSessionService.getLoguedUser(req)
+            let productQuantity = req.query.quantity;
+            
+            
+            if (product.owner === loguedUser.email){
+                // Corroborado desde back, en fron estan ocultos los productos propios
+                throw new AuthorizationError("No se pueden agregar productos propios al carrito")
+            }
+
+            if(productQuantity === undefined){
+                productQuantity = 1;
+            } else if (Number.isInteger(Number(productQuantity)) && productQuantity >= 1){
+                productQuantity = Number(productQuantity);
+            } else {
+                throw new Error ("Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0")
+            }            
+            const cart = await this.getCartsByID(cid)
+
+            if(cart){      
+                let productInCart= false;     
+                cart["products"].filter((obj)=>{
+                if( obj["product"].equals(product._id) ){ productInCart = true; }
+               })    
+                if(productInCart){
+                    cart["products"].map(obj=>{
+                        if( obj["product"].equals(product._id) ){ 
+                            obj["quantity"] += parseInt(productQuantity)
+                        }
+                    })                
+                    await this.cartRepository.replaceOneCart(cid , cart)
+                } else {
+                    cart.products.push( { product: pid , quantity:productQuantity})
+                    console.log("true?", cart._id == cid)
+                    await this.cartRepository.replaceOneCart(cid , cart)
+                }                    
+            return await this.getCartsByID(cid)
+            }
+         } catch (error) {
+             next(error);
+         }             
     }
     
     async deleteProductInCarts (req, res , next){
