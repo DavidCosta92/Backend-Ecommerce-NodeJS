@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { cartDAOMongoose } from "../managers/mongoose/CartDAOMongoose.js"
+import { AuthenticationExpiredError } from "../models/errors/authentication.error.js"
 import { AuthorizationError } from "../models/errors/authorization.error.js"
 import { cartService } from "../services/cartService.js"
 import { encrypter } from "../utils/encrypter.js"
@@ -24,10 +25,14 @@ export function getCredentialsCookie(req, res, next) {
 */
 
 export function onlyAuthenticated /*Api */(req, res, next) {  
-  if (!req.user  && !req.session.passport  && !req.session.user && !req.signedCookies.authToken) {
-    return next(new AuthorizationError ("Debes estar logueado para ver el recurso"))
+  try {
+    if (!req.user  && !req.session.passport  && !req.session.user && !req.signedCookies.authToken) {
+      return next(new AuthorizationError ("Debes estar logueado para ver el recurso"))
+    }
+    next()
+  } catch (error) {
+    throw new AuthenticationExpiredError(error)
   }
-  next()
 }
 export async function onlyAdminOrPremium/*Api */(req, res, next) {    
   // solo corrobora rol, el owner sera chequeado a nivel de servicios
