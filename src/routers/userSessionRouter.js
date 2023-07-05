@@ -1,8 +1,8 @@
 // @ts-nocheck
 import { Router } from "express";
 import express from "express"
-import { registerView, postUser, userLogin, productsView , renderPasswordReset , sendEmailResetPassword , renderFormNewPassword , createNewPassword} from "../controllers/users/user.controller.js";
-import { authenticator } from "../middlewares/authenticator.js";
+import { registerView, postUser, userLogin, productsView , renderPasswordReset , sendEmailResetPassword , renderFormNewPassword , createNewPassword, renderUsersMemberships , changeMembership} from "../controllers/users/user.controller.js";
+import { authenticator, onlyAuthenticated , onlyAdmin } from "../middlewares/authenticator.js";
 import session from "../middlewares/session.js";
 import { passportInitialize , passportSession } from "../middlewares/passport.js";
 import { sessionsRouter } from "./sessionsRouter.js";
@@ -31,3 +31,6 @@ userRouter.post('/restore-password', sendEmailResetPassword)
 userRouter.get('/new-password/', renderFormNewPassword)
 userRouter.post('/new-password/', createNewPassword)
 
+// --- premium ---
+userRouter.get('/premium/',authenticator, onlyAuthenticated , onlyAdmin, renderUsersMemberships)
+userRouter.post('/premium/:uid', authenticator, onlyAuthenticated , onlyAdmin, changeMembership)

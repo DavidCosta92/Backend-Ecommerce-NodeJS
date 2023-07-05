@@ -1,0 +1,117 @@
+{{#if loguedUser}}
+<div class=" d-flex flex-wrap border border-success rounded p-4 m-4 justify-content-around">
+    <h5 class="w-100">{{user.role}}</h5>
+    <p class="pe-5 w-25">Nombre: {{user.first_name}}</p>
+    <p class="pe-5 w-25">Apellido: {{user.last_name}}</p> 
+    <p class="pe-5 w-25">Email: {{user.email}}</p>
+    <p class="pe-5 w-25">Edad: {{user.age}}</p>       
+    <p class="pe-5 w-50">Rol de usuario : {{user.role}}</p>    
+    <p class="pe-5 w-50">ID carrito: <span id="cidUser">{{user.cart}}</span> </p>    
+    <div class="container  w-50 d-flex  align-items-center justify-content-around ">
+        <button class="btn btn-outline-success w-50 me-2" onclick="goToUserProfile()">Ver perfil</button>
+        <form id="formLogOut" class="w-50">
+            <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
+        </form>
+        <button class="btn btn-outline-primary  m-2 w-50" onClick=goToHome()> Home </button>
+    </div>
+</div> 
+{{/if}}
+
+{{#if paginatedProducts.payload}}
+    <table class="table table-dark table-striped">
+    <thead>
+        <tr>
+        <th scope="col">Titulo</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Id</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Owner</th>
+        <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each paginatedProducts.payload}}            
+            <tr>    
+                <td>{{this.title}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.description}}</td>  
+                <td>{{this._id}}</td>
+                <td>{{this.stock}}</td>
+                <td>{{this.owner}}</td> 
+                <td>
+                    <div class="d-flex ">
+                      
+                        {{#if this.userIsOwner}}
+                            <div class="d-flex flex-wrap">
+                                <button onClick=editProduct("{{this._id}}") type="button" class="btn btn-outline-warning w-100 m-1">
+                                    Editar (PENDIENTE)
+                                </button>
+                            </div>
+                            <div class="d-flex flex-wrap">
+                                <button onClick=eliminarProductoAdmin("{{this._id}}") id={{this._id}} type="button" class="btn btn-outline-danger w-100 m-1">
+                                    Eliminar
+                                </button>
+                            </div>
+                        {{else}}  
+                            {{#if this.stock}}         
+                                <div>                                             
+                                    <label for="quantity" class="me-5">Cant:</label>
+                                    <input type="number" id="quantity{{this._id}}" name="quantity" min="1" class="me-5" max={{this.stock}}>                    
+                                </div>  
+                                <button onClick=agregarProductoAlCarritoUsuario("{{this._id}}") id={{this._id}} type="button" class="btn btn-outline-success w-100 my-1 ">
+                                AGREGAR A CARRITO
+                            </button> 
+                            {{else}}    
+                            <button class="btn btn-outline-secondary w-100 my-1 " disabled> Sin stock</button>                    
+                            {{/if}}
+
+                            {{#if this.userIsAdmin}}
+                            <div class="d-flex flex-wrap">
+                                <button onClick=eliminarProductoAdmin("{{this._id}}") id={{this._id}} type="button" class="btn btn-outline-danger w-100 m-1">
+                                    Eliminar
+                                </button>
+                            </div>
+                            {{/if}}
+                        {{/if}}
+
+                    </div>
+
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+    </table>
+
+    <div class="botoneraPaginado">
+        {{#if paginatedProducts.hasPrevPage}}
+        <a href="/api/views/products?limit={{paginatedProducts.limit}}&page={{paginatedProducts.prevPage}}" type="button" class="btn btn-outline-primary">
+            Pagina previa
+        </a>
+        {{else}}
+        <a type="button" class="btn btn-outline-secondary">
+            Pagina previa
+        </a>
+        {{/if}}
+        <div>
+            <p>{{paginatedProducts.limit}} productos por pagina, pagina actual: {{paginatedProducts.page}} , total de paginas: {{paginatedProducts.totalPages}}</p>
+        </div>
+        {{#if paginatedProducts.hasNextPage}}
+        <a href="/api/views/products?limit={{paginatedProducts.limit}}&page={{paginatedProducts.nextPage}}" type="button" class="btn btn-outline-primary">
+            Pagina Siguiente
+        </a>
+        {{else}}
+        <a type="button" class="btn btn-outline-secondary">
+            Pagina Siguiente
+        </a>
+        {{/if}}
+    </div>
+    {{else}}
+    <h1 > parece que no hay paginas</h1>
+{{/if}}
+
+<script src="/js/products.js"></script>
+<script src="/js/productsForAdmin.js"></script>
+<script src="/js/userLogin.js"> </script>
+<script src="/js/formLogOut.js"></script>
+

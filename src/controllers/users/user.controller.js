@@ -71,3 +71,28 @@ export async function createNewPassword(req,res,next){
    }
    
 }
+
+export async function renderUsersMemberships(req,res,next){
+   // listar todos los usuarios con el rol actual
+   // crear boton para cada ususario que muestre el rol y que al hacer click, pegue a changeMembership(uid)
+   try {      
+      await userService.createNewPassword(req.body.password ,  req.body.email)
+      res.status(200).json({ mensaje : "Password cambiado"})
+      // render "membershipUserList"
+   } catch (error) {
+      res.status(400).json({ errorMessage : error.description})
+      //next(error)
+   }
+   
+}
+export async function changeMembership(req,res,next){
+   // recibir uid y verificar rol y cambiarlo por el opuesto
+   try {      
+      await userService.createNewPassword(req.body.password ,  req.body.email)
+      res.status(200).json({ mensaje : "Password cambiado"})
+   } catch (error) {
+      res.status(400).json({ errorMessage : error.description})
+      //next(error)
+   }
+   
+}
