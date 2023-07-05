@@ -15,8 +15,6 @@ userRouter.use(express.urlencoded({ extended: true }))
 
 userRouter.use("/session",sessionsRouter)
 
-
-// REVISAR SI ESTOY USANDO ESTAR RUTAS... CREO QUE ESTA PASANDO TODO POR LA CREACION DE  sessionsRouter => a travez de passport.. En que otra instancia creo usuarios?
 userRouter.get("/register", registerView)
 userRouter.post("/", postUser)
 

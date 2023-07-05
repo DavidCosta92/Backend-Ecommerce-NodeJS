@@ -13,7 +13,9 @@
             <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
         </form>
         <button class="btn btn-outline-primary  m-2 w-50" onClick=goToHome()> Home </button>
+    {{#if loguedUser}}
     <button class="btn btn-outline-warning  m-2 w-50" onClick=goToMembershipsList()> Ver usuarios </button>
+    {{/if}}
     </div>
 </div> 
 {{/if}}

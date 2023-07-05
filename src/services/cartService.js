@@ -142,14 +142,6 @@ class CartService{
 
         //cambiar productos en carrito por los rechazados y enviar alerta
         this.cartRepository.setProductsInCart(req.params.cid, rejectedProds, req, res, next)
-
-        if(rejectedProds.length>0){
-            console.log("+++++++++++++++++++++++")
-            console.log("+++++++++++++++++++++++")
-            console.log("DEBERIA MANDAR UN codigo que se transforme en una alerta o mensaje al front..")
-            console.log("+++++++++++++++++++++++")
-            console.log("+++++++++++++++++++++++")
-        }
                    
         const purchaser = this.userSessionService.getLoguedUser(req).email
         const purchaseTicket = await this.ticketRepository.createTicket(acceptedProds , rejectedProds , amount , purchaser,req, res, next)         

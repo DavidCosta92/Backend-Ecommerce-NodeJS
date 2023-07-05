@@ -10,13 +10,12 @@ cartsRouter.use(express.json());
 cartsRouter.use(express.urlencoded({ extended: true })); 
 cartsRouter.get("/:cid/purchase", onlyAuthenticated, notAdmin, buyCart) // => EL DESAFIO PIDE ESTA RUTA ESPECIFICA
 
-
-cartsRouter.get("/", onlyAuthenticated, onlyAdminOrPremium, getCarts)  
+cartsRouter.get("/", onlyAuthenticated, onlyAdmin, getCarts)  // onlyAdminOrPremium
 cartsRouter.post("/", onlyAuthenticated, onlyAdmin, postCart)
-cartsRouter.get("/:cid", onlyAuthenticated, onlyAdminOrPremium, getCartsByID) 
+cartsRouter.get("/:cid", onlyAuthenticated, onlyAdmin, getCartsByID) 
 cartsRouter.delete("/:cid", onlyAuthenticated, onlyAdmin, deleteCartByID) 
-cartsRouter.post("/:cid/products/:pid", onlyAuthenticated, notAdmin, postProductToCarts)  // aca debo revisar si el usuario es owner, no podra agregarlo a carrito
+cartsRouter.post("/:cid/products/:pid", onlyAuthenticated, notAdmin, postProductToCarts)  // esta ruta esta protegida no por un midd, sino por el servicio, que corrobora que no sea owner
 cartsRouter.delete("/:cid/products/:pid", onlyAuthenticated, notAdmin, deleteProductInCarts)
 cartsRouter.delete("/:cid/products", onlyAuthenticated, notAdmin, deleteAllProductsInCartByID)
 cartsRouter.put("/:cid/products/:pid", onlyAuthenticated, notAdmin, updateQuantityProductInCarts)
-cartsRouter.put("/:cid", onlyAuthenticated, notAdmin, updateAllProductsInCarts)  // aca debo revisar si el usuario es owner, no podra agregarlo a carrito
+cartsRouter.put("/:cid", onlyAuthenticated, notAdmin, updateAllProductsInCarts)  
