@@ -4,47 +4,60 @@ import { productService } from "./productService.js";
 import { ticketRepository } from "../repositories/ticketRepository.js";
 import { userSessionService } from "./sessionService.js";
 import { AuthorizationError } from "../models/errors/authorization.error.js";
+import { validateAlphanumeric } from "../models/validations/validations.js";
+import { productRepository } from "../repositories/productRepository.js";
 
 class CartService{
     cartRepository
     productService
     ticketRepository
     userSessionService
-    constructor(cartRepo , productService, ticketRepository ,userSessionService){    
-        this.cartRepository = cartRepo; 
+    constructor(cartRepository , productService, ticketRepository ,userSessionService){    
+        this.cartRepository = cartRepository; 
         this.productService = productService;  
         this.ticketRepository = ticketRepository;
         this.userSessionService = userSessionService
     }
 
-
-    async getCarts (req, res , next){
-        const status = res?.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`;    
-        let response ={...await this.cartRepository.getCarts(req, res , next) , status}
-        return response;
+    async getCarts (req, next){
+        try {
+            const queryLimit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 10 : req.query.limit
+            const queryPage =  (isNaN(Number(req.query.page)) || req.query.page == "" ) ? 1 : req.query.page   
+            return await this.cartRepository.getCarts(queryLimit , queryPage)
+        } catch (error) {
+            next(error)
+        }        
+    }    
+    async postCart (next){
+        try {            
+            return await this.cartRepository.postCart()
+        } catch (error) {            
+            next(error)
+        }
+    }    
+    async getCartsByID (req, next){     
+        try {               
+            const cid = validateAlphanumeric("Cart ID",req.params.cid)
+            return await this.cartRepository.getCartsByID(cid)
+        } catch (error) {            
+            next(error)
+        }
+    }    
+    async deleteCartByID (req, next){    
+        try {      
+            const cid = validateAlphanumeric("Cart ID",req.params.cid)
+            return await this.cartRepository.deleteCartByID(cid)
+        } catch (error) {            
+            next(error)
+        }
     }
-    
-    async postCart (req, res , next){
-        return await this.cartRepository.postCart(req, res , next)
-    }
-    
-    async getCartsByID (cid){     
-        return await this.cartRepository.getCartsByID(cid)
-    }
-    
-    async deleteCartByID (req, res , next){    
-        return await this.cartRepository.deleteCartByID(req, res , next)
-    }
-    
     async postProductToCarts (req, res , next){
         try {            
-            const cid = req.params.cid 
-            const pid = req.params.pid                  
-            const product = await this.productService.getProductById(pid)
-            const loguedUser = this.userSessionService.getLoguedUser(req)
+            const pid = req.params.pid      
+            const product = await this.productService.getProductById(req, res , next)
+            const loguedUser = await this.userSessionService.getLoguedUser(req, res , next)
             let productQuantity = req.query.quantity;
-            
-            
+
             if (product.owner === loguedUser.email){
                 // Corroborado desde back, en fron estan ocultos los productos propios
                 throw new AuthorizationError("No se pueden agregar productos propios al carrito")
@@ -56,9 +69,9 @@ class CartService{
                 productQuantity = Number(productQuantity);
             } else {
                 throw new Error ("Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0")
-            }            
-            const cart = await this.getCartsByID(cid)
+            }          
 
+            const cart = await this.getCartsByID(req,next)
             if(cart){      
                 let productInCart= false;     
                 cart["products"].filter((obj)=>{
@@ -70,41 +83,102 @@ class CartService{
                             obj["quantity"] += parseInt(productQuantity)
                         }
                     })                
-                    await this.cartRepository.replaceOneCart(cid , cart)
+                    await this.cartRepository.replaceOneCart(cart._id , cart)
                 } else {
                     cart.products.push( { product: pid , quantity:productQuantity})
-                    console.log("true?", cart._id == cid)
-                    await this.cartRepository.replaceOneCart(cid , cart)
+                    await this.cartRepository.replaceOneCart(cart._id , cart)
                 }                    
-            return await this.getCartsByID(cid)
+            return await this.getCartsByID(req, next)
             }
          } catch (error) {
              next(error);
          }             
     }
-    
     async deleteProductInCarts (req, res , next){
-        return await this.cartRepository.deleteProductInCarts(req, res , next);
-    }
+        try {            
+            const cart = await this.getCartsByID(req , next)
+            if(cart){
+                let productosRestantes=[];
+                const productSearch = await this.productService.getProductById(req , res , next)
     
+                cart["products"].filter((product)=>{
+                    if( !product["product"].equals(productSearch._id)){
+                        productosRestantes.push(product)
+                    }
+                })            
+                cart.products = productosRestantes;
+                await  this.cartRepository.replaceOneCart(cart._id , cart)
+            }
+            return await this.getCartsByID(req , next)
+        } catch (error) {                  
+            next(error)
+        }
+    }
     async deleteAllProductsInCartByID (req, res , next) {
-       return await this.cartRepository.deleteAllProductsInCartByID(req, res , next);    
+        try {
+            const cart = await this.getCartsByID(req, next)
+            if (cart){
+                cart["products"]=[];
+                await this.cartRepository.replaceOneCart(cart._id , cart)
+            }
+            return await this.getCartsByID(req, next)
+        } catch (error) {
+            next(error)
+        }
     }
-    
     async updateQuantityProductInCarts (req, res , next) {
-       return await this.cartRepository.updateQuantityProductInCarts(req, res , next);
-    }
-    
-    async updateAllProductsInCarts (req, res , next) {
-        return await this.cartRepository.updateAllProductsInCarts(req, res , next)    
-    }
-    
-    async validateProduct(pid, quantity , req, res , next){
-        const product = await this.productService.getProductById(pid, req, res , next)
-        if (product?.stock >= quantity){ return true } 
-        return false
-    }
+        try {
+            let newPrQty = req.query.quantity;
+            if (!Number.isInteger(Number(newPrQty)) && newPrQty < 0) throw new Error ("Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0")
 
+            const cart = await this.getCartsByID(req, res , next) 
+            if(cart){            
+                let productInCart= false;      
+                const product = await this.productService.getProductById(req , res , next)
+                cart["products"].filter((obj)=>{
+                if( obj["product"].equals(product._id) ){ productInCart = true; }
+               })
+               
+                if(productInCart){
+                    cart["products"].map(obj=>{
+                        if( obj["product"].equals(product._id) ){ 
+                            obj["quantity"] = parseInt(newPrQty)
+                        }
+                    })                
+                    await this.cartRepository.replaceOneCart(cart._id , cart)
+                } else {
+                    cart.products.push( { product : pid , quantity : newPrQty})
+                    await this.cartRepository.replaceOneCart(cart._id , cart)
+                }
+            return await this.getCartsByID(req, res , next)
+            }
+        } catch (error) {
+            next(error)
+        }
+    } 
+    async updateAllProductsInCarts (req, res , next) {
+        try {
+            const cart = await this.getCartsByID(req, next)
+            if(cart){
+                cart["products"]=req.body.products;
+                await this.cartRepository.replaceOneCart(cart._id , cart)
+            }
+            return await this.getCartsByID(req, next)
+        } catch (error) {
+            next(error)
+        } 
+    }    
+    async validateProduct(pid, quantity , req, res , next){        
+        try {            
+            const pId = validateAlphanumeric("Product ID",pid)
+            const product = await productRepository.getProductById(pId)
+            if (product?.stock >= quantity){ return true } 
+            return false
+            
+        } catch (error) {
+            next(error)
+        }
+    }
     async verifyProducts(products , req , res , next){
         let acceptedProds = []
         let rejectedProds = []
@@ -118,12 +192,11 @@ class CartService{
         }
         return { acceptedProds , rejectedProds }
     }
-    async updateProductsStocks(products,req , res , next){
+    async updateProductsStocks(products , req , res , next){
         for (let i = 0; i < products.length; i++) {           
-            this.productService.updateStockSoldByID(products[i].product._id, products[i].quantity, req , res , next) //(products[i].product._id, products[i].quantity)          
+            this.productService.updateStockSoldByID(products[i].product._id, products[i].quantity, req , res , next) 
         }
     }
-
     calculateProductTotalCost (products){
         let totalCost = 0;
         for (let i = 0; i < products.length; i++) {
@@ -131,25 +204,33 @@ class CartService{
         }
         return totalCost
     }
-
-    async buyCart (req , res , next)  {
-        const cart = await this.cartRepository.getCartsByID(req,res ,next)
-        const productsInCart = cart.products
-        const { acceptedProds , rejectedProds } = await this.verifyProducts(productsInCart, req , res , next)
-        const amount = this.calculateProductTotalCost(acceptedProds)
-
-        this.updateProductsStocks(acceptedProds,req , res , next)
-
-        //cambiar productos en carrito por los rechazados y enviar alerta
-        this.cartRepository.setProductsInCart(req.params.cid, rejectedProds, req, res, next)
-                   
-        const purchaser = this.userSessionService.getLoguedUser(req).email
-        const purchaseTicket = await this.ticketRepository.createTicket(acceptedProds , rejectedProds , amount , purchaser,req, res, next)         
-        const user = userSessionService.getLoguedUser(req)
-
-        return { purchaseTicket , user }
+    async setProductsInCart(cart, rejectedProds, req, res, next){
+        try {
+            cart["products"]=rejectedProds;
+            await this.cartRepository.replaceOneCart(cart._id, cart)            
+        } catch (error) {       
+            next(error);            
+        }
     }
-
-
+    async buyCart (req , res , next)  {
+        try {
+            const cart = await this.getCartsByID(req,next)
+            const productsInCart = cart.products
+            const { acceptedProds , rejectedProds } = await this.verifyProducts(productsInCart, req , res , next)
+            const amount = this.calculateProductTotalCost(acceptedProds)
+    
+            await this.updateProductsStocks(acceptedProds , req , res , next)
+    
+            //cambiar productos en carrito por los rechazados y enviar alerta
+            await this.setProductsInCart(cart, rejectedProds, req, res, next)                       
+            const user = this.userSessionService.getLoguedUser(req , res , next)    
+            
+            const purchaseTicket = await this.ticketRepository.createTicket(acceptedProds , rejectedProds , amount , user.email, req, res, next)        
+    
+            return { purchaseTicket , user }             
+        } catch (error) {
+            next(error)
+        }
+    }
 } 
 export const cartService = new CartService(cartRepository , productService, ticketRepository, userSessionService)

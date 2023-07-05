@@ -28,7 +28,7 @@ class SessionService {
          return userBD
     }
 
-    getLoguedUser(req){
+    getLoguedUser(req , res , next){
         let user = false
         /* PARA CUANDO INICIO SESSION, PORQUE USO EL ENDPOINT JWT que guarda una signed cookie */
         if(req.signedCookies.authToken !=undefined){

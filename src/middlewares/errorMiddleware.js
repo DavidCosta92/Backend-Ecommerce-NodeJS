@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { IllegalInputArg , TicketError , IllegalInputArgWEB} from "../models/errors/validations.errors.js"
+import { IllegalInputArg , TicketError ,TicketErrorWEB , IllegalInputArgWEB} from "../models/errors/validations.errors.js"
 import { AuthenticationError , AuthenticationExpiredError , AuthenticationErrorWEB, AuthenticationExpiredErrorWEB} from "../models/errors/authentication.error.js"
 import { AuthorizationError, AuthorizationErrorWEB } from "../models/errors/authorization.error.js"
 import { RegisterError , RegisterErrorAlreadyExistUser , NotFoundUserWeb} from "../models/errors/register.error.js"
@@ -9,7 +9,11 @@ export function errorHandlerWEB(error, req, res , next){
     if (error instanceof AuthenticationExpiredErrorWEB) { 
         req.logger.warning(`*** ${error.type} -->> ${error.description}`)
         res.render("userLogin", {pageTitle: "Error token expirado ", error : true})
-    }    
+    }
+    else if (error instanceof TicketErrorWEB) {
+        req.logger.info(`*** ${error.type} -->> ${error.description}`)
+        res.render("currentUser", {pageTitle: "Error de autenticacion", error : true})
+    }
     else if (error instanceof AuthenticationErrorWEB) {
         req.logger.info(`*** ${error.type} -->> ${error.description}`)
         res.render("userLogin", {pageTitle: "Error de autenticacion", error : true})

@@ -1,12 +1,17 @@
 import { ticketDAOMongo } from "../managers/mongoose/ticketDAOMongoose.js"
+import { TicketErrorWEB } from "../models/errors/validations.errors.js"
 
 class TicketRepository{
     ticketDao
     constructor (ticketDao){
         this.ticketDao = ticketDao
     }       
-    async createTicket (acceptedProds , rejectedProds , amount , purchaser, req, res, next){            
-        return await this.ticketDao.createTicket(acceptedProds , rejectedProds , amount , purchaser, req, res, next)
+    async createTicket (acceptedProds , rejectedProds , amount , purchaser, req, res, next){  
+        try {
+            return await this.ticketDao.createTicket(acceptedProds , rejectedProds , amount , purchaser, req, res, next)
+        } catch (error) {
+            throw new TicketErrorWEB(error)
+        }          
     }    
 
 }

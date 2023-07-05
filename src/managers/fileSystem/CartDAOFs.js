@@ -47,11 +47,11 @@ class CartDAOFs{
     
 
 
-    async getCarts (req, res , next){
+    async getCarts (queryLimit , queryPage){
         try { 
             /* paginado y ordenamiento */   
-            const queryLimit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 10 : req.query.limit
-            const queryPage =  (isNaN(Number(req.query.page)) || req.query.page == "" ) ? 1 : req.query.page            
+            // const queryLimit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 10 : req.query.limit
+            // const queryPage =  (isNaN(Number(req.query.page)) || req.query.page == "" ) ? 1 : req.query.page            
             const pageOptions = { limit: queryLimit, page: queryPage, lean : true, populate: 'products.product'}     
 
     

@@ -3,6 +3,7 @@ import { productModel } from "../../db/mongoose/models/productModel.js";
 import { Product } from "../../models/Product.js";
 import { faker } from '@faker-js/faker'
 import { encrypter } from "../../utils/encrypter.js";
+import { NotFoundError } from "../../models/errors/carts.error.js";
 
 class ProductDAOMongo{
     model
@@ -132,12 +133,12 @@ class ProductDAOMongo{
         }
     }
 
-    async getProductById(pid,req , res , next){
+    async getProductById(pid){
         try {
             const product = await productModel.findById(pid);
             return product;
         } catch (error) {
-            next(error);
+            throw new NotFoundError(error)
         }
     }
 
@@ -150,6 +151,7 @@ class ProductDAOMongo{
         }
     }
 
+    // revisar donde estoy usando este metodo
     async updateProductByID (req , res , next){
         let newProduct;
         try {
@@ -166,6 +168,11 @@ class ProductDAOMongo{
             next(error);
         }
     }
+
+    async replaceOneProduct(pid , product){
+        await productModel.replaceOne( { _id: pid } , product)
+    }
+
     async updateStockSoldByID(pid, quantity , req , res , next){ 
         let product = await productModel.findById(pid)
         product.stock -= quantity

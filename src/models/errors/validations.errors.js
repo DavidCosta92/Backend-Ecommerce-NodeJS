@@ -14,7 +14,13 @@ export class TicketError extends Error {
         this.description = description;
     } 
 }
-
+export class TicketErrorWEB extends Error {
+    constructor(description) {
+        super();
+        this.type = 'Ticket Error WEB';
+        this.description = description;
+    } 
+}
 // ERRORES WEB
 export class IllegalInputArgWEB extends Error {
     constructor(description) {

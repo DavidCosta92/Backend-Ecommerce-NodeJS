@@ -1,4 +1,4 @@
-import { IllegalInputArg , TicketError} from "../errors/validations.errors.js";
+import { IllegalInputArg , TicketError, TicketErrorWEB} from "../errors/validations.errors.js";
 
 export function noEmpty(field, value){
     if (!value ) throw new IllegalInputArg(`¡${field} es un dato obligatorio!`) 
@@ -10,6 +10,12 @@ export function validateString(field, value){
     if (typeof value !== 'string' ) throw new IllegalInputArg(`${field} debe ser una cadena de caracteres`) 
     return value
 }
+export function validateAlphanumeric(field, value){
+    const validAlpha = /^[a-zA-Z0-9]+$/.test(value);
+    if(!validAlpha) throw new IllegalInputArg(`${field} debe ser una cadena de caracteres alfa numerica`) 
+    return value
+}
+
 export function validatePasswords(field, value){
     validateString(field, value)    
     if (value.length<5) throw new IllegalInputArg(`${field} debe tener al menos 5 caracteres`) 
@@ -42,6 +48,6 @@ export function validateRealNumber(field, value){
 
 // validaciones especificas de tickets
 export function validateAcceptedProd(acceptedProds){    
-    if(acceptedProds.length==0) throw new TicketError("No existen productos en condiciones de ser comprados, no puede continuar con la compra")
+    if(acceptedProds.length==0) throw new TicketErrorWEB("No existen productos en condiciones de ser comprados, no puede continuar con la compra")
     return acceptedProds
 }
