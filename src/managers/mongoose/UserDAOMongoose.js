@@ -25,6 +25,9 @@ export class UserDAOMongoose{
         if (!user) throw new NotFoundUserWeb("Usuario no encontrado")
         return user;        
     }
+    async findUserById(uid){
+        return await userModel.findOne({ _id: uid }).lean() 
+    }
     async searchByGitHubUsername(username){
         const user = await userModelGitHub.findOne({ email: username }).lean()
         return user;        
@@ -46,5 +49,63 @@ export class UserDAOMongoose{
             throw new Error (error)
         }
     }
+    async updateMembership(uid){
+        try {
+            let response 
+            let update
+            const user = await this.findUserById(uid)      
+            if( user.role == "user") {          
+                update = await userModel.updateOne({ _id: uid }, {
+                    $set: { role: "premium" }
+                })                
+            }else if ( user.role == "premium") {
+                update = await userModel.updateOne({ _id: uid }, {
+                    $set: { role: "user" }
+                })
+            }
+            
+           // user.save()
+            if(update.acknowledged ) response = {status : 200}
+            return response
+        } catch (error) {
+            throw new Error (error)
+        }
+    }
+    async getAllUsersForMembership(req){
+        // podria  tildar opcion para solo mostrar un determinado rol
+        const {limit, page} = req.query
+        
+        try {
+            let searchParams = {}            
+            /* paginado y ordenamiento */        
+            const searchLimit = (isNaN(Number(limit)) || limit == "" ) ? 50 : limit
+            const searchPage =  (isNaN(Number(page)) || page == "" ) ? 1 : page
+
+            const pageOptions = { limit: searchLimit, page: searchPage, sort : { role : 1 , email : 1} , lean : true}  
+            const users = await userModel.paginate( searchParams , pageOptions)
+
+            const response = {
+                payload : users.docs,
+                totalResults : users.totalDocs,
+                totalPages : users.totalPages,
+                prevPage : users.prevPage,
+                nextPage : users.nextPage,
+                page : users.page,
+                hasPrevPage : users.hasPrevPage,
+                hasNextPage : users.hasNextPage,
+                prevLink : users.prevPage? `/api/users/premium/?limit=${searchLimit}&page=${users.prevPage}` : null, 
+                nextLink : users.nextPage? `/api/users/premium?limit=${searchLimit}&page=${users.nextPage}`: null,
+                limit: searchLimit,
+                hayResultados : users.docs.length > 0
+            }     
+            return response;     
+        } catch (error) {            
+            throw new Error (error)
+        } 
+    }
+        
+    
+
+    
 }       
 export const userDaoMongo = new UserDAOMongoose()

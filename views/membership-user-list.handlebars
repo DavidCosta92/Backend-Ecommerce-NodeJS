@@ -1,0 +1,94 @@
+{{#if loguedUser}}
+<div class=" d-flex flex-wrap border border-success rounded p-4 m-4 justify-content-around">
+    <h5 class="w-100">{{user.role}}</h5>
+    <p class="pe-5 w-25">Nombre: {{user.first_name}}</p>
+    <p class="pe-5 w-25">Apellido: {{user.last_name}}</p> 
+    <p class="pe-5 w-25">Email: {{user.email}}</p>
+    <p class="pe-5 w-25">Edad: {{user.age}}</p>       
+    <p class="pe-5 w-50">Rol de usuario : {{user.role}}</p>    
+    <p class="pe-5 w-50">ID carrito: <span id="cidUser">{{user.cart}}</span> </p>    
+    <div class="container  w-50 d-flex  align-items-center justify-content-around ">
+        <button class="btn btn-outline-success w-50 me-2" onclick="goToUserProfile()">Ver perfil</button>
+        <form id="formLogOut" class="w-50">
+            <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
+        </form>
+        <button class="btn btn-outline-primary  m-2 w-50" onClick=goToHome()> Home </button>
+    </div>
+</div> 
+{{/if}}
+
+{{#if users.payload}}
+    <h4>Usuarios - membresias</h4>
+    <table class="table table-dark table-striped">
+    <thead>
+        <tr>
+        <th scope="col">Email</th>
+        <th scope="col">ID</th>
+        <th scope="col" class="text-center">Rol actual</th>
+        <th scope="col" class="text-center">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users.payload}}            
+            <tr>    
+                <td>{{this.email}}</td>
+                <td>{{this._id}}</td>
+                <td class="text-center">
+                    {{#if this.administrador}}
+                        <span class="badge bg-warning text-wrap" style="width: 5rem;">{{this.role}}</span>
+                    {{/if}}
+                    {{#if this.usuario}}  
+                        {{this.role}}
+                    {{/if}}
+                    {{#if this.premium}}
+                        <span class="badge bg-success text-wrap" style="width: 5rem;">{{this.role}}</span>
+                    {{/if}}
+                </td>  
+                <td>                           
+                    <!-- ACA DEBERIA HACER CODINCIONALES PARA LA PARTE ESTETICAPARA QUE DIGA CAMBIAR A PREMIUM O CAMBIAR A USER.. -->
+                    <div class="d-flex flex-wrap">
+                        {{#if this.usuario}}                              
+                            <button onClick=changeMembership("{{this._id}}") type="button" class="btn btn-outline-success w-100 m-1"> Cambiar a premium </button>
+                        {{/if}}
+                        {{#if this.premium}}
+                            <button onClick=changeMembership("{{this._id}}") type="button" class="btn btn-outline-danger w-100 m-1"> Cambiar a regular </button>
+                        {{/if}}
+                    </div> 
+                </td>                
+            </tr>
+        {{/each}}
+    </tbody>
+    </table>
+
+    <div class="botoneraPaginado">
+        {{#if users.hasPrevPage}}
+            <a href="/api/users/premium/?limit={{users.limit}}&page={{users.prevPage}}" type="button" class="btn btn-outline-primary"> 
+            Pagina previa
+        </a>
+        {{else}}
+        <a type="button" class="btn btn-outline-secondary">
+            Pagina previa
+        </a>
+        {{/if}}
+        <div>
+            <p>{{users.limit}} usuarios por pagina - paginas totales: {{users.totalPages}}, pagina actual: <span class="badge bg-primary text-wrap" style="width: 3rem;">{{users.page}}</span> - total de resultados: {{users.totalResults}}</p>
+        </div>
+        {{#if users.hasNextPage}}
+        <a href="/api/users/premium/?limit={{users.limit}}&page={{users.nextPage}}" type="button" class="btn btn-outline-primary">
+            Pagina Siguiente
+        </a>
+        {{else}}
+        <a type="button" class="btn btn-outline-secondary">
+            Pagina Siguiente
+        </a>
+        {{/if}}
+    </div>
+    {{else}}
+    <h1 > parece que no hay paginas</h1>
+{{/if}}
+
+<script src="/js/membership-user-list.js"></script>
+
+<script src="/js/userLogin.js"> </script>
+<script src="/js/formLogOut.js"></script>
+

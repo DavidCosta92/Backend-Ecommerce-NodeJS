@@ -118,4 +118,34 @@ export class UsertDAOFs{
         await this.saveProductsFile();
         return productDeleted;
     }
+
+    
+    async getAllUsersForMembership(){
+
+        // listar todos los usuarios con el rol actual , id, email
+
+        console.log("*********************************************************")
+        console.log("*********************************************************")
+        console.log("FUNCIONALIDAD PENDIENTE")
+        console.log("*********************************************************")
+        console.log("*********************************************************")
+
+    }
+    async findUserById(uid){
+        console.log("*********************************************************")
+        console.log("*********************************************************")
+        console.log("FUNCIONALIDAD PENDIENTE")
+        console.log("*********************************************************")
+        console.log("*********************************************************")
+    }
+
+    async updateMembership(uid, role){
+        
+        console.log("*********************************************************")
+        console.log("*********************************************************")
+        console.log("FUNCIONALIDAD PENDIENTE")
+        console.log("*********************************************************")
+        console.log("*********************************************************")
+    }
+        
 }

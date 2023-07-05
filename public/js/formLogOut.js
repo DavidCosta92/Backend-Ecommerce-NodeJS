@@ -21,3 +21,6 @@ function goToUserProfile(){
 function goToHome(){
   window.location.href = '/'
 }
+function goToMembershipsList(){  
+  window.location.href = '/api/users/premium/'
+}

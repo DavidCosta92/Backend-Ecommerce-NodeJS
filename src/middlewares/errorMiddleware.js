@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { IllegalInputArg , TicketError , IllegalInputArgWEB} from "../models/errors/validations.errors.js"
 import { AuthenticationError , AuthenticationExpiredError , AuthenticationErrorWEB, AuthenticationExpiredErrorWEB} from "../models/errors/authentication.error.js"
-import { AuthorizationError } from "../models/errors/authorization.error.js"
+import { AuthorizationError, AuthorizationErrorWEB } from "../models/errors/authorization.error.js"
 import { RegisterError , RegisterErrorAlreadyExistUser , NotFoundUserWeb} from "../models/errors/register.error.js"
 
 
@@ -13,7 +13,11 @@ export function errorHandlerWEB(error, req, res , next){
     else if (error instanceof AuthenticationErrorWEB) {
         req.logger.info(`*** ${error.type} -->> ${error.description}`)
         res.render("userLogin", {pageTitle: "Error de autenticacion", error : true})
-    }     
+    }
+    else if (error instanceof AuthorizationErrorWEB) {
+        req.logger.info(`*** ${error.type} -->> ${error.description}`)
+        res.render("userLogin", {pageTitle: "Error de autenticacion", error : true})
+    }         
     else if (error instanceof IllegalInputArgWEB) {
         req.logger.info(`*** ${error.type} -->> ${error.description}`)
         res.render("create-new-password", {pageTitle: "Error de password", error : true})

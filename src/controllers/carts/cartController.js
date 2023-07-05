@@ -47,6 +47,7 @@ export async function buyCart (req, res , next) {
     const acceptedProducts = []
     //Necesario para solucionar error handlebars "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas
     acceptedProds.forEach(pr => { acceptedProducts.push( pr.toObject()) });
+    
     const rejectedProducts = []
     //Necesario para solucionar error handlebars "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas
     rejectedProds.forEach(pr => { rejectedProducts.push( pr.toObject()) });

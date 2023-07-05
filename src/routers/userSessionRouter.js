@@ -33,4 +33,4 @@ userRouter.post('/new-password/', createNewPassword)
 
 // --- premium ---
 userRouter.get('/premium/',authenticator, onlyAuthenticated , onlyAdmin, renderUsersMemberships)
-userRouter.post('/premium/:uid', authenticator, onlyAuthenticated , onlyAdmin, changeMembership)
+userRouter.put('/premium/:uid', authenticator, onlyAuthenticated , onlyAdmin, changeMembership)

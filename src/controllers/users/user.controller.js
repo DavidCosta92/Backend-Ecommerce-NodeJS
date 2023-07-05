@@ -3,6 +3,7 @@ import { productDAOMongo } from "../../managers/mongoose/ProductDAOMongoose.js"
 import { encrypter } from "../../utils/encrypter.js"
 import { userService } from "../../services/userService.js"
 import { viewService } from "../../services/viewService.js"
+import { response } from "express"
 
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})
@@ -73,26 +74,23 @@ export async function createNewPassword(req,res,next){
 }
 
 export async function renderUsersMemberships(req,res,next){
-   // listar todos los usuarios con el rol actual
-   // crear boton para cada ususario que muestre el rol y que al hacer click, pegue a changeMembership(uid)
    try {      
-      await userService.createNewPassword(req.body.password ,  req.body.email)
-      res.status(200).json({ mensaje : "Password cambiado"})
-      // render "membershipUserList"
+      const user = await userService.getLoguedUser(req)
+      const userList = await userService.getAllUsersForMembership(req)      
+      res.render("membership-user-list", {pageTitle: "Lista de usuarios", users : userList, loguedUser : true , user})
    } catch (error) {
-      res.status(400).json({ errorMessage : error.description})
-      //next(error)
+      //res.status(400).json({ errorMessage : error.description})
+      next(error)
    }
    
 }
 export async function changeMembership(req,res,next){
-   // recibir uid y verificar rol y cambiarlo por el opuesto
    try {      
-      await userService.createNewPassword(req.body.password ,  req.body.email)
-      res.status(200).json({ mensaje : "Password cambiado"})
+      await userService.changeMembership(req.params.uid)
+      res.status(200).json({ mensaje : "Membresia actualizada"})
    } catch (error) {
-      res.status(400).json({ errorMessage : error.description})
-      //next(error)
+      //res.status(400).json({ errorMessage : error.description})
+      next(error)
    }
    
 }

@@ -18,6 +18,9 @@ class UserRepository{
         let user ={...await this.userDao.searchByEmail(email)}
         return user;
     }      
+    async findUserById(uid){
+        return await this.userDao.findUserById(uid)
+    }
     async searchByGitHubUsername (username){    
         return this.userDao.searchByGitHubUsername(username)         
     }  
@@ -26,7 +29,14 @@ class UserRepository{
     }  
     async updatePasswordUser (email , newPassword){    
         return await this.userDao.updatePasswordUser(email , newPassword)
-    }    
+    } 
+    async updateMembership (uid){    
+        return await this.userDao.updateMembership(uid)
+    }      
+
+    async getAllUsersForMembership(req){
+        return await this.userDao.getAllUsersForMembership(req)
+    }
 
 
 }

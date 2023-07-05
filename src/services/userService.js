@@ -22,7 +22,7 @@ class UserService {
         if (email === "adminCoder@coder.com" && password === "adminCod3r123") role="admin"     
         const newUserObj = new User({first_name, last_name, email, age, password, cart, role}).getAllAttr()
 
-        const {newUser , code} = await userRepository.createUser({newUserObj})
+        const {newUser , code} = await this.userRepository.createUser({newUserObj})
         return {newUser, code}
     }
     async sendEmailResetPassword(email){        
@@ -43,8 +43,12 @@ class UserService {
         }
     }
     async findUserByEmail(email){
-        const user = this.userRepository.findUserByEmail(email)
+        const user = await this.userRepository.findUserByEmail(email)
         return user;
+    }
+    
+    async findUserById(uid){
+        return await this.userRepository.findUserById(uid)
     }
     async validateToken(email , token){
         // Solo valido para restaurar contraseña por web
@@ -66,7 +70,7 @@ class UserService {
         const validPass = !encrypter.comparePasswords(newPassword , userDb.password)
 
         if(validPass){
-            userRepository.updatePasswordUser(email , newPassword)
+            this.userRepository.updatePasswordUser(email , newPassword)
         }else {
             throw new IllegalInputArgWEB("Password no valido para ser ingresado")
         }
@@ -82,6 +86,24 @@ class UserService {
            user = req.session['user']
         }
         return user
+    }
+    async getAllUsersForMembership(req){
+        const listUsers = await this.userRepository.getAllUsersForMembership(req)
+
+        listUsers.payload.forEach(user => {
+            if(user.role == "admin"){
+                user.administrador = true
+            } else if(user.role == "user"){
+                user.usuario = true
+            } else if(user.role == "premium"){
+                user.premium = true
+            }
+            
+        });
+        return listUsers
+    }
+    async changeMembership(uid){        
+        return await this.userRepository.updateMembership(uid)        
     }
 } 
   export const userService = new UserService(userRepository)

@@ -2005,3 +2005,80 @@
 [31m  [Symbol(kTrailers)]: null,[39m
 [31m  [Symbol(kTrailersCount)]: 0[39m
 [31m}" (type IncomingMessage) at path "_id" for model "carts"[39m {"timestamp":"2023-07-04 17:58:59"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 00:38:36"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 00:39:36"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 00:40:20"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:20:07"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:20:13"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:21:14"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:22:41"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:23:09"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:23:35"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:24:10"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:27:19"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:30:29"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:30:55"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:34:11"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:36:03"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 01:49:22"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:50:05"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:50:36"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 01:53:42"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:11:13"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:13:08"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:14:52"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:15:11"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:15:47"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:17:58"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:20:20"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:20:59"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:24:27"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:25:55"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:26:45"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:27:19"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:29:05"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 02:30:11"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 02:50:10"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 02:52:47"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 02:52:56"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 02:53:05"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 02:53:49"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 02:55:46"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 02:56:20"}
+[31mfatal[39m: [31m*** AUTHORIZATION_ERROR_WEB -->> Debes ser administrador[39m {"timestamp":"2023-07-05 02:56:20"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 02:57:43"}
+[31mfatal[39m: [31m*** AUTHORIZATION_ERROR_WEB -->> Debes ser administrador[39m {"timestamp":"2023-07-05 02:57:43"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 02:58:35"}
+[31mfatal[39m: [31m*** AUTHORIZATION_ERROR_WEB -->> Debes ser administrador[39m {"timestamp":"2023-07-05 02:58:35"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 02:59:57"}
+[31mfatal[39m: [31m*** AUTHORIZATION_ERROR_WEB -->> Debes ser administrador[39m {"timestamp":"2023-07-05 02:59:57"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 03:32:57"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 04:17:36"}
+[31mfatal[39m: [31m*** AUTHORIZATION_ERROR_WEB -->> Debes ser administrador[39m {"timestamp":"2023-07-05 04:17:36"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-05 04:17:50"}
+[31mfatal[39m: [31m*** AUTHORIZATION_ERROR_WEB -->> Debes ser administrador[39m {"timestamp":"2023-07-05 04:17:50"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:18:11"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:19:05"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:19:47"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:22:30"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:23:06"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:25:21"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:26:04"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:26:48"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:28:46"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:29:32"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:29:57"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:30:27"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:36:47"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:37:53"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:38:39"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:41:21"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:42:20"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:43:16"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:43:54"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:44:42"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:45:06"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:45:41"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:46:15"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:48:57"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 04:50:17"}

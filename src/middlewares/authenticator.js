@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { cartDAOMongoose } from "../managers/mongoose/CartDAOMongoose.js"
 import { AuthenticationExpiredError } from "../models/errors/authentication.error.js"
-import { AuthorizationError } from "../models/errors/authorization.error.js"
+import { AuthorizationError , AuthorizationErrorWEB} from "../models/errors/authorization.error.js"
 import { cartService } from "../services/cartService.js"
 import { encrypter } from "../utils/encrypter.js"
 
@@ -37,29 +37,29 @@ export function onlyAuthenticated /*Api */(req, res, next) {
 export async function onlyAdminOrPremium/*Api */(req, res, next) {    
   // solo corrobora rol, el owner sera chequeado a nivel de servicios
   let user = getUser(req , res , next)
-  if(user.role === "user"){
-    return next(new AuthorizationError ("Debes ser usuario PREMIUM o Administrador"))
+  if(user?.role === "user"){
+    return next(new AuthorizationErrorWEB ("Debes ser usuario PREMIUM o Administrador"))
   }
   next()
 }
 export async function onlyAdmin/*Api */(req, res, next) {    
   let user = getUser(req , res , next)
-  if(user.role !== "admin"){
-    return next(new AuthorizationError ("Debes ser administrador"))
+  if(user?.role !== "admin"){
+    return next(new AuthorizationErrorWEB ("Debes ser administrador"))
   }
   next()
 }
 export async function onlyUser/*Api */(req, res, next) {
   let user = getUser(req , res , next)
-  if(user.role !== "user"){
-    return next(new AuthorizationError ("Debes ser USUARIO"))
+  if(user?.role !== "user"){
+    return next(new AuthorizationErrorWEB ("Debes ser USUARIO"))
   }
   next()
 }
 export async function notAdmin/*Api */(req, res, next) {
   let user = getUser(req , res , next)
-  if(user.role === "admin"){
-    return next(new AuthorizationError ("Un administrador no puede agregar al carrito"))
+  if(user?.role === "admin"){
+    return next(new AuthorizationErrorWEB ("Un administrador no puede agregar al carrito"))
   }
   next()
 }
