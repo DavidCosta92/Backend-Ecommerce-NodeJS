@@ -2,7 +2,8 @@
 import { IllegalInputArg , TicketError ,TicketErrorWEB , IllegalInputArgWEB} from "../models/errors/validations.errors.js"
 import { AuthenticationError , AuthenticationExpiredError , AuthenticationErrorWEB, AuthenticationExpiredErrorWEB} from "../models/errors/authentication.error.js"
 import { AuthorizationError, AuthorizationErrorWEB } from "../models/errors/authorization.error.js"
-import { RegisterError , RegisterErrorAlreadyExistUser , NotFoundUserWeb} from "../models/errors/register.error.js"
+import { RegisterError , RegisterErrorAlreadyExistUser , NotFoundUserWeb, RegisterErrorAlreadyExistCodeProduct} from "../models/errors/register.error.js"
+import { StorageError } from "../models/errors/storageError.js"
 
 
 export function errorHandlerWEB(error, req, res , next){
@@ -42,7 +43,15 @@ export function errorHandlerAPI(error, req, res , next){
     if (error instanceof IllegalInputArg) {
         req.logger.debug(`*** ${error.type} -->> ${error.description}`)
         res.status(400).json({errorMessage: error.description })
-    } 
+    }  
+    else if (error instanceof RegisterErrorAlreadyExistCodeProduct) {
+        req.logger.error(`*** ${error.type} -->> ${error.description}`)
+        res.status(400).json({errorMessage: error.description })   
+    }
+    else if (error instanceof StorageError) {
+        req.logger.error(`*** ${error.type} -->> ${error.description}`)
+        res.status(400).json({errorMessage: error.description })   
+    }
     else if (error instanceof TicketError) {
         req.logger.error(`*** ${error.type} -->> ${error.description}`)
         res.status(400).json({errorMessage: error.description })   

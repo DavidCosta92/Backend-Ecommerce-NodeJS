@@ -4,24 +4,21 @@ import { PERSISTENCE } from "../config/config.js"
 
 class ProductRepository{
     productDao
-
     constructor (productDao){
         this.productDao = productDao
     }   
-    
-    async getProducts (user, req, res, next){    
-        let response ={...await this.productDao.getProducts(user, req, res, next)}
-        return response;
+    async getProducts (queryLimit , queryPage, category, stock, sort){    
+        return await this.productDao.getProducts(queryLimit , queryPage, category, stock, sort)
     }    
-    
-    async postProduct (req, res , next){
-        return await this.productDao.postProduct(req, res ,next);
-    }
-    
+    async postProduct (newProduct){
+        return await this.productDao.postProduct(newProduct);
+    }    
     async getProductById (pid){
         return await this.productDao.getProductById(pid);
-    }
-    
+    } 
+    async getProductByCode (code){
+        return await this.productDao.getProductByCode(code);
+    } 
     async deleteProductByID (req , res , next){
         return await this.productDao.deleteProductByID(req , res , next);
     }

@@ -2134,3 +2134,18 @@
 [31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 18:03:23"}
 [33merror[39m: [33m*** Ticket Error -->> No existen productos en condiciones de ser comprados, no puede continuar con la compra[39m {"timestamp":"2023-07-05 18:04:06"}
 [31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 18:12:32"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-05 18:22:35"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> ValidationError: purcharser: Path `purcharser` is required., amount: Path `amount` is required., purchase_datetime: Path `purchase_datetime` is required., code: Path `code` is required.[39m {"timestamp":"2023-07-06 01:23:06"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> TypeError: Found non-callable @@iterator[39m {"timestamp":"2023-07-06 01:29:34"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> TypeError: ticket.getAllAttr is not a function[39m {"timestamp":"2023-07-06 01:38:02"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> ValidationError: purcharser: Path `purcharser` is required., amount: Path `amount` is required., purchase_datetime: Path `purchase_datetime` is required., code: Path `code` is required.[39m {"timestamp":"2023-07-06 01:45:50"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> ValidationError: purcharser: Path `purcharser` is required., amount: Path `amount` is required., purchase_datetime: Path `purchase_datetime` is required., code: Path `code` is required.[39m {"timestamp":"2023-07-06 01:59:11"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> ValidationError: purcharser: Path `purcharser` is required., amount: Path `amount` is required., purchase_datetime: Path `purchase_datetime` is required., code: Path `code` is required.[39m {"timestamp":"2023-07-06 02:00:04"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> ValidationError: purcharser: Path `purcharser` is required., amount: Path `amount` is required., purchase_datetime: Path `purchase_datetime` is required., code: Path `code` is required.[39m {"timestamp":"2023-07-06 02:02:04"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> ObjectParameterError: Parameter "obj" to Document() must be an object, got c479f3fc-f120-483e-a694-44621ea849c6[39m {"timestamp":"2023-07-06 02:10:26"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-06 03:45:29"}
+[33merror[39m: [33m*** REGISTER_ERROR_CODE_EXIST -->> Codigo de producto ya existe[39m {"timestamp":"2023-07-06 03:51:33"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-06 03:57:39"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-06 03:58:27"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-06 03:58:37"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-06 04:00:30"}

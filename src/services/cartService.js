@@ -1,24 +1,27 @@
 // @ts-nocheck
 import { cartRepository } from "../repositories/cartRepository.js";
 import { productService } from "./productService.js";
+import { ticketService } from "./ticketService.js";
 import { ticketRepository } from "../repositories/ticketRepository.js";
 import { userSessionService } from "./sessionService.js";
+import { productRepository } from "../repositories/productRepository.js";
+
 import { AuthorizationError } from "../models/errors/authorization.error.js";
 import { validateAlphanumeric } from "../models/validations/validations.js";
-import { productRepository } from "../repositories/productRepository.js";
 
 class CartService{
     cartRepository
     productService
-    ticketRepository
+    productRepository
+    ticketService
     userSessionService
-    constructor(cartRepository , productService, ticketRepository ,userSessionService){    
+    constructor(cartRepository ,productRepository , productService, ticketService ,userSessionService){    
         this.cartRepository = cartRepository; 
+        this.productRepository = productRepository; 
         this.productService = productService;  
-        this.ticketRepository = ticketRepository;
+        this.ticketService = ticketService;
         this.userSessionService = userSessionService
     }
-
     async getCarts (req, next){
         try {
             const queryLimit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 10 : req.query.limit
@@ -171,7 +174,7 @@ class CartService{
     async validateProduct(pid, quantity , req, res , next){        
         try {            
             const pId = validateAlphanumeric("Product ID",pid)
-            const product = await productRepository.getProductById(pId)
+            const product = await this.productRepository.getProductById(pId)
             if (product?.stock >= quantity){ return true } 
             return false
             
@@ -221,16 +224,16 @@ class CartService{
     
             await this.updateProductsStocks(acceptedProds , req , res , next)
     
-            //cambiar productos en carrito por los rechazados y enviar alerta
+            //Logica de negocio pide que queden los rechazados en el carrito
             await this.setProductsInCart(cart, rejectedProds, req, res, next)                       
             const user = this.userSessionService.getLoguedUser(req , res , next)    
-            
-            const purchaseTicket = await this.ticketRepository.createTicket(acceptedProds , rejectedProds , amount , user.email, req, res, next)        
-    
+                
+            const purchaseTicket = await this.ticketService.newTicket(acceptedProds , rejectedProds , amount , user.email, req, res, next)
+
             return { purchaseTicket , user }             
         } catch (error) {
             next(error)
         }
     }
 } 
-export const cartService = new CartService(cartRepository , productService, ticketRepository, userSessionService)
+export const cartService = new CartService(cartRepository , productRepository , productService, ticketService, userSessionService)

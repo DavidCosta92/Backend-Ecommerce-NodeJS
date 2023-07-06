@@ -3,12 +3,9 @@ import { productService } from "../../services/productService.js";
 import { userSessionService } from "../../services/sessionService.js";
 
 export async function getProducts (req, res , next){  
-    const status = res?.statusCode === 200 ? `success, code: ${res.statusCode}` : `error, code: ${res.statusCode}`;   
     const user = userSessionService.getLoguedUser(req)    
-    let response ={...await productService.getProducts(user,req, next) , status}
-    res.json(response);
+    res.json(await productService.getProducts(user, req, next));
 }    
-
 export async function postProducts (req , res , next){  
     res.json(await productService.postProduct(req , res , next));
 }

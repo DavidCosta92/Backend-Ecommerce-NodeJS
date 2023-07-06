@@ -11,52 +11,34 @@ class ProductDAOMongo{
         this.model = model;
     }
 
-    async getProducts (user, req , res , next){
-        const {category, stock, limit, page, sort} = req.query
-        try {
-            /*  Busqueda por categoria y por stock (true o  false) */
-            const categorySearch = (category == "" || category == undefined) ? null : {$eq:category};
-            const searchStock = (stock == "" || stock == undefined || stock != "true" ) ? null : {$gt:0};
-            let searchParams = {}
-            if (categorySearch) searchParams["category"] = categorySearch;
-            if (searchStock) searchParams["stock"] = stock;        
+    async getProducts (queryLimit , queryPage, category, stock, sort){
+        /*  Busqueda por categoria y por stock (true o  false) */
+        const categorySearch = (category == "" || category == undefined) ? null : {$eq:category};
+        const searchStock = (stock == "" || stock == undefined || stock != "true" ) ? null : {$gt:0};
+        let searchParams = {}
+        if (categorySearch) searchParams["category"] = categorySearch;
+        if (searchStock) searchParams["stock"] = stock;        
             
-            /* paginado y ordenamiento */        
-            const searchLimit = (isNaN(Number(limit)) || limit == "" ) ? 10 : limit
-            const searchPage =  (isNaN(Number(page)) || page == "" ) ? 1 : page
-            let sortByPrice = null;
-            if(sort!= undefined) sortByPrice = (sort === "asc" )? { price : 1} : { price : -1} 
-            const pageOptions = { limit: searchLimit, page: searchPage, sort : sortByPrice , lean : true}            
+        /* paginado y ordenamiento */        
+        let sortByPrice = null;
+        if(sort!= undefined) sortByPrice = (sort === "asc" )? { price : 1} : { price : -1} 
+        const pageOptions = { limit: queryLimit, page: queryPage, sort : sortByPrice , lean : true}            
             
-            const products = await productModel.paginate( searchParams ,pageOptions)
-            for (let i = 0; i < products.docs.length; i++) {
-                if(products.docs[i].owner === user.email){
-                    products.docs[i]["userIsOwner"] = true
-                }
-                if(user.role === "admin"){
-                    products.docs[i]["userIsAdmin"] = true
-                }
-            }
-
-            const response ={
-                payload : products.docs,
-                totalPages : products.totalPages,
-                prevPage : products.prevPage,
-                nextPage : products.nextPage,
-                page : products.page,
-                hasPrevPage : products.hasPrevPage,
-                hasNextPage : products.hasNextPage,
-                prevLink : products.prevPage? `/api/products/?limit=${limit}&page=${products.prevPage}` : null, 
-                nextLink : products.nextPage? `/api/products/?limit=${limit}&page=${products.nextPage}`: null,
-                limit: limit,
-                hayResultados : products.docs.length > 0
-            }     
-            return response;       
-            
-            } catch (error) {
-                console.log("ERROR >",error)
-                next(error);        
-        }
+        const products = await productModel.paginate( searchParams ,pageOptions)
+        const response ={
+            payload : products.docs,
+            totalPages : products.totalPages,
+            prevPage : products.prevPage,
+            nextPage : products.nextPage,
+            page : products.page,
+            hasPrevPage : products.hasPrevPage,
+            hasNextPage : products.hasNextPage,
+            prevLink : products.prevPage? `/api/products/?limit=${queryLimit}&page=${products.prevPage}` : null, 
+            nextLink : products.nextPage? `/api/products/?limit=${queryLimit}&page=${products.nextPage}`: null,
+            limit: queryLimit,
+            hayResultados : products.docs.length > 0
+        }     
+        return response;       
     }
     /*
     
@@ -114,34 +96,23 @@ class ProductDAOMongo{
         }
     }
     */
-    async postProduct (req , res , next){
-        try {
-            const {title, description,code, category, thumbnails , owner} = req.body;        
-            const price = parseInt(req.body.price);
-            const stock = parseInt(req.body.stock);
-
-// aca deberia validar que el codigo pasado es aceptable, en el sentido de si no esta repetido.. por el momento esto lo valida solo mongoose, pero para filesystem no es aplicable.. debo validar a mano antes de crear el newProduct.. hacer metodo tipo existByCode(code), respuesta boolean que permita crear o no..
-            console.log("owner ====>>>>>>>>",owner,"owner ====>>>>>>>>")
-
-
-            const newProduct = new Product ({title, description,code, price, stock, category, thumbnails, owner}).getAllAttr()
-            const productAdded = await productModel.create(newProduct)
-            return productAdded;                
-        }catch (error) {
-            console.log("ERROR >",error)
-            next(error);
-        }
+    async postProduct (newProduct){
+        return await productModel.create(newProduct)               
     }
-
     async getProductById(pid){
         try {
-            const product = await productModel.findById(pid);
-            return product;
+            return await productModel.findById(pid);
         } catch (error) {
             throw new NotFoundError(error)
         }
     }
-
+    async getProductByCode(code){
+        try {
+            return await productModel.findOne({code : code})
+        } catch (error) {
+            throw new NotFoundError(error)
+        }
+    }
     async deleteProductByID (req , res , next){
         try {
             const productDeleted = await productModel.findByIdAndDelete(req.params.pid);

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { productModel } from "../../db/mongoose/models/productModel.js";
 import { ticketModel } from "../../db/mongoose/models/ticketModel.js";
-import { Ticket } from "../../models/Ticket.js";
+import { StorageError } from "../../models/errors/storageError.js";
 
 class TicketDAOMongoose{
     model
@@ -9,14 +9,11 @@ class TicketDAOMongoose{
         this.model = model;
     }
 
-    async createTicket (acceptedProds , rejectedProds , amount , purchaser,req, res, next){
+    async createTicket (ticket){
         try {
-            const ticket = new Ticket (acceptedProds , rejectedProds , amount , purchaser).getAllAttr()
-            const newTicket = await ticketModel.create(ticket)
-            return newTicket
-        } catch (error) {            
-            console.log("ERROR >",error)
-            next(error);
+            return await ticketModel.create(ticket)
+        } catch (error) {
+            throw new StorageError(error)
         }
     }
 }

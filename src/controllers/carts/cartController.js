@@ -4,22 +4,18 @@ import { cartService  } from "../../services/cartService.js";
 export async function getCarts (req, res , next){
     res.json(await cartService.getCarts (req, res , next));
 }
-
 export async function postCart (req, res , next){
     res.json(await cartService.postCart (next));
 }
-
 export async function getCartsByID (req, res , next){     
     res.json(await cartService.getCartsByID (req,next));
 }
 export async function deleteCartByID (req, res , next){    
     res.json(await cartService.deleteCartByID (req, next));
 }
-
 export async function postProductToCarts (req, res , next){
     res.json(await cartService.postProductToCarts (req, res , next));
 }
-
 export async function deleteProductInCarts (req, res , next){
     res.status(200).json(await cartService.deleteProductInCarts (req, res , next));
 }
@@ -36,10 +32,7 @@ export async function updateAllProductsInCarts (req, res , next) {
 export async function buyCart (req, res , next) {
     try {
         const { purchaseTicket , user } = await cartService.buyCart (req, res , next)
-
-        /* 
-        ESTA LOGICA ESTA ACA, PORQUE ES UN ERROR DE HABDLEBARS (FRONT) => para solucionar error "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas
-        */
+/* ESTA LOGICA ESTA ACA, PORQUE ES UN ERROR DE Handlebars (FRONT) => "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas */
         if ( purchaseTicket){
             const {code , purchase_datetime , amount , purcharser , acceptedProds , rejectedProds} = purchaseTicket
             const acceptedProducts = []

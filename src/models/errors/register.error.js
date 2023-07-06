@@ -19,3 +19,11 @@ export class NotFoundUserWeb extends Error {
         this.description = description;
     }
 }
+
+export class RegisterErrorAlreadyExistCodeProduct extends Error {
+    constructor(description) {
+        super();
+        this.type = 'REGISTER_ERROR_CODE_EXIST';
+        this.description = description;
+    }
+}
