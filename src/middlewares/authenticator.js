@@ -34,7 +34,16 @@ export function onlyAuthenticated /*Api */(req, res, next) {
     throw new AuthenticationExpiredError(error)
   }
 }
-export async function onlyAdminOrPremium/*Api */(req, res, next) {    
+
+export async function onlyAdminOrPremiumApi(req, res, next) {    
+  // solo corrobora rol, el owner sera chequeado a nivel de servicios
+  let user = getUser(req , res , next)
+  if(user?.role === "user"){
+    return next(new AuthorizationError ("Debes ser usuario PREMIUM o Administrador"))
+  }
+  next()
+}
+export async function onlyAdminOrPremiumWeb(req, res, next) {    
   // solo corrobora rol, el owner sera chequeado a nivel de servicios
   let user = getUser(req , res , next)
   if(user?.role === "user"){
@@ -56,10 +65,17 @@ export async function onlyUser/*Api */(req, res, next) {
   }
   next()
 }
-export async function notAdmin/*Api */(req, res, next) {
+export async function notAdminWeb(req, res, next) {
   let user = getUser(req , res , next)
   if(user?.role === "admin"){
-    return next(new AuthorizationErrorWEB ("Un administrador no puede agregar al carrito"))
+    return next(new AuthorizationErrorWEB ("Un administrador no puede realizar esta accion"))
+  }
+  next()
+}
+export async function notAdminApi(req, res, next) {
+  let user = getUser(req , res , next)
+  if(user?.role === "admin"){
+    return next(new AuthorizationError ("Un administrador no puede realizar esta accion"))
   }
   next()
 }

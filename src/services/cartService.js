@@ -2,12 +2,12 @@
 import { cartRepository } from "../repositories/cartRepository.js";
 import { productService } from "./productService.js";
 import { ticketService } from "./ticketService.js";
-import { ticketRepository } from "../repositories/ticketRepository.js";
 import { userSessionService } from "./sessionService.js";
 import { productRepository } from "../repositories/productRepository.js";
 
 import { AuthorizationError } from "../models/errors/authorization.error.js";
 import { validateAlphanumeric } from "../models/validations/validations.js";
+import { IllegalInputArg } from "../models/errors/validations.errors.js";
 
 class CartService{
     cartRepository
@@ -73,6 +73,7 @@ class CartService{
             } else {
                 throw new Error ("Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0")
             }          
+            if(productQuantity>product.stock) throw new IllegalInputArg (`La cantidad no puede exeder el stock, en este caso ${product.stock}`)
 
             const cart = await this.getCartsByID(req,next)
             if(cart){      
@@ -132,12 +133,14 @@ class CartService{
     async updateQuantityProductInCarts (req, res , next) {
         try {
             let newPrQty = req.query.quantity;
-            if (!Number.isInteger(Number(newPrQty)) && newPrQty < 0) throw new Error ("Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0")
+            if (!Number.isInteger(Number(newPrQty)) && newPrQty < 0) throw new IllegalInputArg ("Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0")
+
+            const product = await this.productService.getProductById(req , res , next)
+            if(newPrQty>product.stock) throw new IllegalInputArg (`La cantidad no puede exeder el stock, en este caso ${product.stock}`)
 
             const cart = await this.getCartsByID(req, res , next) 
             if(cart){            
                 let productInCart= false;      
-                const product = await this.productService.getProductById(req , res , next)
                 cart["products"].filter((obj)=>{
                 if( obj["product"].equals(product._id) ){ productInCart = true; }
                })

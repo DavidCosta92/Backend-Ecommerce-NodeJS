@@ -1,6 +1,7 @@
 // @ts-nocheck
 const formUserRegister = document.getElementById("formUserRegister")
 
+
 if (formUserRegister instanceof HTMLFormElement){
     formUserRegister.addEventListener("submit", async event =>{
         event.preventDefault()
@@ -18,8 +19,7 @@ if (formUserRegister instanceof HTMLFormElement){
             password :password 
         }
 
-        // actualmente los formularios estan seteados para trabajar con passport.. cambiar ruta del form post
-        
+        // actualmente los formularios estan seteados para trabajar con passport.. cambiar ruta del form post        
         await fetch(/*'/api/users/'*/'/api/users/session/localRegister', {
             method: 'POST',
             body: JSON.stringify(user),

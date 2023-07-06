@@ -20,7 +20,7 @@ export async function deleteProductInCarts (req, res , next){
     res.status(200).json(await cartService.deleteProductInCarts (req, res , next));
 }
 export async function deleteAllProductsInCartByID (req, res , next) {
-    res.status(200).json(await cartService.deleteAllProductsInCartByID (req, res , next));
+    res.json(await cartService.deleteAllProductsInCartByID (req, res , next));
 }
 export async function updateQuantityProductInCarts (req, res , next) {
     res.status(200).json(await cartService.updateQuantityProductInCarts (req, res , next));

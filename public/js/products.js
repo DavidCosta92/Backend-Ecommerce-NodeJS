@@ -28,36 +28,28 @@ if(form instanceof HTMLFormElement){
         })
     })
 }
-
-
 function goToLogin(){
     window.location.href = '/api/users/login'
 }
-
-function agregarProductoAlCarrito(pid){    
-    const cid = document.getElementById(`cid${pid}`).value  
-    const productQuantity = document.getElementById(`quantity${pid}`).value  
-    fetch(`/api/carts/${cid}/products/${pid}?quantity=${productQuantity}`,{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        }
-    })
-}
-async function agregarProductoAlCarritoUsuario(pid){    
-    
+async function agregarProductoAlCarritoUsuario(pid){        
     const cid = document.getElementById("cidUser").textContent
     const productQuantity = document.getElementById(`quantity${pid}`).value  
-    const add = await fetch(`/api/carts/${cid}/products/${pid}?quantity=${productQuantity}`,{
+    await fetch(`/api/carts/${cid}/products/${pid}?quantity=${productQuantity}`,{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         }
     })
-    if (add.status ===200 ){
-        alert("Producto agregado!")
-        location.reload()
-    }
-    
+    .then(resp =>{
+        if (resp.status ===200 ){
+            alert("Producto agregado!")
+            location.reload()
+        } 
+        else{
+            resp.json().then(data=>{
+                alert(data.errorMessage)
+            })
+        }
+    })
 }
 

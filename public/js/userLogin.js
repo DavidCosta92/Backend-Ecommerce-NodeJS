@@ -29,14 +29,12 @@ if (formUserLogin instanceof HTMLFormElement){
         }       
     })
 }
-
 function goToRegister(){    
     window.location.href = '/api/users/register'
 }
 function goToProducts(){    
     window.location.href = '/api/users/products'
 }
-
 function goToRestorePassword(){
     window.location.href = '/api/users/restore-password'
 }

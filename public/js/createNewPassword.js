@@ -29,7 +29,6 @@ if (formNewPassword instanceof HTMLFormElement){
        
     })
 }
-
 function goToRegister(){    
     window.location.href = '/api/users/register'
 }

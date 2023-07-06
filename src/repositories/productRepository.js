@@ -19,13 +19,9 @@ class ProductRepository{
     async getProductByCode (code){
         return await this.productDao.getProductByCode(code);
     } 
-    async deleteProductByID (req , res , next){
-        return await this.productDao.deleteProductByID(req , res , next);
+    async deleteProductByID (pid){
+        return await this.productDao.deleteProductByID(pid);
     }
-    
-    // async updateProductByID (req , res , next){    
-    //     return await this.productDao.updateProductByID(req , res , next);
-    // }
     async replaceOneProduct (pid , product){    
         return await this.productDao.replaceOneProduct(pid , product);
     }
@@ -33,10 +29,13 @@ class ProductRepository{
     // async updateStockSoldByID(pid, pQty , req , res , next){
     //     return await this.productDao.updateStockSoldByID(pid, pQty , req , res , next)
     // }
-    
-    getMockingProducts(req , res , next){
-        return this.productDao.getMockingProducts(req , res , next)
+
+/*
+    --- --- REVISAR SI ESTE METODO LO PIDE CODER, O CUAL ES LA RAZON DE TENERLO --- --- 
+    async updateProductByID (req , res , next){    
+        return await this.productDao.updateProductByID(req , res , next);
     }
+*/
 }
 // en esta parte debo elegir si es mongo o fs o otra persistencia... POR EL MOMENTO SOLO MONGOOSE
 export let productRepository = new ProductRepository(productDAOMongo)

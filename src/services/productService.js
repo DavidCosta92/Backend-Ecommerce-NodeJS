@@ -3,6 +3,7 @@ import { productRepository } from "../repositories/productRepository.js";
 import { validateAlphanumeric } from "../models/validations/validations.js";
 import { Product } from "../models/Product.js";
 import { RegisterErrorAlreadyExistCodeProduct } from "../models/errors/register.error.js";
+import { faker } from '@faker-js/faker'
 
 class ProductService{
     productRepository
@@ -63,13 +64,13 @@ class ProductService{
             next(error)
         }            
     }
-
     async deleteProductByID (req , res , next){
-        return await this.productRepository.deleteProductByID(req , res , next);
-    }
-    
-    async updateProductByID (req , res , next){    
-        return await this.productRepository.updateProductByID(req , res , next);
+        try {
+            const pid = validateAlphanumeric("Product ID",req.params.pid)
+            return await this.productRepository.deleteProductByID(pid);            
+        } catch (error) {
+            next(error)
+        }
     }
     async updateStockSoldByID (pid, quantity , req , res , next){   
         try {
@@ -80,10 +81,38 @@ class ProductService{
             next(error)
         }
     }
-
-    getMockingProducts(req , res , next){
-        return this.productRepository.getMockingProducts(req , res , next);
+    getMockingProducts(req , next){
+        try {
+            let quantity = req.params.quantity !== undefined? req.params.quantity : 100
+        
+            let mockingProducts = []
+            for (let i = 0; i < quantity; i++) {
+                mockingProducts.push(this.createProductMock())
+              }   
+            return mockingProducts     
+        } catch (error) {
+            next(error)
+        }
     }
+    createProductMock(){
+        const newProduct = new Product({
+            title : faker.commerce.productName(),
+            description : faker.commerce.productAdjective(), 
+            code : faker.string.uuid(), 
+            price : parseFloat(faker.commerce.price({ min: 1, dec: 2 })), 
+            stock : faker.number.int({ min:1 , max:100 }), 
+            category : "varios",//faker.commerce.department(), 
+            thumbnails : "" 
+        })
+        return newProduct
+    }
+
+/*
+    --- --- REVISAR SI ESTE METODO LO PIDE CODER, O CUAL ES LA RAZON DE TENERLO --- --- 
+    async updateProductByID (req , res , next){    
+        return await this.productRepository.updateProductByID(req , res , next);
+    }
+*/
 
 } 
 export const productService = new ProductService(productRepository)

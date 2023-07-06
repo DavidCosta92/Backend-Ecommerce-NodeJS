@@ -3,18 +3,23 @@ const formLogOut = document.getElementById("formLogOut")
 if (formLogOut instanceof HTMLFormElement){
     formLogOut.addEventListener("submit", async event =>{
         event.preventDefault()
-
-        const { status } = await fetch('/api/users/session', {
+        fetch('/api/users/session', {
             method: 'DELETE'
-          })      
-          if (status !== 200) {
-            console.log('[logout] estado inesperado: ' + status)  
-          }          
-          window.location.href = '/'
-
+          })          
+          .then(resp =>{
+            if (resp.status === 200 ){
+                alert("¡Hasta luego!")
+                location.reload()
+            } 
+            else{
+                resp.json().then(data=>{
+                    alert(data.errorMessage)
+                })
+            }
+        })  
+        window.location.href = '/'
     })
 }
-
 function goToUserProfile(){
   window.location.href = '/api/session/current'
 }

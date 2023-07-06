@@ -10,7 +10,6 @@ class ProductDAOMongo{
     constructor(model){
         this.model = model;
     }
-
     async getProducts (queryLimit , queryPage, category, stock, sort){
         /*  Busqueda por categoria y por stock (true o  false) */
         const categorySearch = (category == "" || category == undefined) ? null : {$eq:category};
@@ -40,7 +39,46 @@ class ProductDAOMongo{
         }     
         return response;       
     }
-    /*
+    async postProduct (newProduct){
+        return await productModel.create(newProduct)               
+    }
+    async getProductById(pid){
+        try {
+            return await productModel.findById(pid);
+        } catch (error) {
+            throw new NotFoundError(error)
+        }
+    }
+    async getProductByCode(code){
+        try {
+            return await productModel.findOne({code : code})
+        } catch (error) {
+            throw new NotFoundError(error)
+        }
+    }
+    async deleteProductByID (pid){
+        try {            
+            return await productModel.findByIdAndDelete(pid)
+        } catch (error) {            
+            throw new NotFoundError(error)
+        }
+    }
+    async replaceOneProduct(pid , product){
+        await productModel.replaceOne( { _id: pid } , product)
+    }
+/*
+    async updateStockSoldByID(pid, quantity , req , res , next){ 
+        let product = await productModel.findById(pid)
+        product.stock -= quantity
+        try {
+            await productModel.findByIdAndUpdate(pid, product)
+            return await productModel.findById(pid);
+        } catch (error) {
+            next(error);
+        }
+    }
+    */
+       /*
     
     async getProductsByUserEmail (req , res , next){
 
@@ -96,33 +134,8 @@ class ProductDAOMongo{
         }
     }
     */
-    async postProduct (newProduct){
-        return await productModel.create(newProduct)               
-    }
-    async getProductById(pid){
-        try {
-            return await productModel.findById(pid);
-        } catch (error) {
-            throw new NotFoundError(error)
-        }
-    }
-    async getProductByCode(code){
-        try {
-            return await productModel.findOne({code : code})
-        } catch (error) {
-            throw new NotFoundError(error)
-        }
-    }
-    async deleteProductByID (req , res , next){
-        try {
-            const productDeleted = await productModel.findByIdAndDelete(req.params.pid);
-            return productDeleted;
-        } catch (error) {
-            next(error);        
-        }
-    }
-
-    // revisar donde estoy usando este metodo
+/*
+    --- --- REVISAR SI ESTE METODO LO PIDE CODER, O CUAL ES LA RAZON DE TENERLO --- --- 
     async updateProductByID (req , res , next){
         let newProduct;
         try {
@@ -139,46 +152,7 @@ class ProductDAOMongo{
             next(error);
         }
     }
-
-    async replaceOneProduct(pid , product){
-        await productModel.replaceOne( { _id: pid } , product)
-    }
-
-    async updateStockSoldByID(pid, quantity , req , res , next){ 
-        let product = await productModel.findById(pid)
-        product.stock -= quantity
-        try {
-            await productModel.findByIdAndUpdate(pid, product)
-            return await productModel.findById(pid);
-        } catch (error) {
-            next(error);
-        }
-    }
-
-    getMockingProducts(req , res , next){        
-        let quantity = req.params.quantity !== undefined? req.params.quantity : 100
-        try {
-            let mockingProducts = []
-            for (let i = 0; i < quantity; i++) {
-                mockingProducts.push(this.createProductMock())
-              }   
-            return mockingProducts      
-        } catch (error) {
-            next(error)
-        }
-    }
-    createProductMock(){
-        const newProduct = new Product({
-            title : faker.commerce.productName(),
-            description : faker.commerce.productAdjective(), 
-            code : faker.string.uuid(), 
-            price : parseFloat(faker.commerce.price({ min: 1, dec: 2 })), 
-            stock : faker.number.int({ min:1 , max:100 }), 
-            category : "varios",//faker.commerce.department(), 
-            thumbnails : "" 
-        })
-        return newProduct
-    }
+*/
 }
 
 export const productDAOMongo = new ProductDAOMongo(productModel);

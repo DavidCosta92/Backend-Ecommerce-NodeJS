@@ -1,5 +1,5 @@
 async function changeMembership(uid){    
-    const changeMembership = await fetch(`/api/users/premium/${uid}`,{
+    fetch(`/api/users/premium/${uid}`,{
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
