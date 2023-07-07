@@ -9,7 +9,7 @@ import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as GithubStrategy } from 'passport-github2'
 import {GITHUB_CALLBACK_URL,GITHUB_CLIENT_SECRET, GITHUB_CLIENTE_ID } from '../config/config.js'
 import { cartRepository } from '../repositories/cartRepository.js'
-import { User } from '../models/User.js'
+import { GithubUser, User } from '../models/User.js'
 import { userService } from '../services/userService.js'
 
 passport.use('local', new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
@@ -49,26 +49,18 @@ passport.use('github', new GithubStrategy({
     callbackURL: GITHUB_CALLBACK_URL,
 }, async (accessToken, refreshToken, profile, done) => {
     let user = await userRepository.searchByGitHubUsername(profile.username);   
-    let userMail
     if(user === null){
     const idNewCart = await cartRepository.postCart(done)
-        userMail = `${profile.username}@github-user`
-        if(profile.email !== undefined) userMail = profile.email 
-
         const dataUser = {
-            first_name : profile.displayName , 
-            last_name  : profile.displayName ,
-            email : userMail,
-            age  : 1,
-            password  : " ",
+            username : profile.username,
             cart : idNewCart,
             role : "user"
         }        
-        const newUser = new User(dataUser)
-        user = await userRepository.createGitHubUser(newUser.getAllAttr());
+        const newGithubUser = new GithubUser(dataUser)
+        user = await userRepository.createGitHubUser(newGithubUser.getAllAttr());
     } 
-    let userGit = await userRepository.searchByGitHubUsername(userMail);   
-    done(null, userGit)
+    // let userGit = await userRepository.searchByGitHubUsername(profile.username);   
+    done(null, user)
 }))
 
 // esto lo tengo que agregar para que funcione passport! copiar y pegar, nada mas.

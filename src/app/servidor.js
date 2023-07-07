@@ -13,7 +13,7 @@ import { passportInitialize , passportSession } from "../middlewares/passport.js
 import session from "../middlewares/session.js";
 import { errorHandlerAPI , errorHandlerWEB} from "../middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
-import { getCurrentUser } from "../middlewares/authenticator.js";
+import { getCurrentUser, renderHome } from "../middlewares/authenticator.js";
 import { MONGOOSE_STRING_ATLAS, NODE_ENV } from "../config/config.js";
 import { mockingproducts } from "../controllers/products/products.controller.js";
 
@@ -45,9 +45,7 @@ app.set('view engine', 'handlebars')
 
 app.use(passportInitialize, passportSession)
 
-app.get("/", (req, res, next)=>{
-    res.render("home")
-})
+app.get("/", renderHome)
 app.get("/api/session/current", getCurrentUser)
 app.get("/mockingproducts", mockingproducts);
 app.get("/loggerTest", (req, res)=>{

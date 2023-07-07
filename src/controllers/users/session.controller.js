@@ -37,13 +37,11 @@ export async function deleteSession (req, res, next){
     if(req.signedCookies?.authToken!==undefined) {   
         req.logger.http(`Session cerrada por signedCookies`)
         res.clearCookie('authToken')    
-    }
-     else if(req.session?.user !==undefined) {   
+    } else if(req.session?.user !==undefined) {   
         req.logger.http(`Session cerrada`)
         req.session.destroy()        
-    }
-    /* CUANDO ME REGISTRO, Y QUEDO LOGUEADO -- REGISTRO Y LOGOUT DE GITHUB*/
-    else if(req.session?.passport!==undefined) {   
+    } else if(req.session?.passport!==undefined) {   
+        /* CUANDO ME REGISTRO, Y QUEDO LOGUEADO -- REGISTRO Y LOGOUT DE GITHUB*/
         req.logger.http(`Session cerrada por GITHUB`)
         req.session.destroy()    
     }   

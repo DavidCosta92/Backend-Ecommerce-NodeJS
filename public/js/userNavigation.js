@@ -1,6 +1,5 @@
 // @ts-nocheck
 const formUserLogin = document.getElementById("formUserLogin")
-
 if (formUserLogin instanceof HTMLFormElement){
     formUserLogin.addEventListener("submit", async event =>{
         event.preventDefault()
@@ -28,6 +27,44 @@ if (formUserLogin instanceof HTMLFormElement){
             alert(statusSession.errorMessage)
         }       
     })
+}
+
+const formLogOut = document.getElementById("formLogOut")
+if (formLogOut instanceof HTMLFormElement){
+    formLogOut.addEventListener("submit", async event =>{
+        event.preventDefault()
+        fetch('/api/users/session', {
+            method: 'DELETE'
+          })          
+          .then(resp =>{
+            if (resp.status === 200 ){
+                alert("¡Hasta luego!")
+                location.reload()
+            } 
+            else{
+                resp.json().then(data=>{
+                    alert(data.errorMessage)
+                })
+            }
+        })  
+        window.location.href = '/'
+    })
+}
+
+function goToHome(){
+  window.location.href = '/'
+}
+function goToUserProfile(){
+  window.location.href = '/api/session/current'
+}
+function goToMembershipsList(){  
+  window.location.href = '/api/users/premium/'
+}
+function goToAddProducts(){
+  window.location.href = '/api/products/add/form'
+}
+function redirigirProductos(){
+  window.location.href = `http://localhost:8080/api/users/products`;
 }
 function goToRegister(){    
     window.location.href = '/api/users/register'

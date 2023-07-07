@@ -82,9 +82,12 @@ class UserService {
            user = req.session.user 
         } else if (req.signedCookies.authToken){      
            user = encrypter.getDataFromToken(req.signedCookies.authToken);
-        } else{
+        } else if(req.session['user']){
            user = req.session['user']
         }
+        if(user.role === "admin") user['admin'] = true
+        if(user.role === "admin" || user.role === "premmium") user['adminOrPremium'] = true
+        
         return user
     }
     async getAllUsersForMembership(req){

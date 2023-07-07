@@ -99,9 +99,11 @@ export function getUser (req, res, next){
         const token = req.signedCookies.authToken
         const dataUser = encrypter.getDataFromToken(token)
         user = dataUser
-    }
-    if(req.user !=undefined){ user = req.user }//PARA localRegister
-    if(req.session?.passport !=undefined){ user = req.session.passport.user } //PARA CUANDO ME REGISTRO, PORQUE USO PASSPORT...
+    } else if(req.user !=undefined){ 
+      user = req.user //PARA localRegister
+    } else if(req.session?.passport !=undefined){ 
+      user = req.session.passport.user //PARA CUANDO ME REGISTRO, PORQUE USO PASSPORT...
+    } 
     return user    
  } catch (error) {
     next(error)
@@ -126,4 +128,18 @@ export async function getCurrentUser (req , res , next){
  } catch (error) {
     next(error)
  }
+}
+
+export async function renderHome(req , res , next){
+  try {
+    let user = getUser(req , res , next)
+    if(user === undefined){
+      res.render("home", {loguedUser :false}) 
+    } else {
+      res.render("home", {loguedUser :true , user : user}) 
+
+    }
+  } catch (error) {
+    next(error)
+  }
 }

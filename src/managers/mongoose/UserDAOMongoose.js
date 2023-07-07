@@ -29,7 +29,7 @@ export class UserDAOMongoose{
         return await userModel.findOne({ _id: uid }).lean() 
     }
     async searchByGitHubUsername(username){
-        const user = await userModelGitHub.findOne({ email: username }).lean()
+        const user = await userModelGitHub.findOne({ username: username }).lean()
         return user;        
     }
     async createGitHubUser(user){

@@ -1,17 +1,35 @@
-
-<div class=" d-flex flex-wrap border border-success rounded p-4 m-4 justify-content-around rounded">
-    <h5 class="w-100">USUARIO</h5>
-    <p class="pe-5 w-25">Nombre: {{user.first_name}}</p>
-    <p class="pe-5 w-25">Apellido: {{user.last_name}}</p> 
-    <p class="pe-5 w-25">Email: {{user.email}}</p>
-    <p class="pe-5 w-25">Edad: {{user.age}}</p>       
-    <p class="pe-5 w-50">Rol de usuario : {{user.role}}</p>
-    <p class="pe-5 w-50">ID carrito: <span id="cidUser">{{user.cart}}</span> </p>   
-    <form id="formLogOut" class=" w-50">
-        <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
-    </form>
-    <button class="btn btn-outline-primary  m-2 w-50" onClick=goToHome()> Home </button>
-</div>
+{{#if loguedUser}}
+    <div class=" d-flex flex-wrap border border-success rounded p-4 m-4 justify-content-around">
+    {{#if user.username}}
+        <h5 class="w-100">{{user.role}}</h5>
+        <p class="pe-5 w-25">Username Github: {{user.username}}</p>
+        <p class="pe-5 w-50">Rol de usuario : {{user.role}}</p>    
+        <p class="pe-5 w-50">ID carrito: <span id="cidUser">{{user.cart}}</span> </p>            
+    {{else}}
+        <h5 class="w-100">{{user.role}}</h5>
+        <p class="pe-5 w-25">Nombre: {{user.first_name}}</p>
+        <p class="pe-5 w-25">Apellido: {{user.last_name}}</p> 
+        <p class="pe-5 w-25">Email: {{user.email}}</p>
+        <p class="pe-5 w-25">Edad: {{user.age}}</p>       
+        <p class="pe-5 w-50">Rol de usuario : {{user.role}}</p>    
+        <p class="pe-5 w-50">ID carrito: <span id="cidUser">{{user.cart}}</span> </p>    
+    {{/if}} 
+        <div class="container  w-75 d-flex  align-items-center justify-content-around ">
+            <button class="btn btn-outline-dark  m-2 w-50" onClick=goToHome()> Home </button>
+            <button class="btn btn-outline-primary   m-2 w-50" onclick="goToUserProfile()">Ver perfil</button>
+            <button class="btn btn-outline-success   m-2 w-50" onclick="redirigirProductos()">Ver productos</button>
+            <form id="formLogOut" class="m-2 w-50">
+                <button type="submit" class="btn btn-outline-danger w-100">Cerrar sesion</button>
+            </form>
+            {{#if user.adminOrPremium}}
+            <button class="btn btn-outline-info  m-2 w-50" onClick=goToAddProducts()> Crear productos </button>
+            {{/if}}           
+            {{#if user.admin}}
+            <button class="btn btn-outline-warning  m-2 w-50" onClick=goToMembershipsList()> Ver usuarios </button>
+            {{/if}}
+        </div>
+    </div> 
+{{/if}}
 
 
 {{#if rejectedProds}}
@@ -73,4 +91,4 @@
 </div>
 
 
-<script src="/js/formLogOut.js"> </script>
+<script src="/js/userNavigation.js"></script>

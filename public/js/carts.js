@@ -4,9 +4,6 @@ async function comprarCarrito(){
     const cid = document.getElementById("cidUser").textContent  
     window.location.href = `/api/carts/${cid}/purchase`
 }    
-function goToAddProducts(){
-    window.location.href = '/api/products/add/form'
-}
 function eliminarCarrito (cid){
     fetch(`/api/carts/${cid}`,{
         method: "DELETE",

@@ -41,7 +41,30 @@ export class User {
     setRole(role){
         this.#role = role
     }
-
-
 }
 
+export class GithubUser {
+    #username
+    #cart
+    #role
+    
+    constructor ({username,cart, role}){
+        this.#username = validateString("Github username", username)
+        this.#cart = cart
+        this.#role = validateString("Rol", role)
+    }
+    getUsername(){ return this.#username}
+    getCart(){ return this.#cart}
+    getRole(){ return this.#role}
+    
+    getAllAttr() {
+        return {
+            username: this.#username,
+            cart: this.#cart,
+            role: this.#role,
+        }
+    }
+    setRole(role){
+        this.#role = role
+    }
+}

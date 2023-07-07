@@ -28,9 +28,6 @@ if(form instanceof HTMLFormElement){
         })
     })
 }
-function goToLogin(){
-    window.location.href = '/api/users/login'
-}
 async function agregarProductoAlCarritoUsuario(pid){        
     const cid = document.getElementById("cidUser").textContent
     const productQuantity = document.getElementById(`quantity${pid}`).value  

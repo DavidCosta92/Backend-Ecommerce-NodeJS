@@ -26,11 +26,7 @@ export const userModel = mongoose.model("users", userSchema)
 
 
 const userSchemaGitHub = new mongoose.Schema({
-    email  : { type: String, required: true, unique : true, },
-    password  : { type: String, required: false},
-    first_name : { type: String, required: false},
-    last_name  : { type: String, required: false},
-    age  : { type: Number, required: false},
+    username  : { type: String, required: true, unique : true, },
     cart  : { type: Schema.Types.ObjectId, ref:"carts" , required: false},  
     role : {
         type: String,

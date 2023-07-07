@@ -1,9 +1,7 @@
 // @ts-nocheck
-import { productDAOMongo } from "../../managers/mongoose/ProductDAOMongoose.js"
 import { encrypter } from "../../utils/encrypter.js"
 import { userService } from "../../services/userService.js"
 import { viewService } from "../../services/viewService.js"
-import { response } from "express"
 
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})
@@ -12,6 +10,7 @@ export function registerView(req,res,next){
     res.render("userLogin", {pageTitle: "Login"})
  }
  export async function productsView(req,res,next){ 
+   
    try {
       const dataRender = await viewService.getProducts(req, res, next)
       res.render("productsView", dataRender)        
