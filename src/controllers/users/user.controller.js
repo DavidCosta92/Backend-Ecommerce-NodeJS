@@ -74,7 +74,7 @@ export async function createNewPassword(req,res,next){
 
 export async function renderUsersMemberships(req,res,next){
    try {      
-      const user = await userService.getLoguedUser(req)
+      const user = await userService.getLoguedUser(req , next)
       const userList = await userService.getAllUsersForMembership(req)      
       res.render("membership-user-list", {pageTitle: "Lista de usuarios", users : userList, loguedUser : true , user})
    } catch (error) {

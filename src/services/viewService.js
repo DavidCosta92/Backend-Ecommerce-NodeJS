@@ -6,7 +6,7 @@ import { userService } from "./userService.js"
 class ViewService {
     async getProducts(req, res, next){
         let dataRender = {}
-        const user = await userService.getLoguedUser(req)
+        const user = await userService.getLoguedUser(req , next)
         const paginatedProducts = await productService.getProducts(user, req, res, next)
         dataRender["loguedUser"] = true
         dataRender["paginatedProducts"] = paginatedProducts

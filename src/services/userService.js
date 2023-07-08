@@ -76,20 +76,30 @@ class UserService {
         }
     }
 
-    async getLoguedUser(req){
-        let user = req.session?.passport?.user;        
-        if (req.session.user){
-           user = req.session.user 
-        } else if (req.signedCookies.authToken){      
-           user = encrypter.getDataFromToken(req.signedCookies.authToken);
-        } else if(req.session['user']){
-           user = req.session['user']
+    async getLoguedUser(req , next){
+        try {
+            let user = req.session?.passport?.user;        
+            if (req.session.user){
+               user = req.session.user 
+            } else if (req.signedCookies.authToken){      
+               user = encrypter.getDataFromToken(req.signedCookies.authToken);
+            } else if(req.session['user']){
+               user = req.session['user']
+            } else if(req.user !=undefined){ 
+                user = req.user //PARA localRegister
+            }  
+            // ATRIBUTOS SOLO PARA RENDERIZAR BOTONES DE ACCION EN HABDLEBARS
+            if(user !== undefined){                
+                if(user?.role === "admin") user.admin = true
+                if(user?.role === "admin" || user.role === "premium" ) user.adminOrPremium = true
+                if(user?.role === "user" || user.role === "premium" ) user.cartAllowed = true
+            }
+            return user
+        } catch (error) {
+            next(error)
         }
-        if(user.role === "admin") user['admin'] = true
-        if(user.role === "admin" || user.role === "premmium") user['adminOrPremium'] = true
-        
-        return user
     }
+    
     async getAllUsersForMembership(req){
         const listUsers = await this.userRepository.getAllUsersForMembership(req)
 
