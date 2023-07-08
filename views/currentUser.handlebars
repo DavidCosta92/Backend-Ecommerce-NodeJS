@@ -29,78 +29,7 @@
             {{/if}}
         </div>
     </div> 
-{{/if}}
-
-
-{{#if user.addProductsAllowed}}
-<div class=" border border-primary rounded p-4 m-4  d-flex  flex-wrap align-items-center justify-content-around">
-    <button class="btn btn-outline-info  m-2 w-50" onClick=goToAddProducts()> ¿Quieres agregar nuevos productos? </button>          
-</div>
-{{/if}}
-
-
-
-
-    {{#if products}}
-        <table class="table table-striped text-center" id="{{user.cart}}">
-        <div class="w-100 m-2  d-flex  flex-wrap align-items-center justify-content-around">
-            <h4 class="">Productos en carrito</h4>
-            <button class="btn btn-outline-success  mt-4 w-50" onClick=goToProducts()> ¿Quieres ver mas productos? </button>          
-        </div>
-        <thead>
-            <tr>
-                <th scope="col">ID Producto</th>
-                <th scope="col" class="w-25">Nombre</th>
-                <th scope="col" class="w-25">Descripcion</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col">Precio Un</th>
-                <th scope="col" >Acciones de Producto</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each products}}
-                <tr  id="{{this.product._id}}"> 
-                    <td>{{this.product._id}}</td>
-                    <td>{{this.product.title}}</td>
-                    <td>{{this.product.description}}</td>
-                    <td>{{this.quantity}}</td>
-                    <td>{{this.product.price}}</td>
-                    <td class="w-50">
-                        <label for="quantity" class=" mb-2">Cant:</label>
-                        <input type="number" class=" mb-2" id="quantity{{this.product._id}}" name="quantity" min="1" value="{{this.quantity}}" >
-                        <button onClick=elegirUnidadesDesdeCartById("{{this.product._id}}") type="button" class="btn btn-success">
-                            Elegir Cantidad
-                        </button>
-                        <button onClick=eliminarProductosDesdeCartById("{{this.product._id}}") type="button" class="btn btn-danger">
-                            Eliminar producto
-                        </button>
-                    </td>
-                </tr>
-            {{/each}}
-
-        </tbody>
-        <tfoot>                
-            <td colspan="3">
-                <button  onClick=vaciarCarritoUsuario() type="button" class="btn btn-warning w-25 m-1 mt-3">
-                    Vaciar el carrito
-                </button>
-            </td>  
-            <td colspan="3">
-                <button onClick=comprarCarrito() type="button" class="btn btn-success w-25 m-1 mt-3">
-                    PAGAR
-                </button>
-            </td>
-        </tfoot>
-        </table>
-    {{else}} 
-        {{#if user.cartAllowed}}
-            <div class="m-5 p-5 border border-dark">
-                <h3 class="w-100 text-center ">El usuario aun no agrego nada al carrito..</h3>
-                <button class="btn btn-outline-success  mt-4" onClick=goToProducts()> ¿Quieres ver productos? </button> 
-            </div>                
-        {{/if}}        
-    {{/if}}
-
+    
 {{else}}
  <div class="m-5 p-5 border border-dark">
     <h3 class="w-100 text-center ">NO HAY USUARIO LOGUEADO AUN</h3>
@@ -122,6 +51,77 @@
     </a>    
  </div>
 {{/if}}
+
+
+
+{{#if user.addProductsAllowed}}
+<div class=" border border-primary rounded p-4 m-4  d-flex  flex-wrap align-items-center justify-content-around">
+    <button class="btn btn-outline-info  m-2 w-50" onClick=goToAddProducts()> ¿Quieres agregar nuevos productos? </button>          
+</div>
+{{/if}}
+
+
+
+
+{{#if products}}
+    <table class="table table-striped text-center" id="{{user.cart}}">
+    <div class="w-100 m-2  d-flex  flex-wrap align-items-center justify-content-around">
+        <h4 class="">Productos en carrito</h4>
+        <button class="btn btn-outline-success  mt-4 w-50" onClick=goToProducts()> ¿Quieres ver mas productos? </button>          
+    </div>
+    <thead>
+        <tr>
+            <th scope="col">ID Producto</th>
+            <th scope="col" class="w-25">Nombre</th>
+            <th scope="col" class="w-25">Descripcion</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio Un</th>
+            <th scope="col" >Acciones de Producto</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each products}}
+            <tr  id="{{this.product._id}}"> 
+                <td>{{this.product._id}}</td>
+                <td>{{this.product.title}}</td>
+                <td>{{this.product.description}}</td>
+                <td>{{this.quantity}}</td>
+                <td>{{this.product.price}}</td>
+                <td class="w-50">
+                    <label for="quantity" class=" mb-2">Cant:</label>
+                    <input type="number" class=" mb-2" id="quantity{{this.product._id}}" name="quantity" min="1" value="{{this.quantity}}" >
+                    <button onClick=elegirUnidadesDesdeCartById("{{this.product._id}}") type="button" class="btn btn-success">
+                        Elegir Cantidad
+                    </button>
+                    <button onClick=eliminarProductosDesdeCartById("{{this.product._id}}") type="button" class="btn btn-danger">
+                        Eliminar producto
+                    </button>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+    <tfoot>                
+        <td colspan="3">
+            <button  onClick=vaciarCarritoUsuario() type="button" class="btn btn-warning w-25 m-1 mt-3">
+                Vaciar el carrito
+            </button>
+        </td>  
+        <td colspan="3">
+            <button onClick=comprarCarrito() type="button" class="btn btn-success w-25 m-1 mt-3">
+                PAGAR
+            </button>
+        </td>
+    </tfoot>
+    </table>
+{{else}} 
+    {{#if user.cartAllowed}}
+        <div class="m-5 p-5 border border-dark">
+            <h3 class="w-100 text-center ">El usuario aun no agrego nada al carrito..</h3>
+            <button class="btn btn-outline-success  mt-4" onClick=goToProducts()> ¿Quieres ver productos? </button> 
+        </div>                
+    {{/if}}        
+{{/if}}
+
 
 <script src="/js/carts.js"></script>
 <script src="/js/userNavigation.js"></script>

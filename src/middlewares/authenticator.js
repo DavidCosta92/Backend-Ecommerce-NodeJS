@@ -3,7 +3,6 @@ import { cartDAOMongoose } from "../managers/mongoose/CartDAOMongoose.js"
 import { AuthenticationExpiredError } from "../models/errors/authentication.error.js"
 import { AuthorizationError , AuthorizationErrorWEB} from "../models/errors/authorization.error.js"
 import { cartService } from "../services/cartService.js"
-import { encrypter } from "../utils/encrypter.js"
 import { userService } from "../services/userService.js"
 
 

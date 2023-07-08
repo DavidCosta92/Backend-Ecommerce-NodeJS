@@ -12,7 +12,7 @@ class ViewService {
         dataRender["paginatedProducts"] = paginatedProducts
 
         if(user !== undefined){
-            dataRender["title"] =`${user.first_name} - productos`
+            dataRender["title"] = user.username? `${user.username} - productos` : `${user.first_name} - productos`
             dataRender["user"] =user
          } else {         
             dataRender["title"] =`${req.session['user'].first_name} - productos`

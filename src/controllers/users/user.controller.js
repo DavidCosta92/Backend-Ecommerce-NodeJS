@@ -10,7 +10,6 @@ export function registerView(req,res,next){
     res.render("userLogin", {pageTitle: "Login"})
  }
  export async function productsView(req,res,next){ 
-   
    try {
       const dataRender = await viewService.getProducts(req, res, next)
       res.render("productsView", dataRender)        

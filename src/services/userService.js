@@ -91,6 +91,7 @@ class UserService {
             } else if(req.user !=undefined){ 
                 user = req.user //PARA localRegister
             }  
+
             // ATRIBUTOS SOLO PARA RENDERIZAR BOTONES DE ACCION EN HABDLEBARS
             if(user !== undefined){             
                 if(user?.role === "admin") user.admin = true
