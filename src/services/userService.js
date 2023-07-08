@@ -78,10 +78,13 @@ class UserService {
 
     async getLoguedUser(req , next){
         try {
-            let user = req.session?.passport?.user;        
-            if (req.session.user){
+            let user 
+            if (req.session?.passport?.user){
+                user = req.session?.passport?.user
+            }
+            else if (req.session.user){
                user = req.session.user 
-            } else if (req.signedCookies.authToken){      
+            } else if (req.signedCookies.authToken){  
                user = encrypter.getDataFromToken(req.signedCookies.authToken);
             } else if(req.session['user']){
                user = req.session['user']
@@ -89,7 +92,7 @@ class UserService {
                 user = req.user //PARA localRegister
             }  
             // ATRIBUTOS SOLO PARA RENDERIZAR BOTONES DE ACCION EN HABDLEBARS
-            if(user !== undefined){                
+            if(user !== undefined){             
                 if(user?.role === "admin") user.admin = true
                 if(user?.role === "admin" || user.role === "premium" ) user.adminOrPremium = true
                 if(user?.role === "user" || user.role === "premium" ) user.cartAllowed = true
