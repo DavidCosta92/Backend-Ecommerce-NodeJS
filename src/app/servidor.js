@@ -20,6 +20,8 @@ import { mockingproducts } from "../controllers/products/products.controller.js"
 import dotenv from 'dotenv'
 import { logger } from "../middlewares/loggerMiddleware.js";
 import { winstonLogger } from "../utils/logger.js";
+import { specsSwagger } from "../utils/docs.swagger.js";
+import { setup , serve} from "swagger-ui-express";
 
 dotenv.config({path: 'src/.env'});
 
@@ -34,6 +36,9 @@ app.use("/api/products",productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/api/users" , userRouter);
 app.use("/api/views", viewsRouter);
+
+//const swaggerUi = require('swagger-ui-express')
+app.use('/api/docs', serve, setup(specsSwagger))
 
 app.use(express.static('./public'))
 app.use(express.json())
@@ -57,6 +62,7 @@ app.get("/loggerTest", (req, res)=>{
     req.logger.fatal("Este es un ejemplo de un log de nivel fatal")
     res.send({message:"PRueba de loggers"})
 });
+
 
 
 app.use(errorHandlerWEB) 
