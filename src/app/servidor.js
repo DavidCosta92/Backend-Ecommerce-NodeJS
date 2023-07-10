@@ -20,8 +20,7 @@ import { mockingproducts } from "../controllers/products/products.controller.js"
 import dotenv from 'dotenv'
 import { logger } from "../middlewares/loggerMiddleware.js";
 import { winstonLogger } from "../utils/logger.js";
-import { specsSwagger } from "../utils/docs.swagger.js";
-import { setup , serve} from "swagger-ui-express";
+import { docsRouter } from "../routers/docsRouter.js";
 
 dotenv.config({path: 'src/.env'});
 
@@ -33,12 +32,10 @@ app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(logger)
 
 app.use("/api/products",productsRouter);
-app.use("/api/carts", cartsRouter);
-app.use("/api/users" , userRouter);
-app.use("/api/views", viewsRouter);
-
-//const swaggerUi = require('swagger-ui-express')
-app.use('/api/docs', serve, setup(specsSwagger))
+app.use("/api/carts", cartsRouter)
+app.use("/api/users" , userRouter)
+app.use("/api/views", viewsRouter)
+app.use("/api/docs", docsRouter)
 
 app.use(express.static('./public'))
 app.use(express.json())
@@ -52,7 +49,7 @@ app.use(passportInitialize, passportSession)
 
 app.get("/", renderHome)
 app.get("/api/session/current", getCurrentUser)
-app.get("/mockingproducts", mockingproducts);
+app.get("/mockingproducts", mockingproducts)
 app.get("/loggerTest", (req, res)=>{
     req.logger.debug("Este es un ejemplo de un log de nivel debug")
     req.logger.http("Este es un ejemplo de un log de nivel http")
