@@ -6,8 +6,13 @@ components:
       required:
         - id
         - title
+        - description
+        - category
+        - thumbnails
+        - owner
         - price
-        - thumbnail
+        - stock
+        - code
       properties:
         id:
           type: string
@@ -15,14 +20,34 @@ components:
         title:
           type: string
           description: The title of the product.
+        description:
+          type: string
+          description: The description of the product.
+        category:
+          type: string
+          description: The category of the product, enum [comestibles , varios].
+        thumbnails:
+          type: array
+          description: Urls of product images.
+        owner:
+          type: string
+          description: Email of owner of product, who must be logged in.
         price:
           type: number
-          description: The price of the product.
-        thumbnail:
+          description: Product price.
+        stock:
+          type: integer
+          description: Product stock.
+        code:
           type: string
-          description: The URL of the product thumbnail.
+          description: Product code, must be unique.
       example:
-         id: 4ughd7-3658fn-sk85d-h58sk
-         title: desktop computer
-         price: 123.78
-         thumbnail: http://photo.url.png
+        id: h58sk-sk85d-dl96m-3658fn
+        title: tortita        
+        description : panificado por unidad
+        category : varios
+        thumbnail: [http://photo.url.png , http://photo2.url.png]
+        owner : pepe@email.com
+        price: 50.78
+        stock : 99
+        code : codigoUnico123

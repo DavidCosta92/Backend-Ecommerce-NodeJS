@@ -1,7 +1,7 @@
 paths:
-  /products:
+  /api/products:
     post:
-      summary: Creates a new product
+      summary: Creates a new product  -- LOGIN REQUIRED - Premium or Admin only 
       tags:
         - Products
       requestBody:

@@ -1,0 +1,39 @@
+paths:
+  /api/products/:
+    get:
+      summary: Obtain all products -- LOGIN REQUIRED
+      tags:
+        - Products
+      parameters:
+      - name: limit
+        in: query
+        description: Indicates the number of products displayed on each page
+        required: false
+        type: integer
+      - name: page
+        in: query
+        description: Indicates the number of page.
+        required: false
+        type: integer
+      - name: category
+        in: query
+        description: to search by categories
+        required: false
+        type: string
+      - name: stock
+        in: query
+        description: Indicates if you wish only products with status true or all products.
+        required: false
+        type: boolean
+      - name: sort
+        in: query
+        description: Enum for order results by price [asc , desc]
+        required: false
+        type: string
+      responses:
+        "200":
+          description: All products, paginated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProducts'
