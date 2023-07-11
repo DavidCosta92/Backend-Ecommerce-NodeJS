@@ -1,11 +1,8 @@
 // @ts-nocheck
 import { productModel } from "../../db/mongoose/models/productModel.js";
-import { Product } from "../../models/Product.js";
-import { faker } from '@faker-js/faker'
-import { encrypter } from "../../utils/encrypter.js";
 import { NotFoundError } from "../../models/errors/carts.error.js";
 
-class ProductDAOMongo{
+export class ProductDAOMongo{
     model
     constructor(model){
         this.model = model;
@@ -23,7 +20,7 @@ class ProductDAOMongo{
         if(sort!= undefined) sortByPrice = (sort === "asc" )? { price : 1} : { price : -1} 
         const pageOptions = { limit: queryLimit, page: queryPage, sort : sortByPrice , lean : true}            
             
-        const products = await productModel.paginate( searchParams ,pageOptions)
+        const products = await this.model.paginate( searchParams ,pageOptions)
         const response ={
             payload : products.docs,
             totalPages : products.totalPages,
@@ -40,39 +37,39 @@ class ProductDAOMongo{
         return response;       
     }
     async postProduct (newProduct){
-        return await productModel.create(newProduct)               
+        return await this.model.create(newProduct)               
     }
     async getProductById(pid){
         try {
-            return await productModel.findById(pid);
+            return await this.model.findById(pid);
         } catch (error) {
             throw new NotFoundError(error)
         }
     }
     async getProductByCode(code){
         try {
-            return await productModel.findOne({code : code})
+            return await this.model.findOne({code : code})
         } catch (error) {
             throw new NotFoundError(error)
         }
     }
     async deleteProductByID (pid){
         try {            
-            return await productModel.findByIdAndDelete(pid)
+            return await this.model.findByIdAndDelete(pid)
         } catch (error) {            
             throw new NotFoundError(error)
         }
     }
     async replaceOneProduct(pid , product){
-        await productModel.replaceOne( { _id: pid } , product)
+        await this.model.replaceOne( { _id: pid } , product)
     }
 /*
     async updateStockSoldByID(pid, quantity , req , res , next){ 
-        let product = await productModel.findById(pid)
+        let product = await this.model.findById(pid)
         product.stock -= quantity
         try {
-            await productModel.findByIdAndUpdate(pid, product)
-            return await productModel.findById(pid);
+            await this.model.findByIdAndUpdate(pid, product)
+            return await this.model.findById(pid);
         } catch (error) {
             next(error);
         }
@@ -111,7 +108,7 @@ class ProductDAOMongo{
             if(sort!= undefined) sortByPrice = (sort === "asc" )? { price : 1} : { price : -1} 
             const pageOptions = { limit: searchLimit, page: searchPage, sort : sortByPrice , lean : true}            
             
-            const products = await productModel.paginate( searchParams ,pageOptions)   
+            const products = await this.model.paginate( searchParams ,pageOptions)   
 
             const response ={
                 payload : products.docs,
@@ -146,8 +143,8 @@ class ProductDAOMongo{
             return next(error);
         }        
         try {
-            await productModel.findByIdAndUpdate(req.params.pid, newProduct)
-            return await productModel.findById(req.params.pid);
+            await this.model.findByIdAndUpdate(req.params.pid, newProduct)
+            return await this.model.findById(req.params.pid);
         } catch (error) {
             next(error);
         }

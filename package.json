@@ -6,8 +6,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "node .",
-    "test": "nodemon -e 'js' .e",
-    "testMocha": "mocha test/**/*.test.js"
+    "test": "nodemon -e 'js' .e"
   },
   "keywords": [],
   "author": "",
@@ -36,5 +35,8 @@
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
     "@types/mocha": "^10.0.1"
+  },
+  "mocha":{
+    "timeout" : 20000
   }
 }
