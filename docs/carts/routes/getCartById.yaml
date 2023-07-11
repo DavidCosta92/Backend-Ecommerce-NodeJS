@@ -1,0 +1,21 @@
+paths:
+  /api/carts/{id}:
+    get:
+      summary: Get one Cart by ID -- LOGIN REQUIRED
+      tags:
+        - Carts
+      parameters:
+      - name: id
+        in: path
+        description: ID of cart
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Cart with given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carts'
+        "404":
+          description: NOT FOUND.

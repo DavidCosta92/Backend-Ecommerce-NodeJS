@@ -2294,3 +2294,7 @@
 [31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-08 19:03:53"}
 [31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-08 19:27:43"}
 [31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-08 19:29:16"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-10 20:39:29"}
+[31mfatal[39m: [31m*** AUTHORIZATION_ERROR_WEB -->> Debes ser administrador[39m {"timestamp":"2023-07-10 20:39:29"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-10 20:39:43"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-10 20:39:43"}

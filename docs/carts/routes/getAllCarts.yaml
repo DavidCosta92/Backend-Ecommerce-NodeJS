@@ -1,0 +1,24 @@
+paths:
+  /api/carts/:
+    get:
+      summary: Obtain all carts -- LOGIN REQUIRED - only admin
+      tags:
+        - Carts
+      parameters:
+      - name: limit
+        in: query
+        description: Indicates the number of carts displayed on each page
+        required: false
+        type: integer
+      - name: page
+        in: query
+        description: Indicates the number of page.
+        required: false
+        type: integer
+      responses:
+        "200":
+          description: All carts, paginated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCarts'

@@ -14,7 +14,6 @@ const cartsSchema = new mongoose.Schema({
         }
     ],
     default : [],
-
 }, { versionKey: false})
 
 cartsSchema.plugin(mongoosePaginate);

@@ -1,0 +1,63 @@
+# Paginated product
+components:
+  schemas:
+    PaginatedCarts:
+      type: object
+      properties:
+        payload:
+          type: Array
+          description: Array of carts (with all properties).
+        totalPages:
+          type: integer
+          description: Total number of pages.
+        prevPage:
+          type: integer - null
+          description: Show number of page before the actual one, else shows null.
+        nextPage:
+          type: integer - null
+          description: Show number of page after the actual one, else shows null.
+        page:
+          type: integer
+          description: Indicates the number of page.
+        hasPrevPage:
+          type: boolean
+          description: Show if a page exists before the actual one.
+        hasNextPage:
+          type: boolean
+          description: Show if a page exists after the actual one.
+        prevLink:
+          type: string - null
+          description: Url of prev page, if exist, else null.
+        nextLink:
+          type: string - null
+          description: Url of next page, if exist, else null.
+        limit:
+          type: integer
+          description: Indicates the number of carts displayed on each page
+      example:      
+        payload:  
+          - id: 6487e197c37c9bed5d86182a
+            products: 
+            - id: h58sk-sk85d-dl96m-3658fn
+              title: tortita
+              price: 50.78
+              thumbnail: [http://photo.url.png , http://photo2.url.png]
+            - id: sk85d-3658fn-sk85d-3658fn
+              title: pan
+              price: 90.00
+              thumbnail: [http://photo.url.png , http://photo2.url.png]
+            default: []              
+          - id: 6487f7bc389b3d6493212aca
+            default: []
+            products: []
+              
+        totalPages: 1
+        prevPage: null
+        nextPage: null
+        page: 1
+        hasPrevPage: false
+        hasNextPage: false
+        prevLink: null
+        nextLink: null
+        limit: 10
+        hayResultados: true

@@ -1,0 +1,39 @@
+# Cart edit
+components:
+  requestBodies:
+    AddProductToCart:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the product.
+        description:
+          type: string
+          description: The description of the product.
+        category:
+          type: string
+          description: The category of the product, enum [comestibles , varios].
+        thumbnails:
+          type: array
+          description: Urls of product images.
+        owner:
+          type: string
+          description: Email of owner of product, who must be logged in.
+        price:
+          type: number
+          description: Product price.
+        stock:
+          type: integer
+          description: Product stock.
+        code:
+          type: string
+          description: Product code, must be unique.
+      example:
+        title: tortita        
+        description : panificado por unidad
+        category : varios
+        thumbnail: [http://photo.url.png , http://photo2.url.png]
+        owner : pepe@email.com
+        price: 50.78
+        stock : 99
+        code : codigoUnico123

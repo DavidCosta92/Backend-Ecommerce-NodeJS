@@ -1,0 +1,15 @@
+paths:
+  /api/{cid}/products:
+    delete:
+      summary: Get and delete all product by ID -- LOGIN REQUIRED
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Delete all products by Id of cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carts'
+        "404":
+          description: NOT FOUND.

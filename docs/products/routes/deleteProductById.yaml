@@ -1,0 +1,21 @@
+paths:
+  /api/products/{id}:
+    delete:
+      summary: Get and delete one product by ID -- LOGIN REQUIRED
+      tags:
+        - Products
+      parameters:
+      - name: id
+        in: path
+        description: ID of product
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Product deleted with given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        "404":
+          description: NOT FOUND.

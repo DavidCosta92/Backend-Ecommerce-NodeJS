@@ -1,0 +1,24 @@
+# Cart
+components:
+  schemas:
+    Carts:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The auto-generated id of the cart.
+        products:
+          type: array of objects
+          description: Array of products in cart.
+      example:
+        id: h58sk-sk85d-dl96m-3658fn
+        products: 
+          - id: h58sk-sk85d-dl96m-3658fn
+            title: tortita
+            price: 50.78
+            thumbnail: [http://photo.url.png , http://photo2.url.png]
+          - id: sk85d-3658fn-sk85d-3658fn
+            title: pan
+            price: 90.00
+            thumbnail: [http://photo.url.png , http://photo2.url.png]
+        

@@ -1,0 +1,32 @@
+paths:
+  /api/carts/{cid}/products/{pid}:
+    put:
+      summary: Edit one product from Cart -- LOGIN REQUIRED
+      tags:
+        - Carts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/EditProductFromCart'
+      parameters:
+      - name: cid
+        in: path
+        description: ID of cart
+        required: true
+        type: string
+      - name: pid
+        in: path
+        description: ID of product to update
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Cart with given ID, with products after update.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carts'
+        "404":
+          description: NOT FOUND.
