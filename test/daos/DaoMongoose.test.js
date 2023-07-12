@@ -1,9 +1,12 @@
+// @ts-nocheck
 // pruebas
 
 import mongoose from "mongoose"
 import { ProductDAOMongo} from "../../src/managers/mongoose/ProductDAOMongoose.js"
 import { MONGOOSE_STRING_ATLAS_TEST } from "../../src/config/config.js"
 import assert from 'node:assert'
+import chai from "chai"
+const expect = chai.expect
 
 // setup => preparacion previa para ejecutar prueba
 // exercise => EJECUTAR 
@@ -45,61 +48,69 @@ const productTestSchema = new mongoose.Schema({
 }, { versionKey: false})
 
 const productTestModel = mongoose.model("testproducts", productTestSchema)
+const productDAOMongo = new ProductDAOMongo(productTestModel)  
+
+// funciones extras
+async function insertDirectlyIntoMongoDb(doc, coleccion) {
+    let itemSaved = await mongoose.connection.collection(coleccion).insertOne(doc)
+    // delete coleccion._id
+    return itemSaved
+}
+
 
 
 before(async()=>{
     await mongoose.connect(MONGOOSE_STRING_ATLAS_TEST)
 })
-after(async()=>{
+afterEach(async()=>{
     await mongoose.connection.collection('testproducts').deleteMany({})
+})
+after(async()=>{
     await mongoose.connection.close()
 })
-
 describe("dao mongoose", ()=> {
     describe("postProduct", ()=> {
-        // camino feliz...
         describe.only("Cuando llamo a la funcion, con los datos correctos, esta deberia guardar un objeto y devolver el objeto guardado mas el ID", ()=> {
-            it("devuelve el mismo objeto con ID creado y todos los campos completos", async ()=>{                                
-                const productDAOMongo = new ProductDAOMongo(productTestModel)                
+            it("devuelve el mismo objeto con ID creado y todos los campos completos", async ()=>{     
                 const productCreated = await productDAOMongo.postProduct(productDataTest)
-                assert.ok(productCreated.id , "DEBERIA TENER ID")
-                assert.ok(productCreated.title == productDataTest.title , "DEBERIA TENER CAMPO title")
-                assert.ok(productCreated.code == productDataTest.code, "DEBERIA TENER CAMPO code")
-                assert.ok(productCreated.price == productDataTest.price, "DEBERIA TENER CAMPO price")
-                assert.ok(productCreated.stock == productDataTest.stock, "DEBERIA TENER CAMPO stock") 
-                assert.ok(productCreated.category == productDataTest.category, "DEBERIA TENER CAMPO category")
-                assert.ok(productCreated.owner == productDataTest.owner, "DEBERIA TENER CAMPO owner")
+                expect(productCreated).to.have.property("id")
+                expect(productCreated).to.have.property("title")
+                expect(productCreated).to.have.property("code")
+                expect(productCreated).to.have.property("price")
+                expect(productCreated).to.have.property("stock")
+                expect(productCreated).to.have.property("category")
+                expect(productCreated).to.have.property("owner")
+                // expect(productCreated).to.include.all.keys("_id", "title","code", "price", "stock", "category", "owner")
+
             })
         })
-        // camino triste 
         describe.only("Cuando llamo a la funcion, con campos incompletos, esta deberia fallar", ()=> {
-            it("deberia fallar porque la info esta incompleta...", async ()=>{                
-                const productDAOMongo = new ProductDAOMongo(productTestModel)                
-                    assert.rejects(async ()=>{
+            it("deberia fallar porque la info esta incompleta...", async ()=>{      
+                assert.rejects(async ()=>{
                     await productDAOMongo.postProduct(productDataTestIncompleto) ,
                     mongoose.Error.ValidationError
+                })
+                // let productError = await productDAOMongo.postProduct(productDataTestIncompleto)
+                // expect(productError).to.throw(mongoose.Error.ValidationError)
+
+            })
+        })
+    })
+    describe("getProductByCode", ()=> {
+        describe.only("Cuando llamo a la funcion, deberia devolver el objeto guardado por code", ()=> {
+            it("Devuelve el objeto con code buscado", async ()=>{                                    
+                await insertDirectlyIntoMongoDb(productDataTest, 'testproducts')
+                const productInBd = await productDAOMongo.getProductByCode(productDataTest.code)
+                assert.ok(productInBd.code == productDataTest.code)
+            })
+        })
+        describe.only("Cuando llamo a la funcion, con un code incorrecto", ()=> {
+            it("Devuelve error not found", async ()=>{                                    
+                assert.rejects(async ()=> {
+                    await productDAOMongo.getProductByCode(productDataTest.code) ,
+                    mongoose.Error.DocumentNotFoundError
                 })
             })
         })
     })
  })
-
-//  describe("dao mongoose", ()=> {
-//     describe("getProducts", ()=> {
-//         describe("Cuando llamo a la funcion, esta deberia ........ ", ()=> {
-//             it("devuelve el mismo objeto sin agregar campos ni metodos nuevos", ()=>{
-//                 
-//             })
-//         }) 
-//     })
-//  })
-// 
-//  describe("dao mongoose", ()=> {
-//     describe("getProductByCode", ()=> {
-//         describe("Cuando llamo a la funcion, esta deberia ........ ", ()=> {
-//             it("devuelve el mismo objeto sin agregar campos ni metodos nuevos", ()=>{
-//                 
-//             })
-//         }) 
-//     })
-//  })
