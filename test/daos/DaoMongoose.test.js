@@ -8,13 +8,6 @@ import assert from 'node:assert'
 import chai from "chai"
 const expect = chai.expect
 
-// setup => preparacion previa para ejecutar prueba
-// exercise => EJECUTAR 
-// tear down => Deshacer la preparacion o cualquier cambio hecho durante la prueba, el test no debe afectar al resto de las pruebas!
-
-// describe("", ()=> { })
-
-// para ejecutar deboi escribir => mocha test/daos/DaoMongoose.test.js  nombre de archivo y ruta desde raiz
 const productDataTest = { 
     title: "productTestMocha",
     description: "soy un prod",
@@ -58,16 +51,6 @@ async function insertDirectlyIntoMongoDb(doc, coleccion) {
 }
 
 
-
-before(async()=>{
-    await mongoose.connect(MONGOOSE_STRING_ATLAS_TEST)
-})
-afterEach(async()=>{
-    await mongoose.connection.collection('testproducts').deleteMany({})
-})
-after(async()=>{
-    await mongoose.connection.close()
-})
 describe("dao mongoose", ()=> {
     describe("postProduct", ()=> {
         describe.only("Cuando llamo a la funcion, con los datos correctos, esta deberia guardar un objeto y devolver el objeto guardado mas el ID", ()=> {
@@ -92,7 +75,6 @@ describe("dao mongoose", ()=> {
                 })
                 // let productError = await productDAOMongo.postProduct(productDataTestIncompleto)
                 // expect(productError).to.throw(mongoose.Error.ValidationError)
-
             })
         })
     })
@@ -101,7 +83,7 @@ describe("dao mongoose", ()=> {
             it("Devuelve el objeto con code buscado", async ()=>{                                    
                 await insertDirectlyIntoMongoDb(productDataTest, 'testproducts')
                 const productInBd = await productDAOMongo.getProductByCode(productDataTest.code)
-                assert.ok(productInBd.code == productDataTest.code)
+                expect(productInBd.code).to.be.equal(productDataTest.code)
             })
         })
         describe.only("Cuando llamo a la funcion, con un code incorrecto", ()=> {

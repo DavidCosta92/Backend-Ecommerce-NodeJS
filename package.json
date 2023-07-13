@@ -39,6 +39,7 @@
     "supertest": "^6.3.3"
   },
   "mocha": {
-    "timeout": 20000
+    "timeout": 20000,
+    "require": "test/globalHooks.js"
   }
 }

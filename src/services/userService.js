@@ -6,7 +6,7 @@ import { encrypter } from "../utils/encrypter.js"
 import { AuthenticationExpiredErrorWEB } from "../models/errors/authentication.error.js"
 import { IllegalInputArgWEB } from "../models/errors/validations.errors.js"
 import { Password } from "../models/Password.js"
-import { NotFoundUserWeb } from "../models/errors/register.error.js"
+import { NotFoundUserWeb, RegisterError } from "../models/errors/register.error.js"
 import { cartRepository } from "../repositories/cartRepository.js"
 
 class UserService {
@@ -14,15 +14,15 @@ class UserService {
     constructor(userRepository){
         this.userRepository = userRepository
     }
-    async createUser(user) {
+    async createUser(first_name, last_name, email, age, password) {        
         const cart = await cartRepository.postCart()
-        let {first_name, last_name, email, age, password} = user
         let role = "user"
         age = parseInt(age)
         if (email === "adminCoder@coder.com" && password === "adminCod3r123") role="admin"     
         const newUserObj = new User({first_name, last_name, email, age, password, cart, role}).getAllAttr()
 
-        const {newUser , code} = await this.userRepository.createUser({newUserObj})
+        const {newUser , code} = await this.userRepository.createUser({newUserObj})       
+        
         return {newUser, code}
     }
     async sendEmailResetPassword(email){        

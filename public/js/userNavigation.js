@@ -9,8 +9,8 @@ if (formUserLogin instanceof HTMLFormElement){
         const session = await fetch(
             /*'/api/users/session'*/                //setea para trabajar con login manual 
             /*'/api/users/session/localLogin' */    //setea para trabajar con passport 
-            '/api/users/session/signedCookie'       //setea para trabajar con sgined cookies 
-            ,{
+            /*'/api/users/session/signedCookie'*/       //setea para trabajar con sgined cookies 
+            '/api/users/session/signedCookie',{
             method: 'POST',
             headers: {
             'Accept': 'application/json',

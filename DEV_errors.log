@@ -2300,3 +2300,74 @@
 [31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-10 20:39:43"}
 [34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: jwt expired[39m {"timestamp":"2023-07-11 13:05:21"}
 [31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-11 13:05:21"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-13 09:53:21"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:25:46"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:29:13"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:30:20"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:30:33"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:31:01"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:36:13"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:39:25"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:40:23"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:41:11"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:42:20"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:42:56"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:43:24"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:44:29"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:45:51"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 15:54:59"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:04:43"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:05:23"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:05:59"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:06:21"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:08:32"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:46:59"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:49:27"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:49:53"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:49:54"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:52:34"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:54:36"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:55:24"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:55:37"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 16:55:58"}
+[34mwarning[39m: [34mESTOY ACAC postSessionTokenCookie??? SESSION.CONTROLLER[39m {"timestamp":"2023-07-13 16:59:03"}
+[34mwarning[39m: [34mSession INICIADA por signedCookies[39m {"timestamp":"2023-07-13 17:01:40"}
+[34mwarning[39m: [34mSession cerrada por signedCookies[39m {"timestamp":"2023-07-13 17:01:46"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 17:01:50"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 17:02:14"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 17:03:57"}
+[34mwarning[39m: [34mlocal', new LocalStrategy[39m {"timestamp":"2023-07-13 17:04:53"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 17:05:57"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 17:06:41"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 17:07:51"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 17:08:23"}
+[34mwarning[39m: [34mSession INICIADA por signedCookies[39m {"timestamp":"2023-07-13 17:08:29"}
+[34mwarning[39m: [34mlocal', new LocalStrategy[39m {"timestamp":"2023-07-13 17:08:29"}
+[34mwarning[39m: [34mSession cerrada por signedCookies[39m {"timestamp":"2023-07-13 17:09:23"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 17:09:33"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-13 17:10:32"}
+[31mfatal[39m: [31m*** undefined -->> undefined[39m {"timestamp":"2023-07-13 17:11:16"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-13 17:12:13"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-13 17:12:18"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-13 17:12:24"}
+[31mfatal[39m: [31muser is not defined[39m {"timestamp":"2023-07-13 17:12:47"}
+[34mwarning[39m: [34mSession cerrada por signedCookies[39m {"timestamp":"2023-07-13 17:14:35"}
+[34mwarning[39m: [34mSession INICIADA por signedCookies[39m {"timestamp":"2023-07-13 17:14:41"}
+[34mwarning[39m: [34mSession cerrada por signedCookies[39m {"timestamp":"2023-07-13 17:15:27"}
+[31mfatal[39m: [31mUnable to find the session to touch[39m {"timestamp":"2023-07-13 17:16:03"}
+[31mfatal[39m: [31mUnable to find the session to touch[39m {"timestamp":"2023-07-13 17:17:12"}
+[34mwarning[39m: [34mSession INICIADA por signedCookies[39m {"timestamp":"2023-07-13 17:20:44"}
+[34mwarning[39m: [34mSession INICIADA por signedCookies[39m {"timestamp":"2023-07-13 17:21:14"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-13 17:21:14"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-13 17:28:30"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-13 17:28:41"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-13 17:28:47"}
+[34mwarning[39m: [34mSession cerrada por signedCookies[39m {"timestamp":"2023-07-13 17:30:15"}
+[34mwarning[39m: [34mSession INICIADA por signedCookies[39m {"timestamp":"2023-07-13 17:30:34"}
+[34mwarning[39m: [34mSession cerrada por signedCookies[39m {"timestamp":"2023-07-13 17:36:58"}
+[31mfatal[39m: [31mUnable to find the session to touch[39m {"timestamp":"2023-07-13 17:37:40"}
+[31mfatal[39m: [31mUnable to find the session to touch[39m {"timestamp":"2023-07-13 17:39:09"}
+[34mwarning[39m: [34mSession cerrada por signedCookies[39m {"timestamp":"2023-07-13 17:40:01"}
+[34mwarning[39m: [34mSession INICIADA por signedCookies[39m {"timestamp":"2023-07-13 17:42:39"}
+[34mwarning[39m: [34mSession cerrada por signedCookies[39m {"timestamp":"2023-07-13 17:42:44"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-13 17:42:54"}

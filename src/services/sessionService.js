@@ -11,11 +11,6 @@ class SessionService {
         const correctPassword = encrypter.comparePasswords( password, userBD.password)
         if (!correctPassword)  throw new AuthenticationError("Error de logueo, revisa las credenciales")
         const token = encrypter.createToken(userBD)       
-    
-        
-            
-
-        
         return token
     }
     

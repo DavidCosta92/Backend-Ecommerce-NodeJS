@@ -20,7 +20,7 @@ if (formUserRegister instanceof HTMLFormElement){
         }
 
         // actualmente los formularios estan seteados para trabajar con passport.. cambiar ruta del form post        
-        await fetch(/*'/api/users/'*/'/api/users/session/localRegister', {
+        await fetch(/*'/api/users/'*/'/api/users/'/*session/localRegister'*/, {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
@@ -29,6 +29,7 @@ if (formUserRegister instanceof HTMLFormElement){
             }           
           })
           .then(res=>{
+            console.log(res)
             if(res.status === 201){
               alert("Registro y logueo exitoso, te enviaremos a productos..")
               window.location.assign('/api/users/products')

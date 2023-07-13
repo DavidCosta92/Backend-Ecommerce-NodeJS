@@ -15,7 +15,7 @@ export class UserDAOMongoose{
         const newUser = await this.searchByEmail(newUserObj.email)
 
         if (!newUser) throw new RegisterError("Error al crear nuevo usuario")
-        return {newUser , code:201}
+        return {newUser , code:201}        
     }
     async existByEmail(email){
         return await userModel.findOne({ email: email }) !==null? true : false;        

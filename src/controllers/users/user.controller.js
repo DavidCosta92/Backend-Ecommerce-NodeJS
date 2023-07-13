@@ -5,10 +5,10 @@ import { viewService } from "../../services/viewService.js"
 
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})
- }
- export function userLogin(req,res,next){    
+}
+ export function renderLoginView(req,res,next){    
     res.render("userLogin", {pageTitle: "Login"})
- }
+}
  export async function productsView(req,res,next){ 
    try {
       const dataRender = await viewService.getProducts(req, res, next)
@@ -16,27 +16,21 @@ export function registerView(req,res,next){
    } catch (error) {
       next(error)
    }
- }
- export async function postUser(req,res,next){   
-    try {         
-      const {user , code} = userService.createUser(req,res,next)
-      
-       /* session en cookie */
-       const token = encrypter.createToken(user)
-       res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60})
-           
-      // PENDIENTE TIEMPO REAL
-       /* EN TEORIA CON ESTO ESTOY AVISANDO QUE REFRESQUE EL LISTADO DE USUARIOS EL SOCKET*/      
-      // req['io'].sockets.emit('usuarios', await usuariosManager.obtenerTodos())
-      // tendria que poder recibir el evento de socket para poder actualizar      
-      /* EN TEORIA CON ESTO ESTOY AVISANDO QUE REFRESQUE EL LISTADO DE USUARIOS EL SOCKET*/
-
-      req.logger.http(`Registro e inicio de session de ${user}`)
-      res.status(code).json({ message: 'USUARIO SE LOGUEO', loguedUser: code === 201 })
+}
+ export async function postUser(req,res,next){  
+   try {
+      const {first_name, last_name, email, age, password} = req.body
+      const {newUser , code} = await userService.createUser(first_name, last_name, email, age, password)
+      /* a parte de crear el usuario, guardo la session en cookie asi ya queda logueado.. */         
+      const token = encrypter.createToken(newUser)
+      res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60})         
+      req.logger.http(`Registro e inicio de session de ${newUser.email} mediante signedCookies`)
+      res.status(code).json({ message: 'USUARIO SE LOGUEO', loguedUser: code === 201 })         
+      // PENDIENTE TIEMPO REAL => es necesario avisar que estoy online??       
     } catch (error) {
       next(error)
     }
- }
+}
 export async function renderPasswordReset (req,res,next){   
    res.render("restore-password", {pageTitle: "Reset password"})
 }
@@ -67,10 +61,8 @@ export async function createNewPassword(req,res,next){
    } catch (error) {
       res.status(400).json({ errorMessage : error.description})
       //next(error)
-   }
-   
+   }   
 }
-
 export async function renderUsersMemberships(req,res,next){
    try {      
       const user = await userService.getLoguedUser(req , next)
@@ -80,7 +72,6 @@ export async function renderUsersMemberships(req,res,next){
       //res.status(400).json({ errorMessage : error.description})
       next(error)
    }
-   
 }
 export async function changeMembership(req,res,next){
    try {      
@@ -89,6 +80,5 @@ export async function changeMembership(req,res,next){
    } catch (error) {
       //res.status(400).json({ errorMessage : error.description})
       next(error)
-   }
-   
+   }   
 }
