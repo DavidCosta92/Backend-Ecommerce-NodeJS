@@ -16,7 +16,7 @@ export class User {
         this.#age = validateIntegerNumber("Edad",age)
         this.#password = new Password(password).getPassword()
         this.#cart = cart
-        this.#role = validateString("Rol", role)
+        this.#role = validateString("Rol", role)        
     }
 
     getFirst_name(){ return this.#first_name}

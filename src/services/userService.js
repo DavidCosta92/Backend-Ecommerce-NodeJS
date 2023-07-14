@@ -17,10 +17,10 @@ class UserService {
     async createUser(first_name, last_name, email, age, password) {                
         let role = "user"
         age = parseInt(age)
-        if (email === "adminCoder@coder.com" && password === "adminCod3r123") role="admin"   
-
-        const newUserObj = new User({first_name, last_name, email, age, password, role}).getAllAttr()
-        newUserObj.setCart(await cartRepository.postCart()) // Si el usuario se valida correctamente, solo luego creo la cart
+        if (email === "adminCoder@coder.com" && password === "adminCod3r123") role="admin" 
+        const newClassUser = new User({first_name, last_name, email, age, password, role})
+        newClassUser.setCart(await cartRepository.postCart()) // Si el usuario se valida correctamente, solo luego creo la cart
+        const newUserObj = newClassUser.getAllAttr() 
         const {newUser , code} = await this.userRepository.createUser({newUserObj})       
         
         return {newUser, code}

@@ -26,7 +26,7 @@ export function getCredentialsCookie(req, res, next) {
 
 export function onlyAuthenticated /*Api */(req, res, next) {  
   try {
-    if (!req.user  && !req.session.passport  && !req.session.user && !req.signedCookies.authToken) {
+    if (/*!req.user  && !req.session.passport  && !req.session.user && */!req.signedCookies.authToken) {
       return next(new AuthorizationError ("Debes estar logueado para ver el recurso"))
     }
     next()

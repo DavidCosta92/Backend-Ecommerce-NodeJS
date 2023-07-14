@@ -14,7 +14,7 @@ import session from "../middlewares/session.js";
 import { errorHandlerAPI , errorHandlerWEB} from "../middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
 import { getCurrentUser, renderHome } from "../middlewares/authenticator.js";
-import { MONGOOSE_STRING_ATLAS, NODE_ENV } from "../config/config.js";
+import { MONGOOSE_STRING_ATLAS, MONGOOSE_STRING_ATLAS_TEST, NODE_ENV } from "../config/config.js";
 import { mockingproducts } from "../controllers/products/products.controller.js";
 
 import dotenv from 'dotenv'
@@ -24,7 +24,8 @@ import { docsRouter } from "../routers/docsRouter.js";
 
 dotenv.config({path: 'src/.env'});
 
-mongoose.connect(MONGOOSE_STRING_ATLAS)
+//mongoose.connect(MONGOOSE_STRING_ATLAS)
+mongoose.connect(MONGOOSE_STRING_ATLAS_TEST)
 
 const app = express();
 app.use(session)
