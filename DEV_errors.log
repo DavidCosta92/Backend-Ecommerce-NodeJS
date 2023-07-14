@@ -2371,3 +2371,17 @@
 [34mwarning[39m: [34mSession INICIADA por signedCookies[39m {"timestamp":"2023-07-13 17:42:39"}
 [34mwarning[39m: [34mSession cerrada por signedCookies[39m {"timestamp":"2023-07-13 17:42:44"}
 [34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-13 17:42:54"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-13 17:43:07"}
+[34mwarning[39m: [34mSession INICIADA por signedCookies[39m {"timestamp":"2023-07-13 19:15:59"}
+[34mwarning[39m: [34mSession cerrada por signedCookies[39m {"timestamp":"2023-07-13 19:16:16"}
+[31mfatal[39m: [31mUnable to find the session to touch[39m {"timestamp":"2023-07-13 19:17:02"}
+[34mwarning[39m: [34mSession cerrada por signedCookies[39m {"timestamp":"2023-07-13 19:18:11"}
+[34mwarning[39m: [34mSession INICIADA por signedCookies a travez de Github[39m {"timestamp":"2023-07-14 09:13:25"}
+[34mwarning[39m: [34mSession INICIADA por signedCookies a travez de Github[39m {"timestamp":"2023-07-14 09:19:03"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> JsonWebTokenError: jwt must be a string[39m {"timestamp":"2023-07-14 09:19:03"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-14 09:19:04"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> JsonWebTokenError: jwt must be a string[39m {"timestamp":"2023-07-14 09:20:53"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-14 09:20:53"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> JsonWebTokenError: jwt must be a string[39m {"timestamp":"2023-07-14 09:21:02"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-14 09:21:02"}
+[34mwarning[39m: [34mSession INICIADA por signedCookies a travez de Github[39m {"timestamp":"2023-07-14 09:22:24"}

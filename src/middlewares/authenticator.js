@@ -114,6 +114,10 @@ export function onlyAuthenticatedWeb(req, res, next) {
 //  }
 // }
 // 
+
+// export async function getToken(req, res, next) {
+//     
+// }
 export async function getCurrentUser (req , res , next){
   try {        
     let user = await userService.getLoguedUser(req , next)
@@ -131,7 +135,6 @@ export async function getCurrentUser (req , res , next){
     next(error)
  }
 }
-
 export async function renderHome(req , res , next){
   try {
     let user = await userService.getLoguedUser(req , next)

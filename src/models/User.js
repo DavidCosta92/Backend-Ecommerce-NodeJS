@@ -9,7 +9,7 @@ export class User {
     #cart
     #role
     
-    constructor ({first_name, last_name, email, age, password, cart, role}){
+    constructor ({first_name, last_name, email, age, password, role, cart=""}){
         this.#first_name = validateString("Nombre",first_name)
         this.#last_name = validateString("Apellido", last_name)
         this.#email = validateEmail("Email", email)
@@ -40,6 +40,9 @@ export class User {
     }
     setRole(role){
         this.#role = role
+    }
+    setCart(cartId){
+        this.#cart=cartId
     }
 }
 
