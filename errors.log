@@ -1,4 +1,0 @@
-[33merror[39m: [33mEste es un ejemplo de un log de nivel error[39m {"timestamp":"2023-06-20 10:55:35"}
-[31mfatal[39m: [31mEste es un ejemplo de un log de nivel fatal[39m {"timestamp":"2023-06-20 10:55:35"}
-[33merror[39m: [33mEste es un ejemplo de un log de nivel error[39m {"timestamp":"2023-06-20 11:05:38"}
-[31mfatal[39m: [31mEste es un ejemplo de un log de nivel fatal[39m {"timestamp":"2023-06-20 11:05:38"}
