@@ -1,7 +1,6 @@
 // @ts-nocheck
 const formUserRegister = document.getElementById("formUserRegister")
 
-
 if (formUserRegister instanceof HTMLFormElement){
     formUserRegister.addEventListener("submit", async event =>{
         event.preventDefault()
@@ -18,9 +17,8 @@ if (formUserRegister instanceof HTMLFormElement){
             age :age ,
             password :password 
         }
-
-        // actualmente los formularios estan seteados para trabajar con passport.. cambiar ruta del form post        
-        await fetch(/*'/api/users/'*/'/api/users/'/*session/localRegister'*/, {
+        // actualmente los formularios estan seteados para trabajar con JWT por signed cookies..         
+        await fetch('/api/users/', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {

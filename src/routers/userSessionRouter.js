@@ -2,7 +2,7 @@
 import { Router } from "express";
 import express from "express"
 import { registerView, postUser, renderLoginView, productsView , renderPasswordReset , sendEmailResetPassword , renderFormNewPassword , createNewPassword, renderUsersMemberships , changeMembership} from "../controllers/users/user.controller.js";
-import { authenticator, onlyAuthenticated , onlyAdmin } from "../middlewares/authenticator.js";
+import { authenticator, onlyAuthenticatedWeb , onlyAuthenticatedApi , onlyAdminWeb } from "../middlewares/authenticator.js";
 import session from "../middlewares/session.js";
 import { passportInitialize , passportSession } from "../middlewares/passport.js";
 import { sessionsRouter } from "./sessionsRouter.js";
@@ -27,7 +27,7 @@ userRouter.get('/new-password/', renderFormNewPassword)
 userRouter.post('/new-password/', createNewPassword)
 
 // --- premium ---
-userRouter.get('/premium/',authenticator, onlyAuthenticated , onlyAdmin, renderUsersMemberships)
-userRouter.put('/premium/:uid', authenticator, onlyAuthenticated , onlyAdmin, changeMembership)
+userRouter.get('/premium/',authenticator, onlyAuthenticatedApi /* onlyAuthenticatedWeb */ , onlyAdminWeb, renderUsersMemberships)
+userRouter.put('/premium/:uid', authenticator, onlyAuthenticatedApi /* onlyAuthenticatedWeb */ , onlyAdminWeb, changeMembership)
 
 userRouter.use(passportInitialize, passportSession)

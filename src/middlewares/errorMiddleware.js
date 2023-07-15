@@ -60,12 +60,9 @@ export function errorHandlerAPI(error, req, res , next){
         req.logger.error(`*** ${error.type} -->> ${error.description}`)
         res.status(400).json({errorMessage: error.description })   
     }
-    else if (error instanceof AuthenticationError) {
-        
-        console.log("EL ERROR ENTRON EN => AuthenticationError")
-        
+    else if (error instanceof AuthenticationError) {        
         req.logger.info(`*** ${error.type} -->> ${error.description}`)
-        res.status(400).json({errorMessage: error.description }) 
+        res.status(401).json({errorMessage: error.description }) 
     }
     else if (error instanceof AuthenticationExpiredError) {
         req.logger.http(`*** ${error.type} -->> ${error.description}`)

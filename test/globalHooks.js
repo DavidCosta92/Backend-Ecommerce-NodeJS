@@ -9,11 +9,13 @@ export const mochaHooks = {
   },
 
   async afterEach(){
-      await mongoose.connection.collection('products').deleteMany({})
-      await mongoose.connection.collection('users').deleteMany({})
+    //await mongoose.connection.collection('carts').deleteMany({}) 
+    await mongoose.connection.collection('products').deleteMany({})
+    await mongoose.connection.collection('users').deleteMany({})
   },
 
   async afterAll() {
+    await mongoose.connection.collection('carts').deleteMany({})
     await mongoose.connection.close()
     // await Promise => ver como cerrar el servidor desde aca... en repo rpofe esta, (debo actualizarlo al repo antes!)
   }

@@ -1,6 +1,5 @@
 // @ts-nocheck
-import { cartDAOMongoose } from "../managers/mongoose/CartDAOMongoose.js"
-import { AuthenticationExpiredError } from "../models/errors/authentication.error.js"
+import { AuthenticationError, AuthenticationErrorWEB, AuthenticationExpiredError } from "../models/errors/authentication.error.js"
 import { AuthorizationError , AuthorizationErrorWEB} from "../models/errors/authorization.error.js"
 import { cartService } from "../services/cartService.js"
 import { userService } from "../services/userService.js"
@@ -24,10 +23,20 @@ export function getCredentialsCookie(req, res, next) {
 }
 */
 
-export function onlyAuthenticated /*Api */(req, res, next) {  
+export function onlyAuthenticatedWeb(req, res, next) {  
   try {
     if (/*!req.user  && !req.session.passport  && !req.session.user && */!req.signedCookies.authToken) {
-      return next(new AuthorizationError ("Debes estar logueado para ver el recurso"))
+      return next(new AuthenticationErrorWEB ("Debes estar logueado para ver el recurso"))
+    }
+    next()
+  } catch (error) {
+    throw new AuthenticationExpiredError(error)
+  }
+}
+export function onlyAuthenticatedApi(req, res, next) {  
+  try {
+    if (/*!req.user  && !req.session.passport  && !req.session.user && */!req.signedCookies.authToken) {
+      return next(new AuthenticationError ("Debes estar logueado para ver el recurso"))
     }
     next()
   } catch (error) {
@@ -51,10 +60,17 @@ export async function onlyAdminOrPremiumWeb(req, res, next) {
   }
   next()
 }
-export async function onlyAdmin/*Api */(req, res, next) {    
+export async function onlyAdminWeb(req, res, next) {    
   let user = await userService.getLoguedUser(req , next)
   if(user?.role !== "admin"){
     return next(new AuthorizationErrorWEB ("Debes ser administrador"))
+  }
+  next()
+}
+export async function onlyAdminApi(req, res, next) {    
+  let user = await userService.getLoguedUser(req , next)
+  if(user?.role !== "admin"){
+    return next(new AuthorizationError ("Debes ser administrador"))
   }
   next()
 }
@@ -121,11 +137,13 @@ export function onlyAuthenticatedWeb(req, res, next) {
 export async function getCurrentUser (req , res , next){
   try {        
     let user = await userService.getLoguedUser(req , next)
+
     if(user === undefined){
       res.render("currentUser", {loguedUser :false}) 
     }else{
       req.params.cid = user.cart
-      const cartById = await cartService.getCartsByID(req , res , next)  
+      const cartById = await cartService.getCartsByID(req , res , next)        
+
       /* Necesario para solucionar error handlebars "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas*/
       const productsInCart = []
       cartById.products.forEach(p=>{ productsInCart.push( p.toObject()) })
