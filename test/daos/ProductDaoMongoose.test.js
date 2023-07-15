@@ -1,7 +1,6 @@
 // @ts-nocheck
 import mongoose from "mongoose"
 import { ProductDAOMongo} from "../../src/managers/mongoose/ProductDAOMongoose.js"
-import { MONGOOSE_STRING_ATLAS_TEST } from "../../src/config/config.js"
 import assert from 'node:assert'
 import chai from "chai"
 const expect = chai.expect
@@ -19,7 +18,6 @@ describe("dao mongoose", ()=> {
                 expect(productCreated).to.have.property("category")
                 expect(productCreated).to.have.property("owner")
                 // expect(productCreated).to.include.all.keys("_id", "title","code", "price", "stock", "category", "owner")
-
             })
         })
         describe.only("Cuando llamo a la funcion, con campos incompletos, esta deberia fallar", ()=> {

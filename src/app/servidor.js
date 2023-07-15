@@ -24,8 +24,8 @@ import { docsRouter } from "../routers/docsRouter.js";
 
 dotenv.config({path: 'src/.env'});
 
-//mongoose.connect(MONGOOSE_STRING_ATLAS)
-mongoose.connect(MONGOOSE_STRING_ATLAS_TEST)
+mongoose.connect(MONGOOSE_STRING_ATLAS)
+//mongoose.connect(MONGOOSE_STRING_ATLAS_TEST)
 
 const app = express();
 app.use(session)

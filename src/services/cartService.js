@@ -60,11 +60,8 @@ class CartService{
             const product = await this.productService.getProductById(req, res , next)
             const loguedUser = await this.userSessionService.getLoguedUser(req, res , next)
             let productQuantity = req.query.quantity;
-
-            if (product.owner === loguedUser.email){
-                // Corroborado desde back, en fron estan ocultos los productos propios
-                throw new AuthorizationError("No se pueden agregar productos propios al carrito")
-            }
+            // Corroborado desde back, en fron estan ocultos los productos propios
+            if (product.owner === loguedUser.email) throw new AuthorizationError("No se pueden agregar productos propios al carrito")
 
             if(productQuantity === undefined){
                 productQuantity = 1;

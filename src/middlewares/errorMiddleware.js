@@ -36,7 +36,6 @@ export function errorHandlerWEB(error, req, res , next){
     else{
         next(error)
     }
-    
 }
 
 export function errorHandlerAPI(error, req, res , next){      
@@ -46,19 +45,15 @@ export function errorHandlerAPI(error, req, res , next){
     }  
     else if (error instanceof RegisterErrorAlreadyExistCodeProduct) {
         req.logger.error(`*** ${error.type} -->> ${error.description}`)
-        res.status(400).json({errorMessage: error.description })   
+        res.status(409).json({errorMessage: error.description })   
     }
     else if (error instanceof StorageError) {
         req.logger.error(`*** ${error.type} -->> ${error.description}`)
-        res.status(400).json({errorMessage: error.description })   
+        res.status(500).json({errorMessage: error.description })   
     }
     else if (error instanceof TicketError) {
         req.logger.error(`*** ${error.type} -->> ${error.description}`)
-        res.status(400).json({errorMessage: error.description })   
-    }
-    else if (error instanceof TicketError) {
-        req.logger.error(`*** ${error.type} -->> ${error.description}`)
-        res.status(400).json({errorMessage: error.description })   
+        res.status(409).json({errorMessage: error.description })   
     }
     else if (error instanceof AuthenticationError) {        
         req.logger.info(`*** ${error.type} -->> ${error.description}`)
@@ -74,7 +69,7 @@ export function errorHandlerAPI(error, req, res , next){
     }
     else if (error instanceof RegisterError) {
         req.logger.error(`*** ${error.type} -->> ${error.description}`)
-        res.status(400).json({errorMessage: error.description })   
+        res.status(409).json({errorMessage: error.description })   
     }
     else if (error instanceof RegisterErrorAlreadyExistUser) {
         req.logger.warning(`*** ${error.type} -->> ${error.description}`)
@@ -83,7 +78,6 @@ export function errorHandlerAPI(error, req, res , next){
     // pendiente manejo de errores de integridad de mongo
     else {
         req.logger.fatal(error)
-        //req.logger.fatal(`*** ${error.type} -->> ${error.description}`)
         res.status(500).json(error) 
     }
 }
