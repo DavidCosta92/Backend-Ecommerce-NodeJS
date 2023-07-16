@@ -58,3 +58,59 @@
 [31mExpecting 'ID', 'STRING', 'NUMBER', 'BOOLEAN', 'UNDEFINED', 'NULL', 'DATA', got 'INVALID'[39m {"timestamp":"2023-07-16 03:09:02"}
 [31mfatal[39m: [31mcartToRender.push is not a function[39m {"timestamp":"2023-07-16 03:22:48"}
 [31mfatal[39m: [31mCannot set properties of undefined (setting 'products')[39m {"timestamp":"2023-07-16 03:23:51"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-16T07:16:36.000Z","name":"TokenExpiredError","timestamp":"2023-07-16 04:17:43"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-16 04:17:43"}
+[31mfatal[39m: [31mAuthorizationErrorWEB[39m
+[31m    at onlyAdminWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:36:42)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'AUTHORIZATION_ERROR_WEB',[39m
+[31m  description: 'Debes ser administrador'[39m
+[31m}[39m {"timestamp":"2023-07-16 04:17:43"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-16T07:16:36.000Z","name":"TokenExpiredError","timestamp":"2023-07-16 04:17:56"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-16 04:17:56"}
+[31mfatal[39m: [31muser.getAllAttr is not a function[39m {"timestamp":"2023-07-16 04:18:54"}
+[31mfatal[39m: [31muserDto.getAllAttr is not a function[39m {"timestamp":"2023-07-16 04:19:22"}
+[31mfatal[39m: [31muserDto.getAllAttr is not a function[39m {"timestamp":"2023-07-16 04:19:49"}
+[31mfatal[39m: [31mExpected "payload" to be a plain object.[39m {"timestamp":"2023-07-16 04:39:46"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-16 04:42:58"}
+[31mfatal[39m: [31mExpected "payload" to be a plain object.[39m {"timestamp":"2023-07-16 04:43:09"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'products')[39m {"timestamp":"2023-07-16 05:17:01"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at CartDAOMongoose.findCartById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/CartDAOMongoose.js:36:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async CartRepository.getCartsByID (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/repositories/cartRepository.js:17:16)[39m
+[31m    at async CartService.getCartsByID (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/cartService.js:47:20)[39m
+[31m    at async ViewService.getCartById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/viewService.js:42:22)[39m
+[31m    at async renderCartViewById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/views/views.controller.js:22:21) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: CastError: Cast to ObjectId failed for value "cid" (type string) at path "_id" for model "carts"[39m
+[31m      at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:248:11)[39m
+[31m      at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m      at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m      at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m      at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m      at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m      at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m      at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28)[39m
+[31m      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m      at async CartDAOMongoose.findCartById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/CartDAOMongoose.js:33:26) {[39m
+[31m    stringValue: '"cid"',[39m
+[31m    messageFormat: undefined,[39m
+[31m    kind: 'ObjectId',[39m
+[31m    value: 'cid',[39m
+[31m    path: '_id',[39m
+[31m    reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer[39m
+[31m        at new ObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\bson\lib\bson.cjs:2024:23)[39m
+[31m        at castObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast\objectid.js:25:12)[39m
+[31m        at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:246:12)[39m
+[31m        at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m        at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m        at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m        at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m        at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m        at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m        at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28),[39m
+[31m    valueType: 'string',[39m
+[31m    model: Model { carts }[39m
+[31m  }[39m
+[31m}[39m {"timestamp":"2023-07-16 05:29:50"}

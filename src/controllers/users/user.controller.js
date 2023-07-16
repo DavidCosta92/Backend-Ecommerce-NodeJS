@@ -20,11 +20,11 @@ export async function productsView(req,res,next){
  export async function postUser(req,res,next){  
    try {
       const {first_name, last_name, email, age, password} = req.body
-      const {newUser , code} = await userService.createUser(first_name, last_name, email, age, password)
-      /* a parte de crear el usuario, guardo la session en cookie asi ya queda logueado.. */         
-      const token = encrypter.createToken(newUser)
+      const {newUserDto , code} = await userService.createUser(first_name, last_name, email, age, password)
+      /* a parte de crear el usuario, guardo la session en cookie asi ya queda logueado.. */     
+      const token = encrypter.createToken(newUserDto)
       res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60})         
-      req.logger.http(`Registro e inicio de session de ${newUser.email} mediante signedCookies`)
+      req.logger.http(`Registro e inicio de session de ${newUserDto.email} mediante signedCookies`)
       res.status(code).json({ message: 'USUARIO SE LOGUEO', loguedUser: code === 201 })         
       // PENDIENTE TIEMPO REAL => es necesario avisar que estoy online??       
     } catch (error) {

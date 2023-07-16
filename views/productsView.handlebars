@@ -67,14 +67,18 @@
                                 </button>
                             </div>
                         {{else}}  
-                            {{#if this.stock}}         
-                                <div>                                             
-                                    <label for="quantity" class="me-5">Cant:</label>
-                                    <input type="number" id="quantity{{this._id}}" name="quantity" min="1" class="me-5" max={{this.stock}}>                    
-                                </div>  
-                                <button onClick=agregarProductoAlCarritoUsuario("{{this._id}}") id={{this._id}} type="button" class="btn btn-outline-success w-100 my-1 ">
-                                AGREGAR A CARRITO
-                            </button> 
+                            {{#if this.stock}}
+                                {{#if @root/user/cartAllowed}}         
+                                    <div>                                             
+                                        <label for="quantity" class="me-5">Cant:</label>
+                                        <input type="number" id="quantity{{this._id}}" name="quantity" min="1" class="me-5" max={{this.stock}}>                    
+                                    </div>  
+                                    <button onClick=agregarProductoAlCarritoUsuario("{{this._id}}") id={{this._id}} type="button" class="btn btn-outline-success w-100 my-1 ">
+                                    AGREGAR A CARRITO
+                                </button> 
+                                {{else}}
+                                <button class="btn btn-outline-secondary w-100 my-1 " disabled>No habilitado para admin</button>
+                                {{/if}}
                             {{else}}    
                             <button class="btn btn-outline-secondary w-100 my-1 " disabled> Sin stock</button>                    
                             {{/if}}

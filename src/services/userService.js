@@ -8,6 +8,7 @@ import { IllegalInputArgWEB } from "../models/errors/validations.errors.js"
 import { Password } from "../models/Password.js"
 import { NotFoundUserWeb} from "../models/errors/register.error.js"
 import { cartRepository } from "../repositories/cartRepository.js"
+import { UserDTO } from "../models/UserDTO.js"
 
 class UserService {
     userRepository
@@ -21,9 +22,9 @@ class UserService {
         const newClassUser = new User({first_name, last_name, email, age, password, role})
         newClassUser.setCart(await cartRepository.postCart()) // Si el usuario se valida correctamente, solo luego creo la cart
         const newUserObj = newClassUser.getAllAttr() 
-        const {newUser , code} = await this.userRepository.createUser({newUserObj})       
-        
-        return {newUser, code}
+        const {newUser , code} = await this.userRepository.createUser({newUserObj})   
+        const newUserDto = new UserDTO({...newUser}).getAllAttr()
+        return {newUserDto, code}
     }
     async sendEmailResetPassword(email){        
         try {
@@ -75,16 +76,8 @@ class UserService {
     async getLoguedUser(req , next){
         try {
             let user 
-            if (req.signedCookies.authToken){  
-               user = encrypter.getDataFromToken(req.signedCookies.authToken);
-            } 
-            // ATRIBUTOS SOLO PARA RENDERIZAR BOTONES DE ACCION EN Handlebars
-            if(user !== undefined){             
-                if(user?.role === "admin") user.admin = true
-                if(user?.role === "admin" || user.role === "premium" ) user.adminOrPremium = true
-                if(user?.role === "user" || user.role === "premium" ) user.cartAllowed = true
-            }
-            return user
+            if (req.signedCookies.authToken) user = encrypter.getDataFromToken(req.signedCookies.authToken)
+            return  user!=undefined? new UserDTO ({...user}).getAllAttr() : undefined
         } catch (error) {
             next(error)
         }
