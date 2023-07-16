@@ -13,7 +13,7 @@ sessionsRouter.use(session)
 sessionsRouter.use(express.json())
 sessionsRouter.use(express.urlencoded({ extended: true }))
 
-// actualmente los formularios estan seteados para trabajar con signed cookies, solo github es con passport.. 
+// actualmente los formularios estan seteados para trabajar con signed cookies
 sessionsRouter.post('/signedCookie', postSessionTokenCookie, sendStatus)//formulario de login
 sessionsRouter.delete('/', deleteSession) 
 

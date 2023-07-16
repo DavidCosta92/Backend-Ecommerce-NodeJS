@@ -48,11 +48,13 @@ export async function buyCart (req, res , next) {
                 purcharser : purcharser, 
                 acceptedProds : acceptedProducts, 
                 rejectedProds : rejectedProducts, 
-                user : user }
-                
+                user : user,
+                loguedUser: true
+             }                
             res.render("purchase", response)  
         }
     } catch (error) {
         next(error)
     }
 }
+

@@ -14,13 +14,10 @@ export class Ticket {
         this.#acceptedProds = validateAcceptedProd(acceptedProds)
         this.#rejectedProds = rejectedProds
         this.#code = randomUUID();
-        this.#purchase_datetime = Date.now()
+        this.#purchase_datetime = new Date(Date.now()).toUTCString()
         this.#amount = validateRealNumber("Precio total de compra",amount)
         this.#purcharser = validateEmail("Email de comprador",purcharser)
     }
-    
-    // al ser persitido reciEn ID (de mongo db),   
-    
     getAcceptedProds(){ return this.#acceptedProds}
     getRejectedProds(){ return this.#rejectedProds}
     getCode(){ return this.#code}

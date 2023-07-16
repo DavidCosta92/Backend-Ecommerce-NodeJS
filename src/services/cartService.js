@@ -176,8 +176,7 @@ class CartService{
             const pId = validateAlphanumeric("Product ID",pid)
             const product = await this.productRepository.getProductById(pId)
             if (product?.stock >= quantity){ return true } 
-            return false
-            
+            return false            
         } catch (error) {
             next(error)
         }
