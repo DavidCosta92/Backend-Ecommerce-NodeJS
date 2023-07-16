@@ -4,7 +4,6 @@ import { productService } from "./productService.js";
 import { ticketService } from "./ticketService.js";
 import { userSessionService } from "./sessionService.js";
 import { productRepository } from "../repositories/productRepository.js";
-
 import { AuthorizationError } from "../models/errors/authorization.error.js";
 import { validateAlphanumeric } from "../models/validations/validations.js";
 import { IllegalInputArg } from "../models/errors/validations.errors.js";
@@ -25,8 +24,12 @@ class CartService{
     async getCarts (req, next){
         try {
             const queryLimit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 10 : req.query.limit
-            const queryPage =  (isNaN(Number(req.query.page)) || req.query.page == "" ) ? 1 : req.query.page   
-            return await this.cartRepository.getCarts(queryLimit , queryPage)
+            const queryPage =  (isNaN(Number(req.query.page)) || req.query.page == "" ) ? 1 : req.query.page  
+            let carts = await this.cartRepository.getCarts(queryLimit , queryPage)
+            carts.payload.forEach(cart => {
+                if(cart.products.length > 0) cart.hasProducts = true     
+            });
+            return carts        
         } catch (error) {
             next(error)
         }        

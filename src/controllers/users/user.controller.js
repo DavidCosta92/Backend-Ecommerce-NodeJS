@@ -6,10 +6,10 @@ import { viewService } from "../../services/viewService.js"
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})
 }
- export function renderLoginView(req,res,next){    
+export function renderLoginView(req,res,next){    
     res.render("userLogin", {pageTitle: "Login"})
 }
- export async function productsView(req,res,next){ 
+export async function productsView(req,res,next){ 
    try {
       const dataRender = await viewService.getProducts(req, res, next)
       res.render("productsView", dataRender)        

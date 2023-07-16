@@ -25,3 +25,36 @@
 [34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-15 04:00:21"}
 [34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-15 04:00:22"}
 [34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-15 04:12:54"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-15T10:01:09.000Z","name":"TokenExpiredError","timestamp":"2023-07-16 00:02:31"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-16 00:02:31"}
+[31mfatal[39m: [31mFailed to lookup view "products" in views directory "./views"[39m {"timestamp":"2023-07-16 00:03:23","view":{"defaultEngine":"handlebars","ext":".handlebars","name":"products","root":"./views"}}
+[31mfatal[39m: [31mFailed to lookup view "products" in views directory "./views"[39m {"timestamp":"2023-07-16 00:04:06","view":{"defaultEngine":"handlebars","ext":".handlebars","name":"products","root":"./views"}}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-16T04:56:58.000Z","name":"TokenExpiredError","timestamp":"2023-07-16 01:59:07"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-16 01:59:07"}
+[31mfatal[39m: [31mAuthorizationErrorWEB[39m
+[31m    at onlyAdminWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:36:42)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'AUTHORIZATION_ERROR_WEB',[39m
+[31m  description: 'Debes ser administrador'[39m
+[31m}[39m {"timestamp":"2023-07-16 01:59:07"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-16T04:56:58.000Z","name":"TokenExpiredError","timestamp":"2023-07-16 01:59:27"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-16 01:59:27"}
+[31mfatal[39m: [31mcon is not defined[39m {"timestamp":"2023-07-16 02:12:54"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-16T05:59:30.000Z","name":"TokenExpiredError","timestamp":"2023-07-16 03:03:28"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-16 03:03:28"}
+[31mfatal[39m: [31mAuthorizationErrorWEB[39m
+[31m    at onlyAdminWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:36:42)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'AUTHORIZATION_ERROR_WEB',[39m
+[31m  description: 'Debes ser administrador'[39m
+[31m}[39m {"timestamp":"2023-07-16 03:03:29"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-16T05:59:30.000Z","name":"TokenExpiredError","timestamp":"2023-07-16 03:03:45"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-16 03:03:45"}
+[31mfatal[39m: [31mcart.forEach is not a function[39m {"timestamp":"2023-07-16 03:03:56"}
+[31mfatal[39m: [31mcart.forEach is not a function[39m {"timestamp":"2023-07-16 03:04:02"}
+[31mfatal[39m: [31mParse error on line 38:[39m
+[31m... text-center" id="{{cart[0]._id}}">[39m[31m   [39m
+[31m-----------------------^[39m
+[31mExpecting 'ID', 'STRING', 'NUMBER', 'BOOLEAN', 'UNDEFINED', 'NULL', 'DATA', got 'INVALID'[39m {"timestamp":"2023-07-16 03:09:02"}
+[31mfatal[39m: [31mcartToRender.push is not a function[39m {"timestamp":"2023-07-16 03:22:48"}
+[31mfatal[39m: [31mCannot set properties of undefined (setting 'products')[39m {"timestamp":"2023-07-16 03:23:51"}

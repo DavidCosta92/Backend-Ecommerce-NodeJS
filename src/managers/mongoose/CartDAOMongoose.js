@@ -8,7 +8,8 @@ class CartDAOMongoose{
         this.model = model
     }
     async getCarts (queryLimit , queryPage){            
-        const pageOptions = { limit: queryLimit, page: queryPage, lean : true, populate: 'products.product'}     
+        const sort = { products : -1}
+        const pageOptions = { limit: queryLimit, page: queryPage, sort : sort, lean : true, populate: 'products.product'}     
         const carts = await cartstModel.paginate({},pageOptions)
         const response ={
             payload : carts.docs,

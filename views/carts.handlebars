@@ -34,8 +34,7 @@
     {{/if}}
     
     <h1 class="text-center"> Carritos</h1> 
-    <button class="btn btn-primary m-3" onclick="createNewCart()">Crear nuevo carrito</button>
-    {{#if hayResultados}}
+    {{#if paginatedCarts}}
     <table class="table table-dark table-striped text-center">
     <thead>
         <tr>
@@ -44,12 +43,14 @@
         <th scope="col">Acciones Carrito</th>
         </tr>
     </thead>
-    <tbody >
-        {{#each payload}}
+    <tbody >            
+        {{#each paginatedCarts.payload}}
             <tr  id="{{this._id}}">    
             <td >{{this._id}}</td>
+
+            {{#if this.hasProducts}} 
             <td>
-                <table class="table table-dark table-striped">
+                <table class="table table-secondary text-dark table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col">ID Producto</th>
@@ -57,7 +58,6 @@
                             <th scope="col">Descripcion</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">Precio </th>
-                            <th scope="col">Acciones de Producto</th>
                         </tr>
                     </thead>
                     {{#each this.products}}
@@ -67,28 +67,28 @@
                             <td>{{this.product.description}}</td>
                             <td>{{this.quantity}}</td>
                             <td>{{this.product.price}}</td>
-                            <td class="w-50">
-                                <label for="quantity">Cant:</label>
-                                <input type="number" id="quantity{{this.product._id}}" name="quantity" min="1" class="w-25" value="{{this.quantity}}">
-                                <button onClick=elegirUnidades("{{this.product._id}}") type="button" class="btn btn-success">
-                                    Elegir Cantidad
-                                </button>
-                                <button onClick=eliminarProducto("{{this.product._id}}") type="button" class="btn btn-danger">
-                                    Eliminar producto
-                                </button>
-                            </td>
                         </tbody>
                     {{/each}}
                 </table>
 
             </td>
+            {{else}}
+            <td>Carrito vacio</td>
+            {{/if}}
+            
             <td>
-                <button  onClick=vaciarCarrito("{{this._id}}") type="button" class="btn btn-warning w-75 m-1">
-                    Vaciar
-                </button>
-                <button onClick=eliminarCarrito("{{this._id}}") type="button" class="btn btn-danger w-75 m-1">
-                    Eliminar
-                </button>
+                {{#if this.hasProducts}} 
+                    <button  onClick=vaciarCarrito("{{this._id}}") type="button" class="btn btn-warning w-75 m-1">
+                        Vaciar
+                    </button>
+                    <button onClick=eliminarCarrito("{{this._id}}") type="button" class="btn btn-danger w-75 m-1">
+                        Eliminar
+                    </button>
+                {{else}}
+                    <button onClick=eliminarCarrito("{{this._id}}") type="button" class="btn btn-danger w-75 m-1">
+                        Eliminar
+                    </button>
+                {{/if}}
             </td>
             </tr>
         {{/each}}
@@ -100,27 +100,27 @@
             <a href="/api/views/carts?limit={{limit}}&page={{prevPage}}" type="button" class="btn btn-outline-primary">
                 Pagina previa
             </a>
-            {{else}}
+        {{else}}
             <a type="button" class="btn btn-outline-secondary">
                 Pagina previa
             </a>
-            {{/if}}
-            <div>
-                <p>{{limit}} productos por pagina, pagina actual: {{page}} , total de paginas: {{totalPages}}</p>
-            </div>
-            {{#if hasNextPage}}
-            <a href="/api/views/carts?limit={{limit}}&page={{nextPage}}" type="button" class="btn btn-outline-primary">
-                Pagina Siguiente
-            </a>
-            {{else}}
-            <a type="button" class="btn btn-outline-secondary">
-                Pagina Siguiente
-            </a>
-            {{/if}}
-        </div>
-        {{else}}
-        <h1 > parece que no hay carritos aun</h1>
         {{/if}}
+        <div>
+            <p>{{limit}} productos por pagina, pagina actual: {{page}} , total de paginas: {{totalPages}}</p>
+        </div>
+        {{#if hasNextPage}}
+        <a href="/api/views/carts?limit={{limit}}&page={{nextPage}}" type="button" class="btn btn-outline-primary">
+            Pagina Siguiente
+        </a>
+        {{else}}
+        <a type="button" class="btn btn-outline-secondary">
+            Pagina Siguiente
+        </a>
+        {{/if}}
+    </div>
+    {{else}}
+        <h1 > parece que no hay carritos aun</h1>
+    {{/if}}
     <div id="cartsRealTime">  
         
     </div>
