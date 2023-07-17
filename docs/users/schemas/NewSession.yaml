@@ -1,0 +1,19 @@
+# NewUser
+components:
+  requestBodies:
+    NewSession:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          description: User's email.
+        password:
+          type: string
+          description: Password with 5 characters at least.
+
+      example:
+        email: 'coderStudent@coder.com'
+        password: 'adminCod3r123'

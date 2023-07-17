@@ -5,7 +5,9 @@ if (formNewPassword instanceof HTMLFormElement){
     formNewPassword.addEventListener("submit", async event =>{
         event.preventDefault()
         const password = document.getElementById("input_password").value   
-        const email = document.getElementById("input_email").value
+        const email = document.getElementById("input_email").value  
+        const token = document.getElementById("input_token").value
+
         
         const newPassword = await fetch('/api/users/new-password',{
             method: 'POST',
@@ -13,7 +15,7 @@ if (formNewPassword instanceof HTMLFormElement){
             'Accept': 'application/json',
             'Content-Type': 'application/json'
             },
-            body: JSON.stringify({password : password , email : email})
+            body: JSON.stringify({password : password , email : email , token : token})
         })        
         
         newPassword.json().then(data =>{

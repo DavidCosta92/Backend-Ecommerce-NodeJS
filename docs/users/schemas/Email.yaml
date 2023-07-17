@@ -1,0 +1,14 @@
+# Email
+components:
+  requestBodies:
+    Email:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          description: User's email registered in app.
+
+      example:
+        email: 'coderStudent@coder.com'

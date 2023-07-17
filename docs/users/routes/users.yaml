@@ -1,0 +1,18 @@
+paths:
+  /api/users/:
+    post:
+      summary: Creates a new user 
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/NewUser'
+      responses:
+        "201":
+          description: Will be send a set-cookie header with key authtoken and value User'JWT", in order to be "logued in". This JWT expires in 24hs since creation.
+        "409":
+          description: Status code 409, indicates that already exist an user with provided credentials.
+  

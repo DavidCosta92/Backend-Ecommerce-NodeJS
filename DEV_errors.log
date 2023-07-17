@@ -114,3 +114,30 @@
 [31m    model: Model { carts }[39m
 [31m  }[39m
 [31m}[39m {"timestamp":"2023-07-16 05:29:50"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-16T09:26:20.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 01:20:02"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 01:20:02"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 01:20:02"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-16T09:26:20.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 01:20:21"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 01:20:21"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 01:20:21"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-16T09:26:20.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 01:21:33"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 01:21:33"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 01:21:33"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-16T09:26:20.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 01:22:50"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 01:22:50"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 01:22:50"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-16T09:26:20.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 01:23:55"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 01:23:55"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 01:23:55"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-16T09:26:20.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 01:24:51"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 01:24:51"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 01:24:51"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-17 01:25:11"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-17 01:25:29"}
+[31mfatal[39m: [31muserSessionService is not defined[39m {"timestamp":"2023-07-17 01:25:54"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-17 01:26:53"}
+[34mwarning[39m: [34mEste es un ejemplo de un log de nivel warning[39m {"timestamp":"2023-07-17 02:18:29"}
+[33merror[39m: [33mEste es un ejemplo de un log de nivel error[39m {"timestamp":"2023-07-17 02:18:29"}
+[31mfatal[39m: [31mEste es un ejemplo de un log de nivel fatal[39m {"timestamp":"2023-07-17 02:18:29"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-17T05:25:09.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 02:36:35"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 02:36:35"}

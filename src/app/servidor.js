@@ -1,10 +1,6 @@
 // @ts-nocheck
 import express from "express"
-import { productsRouter } from "../routers/productsRouter.js";
 import { engine } from 'express-handlebars'
-import { cartsRouter } from "../routers/cartsRouter.js";
-import { viewsRouter } from "../routers/viewsRouter.js";
-import { userRouter } from "../routers/userSessionRouter.js";
 import mongoose from 'mongoose';
 import {Server as IOServer} from 'socket.io'
 import { productModel } from "../db/mongoose/models/productModel.js";
@@ -13,14 +9,13 @@ import { passportInitialize , passportSession } from "../middlewares/passport.js
 import session from "../middlewares/session.js";
 import { errorHandlerAPI , errorHandlerWEB} from "../middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
-import { getCurrentUser, renderHome } from "../middlewares/authenticator.js";
+import { renderHome } from "../middlewares/authenticator.js";
 import { MONGOOSE_STRING_ATLAS, MONGOOSE_STRING_ATLAS_TEST, NODE_ENV } from "../config/config.js";
-import { mockingproducts } from "../controllers/products/products.controller.js";
 
 import dotenv from 'dotenv'
 import { logger } from "../middlewares/loggerMiddleware.js";
 import { winstonLogger } from "../utils/logger.js";
-import { docsRouter } from "../routers/docsRouter.js";
+import { apiRouter } from "../routers/apiRouter.js";
 
 dotenv.config({path: 'src/.env'});
 
@@ -31,37 +26,16 @@ const app = express();
 app.use(session)
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(logger)
-
-app.use("/api/products",productsRouter);
-app.use("/api/carts", cartsRouter)
-app.use("/api/users" , userRouter)
-app.use("/api/views", viewsRouter)
-app.use("/api/docs", docsRouter)
-
 app.use(express.static('./public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
 app.engine('handlebars', engine())
 app.set('views', './views')
 app.set('view engine', 'handlebars')
-
 app.use(passportInitialize, passportSession)
 
 app.get("/", renderHome)
-app.get("/api/session/current", getCurrentUser)
-app.get("/mockingproducts", mockingproducts)
-app.get("/loggerTest", (req, res)=>{
-    req.logger.debug("Este es un ejemplo de un log de nivel debug")
-    req.logger.http("Este es un ejemplo de un log de nivel http")
-    req.logger.info("Este es un ejemplo de un log de nivel info")
-    req.logger.warning ("Este es un ejemplo de un log de nivel warning")
-    req.logger.error("Este es un ejemplo de un log de nivel error")
-    req.logger.fatal("Este es un ejemplo de un log de nivel fatal")
-    res.send({message:"PRueba de loggers"})
-});
-
-
+app.use("/api", apiRouter)
 
 app.use(errorHandlerWEB) 
 app.use(errorHandlerAPI) 

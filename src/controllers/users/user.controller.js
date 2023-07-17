@@ -17,7 +17,7 @@ export async function productsView(req,res,next){
       next(error)
    }
 }
- export async function postUser(req,res,next){  
+export async function postUser(req,res,next){  
    try {
       const {first_name, last_name, email, age, password} = req.body
       const {newUserDto , code} = await userService.createUser(first_name, last_name, email, age, password)
@@ -46,7 +46,7 @@ export async function renderFormNewPassword(req,res,next){
    try {
       const validToken = await userService.validateToken(req.query.email , req.query.token)
       if(validToken){      
-         res.render("create-new-password", {pageTitle: "Crear nuevo password", email : req.query.email})
+         res.render("create-new-password", {pageTitle: "Crear nuevo password", email : req.query.email , token : req.query.token})
       } else{
          res.render("restore-password", {pageTitle: "Error de token", error : true})
       }
@@ -56,7 +56,7 @@ export async function renderFormNewPassword(req,res,next){
 }
 export async function createNewPassword(req,res,next){
    try {      
-      await userService.createNewPassword(req.body.password ,  req.body.email)
+      await userService.createNewPassword(req.body.password ,  req.body.email , req.body.token)
       res.status(200).json({ mensaje : "Password cambiado"})
    } catch (error) {
       res.status(400).json({ errorMessage : error.description})

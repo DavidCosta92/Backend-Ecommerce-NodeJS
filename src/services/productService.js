@@ -4,20 +4,21 @@ import { validateAlphanumeric } from "../models/validations/validations.js";
 import { Product } from "../models/Product.js";
 import { RegisterErrorAlreadyExistCodeProduct } from "../models/errors/register.error.js";
 import { faker } from '@faker-js/faker'
+import { userSessionService } from "./sessionService.js";
 
 class ProductService{
     productRepository
     constructor(productRepository){    
         this.productRepository = productRepository; 
     }
-    async getProducts(user,req, next){    
+    async getProducts(req, next){    
         try {            
             const queryLimit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 10 : req.query.limit
             const queryPage =  (isNaN(Number(req.query.page)) || req.query.page == "" ) ? 1 : req.query.page   
             const category = req.query.category
             const stock = req.query.stock
             const sort = req.query.sort
-
+            const user = userSessionService.getLoguedUser(req)  
             let response = await this.productRepository.getProducts(queryLimit , queryPage, category, stock, sort)
             
             for (let i = 0; i < response.payload.length; i++) {
@@ -104,9 +105,8 @@ class ProductService{
             category : "varios",//faker.commerce.department(), 
             thumbnails : "" 
         })
-        return newProduct
+        return newProduct.getAllAttr()
     }
-
 /*
     --- --- REVISAR SI ESTE METODO LO PIDE CODER, O CUAL ES LA RAZON DE TENERLO --- --- 
     async updateProductByID (req , res , next){    

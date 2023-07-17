@@ -62,7 +62,8 @@ class UserService {
             throw new AuthenticationExpiredErrorWEB("Token no valido")
         }
     }
-    async createNewPassword(password , email){
+    async createNewPassword(password , email, token){
+        await userService.validateToken(email , token)        
         const userDb = await this.userRepository.findUserByEmail(email)
         const newPassword = new Password(password).getPassword()
         const validPass = !encrypter.comparePasswords(newPassword , userDb.password)

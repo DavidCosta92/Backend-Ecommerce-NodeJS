@@ -8,11 +8,11 @@ cartsRouter.use(express.json());
 cartsRouter.use(express.urlencoded({ extended: true })); 
 cartsRouter.get("/:cid/purchase",  onlyAuthenticatedWeb, notAdminWeb, buyCart) // => EL DESAFIO PIDE ESTA RUTA ESPECIFICA
 
-cartsRouter.get("/",  onlyAuthenticatedApi, onlyAdminApi, getCarts)  // onlyAdminOrPremium
+cartsRouter.get("/",  onlyAuthenticatedApi, onlyAdminApi, getCarts)
 cartsRouter.get("/:cid",  onlyAuthenticatedApi, onlyAdminApi, getCartsByID) 
 cartsRouter.post("/",  onlyAuthenticatedApi, onlyAdminApi, postCart)
 cartsRouter.delete("/:cid",  onlyAuthenticatedApi, onlyAdminApi, deleteCartByID) 
-cartsRouter.post("/:cid/products/:pid", onlyAuthenticatedApi, notAdminApi, postProductToCarts)  // esta ruta esta protegida no por un midd, sino por el servicio, que corrobora que no sea owner
+cartsRouter.post("/:cid/products/:pid", onlyAuthenticatedApi, notAdminApi, postProductToCarts)  // Capa service valida ownership
 cartsRouter.delete("/:cid/products/:pid", onlyAuthenticatedApi, notAdminApi, deleteProductInCarts)
 cartsRouter.delete("/:cid/products", onlyAuthenticatedApi, deleteAllProductsInCartByID) // teoricamente, un user o un premium puede vaciar su propio carrito, y el admin podria vaciar todos
 cartsRouter.put("/:cid/products/:pid", onlyAuthenticatedApi, notAdminApi, updateQuantityProductInCarts)

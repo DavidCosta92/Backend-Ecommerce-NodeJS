@@ -28,7 +28,7 @@ export class User {
     getRole(){ return this.#role}
     
     getAllAttr() {
-        return {
+        const data= {
             first_name: this.#first_name,
             last_name: this.#last_name,
             email: this.#email,
@@ -37,6 +37,8 @@ export class User {
             cart: this.#cart,
             role: this.#role,
         }
+        console.log(data)
+        return data
     }
     setRole(role){
         this.#role = role

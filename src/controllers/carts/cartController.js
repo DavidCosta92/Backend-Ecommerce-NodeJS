@@ -27,7 +27,6 @@ export async function updateQuantityProductInCarts (req, res , next) {
 }
 export async function updateAllProductsInCarts (req, res , next) {
     res.json(await cartService.updateAllProductsInCarts (req, res , next));
-
 }
 export async function buyCart (req, res , next) {
     try {

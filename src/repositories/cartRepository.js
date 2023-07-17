@@ -21,11 +21,7 @@ class CartRepository{
     }    
     async deleteCartByID (cid){    
         return await this.cartDao.deleteCartById(cid)
-    }    
-    async postProductToCarts (req,res,next){
-        return await this.cartDao.postProductToCart(req,res,next)
     }
 }
-
 export let cartRepository = new CartRepository(cartDAOMongoose)
 if( PERSISTENCE !== "mongoose") cartRepository = new CartRepository(cartDAOFs)

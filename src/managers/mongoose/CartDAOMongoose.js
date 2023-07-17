@@ -38,7 +38,7 @@ class CartDAOMongoose{
     }
     async deleteCartById  (cid){
         try {
-             const deleted = await cartstModel.findByIdAndDelete(cid)
+            const deleted = await cartstModel.findByIdAndDelete(cid)
             return deleted;
         } catch (error) {
             throw new NotFoundError(error)
@@ -48,5 +48,4 @@ class CartDAOMongoose{
         await cartstModel.replaceOne( { _id: cid } , cart)
     }
 }
-
 export const cartDAOMongoose = new CartDAOMongoose(cartstModel);

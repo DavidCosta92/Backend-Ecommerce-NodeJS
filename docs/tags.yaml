@@ -1,4 +1,8 @@
 tags:
+  - name: Users
+    description: API to manage users.
+  - name: Sessions
+    description: API to manage sessions.
   - name: Products
     description: API to manage products.
   - name: Carts

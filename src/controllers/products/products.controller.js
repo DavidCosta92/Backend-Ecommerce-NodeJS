@@ -1,10 +1,8 @@
 // @ts-nocheck
 import { productService } from "../../services/productService.js";
-import { userSessionService } from "../../services/sessionService.js";
 
 export async function getProducts (req, res , next){  
-    const user = userSessionService.getLoguedUser(req)    
-    res.json(await productService.getProducts(user, req, next));
+    res.json(await productService.getProducts(req, next));
 }    
 export async function postProducts (req , res , next){  
     res.json(await productService.postProduct(req , res , next));

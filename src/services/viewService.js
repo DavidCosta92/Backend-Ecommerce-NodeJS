@@ -7,7 +7,7 @@ class ViewService {
     async getProducts(req, res, next){
         let dataRender = {}
         const user = await userService.getLoguedUser(req , next)
-        const paginatedProducts = await productService.getProducts(user, req, res, next)
+        const paginatedProducts = await productService.getProducts(req, res, next)
         dataRender["loguedUser"] = true
         dataRender["paginatedProducts"] = paginatedProducts
 

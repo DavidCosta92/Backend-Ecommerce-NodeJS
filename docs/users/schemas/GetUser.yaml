@@ -1,0 +1,46 @@
+# Product
+components:
+  schemas:
+    GetUsers:
+      type: object
+      required:        
+        - id
+        - first_name
+        - last_name
+        - email
+        - age
+        - cart
+        - role   
+      properties:
+        id:
+          type: string
+          description: The auto-generated id of user.
+        first_name:
+          type: string
+          description: First name.
+        last_name:
+          type: string
+          description: Last name.
+        email:
+          type: string
+          description: User's email.
+        age:
+          type: integer
+          description: User's age.
+        cart:
+          type: string
+          description: The auto-generated id of cart assigned to user.
+        role:
+          type: string
+          description: User's role could be "user", "premium" or "admin", by default it will be "user". This value can be changed by an admin user.
+      example:
+        _id: h58sk-sk85d-dl96m-3658fn
+        first_name: 'coderStudent'
+        last_name: 'coderStudent'
+        email: 'coderStudent@coder.com'
+        age: 30
+        cart: 
+          - default: []
+          - _id: new ObjectId("64b4d37f8a0750ae11532765")
+          - products: []
+        role: 'user'
