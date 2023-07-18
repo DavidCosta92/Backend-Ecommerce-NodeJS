@@ -61,24 +61,30 @@ export async function notAdminWeb(req, res, next) {
   if(user?.role === "admin") return next(new AuthorizationErrorWEB ("Un administrador no puede realizar esta accion"))
   next()
 }
-export async function getCurrentUser (req , res , next){
-  try {        
-    let user = await userService.getLoguedUser(req , next)
-    if(user === undefined){
-      res.render("currentUser", {loguedUser :false}) 
-    }else{
-      req.params.cid = user.cart
-      const cartById = await cartService.getCartsByID(req , res , next)        
-
-      /* Necesario para solucionar error handlebars "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas*/
-      const productsInCart = []
-      cartById.products.forEach(p=>{ productsInCart.push( p.toObject()) })
-      res.render("currentUser", {loguedUser : user!=undefined, user : user, products : productsInCart})
-    }       
- } catch (error) {
-    next(error)
- }
-}
+// export async function getCurrentUser (req , res , next){
+//   try {        
+//     let user = await userService.getLoguedUser(req , next)      
+//   }catch (error) {
+//     next(error)
+//  }
+// }
+// export async function getCurrentUserWeb (req , res , next){
+//   try {        
+//     let user = await userService.getLoguedUser(req , next)
+//     if(user === undefined){
+//       res.render("currentUser", {loguedUser :false}) 
+//     }else{
+//       req.params.cid = user.cart
+//       const cartById = await cartService.getCartsByID(req , res , next)      
+//       /* Necesario para solucionar error handlebars "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas*/
+//       const productsInCart = []
+//       cartById.products.forEach(p=>{ productsInCart.push( p.toObject()) })
+//       res.render("currentUser", {loguedUser : user!=undefined, user : user, products : productsInCart})
+//     }       
+//  } catch (error) {
+//     next(error)
+//  }
+// }
 export async function renderHome(req , res , next){
   try {
     let user = await userService.getLoguedUser(req , next)

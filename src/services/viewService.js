@@ -1,25 +1,28 @@
+/*
 // @ts-nocheck
 import { cartService } from "./cartService.js"
 import { productService } from "./productService.js"
 import { userService } from "./userService.js"
 
 class ViewService {
-    async getProducts(req, res, next){
-        let dataRender = {}
-        const user = await userService.getLoguedUser(req , next)
-        const paginatedProducts = await productService.getProducts(req, res, next)
-        dataRender["loguedUser"] = true
-        dataRender["paginatedProducts"] = paginatedProducts
-
-        if(user !== undefined){
-            dataRender["title"] = user.username? `${user.username} - productos` : `${user.first_name} - productos`
-            dataRender["user"] =user
-         } else {         
-            dataRender["title"] =`${req.session['user'].first_name} - productos`
-            dataRender["user"] =req.session['user']
-         }
-        return dataRender
-    }
+    // ya migrado, eliminar cuando termine de migrar! 
+     async getProducts(req, res, next){
+         let dataRender = {}
+         const user = await userService.getLoguedUser(req , next)
+         const paginatedProducts = await productService.getProducts(req, res, next)
+         dataRender["loguedUser"] = true
+         dataRender["paginatedProducts"] = paginatedProducts
+     
+         if(user !== undefined){
+             dataRender["title"] = user.username? `${user.username} - productos` : `${user.first_name} - productos`
+             dataRender["user"] =user
+          } else {         
+             dataRender["title"] =`${req.session['user'].first_name} - productos`
+             dataRender["user"] =req.session['user']
+          }
+         return dataRender
+     }
+     // ya migrado, eliminar cuando termine de migrar! 
     async getCarts(req, res, next){
         let dataRender = {}
         const user = await userService.getLoguedUser(req , next)
@@ -36,6 +39,7 @@ class ViewService {
          }        
         return dataRender
     }
+    // ya migrado, eliminar cuando termine de migrar! 
     async getCartById(req, res, next){
         let dataRender = {}
         const user = await userService.getLoguedUser(req , next)
@@ -61,3 +65,4 @@ class ViewService {
     }
 } 
   export const viewService = new ViewService()
+  */

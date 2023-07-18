@@ -16,6 +16,8 @@ import dotenv from 'dotenv'
 import { logger } from "../middlewares/loggerMiddleware.js";
 import { winstonLogger } from "../utils/logger.js";
 import { apiRouter } from "../routers/apiRouter.js";
+import { webRouter } from "../../Front-Handlebars/src/router/webRouter.js";
+
 
 dotenv.config({path: 'src/.env'});
 
@@ -36,6 +38,7 @@ app.use(passportInitialize, passportSession)
 
 app.get("/", renderHome)
 app.use("/api", apiRouter)
+app.use("/web", webRouter)
 
 app.use(errorHandlerWEB) 
 app.use(errorHandlerAPI) 

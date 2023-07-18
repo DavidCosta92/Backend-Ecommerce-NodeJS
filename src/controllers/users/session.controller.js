@@ -1,4 +1,5 @@
 import { userSessionService } from "../../services/sessionService.js"
+import { userService } from "../../services/userService.js"
 
 export async function postSessionTokenCookie(req, res, next) {  
     try {
@@ -25,4 +26,13 @@ export async function deleteSession (req, res, next){
 }
 export async function sendStatus (req, res, next){
     res.status(201).json(req.session.user)
+}
+export async function getCurrentUser (req, res, next){    
+    try {      
+       let user = await userService.getLoguedUser(req , next)
+       res.status(200).json(user)
+    } catch (error) {
+       res.status(400).json({ errorMessage : error.description})
+       //next(error)
+    }  
 }

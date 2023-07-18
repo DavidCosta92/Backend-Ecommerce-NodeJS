@@ -1,4 +1,5 @@
 // @ts-nocheck
+/*
 import { viewService } from "../../services/viewService.js"
 
 export async function renderProductsView(req,res,next){   
@@ -25,3 +26,4 @@ export async function renderCartViewById(req,res,next){
        next(error)
     }
 }
+*/

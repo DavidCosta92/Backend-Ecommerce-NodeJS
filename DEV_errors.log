@@ -141,3 +141,511 @@
 [31mfatal[39m: [31mEste es un ejemplo de un log de nivel fatal[39m {"timestamp":"2023-07-17 02:18:29"}
 [33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-17T05:25:09.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 02:36:35"}
 [34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 02:36:35"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-17T08:29:33.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 05:35:16"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 05:35:16"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 05:35:16"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-17T09:35:19.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 06:37:25"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 06:37:25"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-17T09:35:19.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 06:37:49"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 06:37:49"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 06:37:49"}
+[31mfatal[39m: [31mviewService.getProducts is not a function[39m {"timestamp":"2023-07-17 06:37:53"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-17T10:37:52.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 19:01:39"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 19:01:39"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-17T10:37:52.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 19:02:57"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 19:02:57"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 19:02:57"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-17T10:37:52.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 19:03:00"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 19:03:00"}
+[31mfatal[39m: [31mdataRender.product.forEach is not a function[39m {"timestamp":"2023-07-17 19:44:45"}
+[31mfatal[39m: [31mdataRender.product.forEach is not a function[39m {"timestamp":"2023-07-17 19:45:18"}
+[31mfatal[39m: [31mdataRender is not defined[39m {"timestamp":"2023-07-17 19:57:17"}
+[31mfatal[39m: [31mdataRender is not defined[39m {"timestamp":"2023-07-17 19:57:55"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-17T23:03:19.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 20:08:13"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 20:08:13"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-17T23:03:19.000Z","name":"TokenExpiredError","timestamp":"2023-07-17 20:08:38"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-17 20:08:38"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 20:08:38"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:46:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductRepository.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/repositories/productRepository.js:17:16)[39m
+[31m    at async ProductService.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/productService.js:63:20)[39m
+[31m    at async ProductsWebService.getProductsByIdWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/service/productsWebService.js:26:25)[39m
+[31m    at async getProductsByIDWEB (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/controllers/products.web.controller.js:19:55) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: CastError: Cast to ObjectId failed for value "64eb509507eddf14991ee36c8" (type string) at path "_id" for model "products"[39m
+[31m      at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:248:11)[39m
+[31m      at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m      at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m      at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m      at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m      at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m      at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m      at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28)[39m
+[31m      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m      at async ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:44:20) {[39m
+[31m    stringValue: '"64eb509507eddf14991ee36c8"',[39m
+[31m    messageFormat: undefined,[39m
+[31m    kind: 'ObjectId',[39m
+[31m    value: '64eb509507eddf14991ee36c8',[39m
+[31m    path: '_id',[39m
+[31m    reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer[39m
+[31m        at new ObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\bson\lib\bson.cjs:2024:23)[39m
+[31m        at castObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast\objectid.js:25:12)[39m
+[31m        at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:246:12)[39m
+[31m        at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m        at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m        at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m        at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m        at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m        at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m        at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28),[39m
+[31m    valueType: 'string',[39m
+[31m    model: Model { products }[39m
+[31m  }[39m
+[31m}[39m {"timestamp":"2023-07-17 20:12:20"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:46:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductRepository.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/repositories/productRepository.js:17:16)[39m
+[31m    at async ProductService.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/productService.js:63:20)[39m
+[31m    at async ProductsWebService.getProductsByIdWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/service/productsWebService.js:26:25)[39m
+[31m    at async getProductsByIDWEB (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/controllers/products.web.controller.js:20:55) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: CastError: Cast to ObjectId failed for value "64eb509507eddf14991ee36c8" (type string) at path "_id" for model "products"[39m
+[31m      at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:248:11)[39m
+[31m      at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m      at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m      at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m      at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m      at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m      at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m      at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28)[39m
+[31m      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m      at async ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:44:20) {[39m
+[31m    stringValue: '"64eb509507eddf14991ee36c8"',[39m
+[31m    messageFormat: undefined,[39m
+[31m    kind: 'ObjectId',[39m
+[31m    value: '64eb509507eddf14991ee36c8',[39m
+[31m    path: '_id',[39m
+[31m    reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer[39m
+[31m        at new ObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\bson\lib\bson.cjs:2024:23)[39m
+[31m        at castObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast\objectid.js:25:12)[39m
+[31m        at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:246:12)[39m
+[31m        at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m        at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m        at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m        at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m        at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m        at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m        at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28),[39m
+[31m    valueType: 'string',[39m
+[31m    model: Model { products }[39m
+[31m  }[39m
+[31m}[39m {"timestamp":"2023-07-17 20:15:49"}
+[31mfatal[39m: [31mNotFoundErrorWeb is not defined[39m {"timestamp":"2023-07-17 20:16:41"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:46:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductRepository.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/repositories/productRepository.js:17:16)[39m
+[31m    at async ProductService.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/productService.js:63:20)[39m
+[31m    at async ProductsWebService.getProductsByIdWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/service/productsWebService.js:26:25)[39m
+[31m    at async getProductsByIDWEB (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/controllers/products.web.controller.js:20:55) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: CastError: Cast to ObjectId failed for value "64eb509507eddf14991ee36c8" (type string) at path "_id" for model "products"[39m
+[31m      at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:248:11)[39m
+[31m      at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m      at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m      at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m      at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m      at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m      at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m      at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28)[39m
+[31m      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m      at async ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:44:20) {[39m
+[31m    stringValue: '"64eb509507eddf14991ee36c8"',[39m
+[31m    messageFormat: undefined,[39m
+[31m    kind: 'ObjectId',[39m
+[31m    value: '64eb509507eddf14991ee36c8',[39m
+[31m    path: '_id',[39m
+[31m    reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer[39m
+[31m        at new ObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\bson\lib\bson.cjs:2024:23)[39m
+[31m        at castObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast\objectid.js:25:12)[39m
+[31m        at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:246:12)[39m
+[31m        at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m        at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m        at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m        at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m        at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m        at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m        at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28),[39m
+[31m    valueType: 'string',[39m
+[31m    model: Model { products }[39m
+[31m  }[39m
+[31m}[39m {"timestamp":"2023-07-17 20:17:00"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:46:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductRepository.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/repositories/productRepository.js:17:16)[39m
+[31m    at async ProductService.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/productService.js:63:20)[39m
+[31m    at async ProductsWebService.getProductsByIdWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/service/productsWebService.js:26:25)[39m
+[31m    at async getProductsByIDWEB (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/controllers/products.web.controller.js:20:55) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: CastError: Cast to ObjectId failed for value "64eb509507eddf14991ee36c8" (type string) at path "_id" for model "products"[39m
+[31m      at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:248:11)[39m
+[31m      at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m      at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m      at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m      at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m      at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m      at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m      at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28)[39m
+[31m      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m      at async ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:44:20) {[39m
+[31m    stringValue: '"64eb509507eddf14991ee36c8"',[39m
+[31m    messageFormat: undefined,[39m
+[31m    kind: 'ObjectId',[39m
+[31m    value: '64eb509507eddf14991ee36c8',[39m
+[31m    path: '_id',[39m
+[31m    reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer[39m
+[31m        at new ObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\bson\lib\bson.cjs:2024:23)[39m
+[31m        at castObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast\objectid.js:25:12)[39m
+[31m        at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:246:12)[39m
+[31m        at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m        at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m        at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m        at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m        at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m        at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m        at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28),[39m
+[31m    valueType: 'string',[39m
+[31m    model: Model { products }[39m
+[31m  }[39m
+[31m}[39m {"timestamp":"2023-07-17 20:18:37"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:46:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductRepository.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/repositories/productRepository.js:17:16)[39m
+[31m    at async ProductService.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/productService.js:63:20)[39m
+[31m    at async ProductsWebService.getProductsByIdWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/service/productsWebService.js:26:25)[39m
+[31m    at async getProductsByIDWEB (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/controllers/products.web.controller.js:20:55) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: CastError: Cast to ObjectId failed for value "64eb509507eddf14991ee36c8" (type string) at path "_id" for model "products"[39m
+[31m      at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:248:11)[39m
+[31m      at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m      at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m      at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m      at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m      at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m      at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m      at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28)[39m
+[31m      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m      at async ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:44:20) {[39m
+[31m    stringValue: '"64eb509507eddf14991ee36c8"',[39m
+[31m    messageFormat: undefined,[39m
+[31m    kind: 'ObjectId',[39m
+[31m    value: '64eb509507eddf14991ee36c8',[39m
+[31m    path: '_id',[39m
+[31m    reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer[39m
+[31m        at new ObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\bson\lib\bson.cjs:2024:23)[39m
+[31m        at castObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast\objectid.js:25:12)[39m
+[31m        at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:246:12)[39m
+[31m        at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m        at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m        at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m        at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m        at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m        at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m        at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28),[39m
+[31m    valueType: 'string',[39m
+[31m    model: Model { products }[39m
+[31m  }[39m
+[31m}[39m {"timestamp":"2023-07-17 20:19:38"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:46:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductRepository.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/repositories/productRepository.js:17:16)[39m
+[31m    at async ProductService.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/productService.js:63:20)[39m
+[31m    at async ProductsWebService.getProductsByIdWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/service/productsWebService.js:26:25)[39m
+[31m    at async getProductsByIDWEB (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/controllers/products.web.controller.js:20:55) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: CastError: Cast to ObjectId failed for value "64eb509507eddf14991ee36c8" (type string) at path "_id" for model "products"[39m
+[31m      at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:248:11)[39m
+[31m      at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m      at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m      at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m      at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m      at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m      at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m      at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28)[39m
+[31m      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m      at async ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:44:20) {[39m
+[31m    stringValue: '"64eb509507eddf14991ee36c8"',[39m
+[31m    messageFormat: undefined,[39m
+[31m    kind: 'ObjectId',[39m
+[31m    value: '64eb509507eddf14991ee36c8',[39m
+[31m    path: '_id',[39m
+[31m    reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer[39m
+[31m        at new ObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\bson\lib\bson.cjs:2024:23)[39m
+[31m        at castObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast\objectid.js:25:12)[39m
+[31m        at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:246:12)[39m
+[31m        at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m        at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m        at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m        at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m        at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m        at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m        at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28),[39m
+[31m    valueType: 'string',[39m
+[31m    model: Model { products }[39m
+[31m  }[39m
+[31m}[39m {"timestamp":"2023-07-17 20:20:33"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:46:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductRepository.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/repositories/productRepository.js:17:16)[39m
+[31m    at async ProductService.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/productService.js:63:20)[39m
+[31m    at async ProductsWebService.getProductsByIdWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/service/productsWebService.js:26:25)[39m
+[31m    at async getProductsByIDWEB (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/controllers/products.web.controller.js:20:55) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: CastError: Cast to ObjectId failed for value "64eb509507eddf14991ee36c8" (type string) at path "_id" for model "products"[39m
+[31m      at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:248:11)[39m
+[31m      at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m      at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m      at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m      at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m      at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m      at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m      at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28)[39m
+[31m      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m      at async ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:44:20) {[39m
+[31m    stringValue: '"64eb509507eddf14991ee36c8"',[39m
+[31m    messageFormat: undefined,[39m
+[31m    kind: 'ObjectId',[39m
+[31m    value: '64eb509507eddf14991ee36c8',[39m
+[31m    path: '_id',[39m
+[31m    reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer[39m
+[31m        at new ObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\bson\lib\bson.cjs:2024:23)[39m
+[31m        at castObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast\objectid.js:25:12)[39m
+[31m        at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:246:12)[39m
+[31m        at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m        at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m        at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m        at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m        at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m        at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m        at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28),[39m
+[31m    valueType: 'string',[39m
+[31m    model: Model { products }[39m
+[31m  }[39m
+[31m}[39m {"timestamp":"2023-07-17 20:20:54"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:46:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductRepository.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/repositories/productRepository.js:17:16)[39m
+[31m    at async ProductService.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/productService.js:63:20)[39m
+[31m    at async ProductsWebService.getProductsByIdWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/service/productsWebService.js:27:29)[39m
+[31m    at async getProductsByIDWEB (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/controllers/products.web.controller.js:20:55) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: CastError: Cast to ObjectId failed for value "64eb509507eddf14991ee36c8" (type string) at path "_id" for model "products"[39m
+[31m      at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:248:11)[39m
+[31m      at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m      at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m      at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m      at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m      at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m      at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m      at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28)[39m
+[31m      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m      at async ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:44:20) {[39m
+[31m    stringValue: '"64eb509507eddf14991ee36c8"',[39m
+[31m    messageFormat: undefined,[39m
+[31m    kind: 'ObjectId',[39m
+[31m    value: '64eb509507eddf14991ee36c8',[39m
+[31m    path: '_id',[39m
+[31m    reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer[39m
+[31m        at new ObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\bson\lib\bson.cjs:2024:23)[39m
+[31m        at castObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast\objectid.js:25:12)[39m
+[31m        at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:246:12)[39m
+[31m        at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m        at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m        at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m        at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m        at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m        at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m        at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28),[39m
+[31m    valueType: 'string',[39m
+[31m    model: Model { products }[39m
+[31m  }[39m
+[31m}[39m {"timestamp":"2023-07-17 20:22:18"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:46:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductRepository.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/repositories/productRepository.js:17:16)[39m
+[31m    at async ProductService.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/productService.js:63:20)[39m
+[31m    at async ProductsWebService.getProductsByIdWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/service/productsWebService.js:28:29)[39m
+[31m    at async getProductsByIDWEB (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/controllers/products.web.controller.js:20:55) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: CastError: Cast to ObjectId failed for value "64eb509507eddf14991ee36c8" (type string) at path "_id" for model "products"[39m
+[31m      at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:248:11)[39m
+[31m      at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m      at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m      at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m      at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m      at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m      at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m      at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28)[39m
+[31m      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m      at async ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:44:20) {[39m
+[31m    stringValue: '"64eb509507eddf14991ee36c8"',[39m
+[31m    messageFormat: undefined,[39m
+[31m    kind: 'ObjectId',[39m
+[31m    value: '64eb509507eddf14991ee36c8',[39m
+[31m    path: '_id',[39m
+[31m    reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer[39m
+[31m        at new ObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\bson\lib\bson.cjs:2024:23)[39m
+[31m        at castObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast\objectid.js:25:12)[39m
+[31m        at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:246:12)[39m
+[31m        at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m        at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m        at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m        at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m        at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m        at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m        at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28),[39m
+[31m    valueType: 'string',[39m
+[31m    model: Model { products }[39m
+[31m  }[39m
+[31m}[39m {"timestamp":"2023-07-17 20:22:49"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:46:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductRepository.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/repositories/productRepository.js:17:16)[39m
+[31m    at async ProductService.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/productService.js:63:20)[39m
+[31m    at async ProductsWebService.getProductsByIdWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/service/productsWebService.js:28:29)[39m
+[31m    at async getProductsByIDWEB (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/controllers/products.web.controller.js:20:55) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: CastError: Cast to ObjectId failed for value "64eb509507eddf14991ee36c8" (type string) at path "_id" for model "products"[39m
+[31m      at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:248:11)[39m
+[31m      at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m      at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m      at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m      at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m      at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m      at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m      at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28)[39m
+[31m      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m      at async ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:44:20) {[39m
+[31m    stringValue: '"64eb509507eddf14991ee36c8"',[39m
+[31m    messageFormat: undefined,[39m
+[31m    kind: 'ObjectId',[39m
+[31m    value: '64eb509507eddf14991ee36c8',[39m
+[31m    path: '_id',[39m
+[31m    reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer[39m
+[31m        at new ObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\bson\lib\bson.cjs:2024:23)[39m
+[31m        at castObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast\objectid.js:25:12)[39m
+[31m        at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:246:12)[39m
+[31m        at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m        at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m        at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m        at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m        at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m        at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m        at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28),[39m
+[31m    valueType: 'string',[39m
+[31m    model: Model { products }[39m
+[31m  }[39m
+[31m}[39m {"timestamp":"2023-07-17 20:23:21"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:46:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductRepository.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/repositories/productRepository.js:17:16)[39m
+[31m    at async ProductService.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/productService.js:63:20)[39m
+[31m    at async ProductsWebService.getProductsByIdWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/service/productsWebService.js:28:29)[39m
+[31m    at async getProductsByIDWEB (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/controllers/products.web.controller.js:20:55) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: CastError: Cast to ObjectId failed for value "64eb509507eddf14991ee36c8" (type string) at path "_id" for model "products"[39m
+[31m      at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:248:11)[39m
+[31m      at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m      at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m      at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m      at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m      at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m      at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m      at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28)[39m
+[31m      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m      at async ProductDAOMongo.getProductById (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/managers/mongoose/ProductDAOMongoose.js:44:20) {[39m
+[31m    stringValue: '"64eb509507eddf14991ee36c8"',[39m
+[31m    messageFormat: undefined,[39m
+[31m    kind: 'ObjectId',[39m
+[31m    value: '64eb509507eddf14991ee36c8',[39m
+[31m    path: '_id',[39m
+[31m    reason: BSONError: Argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer[39m
+[31m        at new ObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\bson\lib\bson.cjs:2024:23)[39m
+[31m        at castObjectId (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast\objectid.js:25:12)[39m
+[31m        at ObjectId.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schema\objectid.js:246:12)[39m
+[31m        at SchemaType.applySetters (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1202:12)[39m
+[31m        at SchemaType.castForQuery (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\schematype.js:1613:15)[39m
+[31m        at cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\cast.js:348:32)[39m
+[31m        at Query.cast (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4791:12)[39m
+[31m        at Query._castConditions (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2177:10)[39m
+[31m        at model.Query._findOne (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:2465:8)[39m
+[31m        at model.Query.exec (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\mongoose\lib\query.js:4321:28),[39m
+[31m    valueType: 'string',[39m
+[31m    model: Model { products }[39m
+[31m  }[39m
+[31m}[39m {"timestamp":"2023-07-17 20:24:10"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 20:25:04"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 20:25:42"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-17 20:28:56"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-18T00:08:41.000Z","name":"TokenExpiredError","timestamp":"2023-07-18 10:45:05"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-18 10:45:05"}
+[31mfatal[39m: [31mAuthorizationErrorWEB[39m
+[31m    at onlyUserWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:51:41)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'AUTHORIZATION_ERROR_WEB',[39m
+[31m  description: 'Debes ser USUARIO'[39m
+[31m}[39m {"timestamp":"2023-07-18 10:45:05"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-18T00:08:41.000Z","name":"TokenExpiredError","timestamp":"2023-07-18 10:45:58"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-18 10:45:58"}
+[31mfatal[39m: [31mAuthorizationErrorWEB[39m
+[31m    at onlyUserWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:51:41)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'AUTHORIZATION_ERROR_WEB',[39m
+[31m  description: 'Debes ser USUARIO'[39m
+[31m}[39m {"timestamp":"2023-07-18 10:45:58"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-18T00:08:41.000Z","name":"TokenExpiredError","timestamp":"2023-07-18 10:46:04"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-18 10:46:04"}
+[31mfatal[39m: [31mAuthorizationErrorWEB[39m
+[31m    at onlyUserWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:51:41)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'AUTHORIZATION_ERROR_WEB',[39m
+[31m  description: 'Debes ser USUARIO'[39m
+[31m}[39m {"timestamp":"2023-07-18 10:46:04"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-18T00:08:41.000Z","name":"TokenExpiredError","timestamp":"2023-07-18 10:46:17"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-18 10:46:17"}
+[31mfatal[39m: [31mAuthorizationErrorWEB[39m
+[31m    at onlyUserWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:51:41)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'AUTHORIZATION_ERROR_WEB',[39m
+[31m  description: 'Debes ser USUARIO'[39m
+[31m}[39m {"timestamp":"2023-07-18 10:46:17"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-18T00:08:41.000Z","name":"TokenExpiredError","timestamp":"2023-07-18 10:46:27"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-18 10:46:27"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-18 10:46:28"}
+[31mfatal[39m: [31mcartWebService.getCartById is not a function[39m {"timestamp":"2023-07-18 11:23:45"}
+[31mfatal[39m: [31mcartWebService.getCartById is not a function[39m {"timestamp":"2023-07-18 11:23:55"}
+[31mfatal[39m: [31mcartWebService.getCartById is not a function[39m {"timestamp":"2023-07-18 11:24:39"}
+[31mfatal[39m: [31mcartWebService.getCartById is not a function[39m {"timestamp":"2023-07-18 11:26:00"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-18T14:46:32.000Z","name":"TokenExpiredError","timestamp":"2023-07-18 11:46:45"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-18 11:46:45"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-18T14:46:32.000Z","name":"TokenExpiredError","timestamp":"2023-07-18 11:47:03"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-18 11:47:03"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-18 11:47:04"}
+[34mwarning[39m: [34mEste es un ejemplo de un log de nivel warning[39m {"timestamp":"2023-07-18 11:49:45"}
+[33merror[39m: [33mEste es un ejemplo de un log de nivel error[39m {"timestamp":"2023-07-18 11:49:45"}
+[31mfatal[39m: [31mEste es un ejemplo de un log de nivel fatal[39m {"timestamp":"2023-07-18 11:49:45"}
+[34mwarning[39m: [34mEste es un ejemplo de un log de nivel warning[39m {"timestamp":"2023-07-18 11:49:54"}
+[33merror[39m: [33mEste es un ejemplo de un log de nivel error[39m {"timestamp":"2023-07-18 11:49:54"}
+[31mfatal[39m: [31mEste es un ejemplo de un log de nivel fatal[39m {"timestamp":"2023-07-18 11:49:54"}

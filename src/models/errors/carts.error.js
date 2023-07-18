@@ -6,3 +6,10 @@ export class NotFoundError extends Error {
         this.description = description;
     }
 }
+export class NotFoundErrorWeb extends Error {
+    constructor(description) {
+        super();
+        this.type = 'Not Found web';
+        this.description = description;
+    }
+}

@@ -10,7 +10,9 @@ cartsRouter.get("/:cid/purchase",  onlyAuthenticatedWeb, notAdminWeb, buyCart) /
 
 cartsRouter.get("/",  onlyAuthenticatedApi, onlyAdminApi, getCarts)
 cartsRouter.get("/:cid",  onlyAuthenticatedApi, onlyAdminApi, getCartsByID) 
-cartsRouter.post("/",  onlyAuthenticatedApi, onlyAdminApi, postCart)
+
+// cartsRouter.post("/",  onlyAuthenticatedApi, onlyAdminApi, postCart)// DEBERIA BORRAR ESTE ENDPOINT, COMENTADO POR AHORA 
+
 cartsRouter.delete("/:cid",  onlyAuthenticatedApi, onlyAdminApi, deleteCartByID) 
 cartsRouter.post("/:cid/products/:pid", onlyAuthenticatedApi, notAdminApi, postProductToCarts)  // Capa service valida ownership
 cartsRouter.delete("/:cid/products/:pid", onlyAuthenticatedApi, notAdminApi, deleteProductInCarts)

@@ -5,6 +5,7 @@ import { Product } from "../models/Product.js";
 import { RegisterErrorAlreadyExistCodeProduct } from "../models/errors/register.error.js";
 import { faker } from '@faker-js/faker'
 import { userSessionService } from "./sessionService.js";
+import { NotFoundError } from "../models/errors/carts.error.js";
 
 class ProductService{
     productRepository
@@ -61,8 +62,9 @@ class ProductService{
         try {
             const pid = validateAlphanumeric("Product ID",req.params.pid)
             return await this.productRepository.getProductById(pid);
-        } catch (error) {                              
-            next(error)
+        } catch (error) {                   
+            throw new NotFoundError(error)                   
+            //next(error)
         }            
     }
     async deleteProductByID (req , res , next){

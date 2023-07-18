@@ -4,6 +4,7 @@ import { AuthenticationError , AuthenticationExpiredError , AuthenticationErrorW
 import { AuthorizationError, AuthorizationErrorWEB } from "../models/errors/authorization.error.js"
 import { RegisterError , RegisterErrorAlreadyExistUser , NotFoundUserWeb, RegisterErrorAlreadyExistCodeProduct} from "../models/errors/register.error.js"
 import { StorageError } from "../models/errors/storageError.js"
+import { NotFoundErrorWeb } from "../models/errors/carts.error.js"
 
 
 export function errorHandlerWEB(error, req, res , next){
@@ -27,6 +28,10 @@ export function errorHandlerWEB(error, req, res , next){
         req.logger.info(`*** ${error.type} -->> ${error.description}`)
         res.render("create-new-password", {pageTitle: "Error de password", error : true})
     }     
+    else if (error instanceof NotFoundErrorWeb){        
+        req.logger.info(`*** ${error.type} -->> ${error.description}`)
+        res.render("productsView", {pageTitle: "Products", error : true , message : error.description})
+    }
     else if (error instanceof NotFoundUserWeb) {
         req.logger.info(`*** ${error.type} -->> ${error.description}`)
         res.status(404).json({errorMessage: error.description })
