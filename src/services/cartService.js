@@ -223,15 +223,12 @@ class CartService{
             const productsInCart = cart.products
             const { acceptedProds , rejectedProds } = await this.verifyProducts(productsInCart, req , res , next)
             const amount = this.calculateProductTotalCost(acceptedProds)
-    
             await this.updateProductsStocks(acceptedProds , req , res , next)
-    
-            //Logica de negocio pide que queden los rechazados en el carrito
-            await this.setProductsInCart(cart, rejectedProds, req, res, next)                       
-            const user = this.userSessionService.getLoguedUser(req , res , next)    
-                
-            const purchaseTicket = await this.ticketService.newTicket(acceptedProds , rejectedProds , amount , user.email, req, res, next)
 
+            //Logica de negocio pide que queden los rechazados en el carrito
+            await this.setProductsInCart(cart, rejectedProds, req, res, next)        
+            const user = this.userSessionService.getLoguedUser(req , res , next)    
+            const purchaseTicket = await this.ticketService.newTicket(acceptedProds , rejectedProds , amount , user.email, req, res, next)
             return { purchaseTicket , user }             
         } catch (error) {
             next(error)

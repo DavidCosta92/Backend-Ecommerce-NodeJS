@@ -777,3 +777,29 @@
 [31m  description: 'Cart no encontrada con el ID 645ce059e749dacf22f6665e'[39m
 [31m}[39m {"timestamp":"2023-07-19 05:01:41"}
 [31mfatal[39m: [31mcartService is not defined[39m {"timestamp":"2023-07-19 05:18:34"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-19 05:36:47"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-19 05:36:47"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'equals')[39m {"timestamp":"2023-07-19 05:52:20"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-19 05:52:20"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'equals')[39m {"timestamp":"2023-07-19 05:54:12"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-19 05:54:12"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'equals')[39m {"timestamp":"2023-07-19 06:31:59"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-19 06:31:59"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'equals')[39m {"timestamp":"2023-07-19 06:37:55"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-19 06:37:55"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'equals')[39m {"timestamp":"2023-07-19 06:41:05"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-19 06:41:05"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'equals')[39m {"timestamp":"2023-07-19 06:43:14"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-19 06:43:14"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'equals')[39m {"timestamp":"2023-07-19 06:46:09"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-19 06:46:10"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'equals')[39m {"timestamp":"2023-07-19 06:50:03"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-19 06:50:03"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'equals')[39m {"timestamp":"2023-07-19 06:53:48"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-19 06:53:49"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'equals')[39m {"timestamp":"2023-07-19 06:54:53"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-19 06:54:53"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'equals')[39m {"timestamp":"2023-07-19 06:57:17"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-19 06:57:17"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'equals')[39m {"timestamp":"2023-07-19 17:35:37"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-19 17:35:37"}

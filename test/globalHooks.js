@@ -11,6 +11,7 @@ export const mochaHooks = {
     await mongoose.connection.collection('products').deleteMany({}) 
     await mongoose.connection.collection('testproducts').deleteMany({})
     await mongoose.connection.collection('users').deleteMany({})
+    await mongoose.connection.collection('tickets').deleteMany({})
   },
   async afterAll() {
     await mongoose.connection.collection('carts').deleteMany({})
