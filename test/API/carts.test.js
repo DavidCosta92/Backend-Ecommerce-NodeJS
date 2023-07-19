@@ -87,7 +87,8 @@ describe.only("Api rest", ()=>{
                     const respPostProduct = await httpClient.post("/api/products/").set("Cookie", [`${authCookieAdmin.key}=${authCookieAdmin.value}`]).send(productDataTest)   
                     const respCurrentUser = await httpClient.get("/api/session/current").set("Cookie", [`${authCookie.key}=${authCookie.value}`])
                     // que usuario comun agregue a carrito
-                    const cid = respCurrentUser.text.split('<span id="cidUser">')[1].split('</span>')[0]
+                    const cid = respCurrentUser.text.split('"cart":"')[1].split('","')[0]
+
                     const pid = respPostProduct.text.split('_id":"')[1].split('"}')[0]
                     const postProductToUserCart = await httpClient.post(`/api/carts/${cid}/products/${pid}`).set("Cookie", [`${authCookie.key}=${authCookie.value}`])
                     

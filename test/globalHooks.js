@@ -8,7 +8,8 @@ export const mochaHooks = {
   },
   async afterEach(){
     //await mongoose.connection.collection('carts').deleteMany({}) 
-    await mongoose.connection.collection('products').deleteMany({})
+    await mongoose.connection.collection('products').deleteMany({}) 
+    await mongoose.connection.collection('testproducts').deleteMany({})
     await mongoose.connection.collection('users').deleteMany({})
   },
   async afterAll() {
