@@ -9,7 +9,7 @@ if(form instanceof HTMLFormElement){
 
         formData.forEach((value, key)=> (data[key] = value))     
 
-        fetch("/api/products",{
+        fetch("/web/products",{
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -19,7 +19,7 @@ if(form instanceof HTMLFormElement){
         .then( res=>{
             if(res.status === 200){                
                 alert("Producto creado")
-                window.location.assign('/api/users/products')
+                window.location.assign('/web/products')
             }else{
                 res.json().then(data=>{
                     alert ("Error en la creacion del producto, intenta nuevamente! ( Detalle=> " +data.errorMessage+ ")")
@@ -49,4 +49,27 @@ async function agregarProductoAlCarritoUsuario(pid){
         }
     })
 }
-
+async function eliminarProductoAdmin (pid){    
+    fetch(`/api/products/${pid}`,{
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })    
+    .then(resp =>{
+        console.log(resp)
+        if (resp.status === 200 ){
+            alert("Producto eliminado!")
+            location.reload()
+        } 
+        else{
+            resp.json().then(data=>{
+                alert(data.errorMessage)
+            })
+        }
+    })
+}
+function editProduct(pid){
+    console.log("FUNCION PENDIENTE... ",pid)
+    alert("FUNCION PENDIENTE... ")
+}

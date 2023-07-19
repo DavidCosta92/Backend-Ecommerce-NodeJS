@@ -23,7 +23,7 @@ if (formNewPassword instanceof HTMLFormElement){
             console.log("data =>",data)
             if (newPassword.status === 200) {
                 alert(`Perfecto! ${data.mensaje}`)
-                window.location.href = 'http://localhost:8080/'
+                window.location.href = '/'
             }else {
                 alert(`Parece que hubo un error ${data.errorMessage}`)
             }   
@@ -32,8 +32,8 @@ if (formNewPassword instanceof HTMLFormElement){
     })
 }
 function goToRegister(){    
-    window.location.href = '/api/users/register'
+    window.location.href = '/web/users/register'
 }
 function goToProducts(){    
-    window.location.href = '/api/users/products'
+    window.location.href = '/web/products'
 }

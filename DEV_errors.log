@@ -650,3 +650,33 @@
 [33merror[39m: [33mEste es un ejemplo de un log de nivel error[39m {"timestamp":"2023-07-18 11:49:54"}
 [31mfatal[39m: [31mEste es un ejemplo de un log de nivel fatal[39m {"timestamp":"2023-07-18 11:49:54"}
 [34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-18 21:47:08"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-18 22:07:48"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-18 22:07:48"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-18T15:47:06.000Z","name":"TokenExpiredError","timestamp":"2023-07-19 00:34:34"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-19 00:34:34"}
+[31mfatal[39m: [31mCannot read properties of undefined (reading 'first_name')[39m {"timestamp":"2023-07-19 00:34:36"}
+[34mwarning[39m: [34mSUPUESTAMENTE ENVIE MAIL => [39m {"0":"davidcst2991@gmail.com","timestamp":"2023-07-19 01:13:45"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-19T04:35:17.000Z","name":"TokenExpiredError","timestamp":"2023-07-19 01:42:52"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-19 01:42:52"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-19T04:35:17.000Z","name":"TokenExpiredError","timestamp":"2023-07-19 01:42:52"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-19 01:42:52"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-19T04:35:17.000Z","name":"TokenExpiredError","timestamp":"2023-07-19 01:43:02"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-19 01:43:02"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-19 01:43:02"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-19T05:44:46.000Z","name":"TokenExpiredError","timestamp":"2023-07-19 02:44:56"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-19 02:44:56"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-19T05:44:46.000Z","name":"TokenExpiredError","timestamp":"2023-07-19 02:44:56"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-19 02:44:56"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-19T05:44:46.000Z","name":"TokenExpiredError","timestamp":"2023-07-19 02:45:05"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-19 02:45:05"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-19 02:45:05"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'products')[39m {"timestamp":"2023-07-19 02:46:10"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'products')[39m {"timestamp":"2023-07-19 02:46:29"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'products')[39m {"timestamp":"2023-07-19 02:46:47"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'products')[39m {"timestamp":"2023-07-19 02:49:01"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'products')[39m {"timestamp":"2023-07-19 02:50:14"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'products')[39m {"timestamp":"2023-07-19 02:50:21"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'products')[39m {"timestamp":"2023-07-19 02:50:33"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'products')[39m {"timestamp":"2023-07-19 02:51:30"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'products')[39m {"timestamp":"2023-07-19 02:56:04"}
+[31mfatal[39m: [31mCannot read properties of null (reading 'products')[39m {"timestamp":"2023-07-19 02:56:38"}

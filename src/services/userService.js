@@ -33,7 +33,7 @@ class UserService {
                 const email = usuario.email
                 const token =  encrypter.createTokenToRestorePassword({email}) 
                 const templateEmail = `<h4>hola ${usuario.first_name}! </h4>
-                <a href='http://localhost:8080/api/users/new-password/?email=${email}&token=${token}'> 
+                <a href='http://localhost:8080/web/users/new-password/?email=${email}&token=${token}'> 
                     <p>Este es un email para que resetes tu password, te pedimos que hagas click en este enlace para crear un nuevo password </p>
                 </a>`
                 emailService.sendHtmlEmail(email, templateEmail, "Reseteo de password")      

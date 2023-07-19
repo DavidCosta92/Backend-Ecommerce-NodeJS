@@ -90,10 +90,10 @@
                 <td class="w-50">
                     <label for="quantity" class=" mb-2">Cant:</label>
                     <input type="number" class=" mb-2" id="quantity{{this.product._id}}" name="quantity" min="1" value="{{this.quantity}}" >
-                    <button onClick=elegirUnidadesDesdeCartById("{{this.product._id}}") type="button" class="btn btn-success">
+                    <button onClick=elegirUnidades("{{this.product._id}}") type="button" class="btn btn-success">
                         Elegir Cantidad
                     </button>
-                    <button onClick=eliminarProductosDesdeCartById("{{this.product._id}}") type="button" class="btn btn-danger">
+                    <button onClick=deleteProductFromCart("{{this.product._id}}") type="button" class="btn btn-danger">
                         Eliminar producto
                     </button>
                 </td>
@@ -102,7 +102,7 @@
     </tbody>
     <tfoot>                
         <td colspan="3">
-            <button  onClick=vaciarCarritoUsuario() type="button" class="btn btn-warning w-25 m-1 mt-3">
+            <button  onClick=vaciarCarrito() type="button" class="btn btn-warning w-25 m-1 mt-3">
                 Vaciar el carrito
             </button>
         </td>  

@@ -17,7 +17,7 @@ if (formResetPassword instanceof HTMLFormElement){
             console.log(data)
             if (restore.status === 200) {
                 alert(`Revisa tu casilla de correo, hemos enviado un email con pasos a seguir! : ${data.mensaje}`)
-                window.location.href = 'http://localhost:8080/'
+                window.location.href = '/'
             }else {
                 alert(`Parece que hubo un error ${data.errorMessage}`)
             }   
@@ -25,8 +25,8 @@ if (formResetPassword instanceof HTMLFormElement){
     })
 }
 function goToRegister(){    
-    window.location.href = '/api/users/register'
+    window.location.href = '/web/users/register'
 }
 function goToProducts(){    
-    window.location.href = '/api/users/products'
+    window.location.href = '/web/products'
 }

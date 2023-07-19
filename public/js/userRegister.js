@@ -30,7 +30,7 @@ if (formUserRegister instanceof HTMLFormElement){
             console.log(res)
             if(res.status === 201){
               alert("Registro y logueo exitoso, te enviaremos a productos..")
-              window.location.assign('/api/users/products')
+              window.location.assign('/web/products')
             } else{
               res.json().then(data=>{
                   alert("Error de registro, vuelve a intentar por favor! ( Detalle=> : " + data.errorMessage +" )")

@@ -26,10 +26,12 @@ apiRouter.get("/chat", onlyAuthenticatedApi /*, onlyUserWeb*/, (req, res, next)=
     res.render("chats", {title: "Chat"})
 })
 
-// PENDIENTES
-// PENDIENTES
-// PENDIENTES
+
 apiRouter.use("/products",productsRouter);
+
+// PENDIENTES
+// PENDIENTES
+// PENDIENTES
 apiRouter.use("/carts", cartsRouter)
 apiRouter.use("/users" , userRouter)
 // apiRouter.use("/views", viewsRouter)

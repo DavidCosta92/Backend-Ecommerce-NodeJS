@@ -7,9 +7,6 @@ if (formUserLogin instanceof HTMLFormElement){
         const password = document.getElementById("input_password")
         const dataUser = {email: email.value, password : password.value}   
         const session = await fetch(
-            /*'/api/users/session'*/                //setea para trabajar con login manual 
-            /*'/api/users/session/localLogin' */    //setea para trabajar con passport 
-            /*'/api/users/session/signedCookie'*/       //setea para trabajar con sgined cookies 
             '/api/users/session/signedCookie',{
             method: 'POST',
             headers: {
@@ -21,7 +18,7 @@ if (formUserLogin instanceof HTMLFormElement){
 
         if (session.status === 201) {
             alert("Logueo exitoso, te enviaremos a productos..")
-            window.location.href = '/api/users/products'
+            window.location.href = '/web/products'
         } else {
             const statusSession = await session.json()
             alert(statusSession.errorMessage)
@@ -55,23 +52,23 @@ function goToHome(){
   window.location.href = '/'
 }
 function goToUserProfile(){
-  window.location.href = '/api/session/current'
+  window.location.href = '/web/session/current'
 }
 function goToMembershipsList(){  
-  window.location.href = '/api/users/premium/'
+  window.location.href = '/web/users/premium/'
 }
 function goToAddProducts(){
-  window.location.href = '/api/products/add/form'
+  window.location.href = '/web/products/add/form'
 }
 function redirigirProductos(){
-  window.location.href = `http://localhost:8080/api/users/products`;
+  window.location.href = `/web/products`;
 }
 function goToRegister(){    
-    window.location.href = '/api/users/register'
+    window.location.href = '/web/users/register'
 }
 function goToProducts(){    
-    window.location.href = '/api/users/products'
+    window.location.href = '/web/products'
 }
 function goToRestorePassword(){
-    window.location.href = '/api/users/restore-password'
+    window.location.href = '/web/users/restore-password'
 }

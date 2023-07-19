@@ -14,11 +14,11 @@ sessionsRouter.use(express.json())
 sessionsRouter.use(express.urlencoded({ extended: true }))
 
 // actualmente los formularios estan seteados para trabajar con signed cookies
-sessionsRouter.post('/signedCookie', postSessionTokenCookie, sendStatus)//formulario de login
+sessionsRouter.post('/signedCookie', postSessionTokenCookie, sendStatus)
 sessionsRouter.delete('/', deleteSession) 
 
 //--- passport login con github ---
 sessionsRouter.get('/github', authGithub)
-sessionsRouter.get('/githubAuth', callbackAuthGithub,postSessionTokenForGithub ,(req, res, next) => { res.redirect('/api/users/products') })
+sessionsRouter.get('/githubAuth', callbackAuthGithub,postSessionTokenForGithub , sendStatus) // ,(req, res, next) => { res.redirect('/api/users/products') })
 
 
