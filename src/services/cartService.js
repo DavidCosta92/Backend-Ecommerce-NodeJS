@@ -45,7 +45,7 @@ class CartService{
         try {               
             const cid = validateAlphanumeric("Cart ID",req.params.cid)
             return await this.cartRepository.getCartsByID(cid)
-        } catch (error) {            
+        } catch (error) {  
             next(error)
         }
     }    

@@ -31,26 +31,20 @@ export async function updateAllProductsInCarts (req, res , next) {
 export async function buyCart (req, res , next) {
     try {
         const { purchaseTicket , user } = await cartService.buyCart (req, res , next)
-/* ESTA LOGICA ESTA ACA, PORQUE ES UN ERROR DE Handlebars (FRONT) => "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas */
         if ( purchaseTicket){
             const {code , purchase_datetime , amount , purcharser , acceptedProds , rejectedProds} = purchaseTicket
-            const acceptedProducts = []
-            acceptedProds.forEach(pr => { acceptedProducts.push( pr.toObject()) });    
-            const rejectedProducts = []
-            rejectedProds.forEach(pr => { rejectedProducts.push( pr.toObject()) });
-        
             const response ={
                 title: "Resumen de compra", 
                 code : code, 
                 purchase_datetime : purchase_datetime, 
                 amount : amount, 
                 purcharser : purcharser, 
-                acceptedProds : acceptedProducts, 
-                rejectedProds : rejectedProducts, 
+                acceptedProds : acceptedProds, 
+                rejectedProds : rejectedProds, 
                 user : user,
                 loguedUser: true
              }                
-            res.render("purchase", response)  
+             res.json(response)
         }
     } catch (error) {
         next(error)

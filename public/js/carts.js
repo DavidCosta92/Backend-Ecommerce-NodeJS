@@ -1,7 +1,7 @@
 // @ts-nocheck
 async function comprarCarrito(){
     const cid = document.getElementById("cidUser").textContent  
-    window.location.href = `/api/carts/${cid}/purchase`
+    window.location.href = `/web/carts/${cid}/purchase`
 }    
 function eliminarCarrito (cid){
     fetch(`/api/carts/${cid}`,{

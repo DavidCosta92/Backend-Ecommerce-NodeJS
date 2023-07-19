@@ -9,7 +9,7 @@ if(form instanceof HTMLFormElement){
 
         formData.forEach((value, key)=> (data[key] = value))     
 
-        fetch("/web/products",{
+        fetch("/api/products",{
             method: "POST",
             body: JSON.stringify(data),
             headers: {

@@ -48,7 +48,11 @@ class ProductService{
         }        
     }
     async getProductByCode(code){
-        return await this.productRepository.getProductByCode(code);
+        try {
+            return await this.productRepository.getProductByCode(code);
+        } catch (error) {
+            next(error)
+        }
     }
     async validateProductCode(code,next){
         try {
@@ -62,9 +66,8 @@ class ProductService{
         try {
             const pid = validateAlphanumeric("Product ID",req.params.pid)
             return await this.productRepository.getProductById(pid);
-        } catch (error) {                   
-            throw new NotFoundError(error)                   
-            //next(error)
+        } catch (error) {                                 
+            next(error)
         }            
     }
     async deleteProductByID (req , res , next){

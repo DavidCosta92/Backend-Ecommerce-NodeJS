@@ -15,6 +15,10 @@ apiRouter.use(express.json());
 //LISTOS
 // localhost:8080/api/
 apiRouter.use("/docs", docsRouter)
+apiRouter.use("/products",productsRouter);
+apiRouter.use("/carts", cartsRouter)
+apiRouter.use("/users" , userRouter)
+
 apiRouter.get("/session/current", getCurrentUser)
 apiRouter.get("/chat", onlyAuthenticatedApi /*, onlyUserWeb*/, (req, res, next)=>{
 
@@ -25,21 +29,8 @@ apiRouter.get("/chat", onlyAuthenticatedApi /*, onlyUserWeb*/, (req, res, next)=
 
     res.render("chats", {title: "Chat"})
 })
-
-
-apiRouter.use("/products",productsRouter);
-
-// PENDIENTES
-// PENDIENTES
-// PENDIENTES
-apiRouter.use("/carts", cartsRouter)
-apiRouter.use("/users" , userRouter)
-// apiRouter.use("/views", viewsRouter)
-
-
 // Preguntar si estos endpoints para final
 apiRouter.get("/mockingproducts", mockingproducts)
-
 apiRouter.get("/loggerTest", (req, res)=>{
     req.logger.debug("Este es un ejemplo de un log de nivel debug")
     req.logger.http("Este es un ejemplo de un log de nivel http")
@@ -49,6 +40,8 @@ apiRouter.get("/loggerTest", (req, res)=>{
     req.logger.fatal("Este es un ejemplo de un log de nivel fatal")
     res.send({message:"PRueba de loggers"})
 });
+
+
 
 // apiRouter.get("/", onlyAuthenticatedApi, getProducts)
 // apiRouter.get("/add/form" , onlyAuthenticatedWeb, onlyAdminOrPremiumWeb , (req, res, next)=>{    
