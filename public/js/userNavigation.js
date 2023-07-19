@@ -36,7 +36,7 @@ if (formLogOut instanceof HTMLFormElement){
           .then(resp =>{
             if (resp.status === 200 ){
                 alert("¡Hasta luego!")
-                location.reload()
+                goToHome()
             } 
             else{
                 resp.json().then(data=>{
@@ -44,7 +44,6 @@ if (formLogOut instanceof HTMLFormElement){
                 })
             }
         })  
-        window.location.href = '/'
     })
 }
 

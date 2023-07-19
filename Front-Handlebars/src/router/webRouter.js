@@ -1,7 +1,7 @@
 // @ts-nocheck
 import express, { Router } from 'express';
 import { productsWebRouter } from './productsWebRouter.js';
-import { authenticatorWeb, onlyAuthenticatedWeb, onlyUserWeb } from '../../../src/middlewares/authenticator.js';
+import { authenticatorWeb, onlyAuthenticatedWeb } from '../../../src/middlewares/authenticator.js';
 import { docsRouter } from '../../../src/routers/docsRouter.js';
 import { mockingproductsWEB } from '../controllers/products.web.controller.js';
 import { getCurrentUserWeb } from '../controllers/session.web.controller.js';
@@ -19,7 +19,7 @@ webRouter.use("/carts", cartsWebRouter)
 webRouter.use("/users" , userWebRouter)  
 
 webRouter.get("/session/current", authenticatorWeb, onlyAuthenticatedWeb,  getCurrentUserWeb)
-webRouter.get("/chat", authenticatorWeb, onlyAuthenticatedWeb /*, onlyUserWeb*/, (req, res, next)=>{
+webRouter.get("/chat", authenticatorWeb, onlyAuthenticatedWeb, (req, res, next)=>{
     res.render("chats", {title: "Chat"})
 })
 

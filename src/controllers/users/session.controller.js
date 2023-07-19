@@ -21,7 +21,7 @@ export async function postSessionTokenForGithub(req, res, next) {
     }
 }
 export async function deleteSession (req, res, next){    
-     if(req.signedCookies?.authToken!==undefined)  res.clearCookie('authToken') 
+     /*if(req.signedCookies?.authToken!==undefined)  */res.clearCookie('authToken') 
      res.sendStatus(200)
 }
 export async function sendStatus (req, res, next){

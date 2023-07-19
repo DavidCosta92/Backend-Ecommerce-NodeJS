@@ -9,6 +9,7 @@ import { Password } from "../models/Password.js"
 import { NotFoundUserWeb} from "../models/errors/register.error.js"
 import { cartRepository } from "../repositories/cartRepository.js"
 import { UserDTO } from "../models/UserDTO.js"
+import { UserGithubDTO } from "../models/UserGithubDTO.js"
 
 class UserService {
     userRepository
@@ -78,7 +79,8 @@ class UserService {
         try {
             let user 
             if (req.signedCookies.authToken) user = encrypter.getDataFromToken(req.signedCookies.authToken)
-            return  user!=undefined? new UserDTO ({...user}).getAllAttr() : undefined
+            if (user?.username) return new UserGithubDTO({...user}).getAllAttr()
+            return user?.first_name? new UserDTO ({...user}).getAllAttr() : undefined
         } catch (error) {
             next(error)
         }
