@@ -11,6 +11,7 @@
             <p class="pe-5 w-25">Apellido: {{user.last_name}}</p> 
             <p class="pe-5 w-25">Email: {{user.email}}</p>
             <p class="pe-5 w-25">Edad: {{user.age}}</p>       
+            <p class="pe-5 w-25">Ultima conexion: {{user.last_connection}}</p>       
             <p class="pe-5 w-50">Rol de usuario : {{user.role}}</p>    
             <p class="pe-5 w-50">ID carrito: <span id="cidUser">{{user.cart}}</span> </p>    
         {{/if}} 
@@ -38,6 +39,7 @@
         <tr>
         <th scope="col">Email</th>
         <th scope="col">ID</th>
+        <th scope="col">Ult conexion</th>
         <th scope="col" class="text-center">Rol actual</th>
         <th scope="col" class="text-center">Acciones</th>
         </tr>
@@ -47,6 +49,7 @@
             <tr>    
                 <td>{{this.email}}</td>
                 <td>{{this._id}}</td>
+                <td>{{this.last_connection}}</td> 
                 <td class="text-center">
                     {{#if this.administrador}}
                         <span class="badge bg-warning text-wrap" style="width: 5rem;">{{this.role}}</span>

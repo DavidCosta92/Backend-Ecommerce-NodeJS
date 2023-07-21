@@ -8,7 +8,9 @@ const userSchema = new mongoose.Schema({
     first_name : { type: String, required: true},
     last_name  : { type: String, required: true},
     age  : { type: Number, required: true},
-    cart  : { type: Schema.Types.ObjectId, ref:"carts" , required: false},  
+    cart  : { type: Schema.Types.ObjectId, ref:"carts" , required: false},
+    documents : Array ,
+    last_connection :{ type : String , required : true} ,
     role : {
         type: String,
         enum: {
@@ -27,7 +29,9 @@ export const userModel = mongoose.model("users", userSchema)
 
 const userSchemaGitHub = new mongoose.Schema({
     username  : { type: String, required: true, unique : true, },
-    cart  : { type: Schema.Types.ObjectId, ref:"carts" , required: false},  
+    cart  : { type: Schema.Types.ObjectId, ref:"carts" , required: false},
+    documents : Array ,
+    last_connection :{ type : String , required : true} ,  
     role : {
         type: String,
         default:'user',

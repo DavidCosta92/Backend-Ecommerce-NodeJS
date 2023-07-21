@@ -75,6 +75,11 @@ export async function getUsersMemberships(req,res,next){
    }
 }
 export async function changeMembership(req,res,next){
+   console.log("------------  changeMembership ---- DEBERIA REVISAR QUE TENGA TODA LA DATA PREVIAMENTE ---------------")
+   console.log("------------  changeMembership ---- DEBERIA REVISAR QUE TENGA TODA LA DATA PREVIAMENTE ---------------")   
+   console.log("------------  changeMembership ---- DEBERIA REVISAR QUE TENGA TODA LA DATA PREVIAMENTE ---------------")   
+   console.log("------------  changeMembership ---- DEBERIA REVISAR QUE TENGA TODA LA DATA PREVIAMENTE ---------------")
+   
    try {      
       await userService.changeMembership(req.params.uid)
       res.status(200).json({ mensaje : "Membresia actualizada"})

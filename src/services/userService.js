@@ -47,7 +47,11 @@ class UserService {
     async findUserByEmail(email){
         const user = await this.userRepository.findUserByEmail(email)
         return user;
-    }    
+    }  
+    async searchByGitHubUsername(username){
+        const user = await this.userRepository.searchByGitHubUsername(username)
+        return user;
+    }      
     async findUserById(uid){
         return await this.userRepository.findUserById(uid)
     }
@@ -100,6 +104,12 @@ class UserService {
     }
     async changeMembership(uid){        
         return await this.userRepository.updateMembership(uid)        
+    }
+    async setLast_connectionByEmail(email){
+        await this.userRepository.setLast_connectionByEmail(email)  
+    }
+    async setLast_connectionByUsername(username){
+        await this.userRepository.setLast_connectionByUsername(username)  
     }
 } 
   export const userService = new UserService(userRepository)

@@ -32,6 +32,21 @@ export class UserDAOMongoose{
         const user = await userModelGitHub.findOne({ username: username }).lean()
         return user;        
     }
+    // async searchUserByField({query}){
+    //     let user
+    //     console.log("_____________________________________________")
+    //     console.log({query})
+    //     console.log("_____________________________________________")
+    //     if (query.username){
+    //         console.log("user con username => GITHUB")
+    //         user = await this.searchByGitHubUsername(query.username)
+    //     }else {
+    //         console.log("user por emial => email")            
+    //         user = await userModel.findOne({query}).lean()    
+    //     }
+    //     if (user == undefined) throw new NotFoundUserWeb("Usuario no encontrado")
+    //     return user
+    // }
     async createGitHubUser(user){
         const gitHubUser = await userModelGitHub.create(user)
         return {gitHubUser , code:201}
@@ -70,6 +85,22 @@ export class UserDAOMongoose{
         } catch (error) {
             throw new Error (error)
         }
+    }        
+    async setLast_connectionByEmail(email){
+        try {
+            const date =  new Date(Date.now()).toLocaleString()
+            await userModel.updateOne({email : email}, { $set: { last_connection: date } }) 
+        } catch (error) {
+            throw new Error (error)
+        } 
+    }
+    async setLast_connectionByUsername(username){
+        try {
+            const date =  new Date(Date.now()).toLocaleString()
+            const update = await userModelGitHub.updateOne({username : username}, { $set: { last_connection: date } })  
+        } catch (error) {
+            throw new Error (error)
+        } 
     }
     async getAllUsersForMembership(req){
         // podria  tildar opcion para solo mostrar un determinado rol
@@ -102,10 +133,6 @@ export class UserDAOMongoose{
         } catch (error) {            
             throw new Error (error)
         } 
-    }
-        
-    
-
-    
+    } 
 }       
 export const userDaoMongo = new UserDAOMongoose()

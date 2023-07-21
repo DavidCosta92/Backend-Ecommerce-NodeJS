@@ -2,6 +2,7 @@
 import { AuthenticationError } from "../models/errors/authentication.error.js"
 import { encrypter } from "../utils/encrypter.js"
 import { userRepository } from "../repositories/userRepository.js"
+import { userService } from "./userService.js"
 
 class SessionService {
     async getSessionToken(email, password) {
@@ -33,6 +34,13 @@ class SessionService {
             user = dataUser
         }
         return user
+    }
+    async updateLastConnection(req , res , next){
+        if(req.body.email){
+            await userService.setLast_connectionByEmail(req.body.email)
+        } else if(req.usernameGithub){
+            await userService.setLast_connectionByUsername(req.usernameGithub)
+        }
     }
 } 
 export const userSessionService = new SessionService()

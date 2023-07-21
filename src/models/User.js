@@ -8,6 +8,8 @@ export class User {
     #password
     #cart
     #role
+    #documents
+    #last_connection
     
     constructor ({first_name, last_name, email, age, password, role, cart=""}){
         this.#first_name = validateString("Nombre",first_name)
@@ -17,6 +19,8 @@ export class User {
         this.#password = new Password(password).getPassword()
         this.#cart = cart
         this.#role = validateString("Rol", role)        
+        this.#documents = [] // [ { name : "" , reference : "" } , {} ]
+        this.#last_connection = new Date(Date.now()).toUTCString()
     }
 
     getFirst_name(){ return this.#first_name}
@@ -26,6 +30,8 @@ export class User {
     getPassword(){ return this.#password}
     getCart(){ return this.#cart}
     getRole(){ return this.#role}
+    getLast_connection(){ return this.#last_connection}
+    getDocuments(){ return this.#documents}
     
     getAllAttr() {
         const data= {
@@ -36,6 +42,8 @@ export class User {
             password: this.#password,
             cart: this.#cart,
             role: this.#role,
+            last_connection: this.#last_connection,
+            documents: this.#documents,
         }
         console.log(data)
         return data
@@ -46,30 +54,44 @@ export class User {
     setCart(cartId){
         this.#cart=cartId
     }
+    setLast_connection(){
+        this.#last_connection = new Date(Date.now()).toUTCString()
+    }
 }
 
 export class GithubUser {
     #username
     #cart
     #role
+    #documents
+    #last_connection
     
     constructor ({username,cart, role}){
         this.#username = validateString("Github username", username)
         this.#cart = cart
         this.#role = validateString("Rol", role)
+        this.#documents = [] // [ { name : "" , reference : "" } , {} ]
+        this.#last_connection = new Date(Date.now()).toUTCString()
     }
     getUsername(){ return this.#username}
     getCart(){ return this.#cart}
     getRole(){ return this.#role}
+    getLast_connection(){ return this.#last_connection}
+    getDocuments(){ return this.#documents}
     
     getAllAttr() {
         return {
             username: this.#username,
             cart: this.#cart,
             role: this.#role,
+            last_connection: this.#last_connection,
+            documents: this.#documents,
         }
     }
     setRole(role){
         this.#role = role
+    }
+    setLast_connection(){
+        this.#last_connection=new Date(Date.now()).toUTCString()
     }
 }

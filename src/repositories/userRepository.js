@@ -4,7 +4,6 @@ import { PERSISTENCE } from "../config/config.js"
 
 class UserRepository{
     userDao
-
     constructor (userDao){
         this.userDao = userDao
     }   
@@ -24,6 +23,9 @@ class UserRepository{
     async searchByGitHubUsername (username){    
         return this.userDao.searchByGitHubUsername(username)         
     }  
+    async searchUserByField({query}){
+        return this.userDao.searchUserByField({query})
+    }
     async createGitHubUser (user){    
         return this.userDao.createGitHubUser(user)         
     }  
@@ -33,11 +35,15 @@ class UserRepository{
     async updateMembership (uid){    
         return await this.userDao.updateMembership(uid)
     }      
-
+    async setLast_connectionByEmail (email){
+        return await this.userDao.setLast_connectionByEmail(email)
+    }
+    async setLast_connectionByUsername(username){ 
+        return await this.userDao.setLast_connectionByUsername(username)
+    }
     async getAllUsersForMembership(req){
         return await this.userDao.getAllUsersForMembership(req)
     }
-
 
 }
 // en esta parte debo elegir si es mongo o fs o otra persistencia... POR EL MOMENTO SOLO MONGOOSE

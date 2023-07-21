@@ -819,3 +819,13 @@
 [31mfatal[39m: [31mCannot read properties of undefined (reading 'username')[39m {"timestamp":"2023-07-19 18:38:42"}
 [31mfatal[39m: [31mCannot read properties of undefined (reading 'username')[39m {"timestamp":"2023-07-19 18:45:52"}
 [31mfatal[39m: [31mCannot read properties of undefined (reading 'first_name')[39m {"timestamp":"2023-07-19 18:47:51"}
+[31mfatal[39m: [31mReferenceError: update is not defined[39m {"timestamp":"2023-07-20 21:29:11"}
+[31mfatal[39m: [31muserService.setLast_connection is not a function[39m {"timestamp":"2023-07-20 22:03:00"}
+[31mfatal[39m: [31muserService.setLast_connection is not a function[39m {"timestamp":"2023-07-20 22:04:08"}
+[31mfatal[39m: [31mCannot read properties of undefined (reading 'username')[39m {"timestamp":"2023-07-20 22:08:46"}
+[31mfatal[39m: [31mCannot read properties of undefined (reading 'username')[39m {"timestamp":"2023-07-20 22:10:19"}
+[31mfatal[39m: [31mCannot read properties of undefined (reading 'username')[39m {"timestamp":"2023-07-20 22:11:35"}
+[31mfatal[39m: [31mCannot read properties of undefined (reading 'username')[39m {"timestamp":"2023-07-20 22:12:45"}
+[31mfatal[39m: [31muserService.searchByGitHubUsername is not a function[39m {"timestamp":"2023-07-21 17:19:54"}
+[31mfatal[39m: [31msearchByGitHubUsername is not defined[39m {"timestamp":"2023-07-21 17:27:04"}
+[31mfatal[39m: [31muserEmail is not defined[39m {"timestamp":"2023-07-21 17:50:29"}
