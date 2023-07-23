@@ -8,6 +8,9 @@ export const productsWebRouter = Router();
 productsWebRouter.use(express.json()); 
 
 productsWebRouter.get("/", authenticatorWeb, onlyAuthenticatedWeb, getProductsWeb)
+
+
+
 productsWebRouter.get("/add/form" , authenticatorWeb, onlyAuthenticatedWeb, onlyAdminOrPremiumWeb , (req, res, next)=>{    
     const user = userSessionService.getLoguedUser(req)
     res.render("formularioProductos", {loguedUser : user!=undefined, user : user})

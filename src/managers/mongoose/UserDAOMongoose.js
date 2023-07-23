@@ -109,38 +109,19 @@ export class UserDAOMongoose{
             let user = await this.findUserById(uid)
             if(user){
             // es un user normal
-                const userDocs = user.documents
-                console.log("******* userDocs *********** ")
-                console.log(userDocs)
-                console.log("******* userDocs *********** ")
+                const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de documents de usuarios, para no droppear la bd                
                 userDocs.push({ name : fileName , reference : path })
-                console.log("******* userDocs LUEGO DE ACTUALOIZAR *********** ")
-                console.log(userDocs)
-                console.log("******* userDocs LUEGO DE ACTUALOIZAR *********** ")
-                const resp = await userModel.updateOne({uid : uid}, { $set: { documents: userDocs } })  
-                
-                console.log("·······················resp················")
-                console.log(resp)
-                console.log("·······················resp················")
-                return resp
-
+                const update = await userModel.updateOne({_id : uid}, { $set: { documents: userDocs } })  
+                const response = update.modifiedCount > 0 ? {message: "Archivo subido correctamente",status : 201} : {message: "ERROR",status : 500}
+                return response
             }else if(!user){
             // es un user github 
                 user = await userModelGitHub.findOne({ _id: uid }).lean() 
-                if(!user){
-                    throw new NotFoundError("No se encontro el usuario")
-                }
-                const userDocs = user.documents
-                console.log("******* userDocs *********** ")
-                console.log(userDocs)
-                console.log("******* userDocs *********** ")
+                if(!user) throw new NotFoundError("No se encontro el usuario")
+                const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de documents de usuarios, para no droppear la bd 
                 userDocs.push({ name : fileName , reference : path })
-                console.log("******* userDocs LUEGO DE ACTUALOIZAR *********** ")
-                console.log(userDocs)
-                console.log("******* userDocs LUEGO DE ACTUALOIZAR *********** ")
                 return await userModelGitHub.updateOne({uid : uid}, { $set: { documents: userDocs } }) 
             }
-
         } catch (error) {
             throw new Error (error)
         } 

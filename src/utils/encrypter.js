@@ -1,7 +1,7 @@
 // @ts-nocheck
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { AuthenticationExpiredErrorWEB } from '../models/errors/authentication.error.js'
+import { AuthenticationExpiredError, AuthenticationExpiredErrorWEB } from '../models/errors/authentication.error.js'
 import { winstonLogger } from './logger.js'
 
 class Encrypter {
@@ -16,10 +16,13 @@ class Encrypter {
     }
     getDataFromToken(token) {
         try {
-          return jwt.verify(token, process.env.JWT_SECRET)
+            return jwt.verify(token, process.env.JWT_SECRET)
         } catch (error) {
-          winstonLogger.error(error) 
-          throw new AuthenticationExpiredErrorWEB(error) 
+            winstonLogger.error(error)             
+            console.log(">>>>>>>>>>>>>error>>>>>>>>>>>>>>>>>>>>>")
+            console.log(error)
+            console.log(">>>>>>>>>>>>>>error>>>>>>>>>>>>>>>>>>>>")
+            throw new AuthenticationExpiredError(error)  // AuthenticationExpiredErrorWEB
         }
     }    
     createTokenToRestorePassword(data){

@@ -916,3 +916,12 @@
 [34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:55:46"}
 [33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:55:46"}
 [31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:55:46"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:57:27"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:57:27"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:57:27"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:57:27"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:57:41"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:57:41"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:57:41"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:57:41"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'push')[39m {"timestamp":"2023-07-23 14:05:16"}

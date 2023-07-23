@@ -6,21 +6,11 @@ import { userService } from "../../../src/services/userService.js"
 
 class ProductsWebService {
     async getProductsWeb(req, res, next){
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        console.log(next)
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 
         //try {
             let dataRender = {}
-            const user = await userService.getLoguedUser(req ,res, next)              
-    
-            console.log("························  userService.getLoguedUser ···························")     
-            console.log(user)
-            console.log("························  userService.getLoguedUser ···························")      
-    
+            const user = await userService.getLoguedUser(req ,res, next)    
             const paginatedProducts = await productService.getProducts(req, res, next)
-            console.log("························ productService.getProducts ···························")      
-    
             dataRender["loguedUser"] = true
             dataRender["paginatedProducts"] = paginatedProducts
             if(user !== undefined){

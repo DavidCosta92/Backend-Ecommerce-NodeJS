@@ -85,10 +85,6 @@ class UserService {
             if (req.signedCookies.authToken) user = encrypter.getDataFromToken(req.signedCookies.authToken)
             if (user?.username) return new UserGithubDTO({...user}).getAllAttr()
             const resp = user?.first_name? new UserDTO ({...user}).getAllAttr() : undefined
-
-            console.log("························  resp ···························")    
-            console.log(resp)
-
             return resp
         } catch (error) {
             next(error)
@@ -125,7 +121,7 @@ class UserService {
         
         console.log("!!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!")
         
-        await this.userRepository.uploadPhoto( uid , fileName , path)
+        return await this.userRepository.uploadPhoto( uid , fileName , path)
     }
 } 
   export const userService = new UserService(userRepository)

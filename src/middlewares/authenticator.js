@@ -5,10 +5,10 @@ import { cartService } from "../services/cartService.js"
 import { userService } from "../services/userService.js"
 
 export function authenticatorWeb( req, res, next){
-    if (/*req.session.passport || req.session.user || */req.signedCookies.authToken){       
+    if (req.signedCookies.authToken){       
       next()
     } else {
-        res.redirect('/api/users/login')
+        res.redirect('/web/users/login')
     }    
 }
 export function onlyAuthenticatedWeb(req, res, next) {    

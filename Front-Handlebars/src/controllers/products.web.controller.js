@@ -9,6 +9,7 @@ export async function getProductsWeb (req, res , next){
       const dataRender = await productsWebService.getProductsWeb(req, res, next)
       res.render("productsView", dataRender)        
    } catch (error) {
+      console.log("deberia luego venir por aqui....")
       next(error)
    }
 }    
