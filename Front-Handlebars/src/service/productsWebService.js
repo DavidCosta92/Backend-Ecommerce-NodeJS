@@ -6,19 +6,39 @@ import { userService } from "../../../src/services/userService.js"
 
 class ProductsWebService {
     async getProductsWeb(req, res, next){
-        let dataRender = {}
-        const user = await userService.getLoguedUser(req , next)
-        const paginatedProducts = await productService.getProducts(req, res, next)
-        dataRender["loguedUser"] = true
-        dataRender["paginatedProducts"] = paginatedProducts
-        if(user !== undefined){
-            dataRender["title"] = user.username? `${user.username} - productos` : `${user.first_name} - productos`
-            dataRender["user"] =user
-         } else {         
-            dataRender["title"] =`${req.session['user'].first_name} - productos`
-            dataRender["user"] =req.session['user']
-         }
-        return dataRender
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        console.log(next)
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+
+        //try {
+            let dataRender = {}
+            const user = await userService.getLoguedUser(req ,res, next)              
+    
+            console.log("························  userService.getLoguedUser ···························")     
+            console.log(user)
+            console.log("························  userService.getLoguedUser ···························")      
+    
+            const paginatedProducts = await productService.getProducts(req, res, next)
+            console.log("························ productService.getProducts ···························")      
+    
+            dataRender["loguedUser"] = true
+            dataRender["paginatedProducts"] = paginatedProducts
+            if(user !== undefined){
+                dataRender["title"] = user.username? `${user.username} - productos` : `${user.first_name} - productos`
+                dataRender["user"] =user
+             } else {         
+                dataRender["title"] =`${req.session['user'].first_name} - productos`
+                dataRender["user"] =req.session['user']
+             }
+            return dataRender 
+             /*
+        } 
+       
+        catch (error) {  
+            throw new Error(error.TypeError)
+            //next(throw new error)
+        }
+        */
     }
     async getProductsByIdWeb(req, res, next){
         try {            

@@ -18,7 +18,7 @@ class Encrypter {
         try {
           return jwt.verify(token, process.env.JWT_SECRET)
         } catch (error) {
-          winstonLogger.error(error)
+          winstonLogger.error(error) 
           throw new AuthenticationExpiredErrorWEB(error) 
         }
     }    

@@ -829,3 +829,90 @@
 [31mfatal[39m: [31muserService.searchByGitHubUsername is not a function[39m {"timestamp":"2023-07-21 17:19:54"}
 [31mfatal[39m: [31msearchByGitHubUsername is not defined[39m {"timestamp":"2023-07-21 17:27:04"}
 [31mfatal[39m: [31muserEmail is not defined[39m {"timestamp":"2023-07-21 17:50:29"}
+[31mfatal[39m: [31mUnexpected field[39m {"code":"LIMIT_UNEXPECTED_FILE","field":"productPhoto","name":"MulterError","storageErrors":[],"timestamp":"2023-07-22 18:21:27"}
+[31mfatal[39m: [31mdocumentsController is not defined[39m {"timestamp":"2023-07-22 20:26:51"}
+[31mfatal[39m: [31mCannot access 'resp' before initialization[39m {"timestamp":"2023-07-22 20:42:40"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'push')[39m {"timestamp":"2023-07-22 20:44:59"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'push')[39m {"timestamp":"2023-07-22 20:48:07"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:23:27"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 21:23:27"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:23:27"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 21:23:27"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:27:48"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 21:27:48"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:27:48"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 21:27:48"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:28:34"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 21:28:34"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:28:34"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 21:28:34"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:37:36"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 21:37:36"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:37:36"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 21:37:36"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:40:54"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 21:40:54"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:40:55"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 21:40:55"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:44:05"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 21:44:05"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:44:05"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 21:44:05"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:55:24"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 21:55:24"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:55:24"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 21:55:24"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:57:13"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 21:57:13"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 21:57:13"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 21:57:13"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:11:11"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:11:11"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:11:11"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:11:11"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:12:38"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:12:38"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:12:38"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:12:38"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:14:00"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:14:00"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:14:00"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:14:00"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:45:28"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:45:28"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:45:28"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:45:28"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:46:58"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:46:58"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:46:58"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:46:58"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:47:55"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:47:55"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:47:55"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:47:55"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:48:38"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:48:38"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:48:38"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:48:38"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:50:19"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:50:19"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:50:19"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:50:19"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:52:39"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:52:39"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:52:39"}
+[31mfatal[39m: [31mError[39m
+[31m    at ProductsWebService.getProductsWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/service/productsWebService.js:40:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async getProductsWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/Front-Handlebars/src/controllers/products.web.controller.js:9:26)[39m {"timestamp":"2023-07-22 22:52:39"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:54:15"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:54:15"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:54:15"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:54:15"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:55:04"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:55:04"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:55:04"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:55:46"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-22 22:55:46"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:55:46"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:55:46"}

@@ -79,12 +79,17 @@ class UserService {
             throw new IllegalInputArgWEB("Password no valido para ser ingresado")
         }
     }
-    async getLoguedUser(req , next){
+    async getLoguedUser(req ,res, next){
         try {
             let user 
             if (req.signedCookies.authToken) user = encrypter.getDataFromToken(req.signedCookies.authToken)
             if (user?.username) return new UserGithubDTO({...user}).getAllAttr()
-            return user?.first_name? new UserDTO ({...user}).getAllAttr() : undefined
+            const resp = user?.first_name? new UserDTO ({...user}).getAllAttr() : undefined
+
+            console.log("························  resp ···························")    
+            console.log(resp)
+
+            return resp
         } catch (error) {
             next(error)
         }
@@ -110,6 +115,17 @@ class UserService {
     }
     async setLast_connectionByUsername(username){
         await this.userRepository.setLast_connectionByUsername(username)  
+    }
+    async uploadPhoto( uid , fileName , path){
+        // !!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!       
+        
+        console.log("!!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!")
+        
+        await this.userRepository.uploadPhoto( uid , fileName , path)
     }
 } 
   export const userService = new UserService(userRepository)

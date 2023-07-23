@@ -2,6 +2,7 @@
 import { encrypter } from "../../utils/encrypter.js";
 import { userModel , userModelGitHub} from "../../db/mongoose/models/userModel.js";
 import { NotFoundUserWeb, RegisterError, RegisterErrorAlreadyExistUser } from "../../models/errors/register.error.js";
+import { NotFoundError } from "../../models/errors/carts.error.js";
 
 export class UserDAOMongoose{ 
     
@@ -98,6 +99,48 @@ export class UserDAOMongoose{
         try {
             const date =  new Date(Date.now()).toLocaleString()
             const update = await userModelGitHub.updateOne({username : username}, { $set: { last_connection: date } })  
+        } catch (error) {
+            throw new Error (error)
+        } 
+    }
+    
+    async uploadPhoto( uid , fileName , path){       
+        try {
+            let user = await this.findUserById(uid)
+            if(user){
+            // es un user normal
+                const userDocs = user.documents
+                console.log("******* userDocs *********** ")
+                console.log(userDocs)
+                console.log("******* userDocs *********** ")
+                userDocs.push({ name : fileName , reference : path })
+                console.log("******* userDocs LUEGO DE ACTUALOIZAR *********** ")
+                console.log(userDocs)
+                console.log("******* userDocs LUEGO DE ACTUALOIZAR *********** ")
+                const resp = await userModel.updateOne({uid : uid}, { $set: { documents: userDocs } })  
+                
+                console.log("·······················resp················")
+                console.log(resp)
+                console.log("·······················resp················")
+                return resp
+
+            }else if(!user){
+            // es un user github 
+                user = await userModelGitHub.findOne({ _id: uid }).lean() 
+                if(!user){
+                    throw new NotFoundError("No se encontro el usuario")
+                }
+                const userDocs = user.documents
+                console.log("******* userDocs *********** ")
+                console.log(userDocs)
+                console.log("******* userDocs *********** ")
+                userDocs.push({ name : fileName , reference : path })
+                console.log("******* userDocs LUEGO DE ACTUALOIZAR *********** ")
+                console.log(userDocs)
+                console.log("******* userDocs LUEGO DE ACTUALOIZAR *********** ")
+                return await userModelGitHub.updateOne({uid : uid}, { $set: { documents: userDocs } }) 
+            }
+
         } catch (error) {
             throw new Error (error)
         } 

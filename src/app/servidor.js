@@ -28,7 +28,10 @@ const app = express();
 app.use(session)
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(logger)
+
 app.use(express.static('./public'))
+app.use("/users",express.static('./public/assets/users'))
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.engine('handlebars', engine())

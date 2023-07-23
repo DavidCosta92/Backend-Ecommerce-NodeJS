@@ -44,6 +44,9 @@ class UserRepository{
     async getAllUsersForMembership(req){
         return await this.userDao.getAllUsersForMembership(req)
     }
+    async uploadPhoto( uid , fileName , path){
+        return await this.userDao.uploadPhoto( uid , fileName , path)
+    }
 
 }
 // en esta parte debo elegir si es mongo o fs o otra persistencia... POR EL MOMENTO SOLO MONGOOSE

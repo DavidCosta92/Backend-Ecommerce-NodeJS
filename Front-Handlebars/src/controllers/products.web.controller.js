@@ -5,12 +5,12 @@ import { productsWebService } from "../service/productsWebService.js";
 
 
 export async function getProductsWeb (req, res , next){  
-    try {
-        const dataRender = await productsWebService.getProductsWeb(req, res, next)
-        res.render("productsView", dataRender)        
-     } catch (error) {
-        next(error)
-     }
+   try {      
+      const dataRender = await productsWebService.getProductsWeb(req, res, next)
+      res.render("productsView", dataRender)        
+   } catch (error) {
+      next(error)
+   }
 }    
 export async function getProductsByIDWEB (req , res , next){
     try {
