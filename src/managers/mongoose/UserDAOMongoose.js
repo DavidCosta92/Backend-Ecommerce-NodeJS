@@ -3,6 +3,7 @@ import { encrypter } from "../../utils/encrypter.js";
 import { userModel , userModelGitHub} from "../../db/mongoose/models/userModel.js";
 import { NotFoundUserWeb, RegisterError, RegisterErrorAlreadyExistUser } from "../../models/errors/register.error.js";
 import { MongooseError } from "mongoose";
+import { StorageError } from "../../models/errors/storageError.js";
 
 export class UserDAOMongoose{ 
     
@@ -50,27 +51,15 @@ export class UserDAOMongoose{
             throw new Error (error)
         }
     }
-    async updateMembership(uid){
+    async updateMembership(uid , newRole){
         try {
-            let response 
-            let update
-            const user = await this.findUserById(uid)      
-            if( user.role == "user") {          
-                update = await userModel.updateOne({ _id: uid }, {
-                    $set: { role: "premium" }
-                })                
-            }else if ( user.role == "premium") {
-                update = await userModel.updateOne({ _id: uid }, {
-                    $set: { role: "user" }
-                })
-            }
-            
-           // user.save()
-            if(update.acknowledged ) response = {status : 200}
-            return response
+            const update = await userModel.updateOne({ _id: uid }, {
+                $set: { role: newRole }
+            })  
+            return update.modifiedCount > 0? {status : 200} : {status : 500}
         } catch (error) {
-            throw new Error (error)
-        }
+            throw new StorageError (error)
+        }        
     }        
     async setLast_connectionByEmail(email){
         try {

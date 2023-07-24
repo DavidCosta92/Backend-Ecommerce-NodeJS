@@ -32,8 +32,8 @@ class UserRepository{
     async updatePasswordUser (email , newPassword){    
         return await this.userDao.updatePasswordUser(email , newPassword)
     } 
-    async updateMembership (uid){    
-        return await this.userDao.updateMembership(uid)
+    async updateMembership (uid , newRole){    
+        return await this.userDao.updateMembership(uid , newRole)
     }      
     async setLast_connectionByEmail (email){
         return await this.userDao.setLast_connectionByEmail(email)

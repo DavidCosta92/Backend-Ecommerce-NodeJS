@@ -1,6 +1,7 @@
 import { createTransport } from "nodemailer"
 import { winstonLogger } from "./logger.js"
 import { EMAIL_CONFIG } from "../config/config.js"
+import { validateEmail } from "../models/validations/validations.js"
 
 
 class EmailService {
@@ -26,10 +27,11 @@ class EmailService {
         }
 
     }
-    async sendHtmlEmail (to , html , subject = "TP Final Coderhouse Nodejs"){
+    async sendHtmlEmail (to , html , subject = "TP Final Coderhouse Nodejs"){        
+        const email = validateEmail(to)
         const options ={
             from : "Email desde TP Final Coderhouse Nodejs",
-            to : to ,
+            to : email ,
             subject : subject ,
             html : html ,      
             attachments:[] // para enviar los archivos que necesite, ver info en carpeta "pendientes coder"

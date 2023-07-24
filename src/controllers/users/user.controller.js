@@ -1,8 +1,6 @@
 // @ts-nocheck
 import { encrypter } from "../../utils/encrypter.js"
 import { userService } from "../../services/userService.js"
-import { DocumentIncompleteError } from "../../models/errors/validations.errors.js"
-// import { viewService } from "../../services/viewService.js"
 
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})
@@ -10,14 +8,6 @@ export function registerView(req,res,next){
 export function renderLoginView(req,res,next){    
     res.render("userLogin", {pageTitle: "Login"})
 }
-// export async function productsView(req,res,next){ 
-//    try {
-//       const dataRender = await viewService.getProducts(req, res, next)
-//       res.render("productsView", dataRender)        
-//    } catch (error) {
-//       next(error)
-//    }
-// }
 export async function postUser(req,res,next){  
    try {
       const {first_name, last_name, email, age, password} = req.body
@@ -77,13 +67,8 @@ export async function getUsersMemberships(req,res,next){
 }
 export async function changeMembership(req,res,next){
    try {      
-      const isComplete = await userService.documentationIsComplete(req.params.uid)
-      if (isComplete){
-         await userService.changeMembership(req.params.uid)
-         res.status(200).json({ mensaje : "Membresia actualizada"})
-      } else {
-         throw new DocumentIncompleteError ("¡Falta completar documentacion!")
-      }
+      await userService.changeMembership(req.params.uid)
+      res.status(200).json({ mensaje : "Membresia actualizada"})
    } catch (error) {
       next(error)
    }   

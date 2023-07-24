@@ -4,13 +4,14 @@ import { userRepository } from "../repositories/userRepository.js"
 import { emailService } from "../utils/email.service.js"
 import { encrypter } from "../utils/encrypter.js"
 import { AuthenticationExpiredErrorWEB } from "../models/errors/authentication.error.js"
-import { IllegalInputArgWEB } from "../models/errors/validations.errors.js"
+import { DocumentIncompleteError, IllegalInputArgWEB } from "../models/errors/validations.errors.js"
 import { Password } from "../models/Password.js"
 import { NotFoundUserWeb} from "../models/errors/register.error.js"
 import { cartRepository } from "../repositories/cartRepository.js"
 import { UserDTO } from "../models/UserDTO.js"
 import { UserGithubDTO } from "../models/UserGithubDTO.js"
 import { NotFoundError } from "../models/errors/carts.error.js"
+import { validateAlphanumeric, validateEmail } from "../models/validations/validations.js"
 
 class UserService {
     userRepository
@@ -45,20 +46,25 @@ class UserService {
             throw new NotFoundUserWeb("Usuario no encontrado")
         }
     }
-    async findUserByEmail(email){
+    async findUserByEmail(inputEmail){
+        const email = validateEmail(inputEmail)
         const user = await this.userRepository.findUserByEmail(email)
         return user;
     }  
-    async searchByGitHubUsername(username){
+    async searchByGitHubUsername(inputUsername){
+        const username = validateAlphanumeric(inputUsername)
         const user = await this.userRepository.searchByGitHubUsername(username)
         return user;
     }      
-    async findUserById(uid){
+    async findUserById(inputId){
+        const uid = validateAlphanumeric(inputId)
         return await this.userRepository.findUserById(uid)
     }
-    async validateToken(email , token){
-        // Solo valido para restaurar contraseña por web
+
+    // Solo valido para restaurar contraseña por web
+    async validateToken(inputEmail , token){
         try {
+            const email = validateEmail(inputEmail)
             let validToken = false
             const userEmail = await this.userRepository.findUserByEmail(email)
             const userToken = encrypter.getDataFromToken(token)
@@ -69,8 +75,8 @@ class UserService {
         }
     }
     async createNewPassword(password , email, token){
-        await userService.validateToken(email , token)        
-        const userDb = await this.userRepository.findUserByEmail(email)
+        await this.validateToken(email , token)        
+        const userDb = await this.findUserByEmail(email)
         const newPassword = new Password(password).getPassword()
         const validPass = !encrypter.comparePasswords(newPassword , userDb.password)
 
@@ -94,6 +100,15 @@ class UserService {
     async getAllUsersForMembership(req){
         const listUsers = await this.userRepository.getAllUsersForMembership(req)
         listUsers.payload.forEach(user => {
+
+            // aca deberia corroborar quienes tienen tal o cual documentacion para renderizarlo en el front!
+            // podria agregar un tilde a los completos, o simplemente, cambiar el color a los botones que no esten con la doc coimpleta
+            
+            // aca deberia corroborar quienes tienen tal o cual documentacion para renderizarlo en el front!
+            // podria agregar un tilde a los completos, o simplemente, cambiar el color a los botones que no esten con la doc coimpleta
+
+
+
             if(user.role == "admin"){
                 user.administrador = true
             } else if(user.role == "user"){
@@ -104,17 +119,34 @@ class UserService {
         });
         return listUsers
     }
-    async changeMembership(uid){        
-        return await this.userRepository.updateMembership(uid)        
+    async changeMembership(inputId){         
+        const uid = validateAlphanumeric(inputId)
+        const isComplete = await this.documentationIsComplete(uid)
+        const user = await this.findUserById(uid)
+        if( user.role == "user"){
+            if (isComplete){
+                return await this.userRepository.updateMembership(uid , "premium")
+            } else {
+             throw new DocumentIncompleteError ("¡Falta completar documentacion!")
+            }   
+        } else if ( user.role == "premium") {
+            return await this.userRepository.updateMembership(uid , "user")
+        }
+     
     }
-    async setLast_connectionByEmail(email){
+    async setLast_connectionByEmail(inputEmail){
+        const email = validateEmail(inputEmail)
         await this.userRepository.setLast_connectionByEmail(email)  
     }
-    async setLast_connectionByUsername(username){
+    async setLast_connectionByUsername(inputUsername){
+        const username = validateAlphanumeric(inputUsername)
         await this.userRepository.setLast_connectionByUsername(username)  
     }
-    async uploadDocument( uid , fileName , path){
+    async uploadDocument( inputId , inputFileName , inputPath){
         try {
+            const uid = validateAlphanumeric(inputId)
+            const fileName = validateAlphanumeric(inputFileName)
+            const path = validateAlphanumeric(inputPath)
             let user = await this.findUserById(uid)
             let update
             if(user){
@@ -135,8 +167,9 @@ class UserService {
             throw new Error (error)
         } 
     }
-    async getUserDocuments(uid){
+    async getUserDocuments(inputId){
         try {            
+            const uid = validateAlphanumeric(inputId)
             const user = await this.findUserById(uid)
             let profileImages = []
             let documentsImages = []
@@ -152,7 +185,8 @@ class UserService {
             throw new NotFoundError("Usuario no encontrado")
         }
     }
-    async documentationIsComplete (uid){
+    async documentationIsComplete (inputId){
+        const uid = validateAlphanumeric(inputId)
         const { profile , documents , products } = await this.getUserDocuments(uid)
         if ( profile.length > 0 && documents.length > 0 && products.length > 0) return true
         return false
