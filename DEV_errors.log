@@ -925,3 +925,111 @@
 [33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-22T13:34:18.000Z","name":"TokenExpiredError","timestamp":"2023-07-22 22:57:41"}
 [31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-22 22:57:41"}
 [31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'push')[39m {"timestamp":"2023-07-23 14:05:16"}
+[31mfatal[39m: [31muid is not defined[39m {"timestamp":"2023-07-23 20:55:54"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at UserService.getUserDocuments (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:153:19)[39m
+[31m    at UserService.documentationIsComplete (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:157:63)[39m
+[31m    at changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/users/user.controller.js:79:44)[39m
+[31m    at Layer.handle [as handle_request] (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\express\lib\router\layer.js:95:5)[39m
+[31m    at next (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\express\lib\router\route.js:144:13)[39m
+[31m    at onlyAdminWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:37:3)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: 'Usuario no encontrado'[39m
+[31m}[39m {"timestamp":"2023-07-23 21:00:42"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at UserService.getUserDocuments (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:157:19)[39m
+[31m    at UserService.documentationIsComplete (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:161:63)[39m
+[31m    at changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/users/user.controller.js:80:44)[39m
+[31m    at Layer.handle [as handle_request] (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\express\lib\router\layer.js:95:5)[39m
+[31m    at next (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\express\lib\router\route.js:144:13)[39m
+[31m    at onlyAdminWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:37:3)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: 'Usuario no encontrado'[39m
+[31m}[39m {"timestamp":"2023-07-23 21:02:37"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at UserService.getUserDocuments (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:157:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async UserService.documentationIsComplete (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:161:52)[39m
+[31m    at async changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/users/user.controller.js:80:26) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: 'Usuario no encontrado'[39m
+[31m}[39m {"timestamp":"2023-07-23 21:03:06"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at UserService.getUserDocuments (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:157:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async UserService.documentationIsComplete (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:161:52)[39m
+[31m    at async changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/users/user.controller.js:79:26) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: 'Usuario no encontrado'[39m
+[31m}[39m {"timestamp":"2023-07-23 21:04:14"}
+[31mfatal[39m: [31mCannot destructure property 'profile' of '(intermediate value)' as it is undefined.[39m {"timestamp":"2023-07-23 21:05:48"}
+[31mfatal[39m: [31mCannot destructure property 'profile' of '(intermediate value)' as it is undefined.[39m {"timestamp":"2023-07-23 21:08:36"}
+[31mfatal[39m: [31mDocumentIncompleteError is not defined[39m {"timestamp":"2023-07-23 21:19:36"}
+[31mfatal[39m: [31mDocumentIncompleteError[39m
+[31m    at changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/users/user.controller.js:89:16)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'Documentation incomplete',[39m
+[31m  description: 'Membresia No puede ser actualizada, falta documentacion'[39m
+[31m}[39m {"timestamp":"2023-07-23 21:21:22"}
+[33merror[39m: [33m*** Documentation incomplete -->> Membresia No puede ser actualizada, falta documentacion[39m {"timestamp":"2023-07-23 21:23:08"}
+[31mfatal[39m: [31mUnexpected field[39m {"code":"LIMIT_UNEXPECTED_FILE","field":"docPhoto","name":"MulterError","storageErrors":[],"timestamp":"2023-07-23 21:26:08"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 21:26:58"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 21:28:33"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 21:29:42"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-24T00:55:37.000Z","name":"TokenExpiredError","timestamp":"2023-07-23 22:11:14"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-24T00:55:37.000Z","name":"TokenExpiredError","timestamp":"2023-07-23 22:11:40"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-24T00:55:37.000Z","name":"TokenExpiredError","timestamp":"2023-07-23 22:11:58"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-23 22:11:58"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-24T00:55:37.000Z","name":"TokenExpiredError","timestamp":"2023-07-23 22:12:11"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-23 22:12:11"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 22:12:59"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 22:29:22"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 22:29:50"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 22:32:03"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 22:32:50"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 22:33:16"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 22:35:07"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 22:35:50"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at UserService.getUserDocuments (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:155:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async UserService.documentationIsComplete (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:159:52)[39m
+[31m    at async changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/users/user.controller.js:80:26) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: 'Usuario no encontrado'[39m
+[31m}[39m {"timestamp":"2023-07-23 22:39:05"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at UserService.getUserDocuments (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:155:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async UserService.documentationIsComplete (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:159:52)[39m
+[31m    at async changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/users/user.controller.js:80:26) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: 'Usuario no encontrado'[39m
+[31m}[39m {"timestamp":"2023-07-23 22:39:09"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at UserService.getUserDocuments (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:155:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async UserService.documentationIsComplete (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:159:52)[39m
+[31m    at async changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/users/user.controller.js:80:26) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: 'Usuario no encontrado'[39m
+[31m}[39m {"timestamp":"2023-07-23 22:42:15"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at UserService.getUserDocuments (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:159:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async UserService.documentationIsComplete (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:163:52)[39m
+[31m    at async changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/users/user.controller.js:80:26) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: 'Usuario no encontrado'[39m
+[31m}[39m {"timestamp":"2023-07-23 22:43:07"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at UserService.getUserDocuments (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:159:19)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async UserService.documentationIsComplete (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:163:52)[39m
+[31m    at async changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/users/user.controller.js:80:26) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: 'Usuario no encontrado'[39m
+[31m}[39m {"timestamp":"2023-07-23 22:43:28"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 22:44:04"}

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { encrypter } from "../../utils/encrypter.js"
 import { userService } from "../../services/userService.js"
+import { DocumentIncompleteError } from "../../models/errors/validations.errors.js"
 // import { viewService } from "../../services/viewService.js"
 
 export function registerView(req,res,next){    
@@ -75,16 +76,15 @@ export async function getUsersMemberships(req,res,next){
    }
 }
 export async function changeMembership(req,res,next){
-   console.log("------------  changeMembership ---- DEBERIA REVISAR QUE TENGA TODA LA DATA PREVIAMENTE ---------------")
-   console.log("------------  changeMembership ---- DEBERIA REVISAR QUE TENGA TODA LA DATA PREVIAMENTE ---------------")   
-   console.log("------------  changeMembership ---- DEBERIA REVISAR QUE TENGA TODA LA DATA PREVIAMENTE ---------------")   
-   console.log("------------  changeMembership ---- DEBERIA REVISAR QUE TENGA TODA LA DATA PREVIAMENTE ---------------")
-   
    try {      
-      await userService.changeMembership(req.params.uid)
-      res.status(200).json({ mensaje : "Membresia actualizada"})
+      const isComplete = await userService.documentationIsComplete(req.params.uid)
+      if (isComplete){
+         await userService.changeMembership(req.params.uid)
+         res.status(200).json({ mensaje : "Membresia actualizada"})
+      } else {
+         throw new DocumentIncompleteError ("¡Falta completar documentacion!")
+      }
    } catch (error) {
-      //res.status(400).json({ errorMessage : error.description})
       next(error)
    }   
 }

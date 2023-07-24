@@ -19,8 +19,8 @@ export class User {
         this.#password = new Password(password).getPassword()
         this.#cart = cart
         this.#role = validateString("Rol", role)        
-        this.#documents = [] // [ { name : "" , reference : "" } , {} ]
-        this.#last_connection = new Date(Date.now()).toUTCString()
+        this.#documents = []
+        this.#last_connection = new Date(Date.now()).toLocaleString()
     }
 
     getFirst_name(){ return this.#first_name}

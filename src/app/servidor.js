@@ -9,7 +9,7 @@ import { passportInitialize , passportSession } from "../middlewares/passport.js
 import session from "../middlewares/session.js";
 import { errorHandlerAPI , errorHandlerWEB} from "../middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
-import { renderHome } from "../middlewares/authenticator.js";
+import { onlyAuthenticatedWeb, renderHome } from "../middlewares/authenticator.js";
 import { MONGOOSE_STRING_ATLAS, MONGOOSE_STRING_ATLAS_TEST, NODE_ENV } from "../config/config.js";
 
 import dotenv from 'dotenv'
@@ -30,7 +30,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(logger)
 
 app.use(express.static('./public'))
-app.use("/users",express.static('./public/assets/users'))
+app.use("/users", onlyAuthenticatedWeb ,express.static('./public/assets/users'))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

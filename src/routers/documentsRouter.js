@@ -44,20 +44,8 @@ const storageDocument = multer.diskStorage({
 })
 const uploadDocument = multer({ storage : storageDocument })
 
-documentsRouter.post('/product', uploadProduct.single('productPhoto'), (req, res, next) => {
-    try {
-        res.json(req.file)
-    } catch (error) {
-        next(error)
-    }
-})
-documentsRouter.post('/document', uploadDocument.single('documentPhoto'), (req, res, next) => {
-    try {
-        res.json(req.file)
-    } catch (error) {
-        next(error)
-    }
-})
+documentsRouter.post('/product', uploadProduct.single('productPhoto'), uploadPhoto)
+documentsRouter.post('/document', uploadDocument.single('documentPhoto'), uploadPhoto)
 documentsRouter.post('/profile', uploadProfile.single('profilePhoto'), uploadPhoto)
 
 // uploadProfile.single('nombreDelCampoDeDondeQuieroExtraerElArchivo') 

@@ -44,8 +44,11 @@ class UserRepository{
     async getAllUsersForMembership(req){
         return await this.userDao.getAllUsersForMembership(req)
     }
-    async uploadPhoto( uid , fileName , path){
-        return await this.userDao.uploadPhoto( uid , fileName , path)
+    async updateOneUserDocument( uid, item){
+        return await this.userDao.updateOneUserDocument( uid, item)
+    }
+    async updateOneGithubUserDocument( uid, item){
+        return await this.userDao.updateOneGithubUserDocument( uid, item)
     }
 
 }

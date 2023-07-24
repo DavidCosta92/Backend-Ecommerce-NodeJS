@@ -2,7 +2,7 @@
 import { encrypter } from "../../utils/encrypter.js";
 import { userModel , userModelGitHub} from "../../db/mongoose/models/userModel.js";
 import { NotFoundUserWeb, RegisterError, RegisterErrorAlreadyExistUser } from "../../models/errors/register.error.js";
-import { NotFoundError } from "../../models/errors/carts.error.js";
+import { MongooseError } from "mongoose";
 
 export class UserDAOMongoose{ 
     
@@ -33,21 +33,6 @@ export class UserDAOMongoose{
         const user = await userModelGitHub.findOne({ username: username }).lean()
         return user;        
     }
-    // async searchUserByField({query}){
-    //     let user
-    //     console.log("_____________________________________________")
-    //     console.log({query})
-    //     console.log("_____________________________________________")
-    //     if (query.username){
-    //         console.log("user con username => GITHUB")
-    //         user = await this.searchByGitHubUsername(query.username)
-    //     }else {
-    //         console.log("user por emial => email")            
-    //         user = await userModel.findOne({query}).lean()    
-    //     }
-    //     if (user == undefined) throw new NotFoundUserWeb("Usuario no encontrado")
-    //     return user
-    // }
     async createGitHubUser(user){
         const gitHubUser = await userModelGitHub.create(user)
         return {gitHubUser , code:201}
@@ -103,28 +88,19 @@ export class UserDAOMongoose{
             throw new Error (error)
         } 
     }
-    
-    async uploadPhoto( uid , fileName , path){       
+    async updateOneUserDocument( uid , item){
         try {
-            let user = await this.findUserById(uid)
-            if(user){
-            // es un user normal
-                const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de documents de usuarios, para no droppear la bd                
-                userDocs.push({ name : fileName , reference : path })
-                const update = await userModel.updateOne({_id : uid}, { $set: { documents: userDocs } })  
-                const response = update.modifiedCount > 0 ? {message: "Archivo subido correctamente",status : 201} : {message: "ERROR",status : 500}
-                return response
-            }else if(!user){
-            // es un user github 
-                user = await userModelGitHub.findOne({ _id: uid }).lean() 
-                if(!user) throw new NotFoundError("No se encontro el usuario")
-                const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de documents de usuarios, para no droppear la bd 
-                userDocs.push({ name : fileName , reference : path })
-                return await userModelGitHub.updateOne({uid : uid}, { $set: { documents: userDocs } }) 
-            }
+            return await userModel.updateOne({_id : uid}, { $set: { "documents": item } })
         } catch (error) {
-            throw new Error (error)
-        } 
+            throw new MongooseError("Error actualizando elemento")
+        }
+    }
+    async updateOneGithubUserDocument( uid , item){
+        try {
+            return await userModelGitHub.updateOne({_id : uid}, { $set: { "documents": item } })
+        } catch (error) {
+            throw new MongooseError("Error actualizando elemento")
+        }
     }
     async getAllUsersForMembership(req){
         // podria  tildar opcion para solo mostrar un determinado rol

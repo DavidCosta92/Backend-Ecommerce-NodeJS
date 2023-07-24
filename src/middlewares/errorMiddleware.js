@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { IllegalInputArg , TicketError ,TicketErrorWEB , IllegalInputArgWEB} from "../models/errors/validations.errors.js"
+import { IllegalInputArg , TicketError ,TicketErrorWEB , IllegalInputArgWEB, DocumentIncompleteError} from "../models/errors/validations.errors.js"
 import { AuthenticationError , AuthenticationExpiredError , AuthenticationErrorWEB, AuthenticationExpiredErrorWEB} from "../models/errors/authentication.error.js"
 import { AuthorizationError, AuthorizationErrorWEB } from "../models/errors/authorization.error.js"
 import { RegisterError , RegisterErrorAlreadyExistUser , NotFoundUserWeb, RegisterErrorAlreadyExistCodeProduct} from "../models/errors/register.error.js"
@@ -48,6 +48,10 @@ export function errorHandlerAPI(error, req, res , next){
         req.logger.debug(`*** ${error.type} -->> ${error.description}`)
         res.status(400).json({errorMessage: error.description })
     }  
+    else if (error instanceof DocumentIncompleteError) {
+        req.logger.error(`*** ${error.type} -->> ${error.description}`)
+        res.status(403).json({errorMessage: error.description })   
+    }
     else if (error instanceof RegisterErrorAlreadyExistCodeProduct) {
         req.logger.error(`*** ${error.type} -->> ${error.description}`)
         res.status(409).json({errorMessage: error.description })   

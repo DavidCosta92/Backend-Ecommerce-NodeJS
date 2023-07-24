@@ -29,3 +29,11 @@ export class IllegalInputArgWEB extends Error {
         this.description = description;
     }
 }
+
+export class DocumentIncompleteError extends Error {
+    constructor (description){
+        super()
+        this.type = 'Documentation incomplete';
+        this.description = description;
+    }
+}

@@ -10,6 +10,7 @@ import { NotFoundUserWeb} from "../models/errors/register.error.js"
 import { cartRepository } from "../repositories/cartRepository.js"
 import { UserDTO } from "../models/UserDTO.js"
 import { UserGithubDTO } from "../models/UserGithubDTO.js"
+import { NotFoundError } from "../models/errors/carts.error.js"
 
 class UserService {
     userRepository
@@ -112,16 +113,49 @@ class UserService {
     async setLast_connectionByUsername(username){
         await this.userRepository.setLast_connectionByUsername(username)  
     }
-    async uploadPhoto( uid , fileName , path){
-        // !!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!
-        // !!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!
-        // !!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!
-        // !!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!
-        // !!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!       
-        
-        console.log("!!!!!!!!!!! ACA DEBERIA METER TODA LA LOGICA QUE AHORA ESTA EN EL USER DAO MONGOOSE !!!!!!!!!!!!!!!!!!")
-        
-        return await this.userRepository.uploadPhoto( uid , fileName , path)
+    async uploadDocument( uid , fileName , path){
+        try {
+            let user = await this.findUserById(uid)
+            let update
+            if(user){
+            // es un user normal
+                const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de documents de usuarios, para no droppear la bd                
+                userDocs.push({ name : fileName , reference : path })
+                update = await this.userRepository.updateOneUserDocument(uid , userDocs)
+            }else if(!user){
+            // es un user github 
+                user = await userModelGitHub.findOne({ _id: uid }).lean() 
+                if(!user) throw new NotFoundError("No se encontro el usuario")
+                const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de documents de usuarios, para no droppear la bd 
+                userDocs.push({ name : fileName , reference : path })
+                update = await this.userRepository.updateOneGithubUserDocument(uid , userDocs)                
+            }
+            return update.modifiedCount > 0 ? {message: "Archivo subido correctamente",status : 201} : {message: "ERROR",status : 500}
+        } catch (error) {
+            throw new Error (error)
+        } 
+    }
+    async getUserDocuments(uid){
+        try {            
+            const user = await this.findUserById(uid)
+            let profileImages = []
+            let documentsImages = []
+            let productsImages = []
+
+            user.documents?.forEach(item => {
+                if (item.name.includes("profile-")) profileImages.push({name : item.name , reference : item.reference})
+                if (item.name.includes("doc-")) documentsImages.push({name : item.name , reference : item.reference})
+                if (item.name.includes("product-")) productsImages.push({name : item.name , reference : item.reference})
+            })
+            return { profile : profileImages , documents : documentsImages , products : productsImages }
+        } catch (error) {
+            throw new NotFoundError("Usuario no encontrado")
+        }
+    }
+    async documentationIsComplete (uid){
+        const { profile , documents , products } = await this.getUserDocuments(uid)
+        if ( profile.length > 0 && documents.length > 0 && products.length > 0) return true
+        return false
     }
 } 
   export const userService = new UserService(userRepository)

@@ -64,9 +64,6 @@ export async function notAdminWeb(req, res, next) {
 export async function renderHome(req , res , next){
   try {
     let user = await userService.getLoguedUser(req , next)
-    console.log("*******************************")
-    console.log(user)
-    console.log("*******************************")
     if(user === undefined){
       res.render("home", {loguedUser :false}) 
     } else {
