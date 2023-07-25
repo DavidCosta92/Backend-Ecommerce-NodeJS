@@ -208,5 +208,4 @@ class UserService {
         return false
     }
 } 
-  export const userService = new UserService(userRepository)
-
+export const userService = new UserService(userRepository)
