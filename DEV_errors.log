@@ -1034,3 +1034,66 @@
 [31m}[39m {"timestamp":"2023-07-23 22:43:28"}
 [33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-23 22:44:04"}
 [31mfatal[39m: [31mreq is not defined[39m {"timestamp":"2023-07-24 10:28:41"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-24 10:30:00"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-25T02:54:42.000Z","name":"TokenExpiredError","timestamp":"2023-07-25 16:20:22"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-25T02:54:42.000Z","name":"TokenExpiredError","timestamp":"2023-07-25 16:20:27"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-25 16:20:27"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-25T02:54:42.000Z","name":"TokenExpiredError","timestamp":"2023-07-25 16:20:31"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-25 16:20:31"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-25T02:54:42.000Z","name":"TokenExpiredError","timestamp":"2023-07-25 16:21:01"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-25 16:21:01"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-25T02:54:42.000Z","name":"TokenExpiredError","timestamp":"2023-07-25 16:21:04"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-25 16:21:04"}
+[31mfatal[39m: [31muser is not defined[39m {"timestamp":"2023-07-25 16:46:49"}
+[31mfatal[39m: [31mUnexpected field[39m {"code":"LIMIT_UNEXPECTED_FILE","field":"profile","name":"MulterError","storageErrors":[],"timestamp":"2023-07-25 16:55:19"}
+[31mfatal[39m: [31mUnexpected field[39m {"code":"LIMIT_UNEXPECTED_FILE","field":"profile","name":"MulterError","storageErrors":[],"timestamp":"2023-07-25 16:57:53"}
+[31mfatal[39m: [31mUnexpected field[39m {"code":"LIMIT_UNEXPECTED_FILE","field":"profile","name":"MulterError","storageErrors":[],"timestamp":"2023-07-25 16:58:28"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'split')[39m {"timestamp":"2023-07-25 16:59:03"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'split')[39m {"timestamp":"2023-07-25 17:00:56"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'split')[39m {"timestamp":"2023-07-25 17:01:53"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of null (reading 'username')[39m {"timestamp":"2023-07-25 17:02:32"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of null (reading 'username')[39m {"timestamp":"2023-07-25 17:04:00"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of null (reading 'username')[39m {"timestamp":"2023-07-25 17:06:52"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of null (reading 'username')[39m {"timestamp":"2023-07-25 17:08:01"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of null (reading 'username')[39m {"timestamp":"2023-07-25 17:08:13"}
+[31mfatal[39m: [31mError[39m {"timestamp":"2023-07-25 17:13:57"}
+[31mfatal[39m: [31mError[39m {"timestamp":"2023-07-25 17:15:20"}
+[31mfatal[39m: [31mError[39m {"timestamp":"2023-07-25 17:16:04"}
+[31mfatal[39m: [31mError[39m {"timestamp":"2023-07-25 17:16:57"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-25 17:31:09"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-25 17:32:11"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at UserService.getUserDocuments (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:204:19)[39m
+[31m    at UserService.documentationIsComplete (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:209:63)[39m
+[31m    at UserService.changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:125:39)[39m
+[31m    at changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/users/user.controller.js:70:25)[39m
+[31m    at Layer.handle [as handle_request] (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\express\lib\router\layer.js:95:5)[39m
+[31m    at next (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\express\lib\router\route.js:144:13)[39m
+[31m    at onlyAdminWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:37:3)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: 'Usuario no encontrado'[39m
+[31m}[39m {"timestamp":"2023-07-25 17:35:54"}
+[31mfatal[39m: [31mNotFoundError[39m
+[31m    at UserService.getUserDocuments (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:203:19)[39m
+[31m    at UserService.documentationIsComplete (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:208:63)[39m
+[31m    at UserService.changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/services/userService.js:125:39)[39m
+[31m    at changeMembership (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/controllers/users/user.controller.js:70:25)[39m
+[31m    at Layer.handle [as handle_request] (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\express\lib\router\layer.js:95:5)[39m
+[31m    at next (D:\Programacion\CoderHouse\BACKEND\TRABAJO FINAL\node_modules\express\lib\router\route.js:144:13)[39m
+[31m    at onlyAdminWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:37:3)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'Not Found',[39m
+[31m  description: 'Usuario no encontrado'[39m
+[31m}[39m {"timestamp":"2023-07-25 17:36:36"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-25 17:38:28"}
+[31mfatal[39m: [31mUnexpected field[39m {"code":"LIMIT_UNEXPECTED_FILE","field":"profilePhoto","name":"MulterError","storageErrors":[],"timestamp":"2023-07-25 18:01:46"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-25 18:23:05"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-25 18:23:45"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-25 18:24:13"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-25 18:24:39"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-25 18:47:22"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-25 18:48:11"}
+[31mfatal[39m: [31mdoc.name.toLowerCase(...).contains is not a function[39m {"timestamp":"2023-07-25 18:53:32"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-25 18:54:53"}
+[31mfatal[39m: [31mUnexpected field[39m {"code":"LIMIT_UNEXPECTED_FILE","field":"profilePhoto","name":"MulterError","storageErrors":[],"timestamp":"2023-07-25 19:19:24"}

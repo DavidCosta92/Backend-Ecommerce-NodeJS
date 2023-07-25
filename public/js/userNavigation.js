@@ -71,3 +71,7 @@ function goToProducts(){
 function goToRestorePassword(){
     window.location.href = '/web/users/restore-password'
 }
+function goToUploadDocuments(){
+    const uid = document.getElementById("userId").textContent
+    window.location.href =`/web/users/${uid}/documents/`
+}

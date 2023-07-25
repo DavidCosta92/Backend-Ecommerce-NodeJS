@@ -1,4 +1,5 @@
 export class UserDTO{
+    #_id
     #first_name
     #last_name
     #email
@@ -10,7 +11,8 @@ export class UserDTO{
     #admin
     #adminOrPremium
     #cartAllowed
-    constructor ({first_name , last_name , email , age , cart , role, documents, last_connection}){
+    constructor ({_id ,first_name , last_name , email , age , cart , role, documents, last_connection}){
+        this.#_id = _id
         this.#first_name = first_name
         this.#last_name = last_name
         this.#email = email
@@ -25,6 +27,7 @@ export class UserDTO{
     }
     getAllAttr(){
         return {
+            _id: this.#_id,
             first_name: this.#first_name,
             last_name: this.#last_name,
             email: this.#email,

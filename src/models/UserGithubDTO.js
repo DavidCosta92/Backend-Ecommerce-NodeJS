@@ -1,4 +1,5 @@
 export class UserGithubDTO{
+    #_id
     #username
     #cart
     #role
@@ -7,7 +8,8 @@ export class UserGithubDTO{
     #admin
     #adminOrPremium
     #cartAllowed
-    constructor ({username, cart , role, documents, last_connection}){
+    constructor ({_id, username, cart , role, documents, last_connection}){
+        this.#_id = _id
         this.#username = username
         this.#cart = cart
         this.#role = role
@@ -20,6 +22,7 @@ export class UserGithubDTO{
     }
     getAllAttr(){
         return {
+            _id: this.#_id,
             username: this.#username,
             cart: this.#cart,
             role: this.#role,

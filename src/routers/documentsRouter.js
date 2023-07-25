@@ -4,6 +4,7 @@ import express from "express"
 import session from "../middlewares/session.js";
 import { uploadPhoto } from "../controllers/documents/documents.controller.js";
 import multer from 'multer'
+import { onlyAuthenticatedApi } from "../middlewares/authenticator.js";
 
 
 export const documentsRouter = Router();
@@ -12,8 +13,6 @@ documentsRouter.use(session)
 documentsRouter.use(express.json())
 documentsRouter.use(express.urlencoded({ extended: true }))
 
-// multer multer multer multer multer
-// multer multer multer multer multer
 const storageProfile = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './public/assets/users/images/profiles')
@@ -44,26 +43,6 @@ const storageDocument = multer.diskStorage({
 })
 const uploadDocument = multer({ storage : storageDocument })
 
-documentsRouter.post('/product', uploadProduct.single('productPhoto'), uploadPhoto)
-documentsRouter.post('/document', uploadDocument.single('documentPhoto'), uploadPhoto)
-documentsRouter.post('/profile', uploadProfile.single('profilePhoto'), uploadPhoto)
-
-// uploadProfile.single('nombreDelCampoDeDondeQuieroExtraerElArchivo') 
-// uploadProfile.array('nombreDelCampoDeDondeQuieroExtraerLosArchivos') 
-//uploadProfile.any() => EXTRAE TODO, POR CUESTIONES DE SEGUIRDAD, NO SERIA RECOMENDABLE...
-documentsRouter.get('/profile', (req, res, next) => {
-    res.json(`HOLLAAAA ${uid}`)
-})
-
-// A ESTAS RUTAS FALTA PROTEGERLAS CON MIDD DE AUTHENTICADS 
-// A ESTAS RUTAS FALTA PROTEGERLAS CON MIDD DE AUTHENTICADS
-// A ESTAS RUTAS FALTA PROTEGERLAS CON MIDD DE AUTHENTICADS
-// A ESTAS RUTAS FALTA PROTEGERLAS CON MIDD DE AUTHENTICADS
-
-
-
-// documentsRouter.get('/githubAuth' /*, callbackAuthGithub,postSessionTokenForGithub, updateLastConnection */,(req, res, next) => {
-//      res.redirect('/web/products') 
-// })
-
-
+documentsRouter.post('/product', onlyAuthenticatedApi , uploadProduct.single('productPhoto'), uploadPhoto)
+documentsRouter.post('/document', onlyAuthenticatedApi , uploadDocument.single('documentPhoto'), uploadPhoto)
+documentsRouter.post('/profile', onlyAuthenticatedApi , uploadProfile.single('profilePhoto'), uploadPhoto)

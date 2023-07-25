@@ -16,10 +16,6 @@ userRouter.use(express.urlencoded({ extended: true })) // para obtener datos des
 userRouter.use("/session",sessionsRouter)
 userRouter.post("/", postUser)
 userRouter.use("/:uid/documents/", documentsRouter)
-/* Crear un endpoint POST  en el router de usuarios api/users/:uid/documents que permita subir uno o múltiples archivos. Utilizar el middleware de Multer  =>  El middleware de multer deberá estar modificado para que pueda guardar en diferentes carpetas los diferentes archivos que se suban (si es imagen de perfil, deberá guardarlo en una carpeta profiles///  imagen de un producto en products ///  documento en una carpeta documents. */
-//userRouter.post('/:uid/documents', onlyAuthenticatedApi /*, uploadFiles*/)
-
-
 
 // REVISAR SI LO DEBERIA USAR PARA ALGO.. EN TEORIA DEBERIA SER REEMPLAZADO POR localhost:8080/api/products
 // userRouter.get("/products", authenticatorWeb, productsView, (req, res, next)=>{})

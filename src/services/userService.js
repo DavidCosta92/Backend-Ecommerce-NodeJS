@@ -3,7 +3,7 @@ import { User } from "../models/User.js"
 import { userRepository } from "../repositories/userRepository.js"
 import { emailService } from "../utils/email.service.js"
 import { encrypter } from "../utils/encrypter.js"
-import { AuthenticationExpiredErrorWEB } from "../models/errors/authentication.error.js"
+import { AuthenticationError, AuthenticationExpiredErrorWEB } from "../models/errors/authentication.error.js"
 import { DocumentIncompleteError, IllegalInputArgWEB } from "../models/errors/validations.errors.js"
 import { Password } from "../models/Password.js"
 import { NotFoundUserWeb} from "../models/errors/register.error.js"
@@ -47,24 +47,25 @@ class UserService {
         }
     }
     async findUserByEmail(inputEmail){
-        const email = validateEmail(inputEmail)
+        const email = validateEmail("Email",inputEmail)
         const user = await this.userRepository.findUserByEmail(email)
         return user;
     }  
     async searchByGitHubUsername(inputUsername){
-        const username = validateAlphanumeric(inputUsername)
+        const username = validateAlphanumeric("Username",inputUsername)
         const user = await this.userRepository.searchByGitHubUsername(username)
         return user;
     }      
     async findUserById(inputId){
-        const uid = validateAlphanumeric(inputId)
-        return await this.userRepository.findUserById(uid)
+        const uid = validateAlphanumeric("User Id",inputId)
+        const user = await this.userRepository.findUserById(uid)
+        return user
     }
 
     // Solo valido para restaurar contraseña por web
     async validateToken(inputEmail , token){
         try {
-            const email = validateEmail(inputEmail)
+            const email = validateEmail("Email",inputEmail)
             let validToken = false
             const userEmail = await this.userRepository.findUserByEmail(email)
             const userToken = encrypter.getDataFromToken(token)
@@ -120,7 +121,7 @@ class UserService {
         return listUsers
     }
     async changeMembership(inputId){         
-        const uid = validateAlphanumeric(inputId)
+        const uid = validateAlphanumeric("User Id",inputId)
         const isComplete = await this.documentationIsComplete(uid)
         const user = await this.findUserById(uid)
         if( user.role == "user"){
@@ -131,32 +132,39 @@ class UserService {
             }   
         } else if ( user.role == "premium") {
             return await this.userRepository.updateMembership(uid , "user")
-        }
-     
+        }     
     }
     async setLast_connectionByEmail(inputEmail){
-        const email = validateEmail(inputEmail)
+        const email = validateEmail("Email",inputEmail)
         await this.userRepository.setLast_connectionByEmail(email)  
     }
     async setLast_connectionByUsername(inputUsername){
-        const username = validateAlphanumeric(inputUsername)
+        const username = validateAlphanumeric("Username",inputUsername)
         await this.userRepository.setLast_connectionByUsername(username)  
     }
-    async uploadDocument( inputId , inputFileName , inputPath){
+    async uploadDocument(req ,res, next){
         try {
-            const uid = validateAlphanumeric(inputId)
-            const fileName = validateAlphanumeric(inputFileName)
-            const path = validateAlphanumeric(inputPath)
+            // debo validar para que incluyan "-" y "/" => const uid = validateAlphanumeric("User Id",req.baseUrl.split("/api/users/")[1].split("/documents")[0])
+            // debo validar para que incluyan "-" y "/" => const fileName = validateAlphanumeric("Filename",req.file.filename)
+            // debo validar para que incluyan "-" y "/" => const path = validateAlphanumeric("Path",req.file.path)
+            const uid = req.baseUrl.split("/api/users/")[1].split("/documents")[0]
+            const fileName = req.file.filename
+            const path = req.file.path
             let user = await this.findUserById(uid)
             let update
             if(user){
             // es un user normal
+                const loguedUser = await this.getLoguedUser(req ,res, next)
+                if(user.email != loguedUser.email) throw new AuthenticationError ("Usuario debe estar logueado para agregar sus propios documentos")
                 const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de documents de usuarios, para no droppear la bd                
                 userDocs.push({ name : fileName , reference : path })
                 update = await this.userRepository.updateOneUserDocument(uid , userDocs)
             }else if(!user){
             // es un user github 
+                const loguedUser = await this.getLoguedUser(req ,res, next)
+                if(user.username != loguedUser.username) throw new AuthenticationError ("Usuario debe estar logueado para agregar sus propios documentos")
                 user = await userModelGitHub.findOne({ _id: uid }).lean() 
+
                 if(!user) throw new NotFoundError("No se encontro el usuario")
                 const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de documents de usuarios, para no droppear la bd 
                 userDocs.push({ name : fileName , reference : path })
@@ -169,7 +177,7 @@ class UserService {
     }
     async getUserDocuments(inputId){
         try {            
-            const uid = validateAlphanumeric(inputId)
+            const uid = validateAlphanumeric("User Id",inputId)
             const user = await this.findUserById(uid)
             let profileImages = []
             let documentsImages = []
@@ -186,10 +194,19 @@ class UserService {
         }
     }
     async documentationIsComplete (inputId){
-        const uid = validateAlphanumeric(inputId)
-        const { profile , documents , products } = await this.getUserDocuments(uid)
-        if ( profile.length > 0 && documents.length > 0 && products.length > 0) return true
+        const uid = validateAlphanumeric("User Id",inputId)
+        const {documents} = await this.getUserDocuments(uid)
+        let hasIdentificacion = false
+        let hasDomicilio = false
+        let hasEstadoCuenta = false
+        documents.forEach((doc =>{
+            if (doc.name.toLowerCase().includes("identificacion")) hasIdentificacion = true
+            if (doc.name.toLowerCase().includes("domicilio")) hasDomicilio = true
+            if (doc.name.toLowerCase().includes("cuenta")) hasEstadoCuenta = true
+        }))
+        if( hasIdentificacion && hasDomicilio && hasEstadoCuenta) return true
         return false
     }
 } 
   export const userService = new UserService(userRepository)
+
