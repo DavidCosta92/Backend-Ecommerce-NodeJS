@@ -16,6 +16,7 @@ userWebRouter.use(express.urlencoded({ extended: true }))
 // localhost:8080/web/users
 userWebRouter.get("/:uid/documents/", authenticatorWeb, onlyAuthenticatedWeb, (req, res, next)=>{    
     const user = userSessionService.getLoguedUser(req)   
+    console.log(user)
     res.render("uploadImages", { user : user})
 })
 userWebRouter.get("/register", registerWebView)

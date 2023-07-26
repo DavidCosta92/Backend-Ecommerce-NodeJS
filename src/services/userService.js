@@ -149,7 +149,7 @@ class UserService {
             // debo validar para que incluyan "-" y "/" => const path = validateAlphanumeric("Path",req.file.path)
             const uid = req.baseUrl.split("/api/users/")[1].split("/documents")[0]
             const fileName = req.file.filename
-            const path = req.file.path
+            const path = req.file.path.replace("public","")
             let user = await this.findUserById(uid)
             let update
             if(user){

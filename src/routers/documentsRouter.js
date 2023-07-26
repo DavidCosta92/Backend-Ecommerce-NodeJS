@@ -18,7 +18,7 @@ const storageProfile = multer.diskStorage({
         cb(null, './public/assets/users/images/profiles')
     },
     filename: function (req, file, cb) {        
-        cb(null, `profile-${Date.now()}-${file.originalname}`)
+        cb(null, `profile-${Date.now()}-${file.originalname.split(" ").join("-")}`)
     }
 })
 const uploadProfile = multer({ storage : storageProfile })
@@ -28,7 +28,7 @@ const storageProduct = multer.diskStorage({
         cb(null, './public/assets/users/images/products')
     },
     filename: function (req, file, cb) {        
-        cb(null, `product-${Date.now()}-${file.originalname}`)
+        cb(null, `product-${Date.now()}-${file.originalname.split(" ").join("-")}`)
     }
 })
 const uploadProduct = multer({ storage : storageProduct })
@@ -38,7 +38,7 @@ const storageDocument = multer.diskStorage({
         cb(null, './public/assets/users/documents')
     },
     filename: function (req, file, cb) {        
-        cb(null, `doc-${Date.now()}-${file.originalname}`)
+        cb(null, `doc-${Date.now()}-${file.originalname.split(" ").join("-")}`)
     }
 })
 const uploadDocument = multer({ storage : storageDocument })

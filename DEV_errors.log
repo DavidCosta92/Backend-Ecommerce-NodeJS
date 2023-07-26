@@ -1097,3 +1097,15 @@
 [31mfatal[39m: [31mdoc.name.toLowerCase(...).contains is not a function[39m {"timestamp":"2023-07-25 18:53:32"}
 [33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-25 18:54:53"}
 [31mfatal[39m: [31mUnexpected field[39m {"code":"LIMIT_UNEXPECTED_FILE","field":"profilePhoto","name":"MulterError","storageErrors":[],"timestamp":"2023-07-25 19:19:24"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-25 20:35:43"}
+[33merror[39m: [33mjwt malformed[39m {"name":"JsonWebTokenError","timestamp":"2023-07-25 20:43:54"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-25 20:44:33"}
+[33merror[39m: [33mjwt malformed[39m {"name":"JsonWebTokenError","timestamp":"2023-07-25 20:45:24"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-25 20:47:06"}
+[33merror[39m: [33mjwt malformed[39m {"name":"JsonWebTokenError","timestamp":"2023-07-25 20:48:13"}
+[33merror[39m: [33mjwt malformed[39m {"name":"JsonWebTokenError","timestamp":"2023-07-25 20:49:24"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-25 20:59:47"}
+[31mfatal[39m: [31mMissing helper: "encodeURI"[39m {"name":"Error","timestamp":"2023-07-26 10:50:13"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'filename')[39m {"timestamp":"2023-07-26 10:52:21"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'modifiedCount')[39m {"timestamp":"2023-07-26 10:53:54"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'filename')[39m {"timestamp":"2023-07-26 10:56:09"}
