@@ -18,7 +18,7 @@ apiRouter.use("/carts", cartsRouter)
 apiRouter.use("/users" , userRouter)
 
 apiRouter.get("/session/current", getCurrentUser)
-apiRouter.get("/chat", onlyAuthenticatedApi /*, onlyUserWeb*/, (req, res, next)=>{
+apiRouter.get("/chat", onlyAuthenticatedApi, (req, res, next)=>{
 
     // aca no deberia ser un render.. deberia refactorizarlo para poder enviar la info desde otra forma, por otro front o api directameente
 

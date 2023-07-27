@@ -175,6 +175,27 @@ class UserService {
             throw new Error (error)
         } 
     }
+    async updateUsersDocuments (uid , docs ){        
+        return await this.userRepository.updateUsersDocuments(uid , docs)  
+    }
+    async deleteDocument (req ,res, next){
+        try {
+            console.log("intentando borrar un documento....")
+            const filenameToDelete = req.body.fileName
+            const user = await this.findUserById(req.body.userId)
+            const filterDocs = user.documents.filter(doc => doc.name != filenameToDelete)
+
+            let response
+            if(user.username){
+                response = await this.userRepository.updateOneGithubUserDocument(req.body.userId , filterDocs)  
+            } else {
+                response = await this.userRepository.updateOneUserDocument(req.body.userId , filterDocs)
+            }
+            return { status : response.modifiedCount > 0 ? 200 : 500 }
+        } catch (error) {
+            next(error)
+        }
+    }
     async getUserDocuments(inputId){
         try {            
             const uid = validateAlphanumeric("User Id",inputId)

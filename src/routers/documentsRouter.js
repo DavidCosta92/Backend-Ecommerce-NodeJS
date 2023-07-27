@@ -2,7 +2,7 @@
 import { Router } from "express";
 import express from "express"
 import session from "../middlewares/session.js";
-import { uploadPhoto } from "../controllers/documents/documents.controller.js";
+import { uploadPhoto , deleteFile} from "../controllers/documents/documents.controller.js";
 import multer from 'multer'
 import { onlyAuthenticatedApi } from "../middlewares/authenticator.js";
 
@@ -45,6 +45,8 @@ const uploadDocument = multer({ storage : storageDocument })
 documentsRouter.post('/product', onlyAuthenticatedApi , uploadProduct.single('productPhoto'), uploadPhoto)
 documentsRouter.post('/document', onlyAuthenticatedApi , uploadDocument.single('documentPhoto'), uploadPhoto)
 documentsRouter.post('/profile', onlyAuthenticatedApi , uploadProfile.single('profilePhoto'), uploadPhoto)
+
+documentsRouter.delete('/', onlyAuthenticatedApi , deleteFile)
 
 /*
 NECESITO HACER UN POST A uid/dcouments => y que se haga automaticamente la separacion en carpetas segun que field de formulario estoy enviando.. osea si es profile que guarde en la carpeta correcta.. 

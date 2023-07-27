@@ -6,6 +6,7 @@ import { authenticatorWeb, onlyAdminWeb, onlyAuthenticatedWeb } from "../../../s
 import { passportInitialize, passportSession } from "../../../src/middlewares/passport.js";
 import session from "../../../src/middlewares/session.js";
 import { userSessionService } from "../../../src/services/sessionService.js";
+import { userService } from "../../../src/services/userService.js";
 
 export const userWebRouter = Router();
 
@@ -14,10 +15,10 @@ userWebRouter.use(express.json())
 userWebRouter.use(express.urlencoded({ extended: true }))
 
 // localhost:8080/web/users
-userWebRouter.get("/:uid/documents/", authenticatorWeb, onlyAuthenticatedWeb, (req, res, next)=>{    
-    const user = userSessionService.getLoguedUser(req)   
-    console.log(user)
-    res.render("uploadImages", { user : user})
+userWebRouter.get("/:uid/documents/", authenticatorWeb, onlyAuthenticatedWeb, async (req, res, next)=>{    
+    const user = userSessionService.getLoguedUser(req)  
+    const { profile , documents, products } = await userService.getUserDocuments(user._id)
+    res.render("uploadImages", { user : user , profileFiles : profile, documentsFiles : documents, productsFiles : products} )
 })
 userWebRouter.get("/register", registerWebView)
 userWebRouter.get("/login", renderWebLoginView)

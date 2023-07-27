@@ -40,7 +40,7 @@ class UserRepository{
     }
     async setLast_connectionByUsername(username){ 
         return await this.userDao.setLast_connectionByUsername(username)
-    }
+    } 
     async getAllUsersForMembership(req){
         return await this.userDao.getAllUsersForMembership(req)
     }

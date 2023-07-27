@@ -32,18 +32,56 @@
     </div>
 </div> 
 <div class="p-4 m-4 border border-success rounded ">
-    <h4>Archivos actuales</h4>
-        {{#if user.documents}}
-            {{#each user.documents}}
+    <h5>Archivos actuales</h5>    
+        <div class="p-2 m-2 border border-primary rounded">
+        {{#if profileFiles}}
+        <h6>Fotos de perfil</h6>
+            {{#each profileFiles}}
                 <div  class="p-4 m-4 border border-success rounded d-flex flex-wrap justify-content-around">
                     <p class="w-25">{{this.name}}</p>
                     <p class="w-25">{{this.reference}}</p>
-                    <img src={{this.reference}} alt="" style="width: 50px;height:50px">                    
+                    <img src={{this.reference}} alt="" style="width: 50px;height:50px">         
+                    <button class="btn btn-outline-danger  m-2 " onClick="deleteDocument(`{{../user._id}}` , `{{this.name}}`)" >Eliminar</button>          
                 </div>
             {{/each}}
         {{else}}
-        <h6>Parece que aun no hay archivos cargados</h6>
+        <h6>Parece que aun no fotos de perfil cargadas</h6>
         {{/if}}
+        </div>
+
+
+        <div class="p-2 m-2 border border-primary rounded">
+        {{#if documentsFiles}}
+            <h6>Documentos</h6>
+            {{#each documentsFiles}}
+                <div  class="p-4 m-4 border border-success rounded d-flex flex-wrap justify-content-around">
+                    <p class="w-25">{{this.name}}</p>
+                    <p class="w-25">{{this.reference}}</p>
+                    <img src={{this.reference}} alt="" style="width: 50px;height:50px">         
+                    <button class="btn btn-outline-danger  m-2 " onClick="deleteDocument(`{{../user._id}}` , `{{this.name}}`)" >Eliminar</button>          
+                </div>
+            {{/each}}
+        {{else}}
+        <h6>Parece que aun no hay documentos cargados</h6>
+        {{/if}}
+        </div>
+
+        <div class="p-2 m-2 border border-primary rounded">
+        {{#if productsFiles}}
+            <h6>Fotos de producto</h6>
+            {{#each productsFiles}}
+                <div  class="p-4 m-4 border border-success rounded d-flex flex-wrap justify-content-around">
+                    <p class="w-25">{{this.name}}</p>
+                    <p class="w-25">{{this.reference}}</p>
+                    <img src={{this.reference}} alt="" style="width: 50px;height:50px">         
+                    <button class="btn btn-outline-danger  m-2 " onClick="deleteDocument(`{{../user._id}}` , `{{this.name}}`)" >Eliminar</button>          
+                </div>
+            {{/each}}
+        {{else}}
+        <h6>Parece que aun no hay fotos de productos cargadas</h6>
+        {{/if}}
+        </div>
+
     <h4>Sube tus archivos</h4>
     <form action="/api/users/{{user._id}}/documents/document/" method="post" enctype="multipart/form-data" class="p-4 m-4 border border-success rounded d-flex flex-wrap justify-content-around">
         <h5 class="w-25">Documentos</h5>
@@ -69,3 +107,4 @@
 </div>
 
 <script src="/js/userNavigation.js"> </script>
+<script src="/js/uploadImages.js"> </script>
