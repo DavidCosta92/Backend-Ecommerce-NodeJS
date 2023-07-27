@@ -1,0 +1,20 @@
+# NewFile
+components:
+  requestBodies:
+    NewFile:
+      type: object
+      required:
+        - file
+            - field
+            - file to upload
+      properties:
+        field:
+          type: string
+          description: field that indicates wich file will be uploaded.
+          options: 
+            - productPhoto
+            - documentPhoto
+            - profilePhoto
+      example:
+        field: 'profilePhoto'
+        file: 'coderStudent.png'

@@ -1,0 +1,19 @@
+paths:
+  /api/users/{uid}/documents/document:
+    post:
+      summary: Upload a new document image 
+      tags:
+        - Users - Documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/NewFile'
+      responses:
+        "201":
+          description: Indicates that document was upload successfully.
+        "401":
+          description: Login required.
+        "500":
+          description: SERVER ERROR, try again or contac us for more information, please.

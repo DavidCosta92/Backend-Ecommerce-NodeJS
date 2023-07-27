@@ -5,6 +5,7 @@ import { AuthorizationError, AuthorizationErrorWEB } from "../models/errors/auth
 import { RegisterError , RegisterErrorAlreadyExistUser , NotFoundUserWeb, RegisterErrorAlreadyExistCodeProduct} from "../models/errors/register.error.js"
 import { StorageError } from "../models/errors/storageError.js"
 import { NotFoundErrorWeb } from "../models/errors/carts.error.js"
+import { MongooseError } from "mongoose"
 
 
 export function errorHandlerWEB(error, req, res , next){
@@ -83,6 +84,11 @@ export function errorHandlerAPI(error, req, res , next){
     else if (error instanceof RegisterErrorAlreadyExistUser) {
         req.logger.warning(`*** ${error.type} -->> ${error.description}`)
         res.status(409).json({errorMessage: error.description }) 
+    }
+    else if (error instanceof MongooseError){        
+        req.logger.warning(`***error de mongoose -->> ${error}`)
+        req.logger.warning(`*** ${error.type} -->> ${error.description}`)
+        res.status(500).json({errorMessage: error.description }) 
     }
     // pendiente manejo de errores de integridad de mongo
     else {

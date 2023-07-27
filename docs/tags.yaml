@@ -6,4 +6,8 @@ tags:
   - name: Products
     description: API to manage products.
   - name: Carts
-    description: API to manage products.
+    description: API to manage Carts.
+  - name: Users - Sessions
+    description: API to manage authentication.
+  - name: Users - Documents
+    description: API to manage documents of users, profiles and products images.
