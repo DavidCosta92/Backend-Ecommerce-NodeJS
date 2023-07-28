@@ -116,7 +116,8 @@ class UserService {
                 user.usuario = true
             } else if(user.role == "premium"){
                 user.premium = true
-            }            
+            }  
+            delete user.password
         });
         return listUsers
     }

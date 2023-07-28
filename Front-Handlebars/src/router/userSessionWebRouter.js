@@ -22,9 +22,10 @@ userWebRouter.get("/:uid/documents/", authenticatorWeb, onlyAuthenticatedWeb, as
         const { profile , documents, products } = await userService.getUserDocuments(user._id)
         res.render("uploadImages", { user : user , profileFiles : profile, documentsFiles : documents, productsFiles : products} )
     }  
-})
+})  
 userWebRouter.get("/register", registerWebView)
 userWebRouter.get("/login", renderWebLoginView)
+userWebRouter.get('/',authenticatorWeb, onlyAuthenticatedWeb, onlyAdminWeb, renderWebUsersMemberships)
 
 //--- reset password --- 
 userWebRouter.get('/restore-password', renderWebPasswordReset)

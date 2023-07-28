@@ -18,6 +18,7 @@ userRouter.use("/session",sessionsRouter)
 userRouter.use("/:uid/documents/", documentsRouter)
 
 userRouter.post("/", postUser)
+userRouter.get("/", authenticatorWeb, onlyAuthenticatedWeb, onlyAdminWeb, getUsersMemberships)
 
 // REVISAR SI LO DEBERIA USAR PARA ALGO.. EN TEORIA DEBERIA SER REEMPLAZADO POR localhost:8080/api/products
 // userRouter.get("/products", authenticatorWeb, productsView, (req, res, next)=>{})
