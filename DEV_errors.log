@@ -1149,3 +1149,9 @@
 [33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-28T00:19:27.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 21:19:35"}
 [33merror[39m: [33m*** REGISTER_ERROR_CODE_EXIST -->> Codigo de producto ya existe[39m {"timestamp":"2023-07-27 21:46:41"}
 [33merror[39m: [33m*** REGISTER_ERROR_CODE_EXIST -->> Codigo de producto ya existe[39m {"timestamp":"2023-07-27 21:49:07"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-28T01:20:09.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 22:42:40"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-27 22:42:40"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-28T01:20:09.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 22:42:43"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-27 22:42:43"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-28T01:20:09.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 22:44:37"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-27 22:44:37"}
