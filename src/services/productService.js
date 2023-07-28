@@ -77,6 +77,19 @@ class ProductService{
         } catch (error) {
             next(error)
         }
+    } 
+    async editProductsByID (req , res , next){
+        try {
+            const pid = validateAlphanumeric("Product ID",req.params.pid)
+            const {title, description, category, thumbnails , owner} = req.body; 
+            const price = parseInt(req.body.price);
+            const stock = parseInt(req.body.stock);
+            const code = await this.validateProductCode(req.body.code, next)
+            const productEdited = new Product ({title, description , code, price, stock, category, thumbnails, owner}).getAllAttr()
+            return await this.productRepository.editProductsByID(pid, productEdited);            
+        } catch (error) {
+            next(error)
+        }
     }
     async updateStockSoldByID (pid, quantity , req , res , next){   
         try {

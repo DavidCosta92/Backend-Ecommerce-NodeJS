@@ -21,6 +21,9 @@ class ProductRepository{
     } 
     async deleteProductByID (pid){
         return await this.productDao.deleteProductByID(pid);
+    } 
+    async editProductsByID (pid, product){
+        return await this.productDao.editProductsByID(pid, product);
     }
     async replaceOneProduct (pid , product){    
         return await this.productDao.replaceOneProduct(pid , product);

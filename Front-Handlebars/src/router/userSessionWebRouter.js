@@ -7,6 +7,7 @@ import { passportInitialize, passportSession } from "../../../src/middlewares/pa
 import session from "../../../src/middlewares/session.js";
 import { userSessionService } from "../../../src/services/sessionService.js";
 import { userService } from "../../../src/services/userService.js";
+import { AuthenticationExpiredError } from "../../../src/models/errors/authentication.error.js";
 
 export const userWebRouter = Router();
 
@@ -15,10 +16,12 @@ userWebRouter.use(express.json())
 userWebRouter.use(express.urlencoded({ extended: true }))
 
 // localhost:8080/web/users
-userWebRouter.get("/:uid/documents/", authenticatorWeb, onlyAuthenticatedWeb, async (req, res, next)=>{    
-    const user = userSessionService.getLoguedUser(req)  
-    const { profile , documents, products } = await userService.getUserDocuments(user._id)
-    res.render("uploadImages", { user : user , profileFiles : profile, documentsFiles : documents, productsFiles : products} )
+userWebRouter.get("/:uid/documents/", authenticatorWeb, onlyAuthenticatedWeb, async (req, res, next)=>{        
+    const user = userSessionService.getLoguedUser(req, res, next)  
+    if(user){        
+        const { profile , documents, products } = await userService.getUserDocuments(user._id)
+        res.render("uploadImages", { user : user , profileFiles : profile, documentsFiles : documents, productsFiles : products} )
+    }  
 })
 userWebRouter.get("/register", registerWebView)
 userWebRouter.get("/login", renderWebLoginView)

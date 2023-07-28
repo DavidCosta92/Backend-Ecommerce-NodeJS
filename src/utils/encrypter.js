@@ -19,10 +19,7 @@ class Encrypter {
             return jwt.verify(token, process.env.JWT_SECRET)
         } catch (error) {
             winstonLogger.error(error)             
-            console.log(">>>>>>>>>>>>>error>>>>>>>>>>>>>>>>>>>>>")
-            console.log(error)
-            console.log(">>>>>>>>>>>>>>error>>>>>>>>>>>>>>>>>>>>")
-            throw new AuthenticationExpiredError(error)  // AuthenticationExpiredErrorWEB
+            throw new AuthenticationExpiredErrorWEB(error)  // AuthenticationExpiredError
         }
     }    
     createTokenToRestorePassword(data){

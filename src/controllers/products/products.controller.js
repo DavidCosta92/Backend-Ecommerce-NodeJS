@@ -12,6 +12,9 @@ export async function getProductsByID (req , res , next){
 }
 export async function deleteProductsByID (req , res , next){
     res.json(await productService.deleteProductByID(req , res , next));
+} 
+export async function editProductsByID (req , res , next){
+    res.json(await productService.editProductsByID(req , res , next));
 }
 export function mockingproducts(req , res , next){    
     res.json(productService.getMockingProducts(req , res , next));

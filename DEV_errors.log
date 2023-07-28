@@ -1124,3 +1124,28 @@
 [31mfatal[39m: [31muid is not defined[39m {"timestamp":"2023-07-27 16:56:22"}
 [31mfatal[39m: [31mresultado is not defined[39m {"timestamp":"2023-07-27 17:11:43"}
 [31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'filename')[39m {"timestamp":"2023-07-27 17:37:00"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-27T21:36:39.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 18:39:48"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-27T21:36:39.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 18:40:32"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-27T21:36:39.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 18:51:12"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-27T21:36:39.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 18:52:59"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-27T21:36:39.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 18:59:27"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-27T21:36:39.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 18:59:44"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-27T21:36:39.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 18:59:46"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-27T21:36:39.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 19:05:38"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-27T21:36:39.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 19:07:05"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-27 19:07:05"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-27T21:36:39.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 19:09:33"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-27 19:09:33"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'filename')[39m {"timestamp":"2023-07-27 19:34:50"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'filename')[39m {"timestamp":"2023-07-27 20:05:54"}
+[31mfatal[39m: [31mTypeError: Cannot read properties of undefined (reading 'path')[39m {"timestamp":"2023-07-27 20:06:22"}
+[31mfatal[39m: [31mError[39m {"timestamp":"2023-07-27 20:06:37"}
+[31mfatal[39m: [31mError[39m {"timestamp":"2023-07-27 20:07:14"}
+[31mfatal[39m: [31mError[39m {"timestamp":"2023-07-27 20:07:48"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-27T23:09:41.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 20:18:05"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-27 20:18:05"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-27T23:09:41.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 20:18:09"}
+[31mfatal[39m: [31mnext is not a function[39m {"timestamp":"2023-07-27 20:18:09"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-28T00:19:27.000Z","name":"TokenExpiredError","timestamp":"2023-07-27 21:19:35"}
+[33merror[39m: [33m*** REGISTER_ERROR_CODE_EXIST -->> Codigo de producto ya existe[39m {"timestamp":"2023-07-27 21:46:41"}
+[33merror[39m: [33m*** REGISTER_ERROR_CODE_EXIST -->> Codigo de producto ya existe[39m {"timestamp":"2023-07-27 21:49:07"}

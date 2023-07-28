@@ -1,4 +1,4 @@
-<h1 class=" p-3">Ediccion de productos</h1>
+
     {{#if loguedUser}}
         <div class=" d-flex flex-wrap border border-success rounded p-4 m-4 justify-content-around">
         {{#if user.username}}
@@ -31,42 +31,42 @@
             </div>
         </div> 
     {{/if}}
-<div class=" p-3 text-end">
-    <form class="d-flex flex-wrap" id="formCargaProducto" action="/api/products" method="post">
+<h1 class=" p-3">Form para editar productos </h1>
+<div class=" p-3 text-end border border-success rounded p-4 m-4">
+    <form class="d-flex flex-wrap" id="formEditProduct" action="/api/products" method="post">
         <div class="mb-3 d-flex w-50">
             <label for="title" class="form-label p-1 w-25">Nombre</label>
-            <input type="text" class="form-control 1 w-75" id="title" name="title" aria-describedby="title">
+            <input type="text" class="form-control 1 w-75" id="title" name="title" aria-describedby="title" value={{product.title}}>
         </div>
         <div class="mb-3 d-flex  w-50">
             <label for="code" class="form-label p-1 w-25">Codigo</label>
-            <input type="text" class="form-control w-75" id="code" name="code" aria-describedby="code">
+            <input type="text" class="form-control w-75" id="code" name="code" aria-describedby="code" value={{product.code}}>
         </div>
         <div class="mb-3 d-flex w-100">
             <label for="description" class="form-label p-1 w-10">Descripcion</label>
-            <input type="text" class="form-control w-90" id="description" name="description"  aria-describedby="description">
+            <input type="text" class="form-control w-90" id="description" name="description"  aria-describedby="description" value={{product.description}}>
         </div>
 
         <div class="mb-3 d-flex w-25">
             <label for="price" class="form-label p-1 w-10">Precio</label>
-            <input type="number" class="form-control " id="price" name="price"  aria-describedby="price" min="0">
+            <input type="number" class="form-control " id="price" name="price"  aria-describedby="price" min="0" value={{product.price}}>
         </div>
         <div class="mb-3 d-flex w-50">
             <label for="category" class="form-label p-1 w-15">Categoria</label>
-            <input type="text" class="form-control " id="category" name="category"  aria-describedby="category">
+            <input type="text" class="form-control " id="category" name="category"  aria-describedby="category" value={{product.category}}>
         </div> 
         <div class="mb-3 d-flex w-25">
             <label for="stock" class="form-label p-1 w-10">Stock</label>
-            <input type="number" class="form-control " id="stock" name="stock" aria-describedby="stock" min="1">
+            <input type="number" class="form-control " id="stock" name="stock" aria-describedby="stock" min="1" value={{product.stock}}>
         </div>
         <div class="mb-3 d-flex w-100">
             <label for="thumbnails" class="form-label p-1 ">Thumbnails</label>
-            <input type="text" class="form-control" id="thumbnails" name="thumbnails" aria-describedby="thumbnails">
+            <input type="text" class="form-control" id="thumbnails" name="thumbnails" aria-describedby="thumbnails" value={{product.thumbnails}}>
         </div>     
          <input type="text" class="form-control " id="owner" name="owner" aria-describedby="owner" hidden value={{user.email}}>
         <button type="submit" class="btn btn-primary w-50 mt-3">Enviar</button>
     </form>
 </div>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="/js/products.js"></script>
+<script src="/js/productsEdit.js"></script>
 <script src="/js/userNavigation.js"></script>

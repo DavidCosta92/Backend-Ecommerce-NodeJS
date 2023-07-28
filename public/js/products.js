@@ -70,6 +70,5 @@ async function eliminarProductoAdmin (pid){
     })
 }
 function editProduct(pid){
-    console.log("FUNCION PENDIENTE... ",pid)
-    alert("FUNCION PENDIENTE... ")
+    window.location.href =`/web/products/${pid}/edit/form`
 }

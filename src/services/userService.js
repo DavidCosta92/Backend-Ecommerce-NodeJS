@@ -4,9 +4,9 @@ import { userRepository } from "../repositories/userRepository.js"
 import { emailService } from "../utils/email.service.js"
 import { encrypter } from "../utils/encrypter.js"
 import { AuthenticationError, AuthenticationExpiredErrorWEB } from "../models/errors/authentication.error.js"
-import { DocumentIncompleteError, IllegalInputArgWEB } from "../models/errors/validations.errors.js"
+import { DocumentIncompleteError, IllegalInputArg, IllegalInputArgWEB } from "../models/errors/validations.errors.js"
 import { Password } from "../models/Password.js"
-import { NotFoundUserWeb} from "../models/errors/register.error.js"
+import { NotFoundUserApi, NotFoundUserWeb} from "../models/errors/register.error.js"
 import { cartRepository } from "../repositories/cartRepository.js"
 import { UserDTO } from "../models/UserDTO.js"
 import { UserGithubDTO } from "../models/UserGithubDTO.js"
@@ -148,9 +148,11 @@ class UserService {
             // debo validar para que incluyan "-" y "/" => const fileName = validateAlphanumeric("Filename",req.file.filename)
             // debo validar para que incluyan "-" y "/" => const path = validateAlphanumeric("Path",req.file.path)
             const uid = req.baseUrl.split("/api/users/")[1].split("/documents")[0]
-            const fileName = req.file.filename
-            const path = req.file.path.replace("public","")
+            const fileName = req.file?.filename
+            const path = req.file?.path.replace("public","")
+            if (!fileName || !path) throw new IllegalInputArg("Illegal Input")
             let user = await this.findUserById(uid)
+            if (!user) throw new NotFoundUserApi("Illegal Input")
             let update
             if(user){
             // es un user normal
@@ -172,7 +174,7 @@ class UserService {
             }
             return update.modifiedCount > 0 ? {message: "Archivo subido correctamente",status : 201} : {message: "ERROR",status : 500}
         } catch (error) {
-            throw new Error (error)
+            next (error)
         } 
     }
     async updateUsersDocuments (uid , docs ){        

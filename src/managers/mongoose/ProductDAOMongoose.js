@@ -64,6 +64,13 @@ export class ProductDAOMongo{
         } catch (error) {            
             throw new NotFoundError(`No se encontro producto con el ID ${pid}`)
         }
+    } 
+    async editProductsByID (pid , product){
+        try {            
+            return await this.model.replaceOne( { _id: pid } , product)
+        } catch (error) {            
+            throw new NotFoundError(`No se encontro producto con el ID ${pid}`)
+        }
     }
     async replaceOneProduct(pid , product){
         try {            

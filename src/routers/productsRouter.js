@@ -1,6 +1,6 @@
 // @ts-nocheck
 import express, { Router } from 'express';
-import { getProducts , postProducts , getProductsByID , deleteProductsByID} from '../controllers/products/products.controller.js';
+import { getProducts , postProducts , getProductsByID , deleteProductsByID , editProductsByID} from '../controllers/products/products.controller.js';
 import { onlyAuthenticatedApi , onlyAdminOrPremiumApi} from '../middlewares/authenticator.js';
 
 export const productsRouter = Router();
@@ -11,6 +11,7 @@ productsRouter.get("/", onlyAuthenticatedApi, getProducts)
 productsRouter.post('/', onlyAuthenticatedApi, onlyAdminOrPremiumApi, postProducts);
 productsRouter.get('/:pid', onlyAuthenticatedApi, onlyAdminOrPremiumApi , getProductsByID);
 productsRouter.delete("/:pid" , onlyAuthenticatedApi, onlyAdminOrPremiumApi , deleteProductsByID); 
+productsRouter.put("/:pid" , onlyAuthenticatedApi, onlyAdminOrPremiumApi , editProductsByID); 
  
 // borrar porque no deberia renderizar nada...
 // productsRouter.get("/add/form" , onlyAuthenticatedWeb, onlyAdminOrPremiumWeb , (req, res, next)=>{    
