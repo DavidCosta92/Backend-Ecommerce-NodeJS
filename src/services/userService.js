@@ -11,7 +11,7 @@ import { cartRepository } from "../repositories/cartRepository.js"
 import { UserDTO } from "../models/UserDTO.js"
 import { UserGithubDTO } from "../models/UserGithubDTO.js"
 import { NotFoundError } from "../models/errors/carts.error.js"
-import { validateAlphanumeric, validateEmail } from "../models/validations/validations.js"
+import { validateAlphanumeric, validateDate, validateEmail } from "../models/validations/validations.js"
 
 class UserService {
     userRepository
@@ -61,7 +61,6 @@ class UserService {
         const user = await this.userRepository.findUserById(uid)
         return user
     }
-
     // Solo valido para restaurar contraseña por web
     async validateToken(inputEmail , token){
         try {
@@ -118,6 +117,9 @@ class UserService {
                 user.premium = true
             }  
             delete user.password
+            delete user.age
+            delete user.cart
+            delete user.id
         });
         return listUsers
     }
@@ -137,11 +139,16 @@ class UserService {
     }
     async setLast_connectionByEmail(inputEmail){
         const email = validateEmail("Email",inputEmail)
-        await this.userRepository.setLast_connectionByEmail(email)  
+        await this.userRepository.setLast_connectionByEmail(email, new Date(Date.now()).toLocaleString())  
     }
     async setLast_connectionByUsername(inputUsername){
         const username = validateAlphanumeric("Username",inputUsername)
-        await this.userRepository.setLast_connectionByUsername(username)  
+        await this.userRepository.setLast_connectionByUsername(username, new Date(Date.now()).toLocaleString() )  
+    }
+    async deleteInactiveUsers(req ,res, next){
+        const inputTime = validateDate("Periodo hasta donde limpiar" , req.params.period)
+        const time = inputTime ? inputTime : new Date(Date.now()-1000*60*60*24*2).toLocaleString()
+        await this.userRepository.deleteInactiveUsers(time)
     }
     async uploadDocument(req ,res, next){
         try {

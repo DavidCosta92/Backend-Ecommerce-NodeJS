@@ -51,3 +51,7 @@ export function validateAcceptedProd(acceptedProds){
     if(acceptedProds.length==0) throw new TicketErrorWEB("No existen productos en condiciones de ser comprados, no puede continuar con la compra")
     return acceptedProds
 }
+export function validateDate(field, value){
+    if (value?.length>0 && isNaN(Date.parse(value))) throw new IllegalInputArg(`${field} debe ser una fecha en formato: DD/MM/AAAA, hh:mm:ss`)     
+    return value
+}

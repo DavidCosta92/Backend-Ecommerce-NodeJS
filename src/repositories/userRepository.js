@@ -35,14 +35,17 @@ class UserRepository{
     async updateMembership (uid , newRole){    
         return await this.userDao.updateMembership(uid , newRole)
     }      
-    async setLast_connectionByEmail (email){
-        return await this.userDao.setLast_connectionByEmail(email)
+    async setLast_connectionByEmail (email, time){
+        return await this.userDao.setLast_connectionByEmail(email, time)
     }
-    async setLast_connectionByUsername(username){ 
-        return await this.userDao.setLast_connectionByUsername(username)
+    async setLast_connectionByUsername(username, time){ 
+        return await this.userDao.setLast_connectionByUsername(username, time)
     } 
     async getAllUsersForMembership(req){
         return await this.userDao.getAllUsersForMembership(req)
+    }
+    async deleteInactiveUsers(time){
+        return await this.userDao.deleteInactiveUsers(time)
     }
     async updateOneUserDocument( uid, item){
         return await this.userDao.updateOneUserDocument( uid, item)

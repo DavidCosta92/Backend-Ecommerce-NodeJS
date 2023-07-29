@@ -73,3 +73,11 @@ export async function changeMembership(req,res,next){
       next(error)
    }   
 }
+export async function deleteInactiveUsers (req ,res ,next){
+   try {
+      await userService.deleteInactiveUsers(req ,res, next)
+      res.status(200).json({ mensaje : "Limpieza de usuarios inactivos realizada"})
+   } catch (error) {
+      next(error)
+   }
+}

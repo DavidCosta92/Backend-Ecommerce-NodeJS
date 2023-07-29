@@ -61,21 +61,27 @@ export class UserDAOMongoose{
             throw new StorageError (error)
         }        
     }        
-    async setLast_connectionByEmail(email){
+    async setLast_connectionByEmail(email , time){
         try {
-            const date =  new Date(Date.now()).toLocaleString()
-            await userModel.updateOne({email : email}, { $set: { last_connection: date } }) 
+            await userModel.updateOne({email : email}, { $set: { last_connection: time } }) 
         } catch (error) {
             throw new Error (error)
         } 
     }
-    async setLast_connectionByUsername(username){
+    async setLast_connectionByUsername(username , time){
         try {
-            const date =  new Date(Date.now()).toLocaleString()
-            const update = await userModelGitHub.updateOne({username : username}, { $set: { last_connection: date } })  
+            await userModelGitHub.updateOne({username : username}, { $set: { last_connection: time } })  
         } catch (error) {
             throw new Error (error)
         } 
+    }
+    async deleteInactiveUsers(time){
+        try {
+            await userModel.deleteMany( {$or : [ {last_connection : {$lt : time}} , {last_connection : {$exists : false}} ] })             
+            await userModelGitHub.deleteMany( {$or : [ {last_connection : {$lt : time}} , {last_connection : {$exists : false}} ] })   
+        } catch (error) {
+            throw new StorageError("Error en persistencia")
+        }
     }
     async updateOneUserDocument( uid , item){
         try {
