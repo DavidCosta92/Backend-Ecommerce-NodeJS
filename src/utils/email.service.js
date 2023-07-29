@@ -28,7 +28,7 @@ class EmailService {
 
     }
     async sendHtmlEmail (to , html , subject = "TP Final Coderhouse Nodejs"){        
-        const email = validateEmail(to)
+        const email = validateEmail("Email",to)
         const options ={
             from : "Email desde TP Final Coderhouse Nodejs",
             to : email ,

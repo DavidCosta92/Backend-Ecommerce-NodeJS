@@ -46,7 +46,25 @@ if (formLogOut instanceof HTMLFormElement){
         })  
     })
 }
-
+function deleteInactiveUsers(){        
+    fetch(`/api/users/`,{
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    .then(resp =>{
+        if (resp.status === 200 ){
+            alert("Se borraron usuarios inactivos")
+            location.reload()
+        } 
+        else{
+            resp.json().then(data=>{
+                alert(data.errorMessage)
+            })
+        }
+    })
+}
 function goToHome(){
   window.location.href = '/'
 }

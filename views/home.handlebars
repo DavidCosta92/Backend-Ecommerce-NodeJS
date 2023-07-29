@@ -30,6 +30,7 @@
             {{/if}}           
             {{#if user.admin}}
             <button class="btn btn-outline-warning  m-2 w-50" onClick=goToMembershipsList()> Ver usuarios </button>
+            <button class="btn btn-outline-warning  m-2 w-50" onClick=deleteInactiveUsers()> Borrar usuarios inactivos</button>
             {{/if}}
             <button class="btn btn-outline-success  m-2 w-50" onClick=goToUploadDocuments()> Subir imagenes </button>
         </div>

@@ -148,6 +148,15 @@ class UserService {
     async deleteInactiveUsers(req ,res, next){
         const inputTime = validateDate("Periodo hasta donde limpiar" , req.params.period)
         const time = inputTime ? inputTime : new Date(Date.now()-1000*60*60*24*2).toLocaleString()
+        const usersToDelete = await this.userRepository.findInactiveUsers(time)
+        if (usersToDelete.length>0){
+            usersToDelete.forEach((user)=>{
+                if(user.email){
+                    const templateEmail = `<h4>hola ${user.first_name}! </h4> , tu cuenta fue eliminada por inactividad. Pero no te preocupes, puedes volver a registrarte cuando quieras!`    
+                    emailService.sendHtmlEmail(user.email, templateEmail, "Tu cuenta ha sido eliminada por inactividad") 
+                }
+            })
+        }
         await this.userRepository.deleteInactiveUsers(time)
     }
     async uploadDocument(req ,res, next){

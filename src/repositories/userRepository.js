@@ -43,6 +43,9 @@ class UserRepository{
     } 
     async getAllUsersForMembership(req){
         return await this.userDao.getAllUsersForMembership(req)
+    } 
+    async findInactiveUsers(time){
+        return await this.userDao.findInactiveUsers(time)
     }
     async deleteInactiveUsers(time){
         return await this.userDao.deleteInactiveUsers(time)

@@ -74,6 +74,23 @@ export class UserDAOMongoose{
         } catch (error) {
             throw new Error (error)
         } 
+    } 
+    async findInactiveUsers(time){
+        try {
+            const resp = []
+            const users = await userModel.find({$or : [ {last_connection : {$lt : time}} , {last_connection : {$exists : false}} ] })    
+            resp.push(...users)
+            const githubUsers =await userModelGitHub.find( {$or : [ {last_connection : {$lt : time}} , {last_connection : {$exists : false}} ] })     
+            resp.push(...githubUsers) 
+            console.log("&&&&&&&&&&&")
+            console.log(users)
+            console.log(githubUsers)
+            console.log(resp)
+            console.log("&&&&&&&&&&&")
+            return resp
+        } catch (error) {
+            throw new Error (error)
+        } 
     }
     async deleteInactiveUsers(time){
         try {

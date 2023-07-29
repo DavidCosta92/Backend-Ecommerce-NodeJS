@@ -1183,3 +1183,30 @@
 [31mfatal[39m: [31mreq is not defined[39m {"timestamp":"2023-07-29 10:03:07"}
 [31mfatal[39m: [31mvalidateDate is not defined[39m {"timestamp":"2023-07-29 10:20:10"}
 [31mfatal[39m: [31mCannot read properties of undefined (reading 'length')[39m {"timestamp":"2023-07-29 10:21:27"}
+[31mfatal[39m: [31muser is not defined[39m {"timestamp":"2023-07-29 10:45:01"}
+[31mfatal[39m: [31muser is not defined[39m {"timestamp":"2023-07-29 10:45:49"}
+[31mfatal[39m: [31muser is not defined[39m {"timestamp":"2023-07-29 10:46:14"}
+[31mfatal[39m: [31musersToDelete.length is not a function[39m {"timestamp":"2023-07-29 10:47:31"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-29T13:58:04.000Z","name":"TokenExpiredError","timestamp":"2023-07-29 10:59:32"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-29 10:59:32"}
+[31mfatal[39m: [31mAuthorizationErrorWEB[39m
+[31m    at onlyAdminWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:36:42)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'AUTHORIZATION_ERROR_WEB',[39m
+[31m  description: 'Debes ser administrador'[39m
+[31m}[39m {"timestamp":"2023-07-29 10:59:32"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-29T13:58:04.000Z","name":"TokenExpiredError","timestamp":"2023-07-29 11:00:07"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-29 11:00:07"}
+[31mfatal[39m: [31mAuthorizationErrorWEB[39m
+[31m    at onlyAdminWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:36:42)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'AUTHORIZATION_ERROR_WEB',[39m
+[31m  description: 'Debes ser administrador'[39m
+[31m}[39m {"timestamp":"2023-07-29 11:00:07"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-29T13:58:04.000Z","name":"TokenExpiredError","timestamp":"2023-07-29 11:00:10"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-29 11:00:11"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-29 11:00:11"}
+[31mfatal[39m: [31muser is not defined[39m {"timestamp":"2023-07-29 11:01:17"}
+[31mfatal[39m: [31musersToDelete.length is not a function[39m {"timestamp":"2023-07-29 11:02:53"}
+[31mfatal[39m: [31musersToDelete.length is not a function[39m {"timestamp":"2023-07-29 11:03:41"}
+[34mwarning[39m: [34mSUPUESTAMENTE ENVIE MAIL => [39m {"0":"davidcst2991@gmail.com","timestamp":"2023-07-29 11:05:42"}
