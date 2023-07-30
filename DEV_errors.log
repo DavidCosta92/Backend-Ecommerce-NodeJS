@@ -1210,3 +1210,18 @@
 [31mfatal[39m: [31musersToDelete.length is not a function[39m {"timestamp":"2023-07-29 11:02:53"}
 [31mfatal[39m: [31musersToDelete.length is not a function[39m {"timestamp":"2023-07-29 11:03:41"}
 [34mwarning[39m: [34mSUPUESTAMENTE ENVIE MAIL => [39m {"0":"davidcst2991@gmail.com","timestamp":"2023-07-29 11:05:42"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-29T15:00:14.000Z","name":"TokenExpiredError","timestamp":"2023-07-30 09:21:01"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-30 09:21:01"}
+[31mfatal[39m: [31mAuthorizationErrorWEB[39m
+[31m    at onlyAdminWeb (file:///D:/Programacion/CoderHouse/BACKEND/TRABAJO%20FINAL/src/middlewares/authenticator.js:36:42)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {[39m
+[31m  type: 'AUTHORIZATION_ERROR_WEB',[39m
+[31m  description: 'Debes ser administrador'[39m
+[31m}[39m {"timestamp":"2023-07-30 09:21:01"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-29T15:00:14.000Z","name":"TokenExpiredError","timestamp":"2023-07-30 09:25:58"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-30 09:25:58"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-30 09:25:58"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-30 09:39:49"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-30 09:40:02"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-30 09:40:26"}
+[31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-30 09:53:14"}
