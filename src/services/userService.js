@@ -12,6 +12,7 @@ import { UserDTO } from "../models/UserDTO.js"
 import { UserGithubDTO } from "../models/UserGithubDTO.js"
 import { NotFoundError } from "../models/errors/carts.error.js"
 import { validateAlphanumeric, validateDate, validateEmail } from "../models/validations/validations.js"
+import { StorageError } from "../models/errors/storageError.js"
 
 class UserService {
     userRepository
@@ -144,6 +145,16 @@ class UserService {
     async setLast_connectionByUsername(inputUsername){
         const username = validateAlphanumeric("Username",inputUsername)
         await this.userRepository.setLast_connectionByUsername(username, new Date(Date.now()).toLocaleString() )  
+    }
+    async deleteUserById(req, res, next){
+        try {            
+            const uid = validateAlphanumeric("User Id",req.params.uid )
+            const deleteOp = await this.userRepository.deleteUserById(uid)
+            if (deleteOp !== null) return {status : 200 , message : "¡Usuario eliminado!"}
+            throw new StorageError ("Hubo un error, actualiza la pagina por favor")      
+        } catch (error) {
+            next(error)
+        }
     }
     async deleteInactiveUsers(req ,res, next){
         const inputTime = validateDate("Periodo hasta donde limpiar" , req.params.period)

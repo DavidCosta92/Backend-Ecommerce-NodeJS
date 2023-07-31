@@ -92,6 +92,13 @@ export class UserDAOMongoose{
             throw new Error (error)
         } 
     }
+    async deleteUserById(uid){
+        try {
+            return await userModel.findByIdAndDelete(uid)
+        } catch (error) {
+            throw new StorageError("Error de persistencia")
+        }
+    }
     async deleteInactiveUsers(time){
         try {
             await userModel.deleteMany( {$or : [ {last_connection : {$lt : time}} , {last_connection : {$exists : false}} ] })             

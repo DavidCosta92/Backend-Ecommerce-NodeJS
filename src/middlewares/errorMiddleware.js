@@ -92,7 +92,7 @@ export function errorHandlerAPI(error, req, res , next){
     }
     // pendiente manejo de errores de integridad de mongo
     else {
-        req.logger.fatal(error)
+        req.logger.warning(error)
         res.status(500).json(error) 
     }
 }

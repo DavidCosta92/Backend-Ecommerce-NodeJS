@@ -16,3 +16,21 @@ async function changeMembership(uid){
         }
     })
 }
+
+async function deleteUser(uid){
+    fetch(`/api/users/${uid}`,{
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    .then(resp =>{
+        resp.json().then(data =>{
+            if(data.status === 200){
+                alert(data.message)
+            } else {
+                alert ("Error al eliminar, intenta nuevamente! ( Detalle=> " +data.errorMessage+ ")")
+            }
+        })
+    })
+}

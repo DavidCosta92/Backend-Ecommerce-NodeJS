@@ -1225,3 +1225,15 @@
 [31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-30 09:40:02"}
 [31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-30 09:40:26"}
 [31mfatal[39m: [31mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-30 09:53:14"}
+[31mfatal[39m: [31mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-30 10:36:06"}
+[33merror[39m: [33m*** Documentation incomplete -->> ¡Falta completar documentacion![39m {"timestamp":"2023-07-30 10:37:37"}
+[34mwarning[39m: [34m*** REGISTER_ERROR_USER_EXIST -->> Error de registro, usuario YA EXISTE[39m {"timestamp":"2023-07-31 10:33:49"}
+[34mwarning[39m: [34mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-31 10:38:35"}
+[34mwarning[39m: [34mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-31 10:40:09"}
+[34mwarning[39m: [34mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-31 10:47:22"}
+[34mwarning[39m: [34mCannot read properties of null (reading '_id')[39m {"timestamp":"2023-07-31 10:55:48"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> Hubo un error, actualiza la pagina por favor[39m {"timestamp":"2023-07-31 11:04:59"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> Hubo un error, actualiza la pagina por favor[39m {"timestamp":"2023-07-31 11:06:30"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> Hubo un error, actualiza la pagina por favor[39m {"timestamp":"2023-07-31 11:09:17"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> Hubo un error, actualiza la pagina por favor[39m {"timestamp":"2023-07-31 11:11:42"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> Hubo un error, actualiza la pagina por favor[39m {"timestamp":"2023-07-31 11:12:23"}

@@ -47,6 +47,9 @@ class UserRepository{
     async findInactiveUsers(time){
         return await this.userDao.findInactiveUsers(time)
     }
+    async deleteUserById(uid){
+        return await this.userDao.deleteUserById(uid)
+    }
     async deleteInactiveUsers(time){
         return await this.userDao.deleteInactiveUsers(time)
     }

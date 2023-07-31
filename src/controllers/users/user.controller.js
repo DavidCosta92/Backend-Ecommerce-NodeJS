@@ -22,6 +22,14 @@ export async function postUser(req,res,next){
       next(error)
     }
 }
+export async function deleteUserById(req, res, next){
+   try {            
+      const deleteOp = await userService.deleteUserById(req, res, next)
+      if (deleteOp) res.json({ status : deleteOp?.status, message : deleteOp?.message})
+   } catch (error) {
+      next(error)  
+   }
+}
 export async function renderPasswordReset (req,res,next){   
    res.render("restore-password", {pageTitle: "Reset password"})
 }
