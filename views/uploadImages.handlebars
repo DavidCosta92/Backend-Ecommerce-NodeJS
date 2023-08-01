@@ -48,9 +48,13 @@
         {{else}}
         <h6>Parece que aun no fotos de perfil cargadas</h6>
         {{/if}}
-        <form action="/api/users/{{user._id}}/documents/profile/"  method="post" enctype="multipart/form-data" class="p-2 m-2 border border-success rounded d-flex flex-wrap justify-content-around">
+
+
+
+        <!-- action="/api/users/{{user._id}}/documents/profile/" -->
+        <form  action="/api/users/{{user._id}}/documents/profile/" method="post" enctype="multipart/form-data" class="p-2 m-2 border border-success rounded d-flex flex-wrap justify-content-around">
             <h5 class="w-25">Fotos de perfil</h5>
-            <input type="file" name="profilePhoto" />
+            <input type="file" name="profilePhoto" id="profilePhoto"/>
             <span class=" m-2 d-flex justify-content-center">
                 <button type="submit" class="btn btn-success">¡ Subir archivo! </button>
             </span>

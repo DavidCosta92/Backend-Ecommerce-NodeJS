@@ -8,7 +8,7 @@ function deleteDocument (uid,name){
     })    
     .then(resp =>{
         if (resp.status === 200 ){
-            alert("Archivo eliminado")
+            alert("¡ Archivo eliminado! ")
             location.reload()
         } 
         else{

@@ -13,6 +13,8 @@ import { UserGithubDTO } from "../models/UserGithubDTO.js"
 import { NotFoundError } from "../models/errors/carts.error.js"
 import { validateAlphanumeric, validateDate, validateEmail } from "../models/validations/validations.js"
 import { StorageError } from "../models/errors/storageError.js"
+import fs from 'fs/promises';
+import { error } from "console"
 
 class UserService {
     userRepository
@@ -208,13 +210,32 @@ class UserService {
     async updateUsersDocuments (uid , docs ){        
         return await this.userRepository.updateUsersDocuments(uid , docs)  
     }
+    async deleteDocumentByFileNameFileSystem(req ,res, next){
+        try {
+            const filename = req.body.fileName
+            let path            
+            if (filename.includes("doc-")){
+                path = `public/assets/users/documents/${filename}`
+            } else if (filename.includes("profile-")){
+                path = `public/assets/users/images/profiles/${filename}`
+            } else if (filename.includes("product-")){
+                path = `public/assets/users/images/produts/${filename}`             
+            }            
+            fs.unlink(path)
+            .catch(error =>{
+                throw new StorageError(error)
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
     async deleteDocument (req ,res, next){
         try {
-            console.log("intentando borrar un documento....")
-            const filenameToDelete = req.body.fileName
+            const filenameToDelete = req.body.fileName // debo valdiar nombre? revisar para atras y para adelante si lo estoy validando en algun lugar
             const user = await this.findUserById(req.body.userId)
             const filterDocs = user.documents.filter(doc => doc.name != filenameToDelete)
-
+            
+            await this.deleteDocumentByFileNameFileSystem(req ,res, next)
             let response
             if(user.username){
                 response = await this.userRepository.updateOneGithubUserDocument(req.body.userId , filterDocs)  

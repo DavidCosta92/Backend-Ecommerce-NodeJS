@@ -15,4 +15,30 @@ paths:
           description: Will be send a set-cookie header with key authtoken and value User'JWT", in order to be "logued in". This JWT expires in 24hs since creation.
         "409":
           description: Status code 409, indicates that already exist an user with provided credentials.
-  
+    get:
+      summary: Return all existing users.
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Indicates a successfull deletion of user
+        "401":
+          description: Status code 401, indicates that there is not a logued user.
+        "403":
+          description: Status code 403, indicates that user who is trying to delete must be an admin.
+        "404":
+          description: Status code 404, indicates that user doesn`t exist.
+  /api/users/{uid}:
+    delete:
+      summary: Delete an user by Id
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Indicates a successfull deletion of user
+        "401":
+          description: Status code 401, indicates that there is not a logued user.
+        "403":
+          description: Status code 403, indicates that user who is trying to delete must be an admin.
+        "404":
+          description: Status code 404, indicates that user doesn`t exist.

@@ -1237,3 +1237,16 @@
 [33merror[39m: [33m*** STORAGE_ERROR -->> Hubo un error, actualiza la pagina por favor[39m {"timestamp":"2023-07-31 11:09:17"}
 [33merror[39m: [33m*** STORAGE_ERROR -->> Hubo un error, actualiza la pagina por favor[39m {"timestamp":"2023-07-31 11:11:42"}
 [33merror[39m: [33m*** STORAGE_ERROR -->> Hubo un error, actualiza la pagina por favor[39m {"timestamp":"2023-07-31 11:12:23"}
+[33merror[39m: [33m*** STORAGE_ERROR -->> Hubo un error, actualiza la pagina por favor[39m {"timestamp":"2023-07-31 11:13:07"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-31T14:32:31.000Z","name":"TokenExpiredError","timestamp":"2023-07-31 16:25:09"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-31 16:25:09"}
+[34mwarning[39m: [34mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-31 16:25:09"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-31T20:25:19.000Z","name":"TokenExpiredError","timestamp":"2023-07-31 17:52:50"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-31 17:52:50"}
+[34mwarning[39m: [34mCannot read properties of undefined (reading 'modifiedCount')[39m {"timestamp":"2023-07-31 18:06:26"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-31T21:52:58.000Z","name":"TokenExpiredError","timestamp":"2023-07-31 19:03:10"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-31 19:03:10"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-07-31T23:03:14.000Z","name":"TokenExpiredError","timestamp":"2023-07-31 20:14:18"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-31 20:14:18"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-01T00:14:24.000Z","name":"TokenExpiredError","timestamp":"2023-07-31 21:28:44"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-31 21:28:44"}

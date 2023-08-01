@@ -18,7 +18,7 @@ userRouter.use("/session",sessionsRouter)
 userRouter.use("/:uid/documents/", documentsRouter)
 
 userRouter.post("/", postUser)
-userRouter.delete("/:uid", deleteUserById)
+userRouter.delete("/:uid", onlyAuthenticatedApi, onlyAdminApi, deleteUserById)
 userRouter.get("/", onlyAuthenticatedWeb, onlyAdminWeb, getUsersMemberships)
 userRouter.delete("/", onlyAuthenticatedApi, onlyAdminApi, deleteInactiveUsers)
 
