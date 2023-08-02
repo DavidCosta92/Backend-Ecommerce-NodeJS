@@ -19,10 +19,3 @@ export async function editProductsByID (req , res , next){
 export function mockingproducts(req , res , next){    
     res.json(productService.getMockingProducts(req , res , next));
 }
-
-/*
---- --- REVISAR SI ESTE METODO LO PIDE CODER, O CUAL ES LA RAZON DE TENERLO --- --- 
-export async function updateProductsByID (req , res , next){    
-    res.json(await productService.updateProductByID(req , res , next));
-}
-*/

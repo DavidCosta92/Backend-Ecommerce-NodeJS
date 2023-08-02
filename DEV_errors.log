@@ -1277,3 +1277,7 @@
 [34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-08-01 21:23:13"}
 [34mwarning[39m: [34munlink is not defined[39m {"timestamp":"2023-08-01 21:52:38"}
 [34mwarning[39m: [34munlink is not defined[39m {"timestamp":"2023-08-01 21:56:15"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-02T01:23:17.000Z","name":"TokenExpiredError","timestamp":"2023-08-02 16:29:30"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-08-02 16:29:30"}
+[34mwarning[39m: [34mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-08-02 16:29:30"}
+[34mwarning[39m: [34mSUPUESTAMENTE ENVIE MAIL => [39m {"0":"davidcst2991@gmail.com","timestamp":"2023-08-02 17:02:06"}

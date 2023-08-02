@@ -6,6 +6,7 @@ import { RegisterErrorAlreadyExistCodeProduct } from "../models/errors/register.
 import { faker } from '@faker-js/faker'
 import { userSessionService } from "./sessionService.js";
 import { NotFoundError } from "../models/errors/carts.error.js";
+import { emailService } from "../utils/email.service.js";
 
 class ProductService{
     productRepository
@@ -73,7 +74,13 @@ class ProductService{
     async deleteProductByID (req , res , next){
         try {
             const pid = validateAlphanumeric("Product ID",req.params.pid)
-            return await this.productRepository.deleteProductByID(pid);            
+            const deleteOp = await this.productRepository.deleteProductByID(pid);
+            const templateEmail = `<h4>hola! </h4>  
+                <p>Nos comunicamos para avisarte que tuvimos que eliminar tu producto nombre: <b>${deleteOp.title}</b>, ID:${deleteOp.id} , por infringir las politicas de la empresa. </p>  
+                <h4>¡Que tengas un excelente dia, saludos! </h4> `
+            
+            if(deleteOp.owner) await emailService.sendHtmlEmail( deleteOp.owner , templateEmail , "Alerta de producto eliminado")
+            return             
         } catch (error) {
             next(error)
         }
@@ -138,12 +145,5 @@ class ProductService{
         })
         return newProduct.getAllAttr()
     }
-/*
-    --- --- REVISAR SI ESTE METODO LO PIDE CODER, O CUAL ES LA RAZON DE TENERLO --- --- 
-    async updateProductByID (req , res , next){    
-        return await this.productRepository.updateProductByID(req , res , next);
-    }
-*/
-
 } 
 export const productService = new ProductService(productRepository)

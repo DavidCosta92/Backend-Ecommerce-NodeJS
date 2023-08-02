@@ -14,7 +14,6 @@ import { NotFoundError } from "../models/errors/carts.error.js"
 import { validateAlphanumeric, validateDate, validateEmail } from "../models/validations/validations.js"
 import { StorageError } from "../models/errors/storageError.js"
 import fs from 'fs/promises';
-import { error } from "console"
 
 class UserService {
     userRepository

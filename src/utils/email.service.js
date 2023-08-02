@@ -34,11 +34,11 @@ class EmailService {
             to : email ,
             subject : subject ,
             html : html ,      
-            attachments:[] // para enviar los archivos que necesite, ver info en carpeta "pendientes coder"
+            attachments:[]
         }
         try {
             const sentEmail = await this.#nodeMailer.sendMail(options)
-            winstonLogger.warning("SUPUESTAMENTE ENVIE MAIL => ",sentEmail.accepted)
+            winstonLogger.warning("Envio de email a => ",sentEmail.accepted)
             return sentEmail
         } catch (error) {
             winstonLogger.warning("Error en envio mail => ", error)
