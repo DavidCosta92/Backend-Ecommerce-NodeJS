@@ -81,12 +81,25 @@ class ProductService{
     async editProductsByID (req , res , next){
         try {
             const pid = validateAlphanumeric("Product ID",req.params.pid)
+            const originalProduct = await this.getProductById(req , res , next)
+
             const {title, description, category, thumbnails , owner} = req.body; 
             const price = parseInt(req.body.price);
             const stock = parseInt(req.body.stock);
             const code = await this.validateProductCode(req.body.code, next)
-            const productEdited = new Product ({title, description , code, price, stock, category, thumbnails, owner}).getAllAttr()
-            return await this.productRepository.editProductsByID(pid, productEdited);            
+
+            let newProduct = {
+                title : title? title : originalProduct.title ,
+                description : description? description : originalProduct.description ,
+                category : category? category : originalProduct.category ,
+                thumbnails : thumbnails? thumbnails : originalProduct.thumbnails ,
+                owner : owner? owner : originalProduct.owner ,
+                price : price? price : originalProduct.price ,
+                stock : stock? stock : originalProduct.stock ,
+                code : code? code : originalProduct.code 
+            }
+            const productEdited = new Product (newProduct).getAllAttr()
+            return await this.productRepository.editProductsByID(pid, productEdited)
         } catch (error) {
             next(error)
         }

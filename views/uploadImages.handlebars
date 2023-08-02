@@ -49,10 +49,7 @@
         <h6>Parece que aun no fotos de perfil cargadas</h6>
         {{/if}}
 
-
-
-        <!-- action="/api/users/{{user._id}}/documents/profile/" -->
-        <form  action="/api/users/{{user._id}}/documents/profile/" method="post" enctype="multipart/form-data" class="p-2 m-2 border border-success rounded d-flex flex-wrap justify-content-around">
+        <form id="formUploadProfile" method="post" enctype="multipart/form-data" class="p-2 m-2 border border-success rounded d-flex flex-wrap justify-content-around">
             <h5 class="w-25">Fotos de perfil</h5>
             <input type="file" name="profilePhoto" id="profilePhoto"/>
             <span class=" m-2 d-flex justify-content-center">
@@ -60,8 +57,6 @@
             </span>
         </form>
         </div>
-
-
         <div class="p-2 m-2 border border-dark rounded">
         {{#if documentsFiles}}
             <h6>Documentos</h6>
@@ -75,8 +70,9 @@
         {{else}}
         <h6>Parece que aun no hay documentos cargados</h6>
         {{/if}}
-        <form action="/api/users/{{user._id}}/documents/document/" method="post" enctype="multipart/form-data" class="p-2 m-2 border border-success rounded d-flex flex-wrap justify-content-around">
-            <h6 class="w-25">Subir archivo</h6>
+        
+        <form  id="formUploadDocument" method="post" enctype="multipart/form-data" class="p-2 m-2 border border-success rounded d-flex flex-wrap justify-content-around">
+            <h5 class="w-25">Documentos</h5>
             <input type="file" name="documentPhoto" />
                 <span class=" m-2 d-flex justify-content-center">
                     <button type="submit" class="btn btn-success">¡ Subir archivo! </button>
@@ -98,17 +94,16 @@
         {{else}}
         <h6>Parece que aun no hay fotos de productos cargadas</h6>
         {{/if}}
-        <form action="/api/users/{{user._id}}/documents/product/"  method="post" enctype="multipart/form-data" class="p-2 m-2 border border-success rounded d-flex flex-wrap justify-content-around">
+        
+        
+        <form id="formUploadProduct"  method="post" enctype="multipart/form-data" class="p-2 m-2 border border-success rounded d-flex flex-wrap justify-content-around">
             <h5 class="w-25">Fotos de productos</h5>
             <input type="file" name="productPhoto" />
                 <span class=" m-2 d-flex justify-content-center">
                     <button type="submit" class="btn btn-success">¡ Subir archivo! </button>
                 </span>
         </form>
-        </div>
-
-
-
+    </div>
 </div>
 
 <script src="/js/userNavigation.js"> </script>

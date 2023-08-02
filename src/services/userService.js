@@ -178,8 +178,10 @@ class UserService {
             // debo validar para que incluyan "-" y "/" => const fileName = validateAlphanumeric("Filename",req.file.filename)
             // debo validar para que incluyan "-" y "/" => const path = validateAlphanumeric("Path",req.file.path)
             const uid = req.baseUrl.split("/api/users/")[1].split("/documents")[0]
+           
             const fileName = req.file?.filename
             const path = req.file?.path.replace("public","")
+
             if (!fileName || !path) throw new IllegalInputArg("Illegal Input")
             let user = await this.findUserById(uid)
             if (!user) throw new NotFoundUserApi("Illegal Input")
@@ -219,8 +221,8 @@ class UserService {
             } else if (filename.includes("profile-")){
                 path = `public/assets/users/images/profiles/${filename}`
             } else if (filename.includes("product-")){
-                path = `public/assets/users/images/produts/${filename}`             
-            }            
+                path = `public/assets/users/images/products/${filename}`             
+            }
             fs.unlink(path)
             .catch(error =>{
                 throw new StorageError(error)
@@ -236,6 +238,7 @@ class UserService {
             const filterDocs = user.documents.filter(doc => doc.name != filenameToDelete)
             
             await this.deleteDocumentByFileNameFileSystem(req ,res, next)
+
             let response
             if(user.username){
                 response = await this.userRepository.updateOneGithubUserDocument(req.body.userId , filterDocs)  

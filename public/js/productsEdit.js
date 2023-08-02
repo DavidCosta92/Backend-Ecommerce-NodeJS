@@ -1,16 +1,18 @@
 // @ts-nocheck
 
 const form = document.getElementById("formEditProduct")
+
 if(form instanceof HTMLFormElement){
     form.addEventListener ("submit", event =>{
         event.preventDefault()
         const formData = new FormData(form)
         const data = {}
 
-        formData.forEach((value, key)=> (data[key] = value))     
+        const pid = document.getElementById("productId").value
 
-        fetch("/api/products",{
-            method: "POST",
+        formData.forEach((value, key)=> (data[key] = value))      
+        fetch(`/api/products/${pid}`,{
+            method: "PUT",
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json",

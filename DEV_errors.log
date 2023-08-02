@@ -1250,3 +1250,30 @@
 [34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-31 20:14:18"}
 [33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-01T00:14:24.000Z","name":"TokenExpiredError","timestamp":"2023-07-31 21:28:44"}
 [34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-31 21:28:44"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-01T01:28:47.000Z","name":"TokenExpiredError","timestamp":"2023-07-31 22:30:05"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-31 22:30:05"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-01T01:28:47.000Z","name":"TokenExpiredError","timestamp":"2023-07-31 22:30:47"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-01T01:28:47.000Z","name":"TokenExpiredError","timestamp":"2023-07-31 22:31:07"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-31 22:31:07"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-01T01:28:47.000Z","name":"TokenExpiredError","timestamp":"2023-07-31 22:31:21"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-07-31 22:31:21"}
+[34mwarning[39m: [34mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-07-31 22:31:21"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-01T02:31:24.000Z","name":"TokenExpiredError","timestamp":"2023-08-01 16:31:06"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-08-01 16:31:06"}
+[34mwarning[39m: [34mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-08-01 16:31:06"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-01T20:31:11.000Z","name":"TokenExpiredError","timestamp":"2023-08-01 17:53:20"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-08-01 17:53:20"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-01T21:53:24.000Z","name":"TokenExpiredError","timestamp":"2023-08-01 19:14:24"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-08-01 19:14:24"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-01T21:53:24.000Z","name":"TokenExpiredError","timestamp":"2023-08-01 19:14:26"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-08-01 19:14:26"}
+[34mwarning[39m: [34mUnexpected token o in JSON at position 1[39m {"body":"[object Object]","expose":true,"status":400,"statusCode":400,"timestamp":"2023-08-01 19:35:10","type":"entity.parse.failed"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-01T23:14:29.000Z","name":"TokenExpiredError","timestamp":"2023-08-01 20:16:45"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-08-01 20:16:45"}
+[34mwarning[39m: [34mMultipart: Boundary not found[39m {"timestamp":"2023-08-01 20:32:51"}
+[34mwarning[39m: [34mMultipart: Boundary not found[39m {"timestamp":"2023-08-01 20:34:01"}
+[34mwarning[39m: [34mMultipart: Boundary not found[39m {"timestamp":"2023-08-01 21:01:12"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-02T00:16:50.000Z","name":"TokenExpiredError","timestamp":"2023-08-01 21:23:13"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-08-01 21:23:13"}
+[34mwarning[39m: [34munlink is not defined[39m {"timestamp":"2023-08-01 21:52:38"}
+[34mwarning[39m: [34munlink is not defined[39m {"timestamp":"2023-08-01 21:56:15"}
