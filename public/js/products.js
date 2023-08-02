@@ -30,7 +30,7 @@ if(form instanceof HTMLFormElement){
 }
 async function agregarProductoAlCarritoUsuario(pid){        
     const cid = document.getElementById("cidUser").textContent
-    const productQuantity = document.getElementById(`quantity${pid}`).value  
+    const productQuantity = document.getElementById(`quantity${pid}`).value  // document.getElementById(`quantity${pid}`).value == ""? 1 : document.getElementById(`quantity${pid}`).value 
     await fetch(`/api/carts/${cid}/products/${pid}?quantity=${productQuantity}`,{
         method: "POST",
         headers: {

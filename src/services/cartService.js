@@ -5,7 +5,7 @@ import { ticketService } from "./ticketService.js";
 import { userSessionService } from "./sessionService.js";
 import { productRepository } from "../repositories/productRepository.js";
 import { AuthorizationError } from "../models/errors/authorization.error.js";
-import { validateAlphanumeric } from "../models/validations/validations.js";
+import { validateAlphanumeric, validateIntegerNumber } from "../models/validations/validations.js";
 import { IllegalInputArg } from "../models/errors/validations.errors.js";
 
 class CartService{
@@ -62,17 +62,13 @@ class CartService{
             const pid = req.params.pid      
             const product = await this.productService.getProductById(req, res , next)
             const loguedUser = await this.userSessionService.getLoguedUser(req, res , next)
-            let productQuantity = req.query.quantity;
+            let productQuantityInput = req.query.quantity
             // Corroborado desde back, en fron estan ocultos los productos propios
-            if (product.owner === loguedUser.email) throw new AuthorizationError("No se pueden agregar productos propios al carrito")
+            if (product.owner === loguedUser.email) throw new AuthorizationError("No se pueden agregar productos propios al carrito")            
+            if (productQuantityInput === undefined || productQuantityInput == "") productQuantityInput = 1;
+            
+            const productQuantity = validateIntegerNumber("Cantidad de producto", parseInt(productQuantityInput)) 
 
-            if(productQuantity === undefined){
-                productQuantity = 1;
-            } else if (Number.isInteger(Number(productQuantity)) && productQuantity >= 1){
-                productQuantity = Number(productQuantity);
-            } else {
-                throw new Error ("Cantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0")
-            }          
             if(productQuantity>product.stock) throw new IllegalInputArg (`La cantidad no puede exeder el stock, en este caso ${product.stock}`)
 
             const cart = await this.getCartsByID(req,next)

@@ -1281,3 +1281,15 @@
 [34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-08-02 16:29:30"}
 [34mwarning[39m: [34mCannot set headers after they are sent to the client[39m {"code":"ERR_HTTP_HEADERS_SENT","timestamp":"2023-08-02 16:29:30"}
 [34mwarning[39m: [34mSUPUESTAMENTE ENVIE MAIL => [39m {"0":"davidcst2991@gmail.com","timestamp":"2023-08-02 17:02:06"}
+[34mwarning[39m: [34mCantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0[39m {"timestamp":"2023-08-02 18:11:13"}
+[34mwarning[39m: [34mCantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0[39m {"timestamp":"2023-08-02 18:22:32"}
+[34mwarning[39m: [34mCantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0[39m {"timestamp":"2023-08-02 18:27:42"}
+[34mwarning[39m: [34mCantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0[39m {"timestamp":"2023-08-02 18:28:15"}
+[34mwarning[39m: [34mCantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0[39m {"timestamp":"2023-08-02 18:29:04"}
+[34mwarning[39m: [34mCantidad incorrecta, la cantidad debe ser un numero, entero y mayor a 0[39m {"timestamp":"2023-08-02 18:30:29"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-02T22:11:02.000Z","name":"TokenExpiredError","timestamp":"2023-08-02 19:12:46"}
+[34mwarning[39m: [34mnext is not a function[39m {"timestamp":"2023-08-02 19:12:46"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-02T22:11:02.000Z","name":"TokenExpiredError","timestamp":"2023-08-02 19:13:08"}
+[34mwarning[39m: [34mnext is not a function[39m {"timestamp":"2023-08-02 19:13:08"}
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-02T22:11:02.000Z","name":"TokenExpiredError","timestamp":"2023-08-02 19:17:09"}
+[34mwarning[39m: [34mnext is not a function[39m {"timestamp":"2023-08-02 19:17:09"}

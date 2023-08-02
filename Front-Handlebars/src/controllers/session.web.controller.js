@@ -3,9 +3,9 @@ import { userService } from "../../../src/services/userService.js"
 
 export async function getCurrentUserWeb (req , res , next){
     try {        
-      let user = await userService.getLoguedUser(req , next)
+      let user = await userService.getLoguedUser(req, res , next)
       if(user === undefined){
-        res.render("currentUser", {loguedUser :false}) 
+        res.render("home", {loguedUser :false}) 
       }else{      
         req.params.cid = user.cart
         const cartById = await cartService.getCartsByID(req , next)   
