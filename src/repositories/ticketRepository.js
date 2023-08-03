@@ -1,4 +1,4 @@
-import { ticketDAOMongo } from "../managers/mongoose/ticketDAOMongoose.js"
+import { ticketDAOMongo } from "../managers/mongoose/TicketDAOMongoose.js"
 import { TicketErrorWEB } from "../models/errors/validations.errors.js"
 
 class TicketRepository{
