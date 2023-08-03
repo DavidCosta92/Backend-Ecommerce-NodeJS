@@ -224,7 +224,12 @@ class CartService{
             //Logica de negocio pide que queden los rechazados en el carrito
             await this.setProductsInCart(cart, rejectedProds, req, res, next)        
             const user = this.userSessionService.getLoguedUser(req , res , next)    
-            const purchaseTicket = await this.ticketService.newTicket(acceptedProds , rejectedProds , amount , user.email, req, res, next)
+            let purchaseTicket
+            if (user.email){
+                purchaseTicket = await this.ticketService.newTicket(acceptedProds , rejectedProds , amount , user.email, req, res, next)
+            } else if (user.username){
+                purchaseTicket = await this.ticketService.newTicket(acceptedProds , rejectedProds , amount , user.username, req, res, next)
+            }
             return { purchaseTicket , user }             
         } catch (error) {
             next(error)

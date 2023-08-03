@@ -16,7 +16,7 @@ export class Ticket {
         this.#code = randomUUID();
         this.#purchase_datetime = new Date(Date.now()).toUTCString()
         this.#amount = validateRealNumber("Precio total de compra",amount)
-        this.#purcharser = validateEmail("Email de comprador",purcharser)
+        this.#purcharser = purcharser // validateEmail("Email de comprador",purcharser)
     }
     getAcceptedProds(){ return this.#acceptedProds}
     getRejectedProds(){ return this.#rejectedProds}
