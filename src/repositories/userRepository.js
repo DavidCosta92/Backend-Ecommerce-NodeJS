@@ -20,6 +20,9 @@ class UserRepository{
     async findUserById(uid){
         return await this.userDao.findUserById(uid)
     }
+    async findGithubUserById(uid){
+        return await this.userDao.findGithubUserById(uid)
+    }
     async searchByGitHubUsername (username){    
         return this.userDao.searchByGitHubUsername(username)         
     }  

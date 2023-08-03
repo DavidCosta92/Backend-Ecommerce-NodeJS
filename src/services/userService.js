@@ -60,7 +60,10 @@ class UserService {
     }      
     async findUserById(inputId){
         const uid = validateAlphanumeric("User Id",inputId)
-        const user = await this.userRepository.findUserById(uid)
+        let user = await this.userRepository.findUserById(uid)
+        if (user == null ){
+            user = await this.userRepository.findGithubUserById(uid)
+        }
         return user
     }
     // Solo valido para restaurar contraseña por web
@@ -176,8 +179,7 @@ class UserService {
             // debo validar para que incluyan "-" y "/" => const uid = validateAlphanumeric("User Id",req.baseUrl.split("/api/users/")[1].split("/documents")[0])
             // debo validar para que incluyan "-" y "/" => const fileName = validateAlphanumeric("Filename",req.file.filename)
             // debo validar para que incluyan "-" y "/" => const path = validateAlphanumeric("Path",req.file.path)
-            const uid = req.baseUrl.split("/api/users/")[1].split("/documents")[0]
-           
+            const uid = req.baseUrl.split("/api/users/")[1].split("/documents")[0]           
             const fileName = req.file?.filename
             const path = req.file?.path.replace("public","")
 
@@ -185,20 +187,27 @@ class UserService {
             let user = await this.findUserById(uid)
             if (!user) throw new NotFoundUserApi("Illegal Input")
             let update
-            if(user){
+            
+
+            console.log("!!!!!!!!!!!!!! ENCONTE ESSTE USER !!!!!!!!!!!!!!!!")
+            console.log(user)
+            console.log("!!!!!!!!!!!!!! ENCONTE ESSTE USER !!!!!!!!!!!!!!!!")
+
+            const loguedUser = await this.getLoguedUser(req ,res, next)
+
+            if(user.email){
             // es un user normal
-                const loguedUser = await this.getLoguedUser(req ,res, next)
-                if(user.email != loguedUser.email) throw new AuthenticationError ("Usuario debe estar logueado para agregar sus propios documentos")
+                if(user.email != loguedUser.email) throw new AuthenticationError ("Usuario debe estar logueado para agregar sus propios documentos")                
                 const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de documents de usuarios, para no droppear la bd                
                 userDocs.push({ name : fileName , reference : path })
                 update = await this.userRepository.updateOneUserDocument(uid , userDocs)
-            }else if(!user){
+            }else if(user.username){
             // es un user github 
-                const loguedUser = await this.getLoguedUser(req ,res, next)
                 if(user.username != loguedUser.username) throw new AuthenticationError ("Usuario debe estar logueado para agregar sus propios documentos")
-                user = await userModelGitHub.findOne({ _id: uid }).lean() 
-
-                if(!user) throw new NotFoundError("No se encontro el usuario")
+                
+                // user = await userModelGitHub.findOne({ _id: uid }).lean() 
+                // if(!user) throw new NotFoundError("No se encontro el usuario")
+                
                 const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de documents de usuarios, para no droppear la bd 
                 userDocs.push({ name : fileName , reference : path })
                 update = await this.userRepository.updateOneGithubUserDocument(uid , userDocs)                
@@ -256,12 +265,13 @@ class UserService {
             let profileImages = []
             let documentsImages = []
             let productsImages = []
-
             user.documents?.forEach(item => {
                 if (item.name.includes("profile-")) profileImages.push({name : item.name , reference : item.reference})
                 if (item.name.includes("doc-")) documentsImages.push({name : item.name , reference : item.reference})
                 if (item.name.includes("product-")) productsImages.push({name : item.name , reference : item.reference})
             })
+            
+
             return { profile : profileImages , documents : documentsImages , products : productsImages }
         } catch (error) {
             throw new NotFoundError("Usuario no encontrado")

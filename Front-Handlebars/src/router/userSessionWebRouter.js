@@ -17,6 +17,9 @@ userWebRouter.use(express.urlencoded({ extended: true }))
 
 // localhost:8080/web/users
 userWebRouter.get("/:uid/documents/", onlyAuthenticatedWeb, async (req, res, next)=>{        
+
+
+
     const user = userSessionService.getLoguedUser(req, res, next)  
     if(user){        
         const { profile , documents, products } = await userService.getUserDocuments(user._id)

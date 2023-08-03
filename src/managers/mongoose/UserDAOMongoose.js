@@ -29,7 +29,10 @@ export class UserDAOMongoose{
     }
     async findUserById(uid){
         return await userModel.findOne({ _id: uid }).lean() 
-    }
+    } 
+    async findGithubUserById(uid){
+        return await userModelGitHub.findOne({ _id: uid }).lean() 
+    }     
     async searchByGitHubUsername(username){
         const user = await userModelGitHub.findOne({ username: username }).lean()
         return user;        
