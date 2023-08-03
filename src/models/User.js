@@ -45,7 +45,6 @@ export class User {
             last_connection: this.#last_connection,
             documents: this.#documents,
         }
-        console.log(data)
         return data
     }
     setRole(role){
