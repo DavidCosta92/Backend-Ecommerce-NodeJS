@@ -10,7 +10,7 @@ import session from "../middlewares/session.js";
 import { errorHandlerAPI , errorHandlerWEB} from "../middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
 import { onlyAuthenticatedWeb, renderHome } from "../middlewares/authenticator.js";
-import { MONGOOSE_STRING_ATLAS, MONGOOSE_STRING_ATLAS_TEST, NODE_ENV } from "../config/config.js";
+import { MONGOOSE_STRING_ATLAS, MONGOOSE_STRING_ATLAS_TEST, NODE_ENV, PORT } from "../config/config.js";
 
 import dotenv from 'dotenv'
 import { logger } from "../middlewares/loggerMiddleware.js";
@@ -46,7 +46,7 @@ app.use("/web", webRouter)
 app.use(errorHandlerWEB) 
 app.use(errorHandlerAPI) 
 
-const httpServer = app.listen(process.env.PORT, () => winstonLogger.info(`Servidor activo, entorno ${NODE_ENV} en host ${process.env.PORT}`))//console.log("Servidor activo",process.env.PORT,  "Enviroment =>", NODE_ENV))
+const httpServer = app.listen(PORT/* process.env.PORT */, () => winstonLogger.info(`Servidor activo, entorno ${NODE_ENV} en host ${process.env.PORT}`))//console.log("Servidor activo",process.env.PORT,  "Enviroment =>", NODE_ENV))
 
 export const io = new IOServer(httpServer)
 

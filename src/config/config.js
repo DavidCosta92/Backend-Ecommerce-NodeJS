@@ -1,5 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config({path: 'src/.env'});
+export const PORT = process.env.PORT || 8080
+
 //MONGO
 export const MONGOOSE_STRING_ATLAS=`mongodb+srv://${process.env.MONGO_STRING_CON}.3iptaqr.mongodb.net/ecommerce?retryWrites=true&w=majority`
 export const MONGOOSE_STRING_ATLAS_TEST=`mongodb+srv://${process.env.MONGO_STRING_CON_TEST}.3iptaqr.mongodb.net/ecommerceTest?retryWrites=true&w=majority`
