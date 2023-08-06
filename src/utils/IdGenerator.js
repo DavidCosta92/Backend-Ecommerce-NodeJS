@@ -1,7 +1,9 @@
 import { randomUUID } from 'crypto'
 
 export class Id extends String{
+    value
     constructor (){
-        super(randomUUID())
+        super()
+        this.value =randomUUID()
     }
 }

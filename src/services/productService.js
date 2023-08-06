@@ -73,13 +73,14 @@ class ProductService{
     }
     async deleteProductByID (req , res , next){
         try {
+            const loguedUser = userSessionService.getLoguedUser(req , res ,next)
             const pid = validateAlphanumeric("Product ID",req.params.pid)
             const deleteOp = await this.productRepository.deleteProductByID(pid);
             const templateEmail = `<h4>hola! </h4>  
                 <p>Nos comunicamos para avisarte que tuvimos que eliminar tu producto nombre: <b>${deleteOp.title}</b>, ID:${deleteOp.id} , por infringir las politicas de la empresa. </p>  
                 <h4>¡Que tengas un excelente dia, saludos! </h4> `
             
-            if(deleteOp.owner) await emailService.sendHtmlEmail( deleteOp.owner , templateEmail , "Alerta de producto eliminado")
+            if(deleteOp.owner != loguedUser?.email) await emailService.sendHtmlEmail( deleteOp.owner , templateEmail , "Alerta de producto eliminado")
             return             
         } catch (error) {
             next(error)

@@ -3,7 +3,7 @@ import { Id } from "../utils/IdGenerator.js";
 
 
 export class Product{
-    #id
+    //#id
     #title
     #description       
     #code
@@ -14,7 +14,7 @@ export class Product{
     #thumbnails
     #owner
     constructor ({title, description,code, price, stock, category, thumbnails, owner ="admin"}){
-        this.#id = new Id();
+        //this.#id = new Id().value;
         this.#title = validateString("Titulo",title)
         this.#description = validateString("Descripcion",description);        
         this.#code = validateString("Codigo del producto",code);
@@ -27,7 +27,7 @@ export class Product{
     }
     getAllAttr() {
         return {
-            id : this.#id,
+            //id : this.#id,
             title : this.#title,
             description : this.#description, 
             code : this.#code,

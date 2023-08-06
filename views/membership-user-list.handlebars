@@ -66,14 +66,14 @@
                     {{/if}}
                 </td>  
                 <td>                           
-                    <div class="d-flex flex-wrap">
+                    <div class="d-flex flex-wrap justify-content-end">
                         {{#if this.usuario}}                              
-                            <button onClick=changeMembership("{{this._id}}") type="button" class="btn btn-outline-success w-100 m-1"> Cambiar a premium </button>
+                            <button onClick=changeMembership("{{this._id}}") type="button" class="btn btn-outline-success w-50 m-1"> Cambiar a premium </button>
                         {{/if}}
                         {{#if this.premium}}
-                            <button onClick=changeMembership("{{this._id}}") type="button" class="btn btn-outline-danger w-100 m-1"> Cambiar a regular </button>
+                            <button onClick=changeMembership("{{this._id}}") type="button" class="btn btn-outline-danger w-50 m-1"> Cambiar a regular </button>
                         {{/if}}
-                            <button onClick=deleteUser("{{this._id}}") type="button" class="btn btn-danger w-100 m-1"> X </button>
+                            <button onClick=deleteUser("{{this._id}}") type="button" class="btn btn-danger w-25 m-1"> X </button>
                     </div> 
                 </td>                
             </tr>

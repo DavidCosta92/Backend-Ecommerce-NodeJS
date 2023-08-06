@@ -37,10 +37,17 @@ class UserService {
             if(usuario){
                 const email = usuario.email
                 const token =  encrypter.createTokenToRestorePassword({email}) 
+                
                 const templateEmail = `<h4>hola ${usuario.first_name}! </h4>
                 <a href='http://localhost:8080/web/users/new-password/?email=${email}&token=${token}'> 
                     <p>Este es un email para que resetes tu password, te pedimos que hagas click en este enlace para crear un nuevo password </p>
                 </a>`
+                /*
+                const templateEmail = `<h4>hola ${usuario.first_name}! </h4>
+                <a href='https://backend-ecommerce-nodejs-production.up.railway.app/web/users/new-password/?email=${email}&token=${token}'> 
+                    <p>Este es un email para que resetes tu password, te pedimos que hagas click en este enlace para crear un nuevo password </p>
+                </a>`
+                */
                 emailService.sendHtmlEmail(email, templateEmail, "Reseteo de password")      
                 return {status:200 , mensaje: "Email enviado"}        
             }   
@@ -187,14 +194,7 @@ class UserService {
             let user = await this.findUserById(uid)
             if (!user) throw new NotFoundUserApi("Illegal Input")
             let update
-            
-
-            console.log("!!!!!!!!!!!!!! ENCONTE ESSTE USER !!!!!!!!!!!!!!!!")
-            console.log(user)
-            console.log("!!!!!!!!!!!!!! ENCONTE ESSTE USER !!!!!!!!!!!!!!!!")
-
             const loguedUser = await this.getLoguedUser(req ,res, next)
-
             if(user.email){
             // es un user normal
                 if(user.email != loguedUser.email) throw new AuthenticationError ("Usuario debe estar logueado para agregar sus propios documentos")                
@@ -207,7 +207,7 @@ class UserService {
                 
                 // user = await userModelGitHub.findOne({ _id: uid }).lean() 
                 // if(!user) throw new NotFoundError("No se encontro el usuario")
-                
+
                 const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de documents de usuarios, para no droppear la bd 
                 userDocs.push({ name : fileName , reference : path })
                 update = await this.userRepository.updateOneGithubUserDocument(uid , userDocs)                
