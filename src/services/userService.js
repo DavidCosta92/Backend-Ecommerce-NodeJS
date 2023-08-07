@@ -13,6 +13,7 @@ import { UserGithubDTO } from "../models/UserGithubDTO.js"
 import { NotFoundError } from "../models/errors/carts.error.js"
 import { validateAlphanumeric, validateDate, validateEmail } from "../models/validations/validations.js"
 import { StorageError } from "../models/errors/storageError.js"
+import { DEPLOYMENT_DOMAIN } from "../config/config.js"
 import fs from 'fs/promises';
 
 class UserService {
@@ -39,7 +40,7 @@ class UserService {
                 const token =  encrypter.createTokenToRestorePassword({email}) 
                 
                 const templateEmail = `<h4>hola ${usuario.first_name}! </h4>
-                <a href='http://localhost:8080/web/users/new-password/?email=${email}&token=${token}'> 
+                <a  href='${DEPLOYMENT_DOMAIN}/web/users/new-password/?email=${email}&token=${token}'> 
                     <p>Este es un email para que resetes tu password, te pedimos que hagas click en este enlace para crear un nuevo password </p>
                 </a>`
                 /*

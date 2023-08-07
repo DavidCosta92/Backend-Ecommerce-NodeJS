@@ -34,3 +34,6 @@ export const EMAIL_CONFIG = {
         rejectUnauthorized: false
     }
 }
+
+//DEPLOY
+export const DEPLOYMENT_DOMAIN = process.env.DEPLOYMENT_DOMAIN || `http://localhost:${PORT}`
