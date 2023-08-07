@@ -1316,3 +1316,4 @@
 [34mwarning[39m: [34m***error de mongoose -->> ValidationError: _id: Cast to ObjectId failed for value "747359de-6eea-488b-9bf5-419d620f3bef" (type string) at path "_id" because of "BSONError"[39m {"timestamp":"2023-08-06 10:56:23"}
 [34mwarning[39m: [34m*** undefined -->> undefined[39m {"timestamp":"2023-08-06 10:56:23"}
 [34mwarning[39m: [34mEnvio de email a => [39m {"0":"davidcst2991@gmail.com","timestamp":"2023-08-06 10:58:54"}
+[34mwarning[39m: [34mEnvio de email a => [39m {"0":"davidcst2991@gmail.com","timestamp":"2023-08-06 11:03:48"}

@@ -233,7 +233,7 @@ class UserService {
             }
             fs.unlink(path)
             .catch(error =>{
-                throw new StorageError(error)
+                // throw new StorageError(error)
             })
         } catch (error) {
             next(error)

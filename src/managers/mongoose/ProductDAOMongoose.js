@@ -18,9 +18,9 @@ export class ProductDAOMongo{
             if (searchStock) searchParams["stock"] = stock;        
                 
             /* paginado y ordenamiento */        
-            let sortByPrice = null;
-            if(sort!= undefined) sortByPrice = (sort === "asc" )? { price : 1} : { price : -1} 
-            const pageOptions = { limit: queryLimit, page: queryPage, sort : sortByPrice , lean : true}            
+            let sortOpt = {  stock:-1, price : -1 , owner: -1 } ;
+            if(sort === "asc") sortOpt = { stock:-1, price : 1, owner: 1} 
+            const pageOptions = { limit: queryLimit, page: queryPage, sort : sortOpt , lean : true}            
                 
             const products = await this.model.paginate( searchParams ,pageOptions)
             const response ={

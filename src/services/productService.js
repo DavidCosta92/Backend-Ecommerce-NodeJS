@@ -24,12 +24,8 @@ class ProductService{
             let response = await this.productRepository.getProducts(queryLimit , queryPage, category, stock, sort)
             
             for (let i = 0; i < response.payload.length; i++) {
-                if(response.payload[i].owner === user.email){
-                    response.payload[i]["userIsOwner"] = true
-                }
-                if(user.role === "admin"){
-                    response.payload[i]["userIsAdmin"] = true
-                }
+                if(response.payload[i].owner === user.email) response.payload[i]["userIsOwner"] = true
+                if(user.role === "admin") response.payload[i]["userIsAdmin"] = true
             }
             return response
         } catch (error) {
