@@ -3,8 +3,8 @@ dotenv.config({path: 'src/.env'});
 export const PORT = process.env.PORT || 8080
 
 //MONGO
-export const MONGOOSE_STRING_ATLAS=process.env.MONGO_STRING_CON || `mongodb+srv://davidcst2991:davidcst2991coder@ecommerce.3iptaqr.mongodb.net/ecommerce?retryWrites=true&w=majority`
-export const MONGOOSE_STRING_ATLAS_TEST=`mongodb+srv://${process.env.MONGO_STRING_CON_TEST}.3iptaqr.mongodb.net/ecommerceTest?retryWrites=true&w=majority`
+export const MONGOOSE_STRING_ATLAS = process.env.MONGO_STRING_CON || `mongodb+srv://davidcst2991:davidcst2991coder@ecommerce.3iptaqr.mongodb.net/ecommerce?retryWrites=true&w=majority`
+
 //GITHUB
 export const GITHUB_APP_ID = process.env.GITHUB_APP_ID 
 export const GITHUB_CLIENTE_ID = process.env.GITHUB_CLIENTE_ID  

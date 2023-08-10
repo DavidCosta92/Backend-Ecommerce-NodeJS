@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { cartstModel } from "../../db/mongoose/models/cartModel.js"
-import { NotFoundError } from "../../models/errors/carts.error.js"
-import { StorageError } from "../../models/errors/storageError.js"
+import { cartstModel } from "../models/cartModel.js"
+import { NotFoundError } from "../../../models/errors/carts.error.js"
+import { StorageError } from "../../../models/errors/storageError.js"
 
 class CartDAOMongoose{
     model

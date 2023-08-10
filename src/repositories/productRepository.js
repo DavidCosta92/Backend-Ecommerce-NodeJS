@@ -1,6 +1,4 @@
-import { productDAOMongo } from "../managers/mongoose/ProductDAOMongoose.js"
-import { ProductDAOFs } from "../managers/fileSystem/ProductDAOFs.js"
-import { PERSISTENCE } from "../config/config.js"
+import { productDAOMongo } from "../db/mongoose/managers/ProductDAOMongoose.js"
 
 class ProductRepository{
     productDao
@@ -28,18 +26,6 @@ class ProductRepository{
     async replaceOneProduct (pid , product){    
         return await this.productDao.replaceOneProduct(pid , product);
     }
-    
-    // async updateStockSoldByID(pid, pQty , req , res , next){
-    //     return await this.productDao.updateStockSoldByID(pid, pQty , req , res , next)
-    // }
-
-/*
-    --- --- REVISAR SI ESTE METODO LO PIDE CODER, O CUAL ES LA RAZON DE TENERLO --- --- 
-    async updateProductByID (req , res , next){    
-        return await this.productDao.updateProductByID(req , res , next);
-    }
-*/
 }
-// en esta parte debo elegir si es mongo o fs o otra persistencia... POR EL MOMENTO SOLO MONGOOSE
+// TODO: Persistencia en fs, POR EL MOMENTO SOLO MONGOOSE
 export let productRepository = new ProductRepository(productDAOMongo)
-if( PERSISTENCE !== "mongoose") productRepository = new ProductRepository(ProductDAOFs)

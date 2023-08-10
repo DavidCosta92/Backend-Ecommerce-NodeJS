@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import { onlyAuthenticatedApi, onlyAdminApi, notAdminApi} from '../middlewares/authenticator.js';
-import { getCarts, getCartsByID,deleteCartByID, postProductToCarts, updateAllProductsInCarts, deleteProductInCarts, updateQuantityProductInCarts, deleteAllProductsInCartByID, buyCart} from '../controllers/carts/cartController.js';
+import { getCarts, getCartsByID,deleteCartByID, postProductToCarts, updateAllProductsInCarts, deleteProductInCarts, updateQuantityProductInCarts, deleteAllProductsInCartByID, buyCart} from '../controllers/cartController.js';
 
 export const cartsRouter = Router();
 

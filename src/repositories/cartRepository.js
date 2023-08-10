@@ -1,6 +1,4 @@
-import { cartDAOMongoose } from "../managers/mongoose/CartDAOMongoose.js"
-import { cartDAOFs } from "../managers/fileSystem/CartDAOFs.js"
-import { PERSISTENCE } from "../config/config.js"
+import { cartDAOMongoose } from "../db/mongoose/managers/CartDAOMongoose.js"
 
 class CartRepository{
     cartDao
@@ -23,5 +21,5 @@ class CartRepository{
         return await this.cartDao.deleteCartById(cid)
     }
 }
+// TODO: Persistencia en fs, POR EL MOMENTO SOLO MONGOOSE
 export let cartRepository = new CartRepository(cartDAOMongoose)
-if( PERSISTENCE !== "mongoose") cartRepository = new CartRepository(cartDAOFs)

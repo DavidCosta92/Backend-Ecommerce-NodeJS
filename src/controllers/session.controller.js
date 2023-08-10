@@ -1,5 +1,5 @@
-import { userSessionService } from "../../services/sessionService.js"
-import { userService } from "../../services/userService.js"
+import { userSessionService } from "../services/sessionService.js"
+import { userService } from "../services/userService.js"
 
 export async function postSessionTokenCookie(req, res, next) {  
     try {

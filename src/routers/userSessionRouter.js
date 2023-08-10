@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { Router } from "express";
 import express from "express"
-import { postUser, sendEmailResetPassword , createNewPassword, getUsersMemberships , changeMembership, deleteInactiveUsers, deleteUserById} from "../controllers/users/user.controller.js";
+import { postUser, sendEmailResetPassword , createNewPassword, getUsersMemberships , changeMembership, deleteInactiveUsers, deleteUserById} from "../controllers/user.controller.js";
 import { onlyAuthenticatedWeb , onlyAuthenticatedApi , onlyAdminWeb, onlyAdminApi } from "../middlewares/authenticator.js";
 import session from "../middlewares/session.js";
 import { passportInitialize , passportSession } from "../middlewares/passport.js";

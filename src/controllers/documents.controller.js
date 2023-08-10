@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { userService } from "../../services/userService.js"
+import { userService } from "../services/userService.js"
 export async function uploadPhoto(req,res,next){    
     try {
         const resp = await userService.uploadDocument(req ,res, next) 

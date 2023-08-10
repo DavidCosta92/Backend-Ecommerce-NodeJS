@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { productModel } from "../../db/mongoose/models/productModel.js";
-import { ticketModel } from "../../db/mongoose/models/ticketModel.js";
-import { StorageError } from "../../models/errors/storageError.js";
+import { productModel } from "../models/productModel.js";
+import { ticketModel } from "../models/ticketModel.js";
+import { StorageError } from "../../../models/errors/storageError.js";
 
 class TicketDAOMongoose{
     model

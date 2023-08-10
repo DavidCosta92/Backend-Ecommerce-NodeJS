@@ -3,9 +3,9 @@ import { Router } from "express";
 import express from "express"
 
 import { authGithub , callbackAuthGithub } from "../middlewares/passport.js";
-import { postSessionTokenCookie,  deleteSession , sendStatus, updateLastConnection } from "../controllers/users/session.controller.js";
+import { postSessionTokenCookie,  deleteSession , sendStatus, updateLastConnection } from "../controllers/session.controller.js";
 import session from "../middlewares/session.js";
-import { postSessionTokenForGithub } from "../controllers/users/session.controller.js";
+import { postSessionTokenForGithub } from "../controllers/session.controller.js";
 
 export const sessionsRouter = Router();
 

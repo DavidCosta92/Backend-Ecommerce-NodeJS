@@ -1,14 +1,14 @@
 // @ts-nocheck
 import express, { Router } from 'express';
-import { getProducts , postProducts , getProductsByID , deleteProductsByID , editProductsByID} from '../controllers/products/products.controller.js';
+import { getProducts , postProducts , getProductsByID , deleteProductsByID , editProductsByID} from '../controllers/products.controller.js';
 import { onlyAuthenticatedApi , onlyAdminOrPremiumApi} from '../middlewares/authenticator.js';
 
 export const productsRouter = Router();
 productsRouter.use(express.json()); 
 
-// localhost:8080/api/products
 productsRouter.get("/", onlyAuthenticatedApi, getProducts)
 productsRouter.post('/', onlyAuthenticatedApi, onlyAdminOrPremiumApi, postProducts);
+
 productsRouter.get('/:pid', onlyAuthenticatedApi, onlyAdminOrPremiumApi , getProductsByID);
 productsRouter.delete("/:pid" , onlyAuthenticatedApi, onlyAdminOrPremiumApi , deleteProductsByID); 
 productsRouter.put("/:pid" , onlyAuthenticatedApi, onlyAdminOrPremiumApi , editProductsByID); 

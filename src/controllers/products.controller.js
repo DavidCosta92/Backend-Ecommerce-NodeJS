@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { productService } from "../../services/productService.js";
+import { productService } from "../services/productService.js";
 
 export async function getProducts (req, res , next){  
     res.json(await productService.getProducts(req, next));

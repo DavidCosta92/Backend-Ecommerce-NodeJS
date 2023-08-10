@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { encrypter } from "../../utils/encrypter.js"
-import { userService } from "../../services/userService.js"
+import { encrypter } from "../utils/encrypter.js"
+import { userService } from "../services/userService.js"
 
 export function registerView(req,res,next){    
     res.render("userRegister", {pageTitle: "Registro nuevo Usuario"})

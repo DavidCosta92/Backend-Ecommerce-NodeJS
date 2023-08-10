@@ -1,6 +1,4 @@
-import { userDaoMongo } from "../managers/mongoose/UserDAOMongoose.js"
-import { UsertDAOFs } from "../managers/fileSystem/UserDAOFs.js"
-import { PERSISTENCE } from "../config/config.js"
+import { userDaoMongo } from "../db/mongoose/managers/UserDAOMongoose.js"
 
 class UserRepository{
     userDao
@@ -64,6 +62,5 @@ class UserRepository{
     }
 
 }
-// en esta parte debo elegir si es mongo o fs o otra persistencia... POR EL MOMENTO SOLO MONGOOSE
+// TODO: Persistencia en fs, POR EL MOMENTO SOLO MONGOOSE
 export let userRepository = new UserRepository(userDaoMongo)
-if( PERSISTENCE !== "mongoose") userRepository = new UserRepository(UsertDAOFs)

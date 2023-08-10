@@ -4,8 +4,8 @@ import { productsRouter } from './productsRouter.js';
 import { cartsRouter } from './cartsRouter.js';
 import { userRouter } from './userSessionRouter.js';
 import { docsRouter } from './docsRouter.js';
-import { getCurrentUser } from '../controllers/users/session.controller.js';
-import { mockingproducts } from '../controllers/products/products.controller.js';
+import { getCurrentUser } from '../controllers/session.controller.js';
+import { mockingproducts } from '../controllers/products.controller.js';
 import { onlyAuthenticatedApi } from '../middlewares/authenticator.js';
 
 export const apiRouter = Router();

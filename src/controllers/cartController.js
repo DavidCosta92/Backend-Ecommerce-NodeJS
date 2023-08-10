@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { cartService  } from "../../services/cartService.js";
+import { cartService  } from "../services/cartService.js";
 
 export async function getCarts (req, res , next){
     res.json(await cartService.getCarts (req, res , next));

@@ -1,9 +1,9 @@
 // @ts-nocheck
-import { encrypter } from "../../utils/encrypter.js";
-import { userModel , userModelGitHub} from "../../db/mongoose/models/userModel.js";
-import { NotFoundUserWeb, RegisterError, RegisterErrorAlreadyExistUser } from "../../models/errors/register.error.js";
+import { encrypter } from "../../../utils/encrypter.js";
+import { userModel , userModelGitHub} from "../models/userModel.js";
+import { NotFoundUserWeb, RegisterError, RegisterErrorAlreadyExistUser } from "../../../models/errors/register.error.js";
 import { MongooseError } from "mongoose";
-import { StorageError } from "../../models/errors/storageError.js";
+import { StorageError } from "../../../models/errors/storageError.js";
 
 export class UserDAOMongoose{ 
     

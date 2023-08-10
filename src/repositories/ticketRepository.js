@@ -1,4 +1,4 @@
-import { ticketDAOMongo } from "../managers/mongoose/TicketDAOMongoose.js"
+import { ticketDAOMongo } from "../db/mongoose/managers/TicketDAOMongoose.js"
 
 class TicketRepository{
     ticketDao
@@ -10,5 +10,5 @@ class TicketRepository{
     }    
 
 }
-// en esta parte debo elegir si es mongo o fs o otra persistencia... POR EL MOMENTO SOLO MONGOOSE
+// TODO: Persistencia en fs, POR EL MOMENTO SOLO MONGOOSE
 export const ticketRepository = new TicketRepository(ticketDAOMongo)

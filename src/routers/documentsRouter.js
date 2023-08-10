@@ -2,7 +2,7 @@
 import { Router } from "express";
 import express from "express"
 import session from "../middlewares/session.js";
-import { uploadPhoto , deleteFile} from "../controllers/documents/documents.controller.js";
+import { uploadPhoto , deleteFile} from "../controllers/documents.controller.js";
 import multer from 'multer'
 import { onlyAuthenticatedApi } from "../middlewares/authenticator.js";
 
