@@ -2,19 +2,18 @@
 import express from "express"
 import { engine } from 'express-handlebars'
 import mongoose from 'mongoose';
-import {Server as IOServer} from 'socket.io'
-import { productModel } from "../db/mongoose/models/productModel.js";
-import { chatModel } from "../db/mongoose/models/chatModel.js";
+import dotenv from 'dotenv'
+import { logger } from "../middlewares/loggerMiddleware.js";
+import { winstonLogger } from "../utils/logger.js";
+
+import { MONGOOSE_STRING_ATLAS, MONGOOSE_STRING_ATLAS_TEST, NODE_ENV, PORT } from "../config/config.js";
+
 import { passportInitialize , passportSession } from "../middlewares/passport.js";
 import session from "../middlewares/session.js";
 import { errorHandlerAPI , errorHandlerWEB} from "../middlewares/errorMiddleware.js";
 import cookieParser from "cookie-parser";
 import { onlyAuthenticatedWeb, renderHome } from "../middlewares/authenticator.js";
-import { MONGOOSE_STRING_ATLAS, MONGOOSE_STRING_ATLAS_TEST, NODE_ENV, PORT } from "../config/config.js";
 
-import dotenv from 'dotenv'
-import { logger } from "../middlewares/loggerMiddleware.js";
-import { winstonLogger } from "../utils/logger.js";
 import { apiRouter } from "../routers/apiRouter.js";
 import { webRouter } from "../../Front-Handlebars/src/router/webRouter.js";
 
@@ -47,6 +46,29 @@ app.use(errorHandlerWEB)
 app.use(errorHandlerAPI) 
 
 const httpServer = app.listen(PORT/* process.env.PORT */, () => winstonLogger.info(`Servidor activo, entorno ${NODE_ENV} en host ${process.env.PORT}`))//console.log("Servidor activo",process.env.PORT,  "Enviroment =>", NODE_ENV))
+
+
+
+// SOCKET
+
+// SOCKET
+
+
+// SOCKET
+
+
+// SOCKET
+
+
+// SOCKET
+
+
+// SOCKET
+
+
+import {Server as IOServer} from 'socket.io'
+import { productModel } from "../db/mongoose/models/productModel.js";
+import { chatModel } from "../db/mongoose/models/chatModel.js";
 
 export const io = new IOServer(httpServer)
 
