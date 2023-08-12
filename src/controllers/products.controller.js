@@ -2,7 +2,7 @@
 import { productService } from "../services/productService.js";
 
 export async function getProducts (req, res , next){  
-    res.json(await productService.getProducts(req, next));
+    res.json(await productService.getProducts(req, res, next));
 }    
 export async function postProducts (req , res , next){  
     res.json(await productService.postProduct(req , res , next));

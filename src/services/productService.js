@@ -13,14 +13,14 @@ class ProductService{
     constructor(productRepository){    
         this.productRepository = productRepository; 
     }
-    async getProducts(req, next){    
+    async getProducts(req, res, next){    
         try {            
             const queryLimit = (isNaN(Number(req.query.limit)) || req.query.limit == "" ) ? 10 : req.query.limit
             const queryPage =  (isNaN(Number(req.query.page)) || req.query.page == "" ) ? 1 : req.query.page   
             const category = req.query.category
             const stock = req.query.stock
             const sort = req.query.sort
-            const user = userSessionService.getLoguedUser(req)  
+            const user = userSessionService.getLoguedUser(req, res, next)  
             let response = await this.productRepository.getProducts(queryLimit , queryPage, category, stock, sort)
             
             for (let i = 0; i < response.payload.length; i++) {

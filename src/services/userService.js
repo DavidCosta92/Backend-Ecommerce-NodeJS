@@ -113,14 +113,11 @@ class UserService {
     async getAllUsersForMembership(req){
         const listUsers = await this.userRepository.getAllUsersForMembership(req)
         listUsers.payload.forEach(user => {
-
             // aca deberia corroborar quienes tienen tal o cual documentacion para renderizarlo en el front!
             // podria agregar un tilde a los completos, o simplemente, cambiar el color a los botones que no esten con la doc coimpleta
             
             // aca deberia corroborar quienes tienen tal o cual documentacion para renderizarlo en el front!
             // podria agregar un tilde a los completos, o simplemente, cambiar el color a los botones que no esten con la doc coimpleta
-
-
 
             if(user.role == "admin"){
                 user.administrador = true

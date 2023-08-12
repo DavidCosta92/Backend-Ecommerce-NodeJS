@@ -1,0 +1,57 @@
+# Paginated users
+components:
+  schemas:
+    RoleUsers:
+      type: object
+      properties:
+        users:
+          type: Array
+          description: Array of users (with just a few properties).
+        loguedUser:
+          type: Boolean
+          description: Indicates if user is logued, always will be true, otherwise it endpoint will not be accesible.        
+        user:
+          type: Object
+          description: Logued user with properties.
+      example:      
+        users: 
+          - user: 
+              _id: 647d875548e2b5bde9b85dc3
+              first_name: coderhouse
+              last_name: housecoder
+              email: adminCoder@coder.com
+              role: admin
+              last_connection: 31/7/2023, 20:14:24
+              admin: true
+              adminOrPremium: true
+              cartAllowed: false
+              premium: false
+              usuario: true
+              administrador: false
+          - user: 
+              _id: 647d875548e2b5bde9b85dc3
+              first_name: coderhouse
+              last_name: housecoder
+              email: adminCoder@coder.com
+              role: admin
+              last_connection: 31/7/2023, 20:14:24
+              admin: true
+              adminOrPremium: true
+              cartAllowed: false
+              premium: false
+              usuario: true
+              administrador: false
+        loguedUser: true
+        user: 
+          _id: 64cf9d4a8937384d043f673f
+          first_name: coder
+          last_name: coderhouse
+          email: adminCoder@coder.com
+          age: 3
+          cart: 64cf9d498937384d043f673c
+          role: admin
+          documents: []
+          last_connection: 10/8/2023, 11:11:50
+          admin: true
+          adminOrPremium: true
+          cartAllowed: false

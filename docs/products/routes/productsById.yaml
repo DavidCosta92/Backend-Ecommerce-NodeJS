@@ -1,0 +1,65 @@
+paths:
+  /api/products/{id}:
+    get:
+      summary: Retrieve one product by ID -- LOGIN REQUIRED
+      tags:
+        - Products
+      parameters:
+      - name: id
+        in: path
+        description: ID of product
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Product with given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        "404":
+          description: NOT FOUND.
+    delete:
+      summary: Retrieve and delete one product by ID -- LOGIN REQUIRED
+      tags:
+        - Products
+      parameters:
+      - name: id
+        in: path
+        description: ID of product
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Product deleted with given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        "404":
+          description: NOT FOUND.
+    put:
+      summary: Retrieve and edit one product by ID, It is not necessary to send all the fields; only those that need to be changed.-- LOGIN REQUIRED
+      tags:
+        - Products
+      parameters:
+      - name: id
+        in: path
+        description: ID of product
+        required: true
+        type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/NewProduct'
+      responses:
+        "200":
+          description: Product deleted with given ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        "404":
+          description: NOT FOUND.

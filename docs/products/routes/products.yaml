@@ -1,4 +1,3 @@
-paths:
   /api/products/:
     get:
       summary: Obtain all products -- LOGIN REQUIRED
@@ -37,3 +36,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedProducts'
+    post:
+      summary: Creates a new product  -- LOGIN REQUIRED - Premium or Admin only 
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/NewProduct'
+      responses:
+        "201":
+          description: The created product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'

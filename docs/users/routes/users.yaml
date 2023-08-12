@@ -76,3 +76,33 @@ paths:
           description: Status code 403, indicates that user who is trying to delete must be an admin.
         "404":
           description: Status code 404, indicates that user doesn`t exist.
+  /api/users/premium/:
+    get:
+      summary: Obtain all users with basic info, for role manage.
+      tags:
+        - Users
+      responses:
+        "200":
+          description: All users with email, name, last connection, and role
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleUsers'
+        "401":
+          description: Status code 401, indicates that there is not a logued user.
+        "403":
+          description: Status code 403, indicates that logued user must be an admin.
+  /api/users/premium/{uid}:
+    put:
+      summary: "Change the role of a user by their ID - The user must have documents with names in which the following keywords are included: 'identificacion', 'domicilio', and 'cuenta'."
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Indicates a successfull request
+        "401":
+          description: Status code 401, indicates that there is not a logued user.
+        "403":
+          description: Status code 403, indicates that THE REQUIRED DOCUMENTS ARE STILL INCOMPLETE.
+        "404":
+          description: Status code 404, indicates that user is not found. 
