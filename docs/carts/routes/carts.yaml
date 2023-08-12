@@ -22,3 +22,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedCarts'
+    post:
+      summary: Creates a new cart  -- LOGIN REQUIRED - Premium or Admin only 
+      tags:
+        - Carts
+      responses:
+        "201":
+          description: The ID of a new empty cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/requestBodies/NewCart'

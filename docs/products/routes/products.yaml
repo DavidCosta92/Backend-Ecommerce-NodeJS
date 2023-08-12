@@ -52,4 +52,16 @@
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Products'
+                $ref: '#/components/schemas/Products' 
+  /api/products/mockingproducts/:
+    get:
+      summary: Array of 100 products mock, randomly generated only for testing purpose.
+      tags:
+        - Products
+      responses:
+        "200":
+          description: 100 products mock, randomly generated only for testing purpose.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MockProducts'

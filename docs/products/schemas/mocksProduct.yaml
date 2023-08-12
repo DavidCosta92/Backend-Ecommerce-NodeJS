@@ -1,0 +1,18 @@
+# Paginated product
+components:
+  schemas:
+    MockProducts:
+      type: object
+
+      properties:
+        type: Array
+        description: Array of products (with all properties).
+      example: 
+        - id: h58sk-sk85d-dl96m-3658fn
+          title: tortita
+          price: 50.78
+          thumbnail: [http://photo.url.png , http://photo2.url.png]
+        - id: sk85d-3658fn-sk85d-3658fn
+          title: pan
+          price: 90.00
+          thumbnail: [http://photo.url.png , http://photo2.url.png]

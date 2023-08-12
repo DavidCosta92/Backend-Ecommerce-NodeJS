@@ -1,4 +1,16 @@
 paths:
+  /api/session/current/:
+    get:
+      summary: Obtain logued user.
+      tags:
+        - Users - Sessions
+      responses:
+        "200":
+          description: Obtain logued user, return all properties
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUsers'
   /api/users/session/:
     delete:
       summary: Logs out User, using JWT.
