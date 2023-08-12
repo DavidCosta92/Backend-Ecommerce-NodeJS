@@ -120,9 +120,7 @@ export class UserDAOMongoose{
         }
     }
     async getAllUsersForMembership(req){
-        // podria  tildar opcion para solo mostrar un determinado rol
-        const {limit, page} = req.query
-        
+        const {limit, page} = req.query        
         try {
             let searchParams = {}            
             /* paginado y ordenamiento */        

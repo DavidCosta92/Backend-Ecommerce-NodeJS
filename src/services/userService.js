@@ -112,25 +112,21 @@ class UserService {
     }    
     async getAllUsersForMembership(req){
         const listUsers = await this.userRepository.getAllUsersForMembership(req)
-        listUsers.payload.forEach(user => {
-            // aca deberia corroborar quienes tienen tal o cual documentacion para renderizarlo en el front!
-            // podria agregar un tilde a los completos, o simplemente, cambiar el color a los botones que no esten con la doc coimpleta
-            
-            // aca deberia corroborar quienes tienen tal o cual documentacion para renderizarlo en el front!
-            // podria agregar un tilde a los completos, o simplemente, cambiar el color a los botones que no esten con la doc coimpleta
-
-            if(user.role == "admin"){
-                user.administrador = true
-            } else if(user.role == "user"){
-                user.usuario = true
-            } else if(user.role == "premium"){
-                user.premium = true
+        for(let i = 0; i < listUsers.payload.length ; i++){
+            const docComplete = await this.documentationIsComplete(listUsers.payload[i]._id)
+            if (docComplete) listUsers.payload[i].completeDocumentation = true
+            if(listUsers.payload[i].role == "admin"){
+                listUsers.payload[i].administrador = true
+            } else if(listUsers.payload[i].role == "user"){
+                listUsers.payload[i].usuario = true
+            } else if(listUsers.payload[i].role == "premium"){
+                listUsers.payload[i].premium = true
             }  
-            delete user.password
-            delete user.age
-            delete user.cart
-            delete user.id
-        });
+            delete listUsers.payload[i].password
+            delete listUsers.payload[i].age
+            delete listUsers.payload[i].cart
+            delete listUsers.payload[i].id
+        }
         return listUsers
     }
     async changeMembership(inputId){         
@@ -268,8 +264,6 @@ class UserService {
                 if (item.name.includes("doc-")) documentsImages.push({name : item.name , reference : item.reference})
                 if (item.name.includes("product-")) productsImages.push({name : item.name , reference : item.reference})
             })
-            
-
             return { profile : profileImages , documents : documentsImages , products : productsImages }
         } catch (error) {
             throw new NotFoundError("Usuario no encontrado")

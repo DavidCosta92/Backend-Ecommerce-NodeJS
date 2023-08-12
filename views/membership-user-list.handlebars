@@ -67,8 +67,12 @@
                 </td>  
                 <td>                           
                     <div class="d-flex flex-wrap justify-content-end">
-                        {{#if this.usuario}}                              
-                            <button onClick=changeMembership("{{this._id}}") type="button" class="btn btn-outline-success w-50 m-1"> Cambiar a premium </button>
+                        {{#if this.completeDocumentation}}
+                            {{#if this.usuario}}                              
+                                <button onClick=changeMembership("{{this._id}}") type="button" class="btn btn-outline-success w-50 m-1"> Cambiar a premium </button>
+                            {{/if}}
+                        {{else}}
+                            <button type="button" class="btn btn-outline-secondary w-50 m-1" disabled> Documentacion incompleta </button>
                         {{/if}}
                         {{#if this.premium}}
                             <button onClick=changeMembership("{{this._id}}") type="button" class="btn btn-outline-danger w-50 m-1"> Cambiar a regular </button>
