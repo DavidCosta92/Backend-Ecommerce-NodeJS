@@ -4,20 +4,9 @@ paths:
       summary: Obtain all users -- LOGIN REQUIRED
       tags:
         - Users
-      parameters:
-      - name: limit
-        in: query
-        description: Indicates the number of users displayed on each page
-        required: false
-        type: integer
-      - name: page
-        in: query
-        description: Indicates the number of page.
-        required: false
-        type: integer
       responses:
         "200":
-          description: All users, paginated
+          description: Array with all users, and Logued User.
           content:
             application/json:
               schema:

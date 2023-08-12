@@ -13,9 +13,10 @@ apiRouter.use(express.json());
 
 // localhost:8080/api/
 apiRouter.use("/docs", docsRouter)
+apiRouter.use("/users" , userRouter)
+
 apiRouter.use("/products",productsRouter);
 apiRouter.use("/carts", cartsRouter)
-apiRouter.use("/users" , userRouter)
 
 apiRouter.get("/session/current", getCurrentUser)
 apiRouter.get("/chat", onlyAuthenticatedApi, (req, res, next)=>{

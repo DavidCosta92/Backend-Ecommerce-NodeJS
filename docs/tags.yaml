@@ -1,13 +1,11 @@
 tags:
   - name: Users
     description: API to manage users.
-  - name: Sessions
-    description: API to manage sessions.
-  - name: Products
-    description: API to manage products.
-  - name: Carts
-    description: API to manage Carts.
   - name: Users - Sessions
     description: API to manage authentication.
   - name: Users - Documents
     description: API to manage documents of users, profiles and products images.
+  - name: Products
+    description: API to manage products.
+  - name: Carts
+    description: API to manage Carts.

@@ -1,5 +1,13 @@
 paths:
-  /api/users/session:
+  /api/users/session/:
+    delete:
+      summary: Logs out User, using JWT.
+      tags:
+        - Users - Sessions
+      responses:
+        "200":
+          description: Log out, means delete JWT in client side. Has non efect in server side.  
+  /api/users/session/signedCookie:
     post:
       summary: Logs in User, using JWT.
       tags:
@@ -15,18 +23,11 @@ paths:
           description: Will be send a set-cookie header with key authtoken and value User'JWT", in order to be "logued in". This JWT expires in 24hs since creation.
         "401":
           description: Status code 409, indicates error in provided credentials. Ask for try again.
-    delete:
-      summary: Logs out User, using JWT.
-      tags:
-        - Sessions
-      responses:
-        "200":
-          description: Log out, means delete JWT in client side. Has non efect in server side.
   /api/users/session/github:
     get:
       summary: Logs in User, using Github like third party authentication and session with JWT cookie.
       tags:
-        - Sessions
+        - Users - Sessions
       responses:
         "201":
           description: Will be send a set-cookie header with key authtoken and value User'JWT", in order to be "logued in". This JWT expires in 24hs since creation.

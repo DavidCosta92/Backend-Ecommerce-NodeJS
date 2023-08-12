@@ -21,14 +21,48 @@ paths:
         - Users
       responses:
         "200":
-          description: Indicates a successfull deletion of user
+          description: Indicates a successfull request
         "401":
           description: Status code 401, indicates that there is not a logued user.
         "403":
           description: Status code 403, indicates that user who is trying to delete must be an admin.
         "404":
           description: Status code 404, indicates that user doesn`t exist.
+    delete:
+      summary: Delete those users who were inactive in the last 48hs by default. 
+      tags:
+        - Users
+      parameters:
+      - name: period
+        in: path
+        description: Period to filter those users to be deleted, this value is indicated en miliseconds. For example, for one day, it would be 86400000.
+        required: false
+        type: string
+      responses:
+        "200":
+          description: Indicates a successfull deletion of inactive users, even if there aren`t users to delete
+        "403":
+          description: Status code 403, indicates that user who is trying to delete must be an admin.
   /api/users/{uid}:
+    get:
+      summary: Return user by Id.
+      tags:
+        - Users
+      parameters:
+      - name: id
+        in: path
+        description: Id of user.
+        required: false
+        type: string
+      responses:
+        "200":
+          description: Indicates a successfull request
+        "401":
+          description: Status code 401, indicates that there is not a logued user.
+        "403":
+          description: Status code 403, indicates that logued user must be an admin.
+        "404":
+          description: Status code 404, indicates that user is not found. 
     delete:
       summary: Delete an user by Id
       tags:

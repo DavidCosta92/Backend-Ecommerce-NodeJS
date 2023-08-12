@@ -1,0 +1,72 @@
+paths:
+  /api/users/{uid}/documents/:
+    delete:
+      summary: Delete a documents by filename and User id. 
+      tags:
+        - Users - Documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteDocuments'
+      responses:
+        "200":
+          description: Indicates a successfull deletion of inactive users, even if there aren`t users to delete
+        "403":
+          description: Status code 403, indicates that user who is trying to delete must be an admin.
+  /api/users/{uid}/documents/document:
+    post:
+      summary: Upload a new document image 
+      tags:
+        - Users - Documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/NewFile'
+      responses:
+        "201":
+          description: Indicates that document was upload successfully.
+        "401":
+          description: Login required.
+        "500":
+          description: SERVER ERROR, try again or contac us for more information, please.
+  /api/users/{uid}/documents/profile:
+    post:
+      summary: Upload a new profile image 
+      tags:
+        - Users - Documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/NewFile'
+      responses:
+        "201":
+          description: Indicates that profile image was upload successfully.
+        "401":
+          description: Login required.
+        "500":
+          description: SERVER ERROR, try again or contac us for more information, please.
+  /api/users/{uid}/documents/products:
+    post:
+      summary: Upload a new product image 
+      tags:
+        - Users - Documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/NewFile'
+      responses:
+        "201":
+          description: Indicates that image was upload successfully.
+        "401":
+          description: Login required.
+        "500":
+          description: SERVER ERROR, try again or contac us for more information, please.
+  

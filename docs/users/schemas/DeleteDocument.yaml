@@ -1,0 +1,18 @@
+# Product
+components:
+  schemas:
+    DeleteDocuments:
+      type: object
+      required:        
+        - userId
+        - fileName
+      properties:
+        userId:
+          type: string
+          description: The auto-generated id of user who is owner of product, this user must be logued.
+        fileName:
+          type: string
+          description: File name, must be equal to storage file name.
+      example:
+        userId: 64cf9d4a8937384d043f673f
+        fileName: 'profile-1691813563082-WhatsApp-Image-2023-08-03-at-15.14.01.jpeg'

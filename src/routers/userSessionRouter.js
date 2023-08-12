@@ -17,10 +17,10 @@ userRouter.use(express.urlencoded({ extended: true })) // para obtener datos des
 userRouter.use("/session",sessionsRouter)
 userRouter.use("/:uid/documents/", documentsRouter)
 
-userRouter.post("/", postUser)
-userRouter.delete("/:uid", onlyAuthenticatedApi, onlyAdminApi, deleteUserById)
 userRouter.get("/", onlyAuthenticatedWeb, onlyAdminWeb, getUsersMemberships)
+userRouter.post("/", postUser)
 userRouter.delete("/", onlyAuthenticatedApi, onlyAdminApi, deleteInactiveUsers)
+userRouter.delete("/:uid", onlyAuthenticatedApi, onlyAdminApi, deleteUserById)
 
 
 // REVISAR SI LO DEBERIA USAR PARA ALGO.. EN TEORIA DEBERIA SER REEMPLAZADO POR localhost:8080/api/products

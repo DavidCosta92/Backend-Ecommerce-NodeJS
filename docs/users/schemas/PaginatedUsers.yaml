@@ -3,40 +3,18 @@ components:
   schemas:
     PaginatedUsers:
       type: object
-
       properties:
-        payload:
+        users:
           type: Array
           description: Array of users (with properties).
-        totalPages:
-          type: integer
-          description: Total number of pages.
-        prevPage:
-          type: integer - null
-          description: Show number of page before the actual one, else shows null.
-        nextPage:
-          type: integer - null
-          description: Show number of page after the actual one, else shows null.
-        page:
-          type: integer
-          description: Indicates the number of page.
-        hasPrevPage:
-          type: boolean
-          description: Show if a page exists before the actual one.
-        hasNextPage:
-          type: boolean
-          description: Show if a page exists after the actual one.
-        prevLink:
-          type: string - null
-          description: Url of prev page, if exist, else null.
-        nextLink:
-          type: string - null
-          description: Url of next page, if exist, else null.
-        limit:
-          type: integer
-          description: Indicates the number of products displayed on each page
+        loguedUser:
+          type: Boolean
+          description: Indicates if user is logued, always will be true, otherwise it endpoint will not be accesible.        
+        user:
+          type: Object
+          description: Logued user with properties.
       example:      
-        payload: 
+        users: 
           - user: 
               _id: 647d875548e2b5bde9b85dc3
               first_name: coderhouse
@@ -63,13 +41,17 @@ components:
               admin: true
               adminOrPremium: true
               cartAllowed: false
-        totalPages: 1
-        prevPage: null
-        nextPage: null
-        page: 1
-        hasPrevPage: false
-        hasNextPage: false
-        prevLink: null
-        nextLink: null
-        limit: 10
-        hayResultados: true
+        loguedUser: true
+        user: 
+          _id: 64cf9d4a8937384d043f673f
+          first_name: coder
+          last_name: coderhouse
+          email: adminCoder@coder.com
+          age: 3
+          cart: 64cf9d498937384d043f673c
+          role: admin
+          documents: []
+          last_connection: 10/8/2023, 11:11:50
+          admin: true
+          adminOrPremium: true
+          cartAllowed: false
