@@ -59,17 +59,14 @@ export async function createNewPassword(req,res,next){
       res.status(200).json({ mensaje : "Password cambiado"})
    } catch (error) {
       res.status(400).json({ errorMessage : error.description})
-      //next(error)
    }   
 }
 export async function getUsersMemberships(req,res,next){
    try {      
       const user = await userService.getLoguedUser(req , next)
       const userList = await userService.getAllUsersForMembership(req)      
-      //res.render("membership-user-list", {pageTitle: "Lista de usuarios", users : userList, loguedUser : true , user})
       res.json({ users : userList, loguedUser : true , user})
    } catch (error) {
-      //res.status(400).json({ errorMessage : error.description})
       next(error)
    }
 }

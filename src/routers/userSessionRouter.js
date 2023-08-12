@@ -22,10 +22,6 @@ userRouter.post("/", postUser)
 userRouter.delete("/", onlyAuthenticatedApi, onlyAdminApi, deleteInactiveUsers)
 userRouter.delete("/:uid", onlyAuthenticatedApi, onlyAdminApi, deleteUserById)
 
-
-// REVISAR SI LO DEBERIA USAR PARA ALGO.. EN TEORIA DEBERIA SER REEMPLAZADO POR localhost:8080/api/products
-// userRouter.get("/products", productsView, (req, res, next)=>{})
-
 //--- reset password ---
 userRouter.post('/restore-password', sendEmailResetPassword)
 userRouter.post('/new-password/', createNewPassword)
