@@ -47,19 +47,6 @@ const httpServer = app.listen(PORT, () => winstonLogger.info(`Servidor activo, e
 
 
 // SOCKET
-
-// SOCKET
-
-
-// SOCKET
-
-
-// SOCKET
-
-
-// SOCKET
-
-
 // SOCKET
 
 

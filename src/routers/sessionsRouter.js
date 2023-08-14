@@ -19,7 +19,6 @@ sessionsRouter.delete('/', deleteSession)
 
 //--- passport login con github ---
 sessionsRouter.get('/github', authGithub)
-// sessionsRouter.get('/githubAuth', callbackAuthGithub,postSessionTokenForGithub , sendStatus) 
 sessionsRouter.get('/githubAuth', callbackAuthGithub,postSessionTokenForGithub, updateLastConnection ,(req, res, next) => { res.redirect('/web/products') })
 
 

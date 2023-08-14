@@ -69,7 +69,7 @@ export class GithubUser {
         this.#username = validateString("Github username", username)
         this.#cart = cart
         this.#role = validateString("Rol", role)
-        this.#documents = [] // [ { name : "" , reference : "" } , {} ]
+        this.#documents = [] 
         this.#last_connection = new Date(Date.now()).toUTCString()
     }
     getUsername(){ return this.#username}

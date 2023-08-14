@@ -16,7 +16,7 @@ export class Ticket {
         this.#code = randomUUID();
         this.#purchase_datetime = new Date(Date.now()).toUTCString()
         this.#amount = validateRealNumber("Precio total de compra",amount)
-        this.#purcharser = purcharser // validateEmail("Email de comprador",purcharser)
+        this.#purcharser = purcharser // Email no es validado, para permitir compras de usuarios github que no tengan email
     }
     getAcceptedProds(){ return this.#acceptedProds}
     getRejectedProds(){ return this.#rejectedProds}

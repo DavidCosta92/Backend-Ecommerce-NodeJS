@@ -136,7 +136,7 @@ class ProductService{
             code : faker.string.uuid(), 
             price : parseFloat(faker.commerce.price({ min: 1, dec: 2 })), 
             stock : faker.number.int({ min:1 , max:100 }), 
-            category : "varios",//faker.commerce.department(), 
+            category : "varios",
             thumbnails : "" 
         })
         return newProduct.getAllAttr()

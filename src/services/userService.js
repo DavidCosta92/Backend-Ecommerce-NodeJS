@@ -180,7 +180,7 @@ class UserService {
             if (!user) throw new NotFoundUserApi("Illegal Input")
             let update
             const loguedUser = await this.getLoguedUser(req ,res, next)
-            const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de documents de usuarios, para no droppear la bd 
+            const userDocs = user.documents != undefined? user.documents : [] // este codigo es para los usuarios creados antes de la implementacion de "documents" de usuarios, para no droppear la bd 
             if(user.email){
             // es un user normal
                 if(user.email != loguedUser.email) throw new AuthenticationError ("Usuario debe estar logueado para agregar sus propios documentos")                                               

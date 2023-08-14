@@ -63,7 +63,7 @@ class CartService{
             const product = await this.productService.getProductById(req, res , next)
             const loguedUser = await this.userSessionService.getLoguedUser(req, res , next)
             let productQuantityInput = req.query.quantity
-            // Corroborado desde back, en fron estan ocultos los productos propios
+            // Corroborado desde back, en front estan ocultos los productos propios
             if (product.owner === loguedUser.email) throw new AuthorizationError("No se pueden agregar productos propios al carrito")            
             if (productQuantityInput === undefined || productQuantityInput == "") productQuantityInput = 1;
             
@@ -221,7 +221,7 @@ class CartService{
             const amount = this.calculateProductTotalCost(acceptedProds)
             await this.updateProductsStocks(acceptedProds , req , res , next)
 
-            //Logica de negocio pide que queden los rechazados en el carrito
+            //Logica de negocio pide que queden los productos rechazados en el carrito
             await this.setProductsInCart(cart, rejectedProds, req, res, next)        
             const user = this.userSessionService.getLoguedUser(req , res , next)    
             let purchaseTicket

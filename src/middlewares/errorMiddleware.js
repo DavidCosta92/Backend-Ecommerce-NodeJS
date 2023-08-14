@@ -7,7 +7,6 @@ import { StorageError } from "../models/errors/storageError.js"
 import { NotFoundErrorWeb } from "../models/errors/carts.error.js"
 import { MongooseError } from "mongoose"
 
-
 export function errorHandlerWEB(error, req, res , next){
     if (error instanceof AuthenticationExpiredErrorWEB) { 
         req.logger.warning(`*** ${error.type} -->> ${error.description}`)
@@ -36,14 +35,12 @@ export function errorHandlerWEB(error, req, res , next){
     else if (error instanceof NotFoundUserWeb) {
         req.logger.info(`*** ${error.type} -->> ${error.description}`)
         res.status(404).json({errorMessage: error.description })
-
         //res.render("create-new-password", {pageTitle: "Error de password", error : true})
     }
     else{
         next(error)
     }
 }
-
 export function errorHandlerAPI(error, req, res , next){      
     if (error instanceof IllegalInputArg) {
         req.logger.debug(`*** ${error.type} -->> ${error.description}`)
@@ -90,7 +87,6 @@ export function errorHandlerAPI(error, req, res , next){
         req.logger.warning(`*** ${error.type} -->> ${error.description}`)
         res.status(500).json({errorMessage: error.description }) 
     }
-    // pendiente manejo de errores de integridad de mongo
     else {
         req.logger.warning(error)
         res.status(500).json(error) 

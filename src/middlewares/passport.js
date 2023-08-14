@@ -26,7 +26,7 @@ passport.use('github', new GithubStrategy({
         user = await userRepository.createGitHubUser(newGithubUser.getAllAttr());
     } 
     // MANEJO DE SESSIONS MEDIANTE JWT EN COOKIES.. SESSIONS DE PASSPORT ESTAN EN FALSE.
-    req.usernameGithub =user.username // creo esta propiedad para obtener el valor en el proximo midd
+    req.usernameGithub = user.username // creo esta propiedad para obtener el valor en el proximo midd
     done(null, user)
 }))
 

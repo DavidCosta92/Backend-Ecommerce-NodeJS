@@ -56,9 +56,7 @@ export class UserDAOMongoose{
     }
     async updateMembership(uid , newRole){
         try {
-            const update = await userModel.updateOne({ _id: uid }, {
-                $set: { role: newRole }
-            })  
+            const update = await userModel.updateOne({ _id: uid }, {$set: { role: newRole } })  
             return update.modifiedCount > 0? {status : 200} : {status : 500}
         } catch (error) {
             throw new StorageError (error)
@@ -68,14 +66,14 @@ export class UserDAOMongoose{
         try {
             await userModel.updateOne({email : email}, { $set: { last_connection: time } }) 
         } catch (error) {
-            throw new Error (error)
+            throw new StorageError (error)
         } 
     }
     async setLast_connectionByUsername(username , time){
         try {
             await userModelGitHub.updateOne({username : username}, { $set: { last_connection: time } })  
         } catch (error) {
-            throw new Error (error)
+            throw new StorageError (error)
         } 
     } 
     async findInactiveUsers(time){
@@ -87,7 +85,7 @@ export class UserDAOMongoose{
             resp.push(...githubUsers) 
             return resp
         } catch (error) {
-            throw new Error (error)
+            throw new StorageError (error)
         } 
     }
     async deleteUserById(uid){

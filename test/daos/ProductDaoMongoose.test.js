@@ -18,7 +18,6 @@ describe("dao mongoose", ()=> {
                 expect(productCreated).to.have.property("stock")
                 expect(productCreated).to.have.property("category")
                 expect(productCreated).to.have.property("owner")
-                // expect(productCreated).to.include.all.keys("_id", "title","code", "price", "stock", "category", "owner")
             })
         })
         describe.only("Cuando llamo a la funcion, con campos incompletos, esta deberia fallar", ()=> {

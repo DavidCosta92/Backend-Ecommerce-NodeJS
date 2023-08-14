@@ -1,7 +1,6 @@
 // @ts-nocheck
-import { AuthenticationError, AuthenticationErrorWEB} from "../models/errors/authentication.error.js"
+import { AuthenticationError} from "../models/errors/authentication.error.js"
 import { AuthorizationError , AuthorizationErrorWEB} from "../models/errors/authorization.error.js"
-import { cartService } from "../services/cartService.js"
 import { userService } from "../services/userService.js"
 
 // ************************* WEB *************************

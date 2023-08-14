@@ -8,7 +8,6 @@ const expect = chai.expect
 const httpClient = supertest('http://localhost:8080')
 
 // MOCKS PARA TEST
-
 const productDataTest = { 
     title: "productTestMocha",
     description: "soy un prod",

@@ -3,7 +3,6 @@ import { winstonLogger } from "./logger.js"
 import { EMAIL_CONFIG } from "../config/config.js"
 import { validateEmail } from "../models/validations/validations.js"
 
-
 class EmailService {
     #nodeMailer
 

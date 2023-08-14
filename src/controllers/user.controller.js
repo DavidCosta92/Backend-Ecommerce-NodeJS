@@ -16,8 +16,7 @@ export async function postUser(req,res,next){
       const token = encrypter.createToken(newUserDto)
       res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60})         
       req.logger.http(`Registro e inicio de session de ${newUserDto.email} mediante signedCookies`)
-      res.status(code).json({ message: 'USUARIO SE LOGUEO', loguedUser: code === 201 })         
-      // PENDIENTE TIEMPO REAL => es necesario avisar que estoy online??       
+      res.status(code).json({ message: 'USUARIO SE LOGUEO', loguedUser: code === 201 })       
     } catch (error) {
       next(error)
     }
