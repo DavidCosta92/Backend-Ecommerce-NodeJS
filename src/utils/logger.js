@@ -30,7 +30,7 @@ const loggerDev = winston.createLogger({
         //Tambien deberia guardar data en archivo?
         new winston.transports.File({
             level: "warning",
-            filename: "DEV_errors.log"
+            filename: "dev_errors.log"
         })
     ],
     format: winston.format.combine(
