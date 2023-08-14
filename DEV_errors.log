@@ -1,0 +1,2 @@
+[33merror[39m: [33mjwt expired[39m {"expiredAt":"2023-08-14T03:29:52.000Z","name":"TokenExpiredError","timestamp":"2023-08-14 00:30:15"}
+[34mwarning[39m: [34m*** AUTHETICATION_EXPIRED_ERROR_WEB -->> TokenExpiredError: [33mjwt expired[34m[39m {"timestamp":"2023-08-14 00:30:15"}
