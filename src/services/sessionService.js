@@ -8,12 +8,17 @@ import { UserDTO } from "../models/UserDTO.js"
 
 class SessionService {
     async getSessionToken(email, password) {
-        const userBD = await userRepository.findUserByEmail(email)        
-        if (!userBD) throw new AuthenticationError("Error de logueo, revisa las credenciales")    
-        const correctPassword = encrypter.comparePasswords( password, userBD.password)
-        if (!correctPassword)  throw new AuthenticationError("Error de logueo, revisa las credenciales")
-        const userDto = new UserDTO ({...userBD}).getAllAttr()
-        return encrypter.createToken(userDto)  
+        try {
+            const userBD = await userRepository.findUserByEmail(email)  
+            const correctPassword = encrypter.comparePasswords( password, userBD.password)
+            if(correctPassword){
+                const userDto = new UserDTO ({...userBD}).getAllAttr()
+                return encrypter.createToken(userDto) 
+            }
+            throw new Error()
+        } catch (error) {
+            throw new AuthenticationError("Error de logueo, revisa las credenciales")
+        }
     }
     async getSessionTokenForGithub(username) {
         const userGithubBD = await userRepository.searchByGitHubUsername(username)
