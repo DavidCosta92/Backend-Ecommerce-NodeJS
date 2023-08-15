@@ -30,13 +30,10 @@ passport.use('github', new GithubStrategy({
     done(null, user)
 }))
 
-// esto lo tengo que agregar para que funcione passport! copiar y pegar, nada mas.
 passport.serializeUser((user, next) => { next(null, user) })
 passport.deserializeUser((user, next) => { next(null, user) })
 
-// estos son para cargar en express como middlewares a nivel aplicacion
 export const passportInitialize = passport.initialize()
-export const passportSession = passport.session() // ES OPCIONAL => Lo que hace, es usar una cookie para que express junto con passport, manejen las sessiones con cookies.. si quisiera usar otra forma de session o jwt, no hace falta cargarlo"!
-
+export const passportSession = passport.session()
 export const authGithub = passport.authenticate('github', { scope: ['user:email'] })
 export const callbackAuthGithub = passport.authenticate('github', {  session:false ,failWithError: true }) 

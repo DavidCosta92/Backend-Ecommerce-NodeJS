@@ -11,7 +11,7 @@ import { cartRepository } from "../repositories/cartRepository.js"
 import { UserDTO } from "../models/UserDTO.js"
 import { UserGithubDTO } from "../models/UserGithubDTO.js"
 import { NotFoundError } from "../models/errors/carts.error.js"
-import { validateAlphanumeric, validateDate, validateEmail } from "../models/validations/validations.js"
+import { validateAlphanumeric, validateDate, validateEmail, validateString } from "../models/validations/validations.js"
 import { StorageError } from "../models/errors/storageError.js"
 import { DEPLOYMENT_DOMAIN } from "../config/config.js"
 import fs from 'fs/promises';
@@ -221,7 +221,7 @@ class UserService {
     }
     async deleteDocument (req ,res, next){
         try {
-            const filenameToDelete = req.body.fileName // debo valdiar nombre? revisar para atras y para adelante si lo estoy validando en algun lugar
+            const filenameToDelete = validateString("Nombre archivo",req.body.fileName )
             const user = await this.findUserById(req.body.userId)
             const filterDocs = user.documents.filter(doc => doc.name != filenameToDelete)
             

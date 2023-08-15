@@ -12,7 +12,7 @@ export const userRouter = Router();
 
 userRouter.use(session)
 userRouter.use(express.json())
-userRouter.use(express.urlencoded({ extended: true })) // para obtener datos desde los formularios
+userRouter.use(express.urlencoded({ extended: true }))
 
 userRouter.use("/session",sessionsRouter)
 userRouter.use("/:uid/documents/", documentsRouter)
