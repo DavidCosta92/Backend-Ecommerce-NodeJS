@@ -63,7 +63,7 @@
 {{/if}}
 
 {{#if products}}
-    <table class="table table-striped text-center" id="{{user.cart}}">
+    <table class="table table-dark table-striped text-center" id="{{user.cart}}">
     <div class="w-100 m-2  d-flex  flex-wrap align-items-center justify-content-around">
         <h4 class="">Productos en carrito</h4>
         <button class="btn btn-outline-success  mt-4 w-50" onClick=goToProducts()> ¿Quieres ver mas productos? </button>          
@@ -89,10 +89,10 @@
                 <td class="w-50">
                     <label for="quantity" class=" mb-2">Cant:</label>
                     <input type="number" class=" mb-2" id="quantity{{this.product._id}}" name="quantity" min="1" value="{{this.quantity}}" >
-                    <button onClick=elegirUnidades("{{this.product._id}}") type="button" class="btn btn-success">
+                    <button onClick=elegirUnidades("{{this.product._id}}") type="button" class="btn btn-outline-success">
                         Elegir Cantidad
                     </button>
-                    <button onClick=deleteProductFromCart("{{this.product._id}}") type="button" class="btn btn-danger">
+                    <button onClick=deleteProductFromCart("{{this.product._id}}") type="button" class="btn btn-outline-danger">
                         Eliminar producto
                     </button>
                 </td>
