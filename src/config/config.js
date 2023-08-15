@@ -5,6 +5,10 @@ export const PORT = process.env.PORT || 8080
 //MONGO
 export const MONGOOSE_STRING_ATLAS = process.env.MONGO_STRING_CON || `mongodb+srv://davidcst2991:davidcst2991coder@ecommerce.3iptaqr.mongodb.net/ecommerce?retryWrites=true&w=majority`
 
+export const MONGOOSE_STRING_ATLAS_TEST = `mongodb+srv://davidcst2991:davidcst2991coder@ecommerceTest.3iptaqr.mongodb.net/ecommerceTest?retryWrites=true&w=majority`
+
+// por ultimo, debo subir y comitear.. hacer copia compelta de tp y eliminar todos los comentarios y sockets y cosas que no usare de las pantallas a la izquierda.. y de ahi entrewgar tp!
+
 
 //GITHUB
 export const GITHUB_APP_ID = process.env.GITHUB_APP_ID 
@@ -21,6 +25,7 @@ export const PERSISTENCE = process.env.PERSISTENCE || "mongoose"
 
 //ENVIROMENT
 export const NODE_ENV = process.env.NODE_ENV || 'development'
+export const NODE_ENV_TEST = process.env.NODE_ENV_TEST || 'false'
 
 //EMAIL SERVICE
 export const EMAIL_CONFIG = {

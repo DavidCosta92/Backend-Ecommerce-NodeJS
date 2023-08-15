@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import { logger } from "../middlewares/loggerMiddleware.js";
 import { winstonLogger } from "../utils/logger.js";
-import { MONGOOSE_STRING_ATLAS, NODE_ENV, PORT } from "../config/config.js";
+import { NODE_ENV_TEST, MONGOOSE_STRING_ATLAS,MONGOOSE_STRING_ATLAS_TEST, NODE_ENV, PORT } from "../config/config.js";
 import { passportInitialize , passportSession } from "../middlewares/passport.js";
 import session from "../middlewares/session.js";
 import { errorHandlerAPI , errorHandlerWEB} from "../middlewares/errorMiddleware.js";
@@ -16,7 +16,11 @@ import { webRouter } from "../../Front-Handlebars/src/router/webRouter.js";
 
 
 dotenv.config({path: 'src/.env'});
-mongoose.connect(MONGOOSE_STRING_ATLAS)
+if(NODE_ENV_TEST=="true"){
+    mongoose.connect(MONGOOSE_STRING_ATLAS_TEST)
+}else{    
+    mongoose.connect(MONGOOSE_STRING_ATLAS)
+}
 
 const app = express();
 app.use(session)
@@ -42,7 +46,7 @@ app.use("/web", webRouter)
 app.use(errorHandlerWEB) 
 app.use(errorHandlerAPI) 
 
-const httpServer = app.listen(PORT, () => winstonLogger.info(`Servidor activo, entorno --->>> ${NODE_ENV} <<<--- en port ${PORT}`))
+const httpServer = app.listen(PORT, () => winstonLogger.info(`Servidor activo, entorno --->>> ${NODE_ENV} - Testing : ${NODE_ENV_TEST} <<<--- en port ${PORT}`))
 
 
 
