@@ -4,9 +4,10 @@ import { AuthorizationError , AuthorizationErrorWEB} from "../models/errors/auth
 import { userService } from "../services/userService.js"
 
 // ************************* WEB *************************
-export function onlyAuthenticatedWeb(req, res, next) {    
+export async function onlyAuthenticatedWeb(req, res, next) {    
   if (req.signedCookies.authToken){
-    next()
+    let user = await userService.getLoguedUser(req, res , next)
+    if(user) next()
   } else{
     res.render("userLogin", { error : {message : "Debes estar logueado para ver el recurso"}})
   }

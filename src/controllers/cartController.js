@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { cartService  } from "../services/cartService.js";
+import { emailService } from "../utils/email.service.js";
 
 export async function getCarts (req, res , next){
     res.json(await cartService.getCarts (req, res , next));
@@ -43,8 +44,14 @@ export async function buyCart (req, res , next) {
                 rejectedProds : rejectedProds, 
                 user : user,
                 loguedUser: true
-             }                
-             res.json(response)
+             }  
+             
+            if( /* purcharser.includes("@")*/ true ) {
+                console.log("QUIERO ENVIAR EMAIIL")
+                console.log(response)
+                emailService.sendTicketEmail(response)
+            }
+            res.json(response)
         }
     } catch (error) {
         next(error)
