@@ -32,6 +32,7 @@ export async function updateAllProductsInCarts (req, res , next) {
 export async function buyCart (req, res , next) {
     try {
         const { purchaseTicket , user } = await cartService.buyCart (req, res , next)
+
         if ( purchaseTicket){
             const {code , purchase_datetime , amount , purcharser , acceptedProds , rejectedProds} = purchaseTicket
             const response ={
@@ -45,12 +46,7 @@ export async function buyCart (req, res , next) {
                 user : user,
                 loguedUser: true
              }  
-             
-            if( /* purcharser.includes("@")*/ true ) {
-                console.log("QUIERO ENVIAR EMAIIL")
-                console.log(response)
-                emailService.sendTicketEmail(response)
-            }
+            if(purcharser.includes("@")) emailService.sendTicketEmail(response)            
             res.json(response)
         }
     } catch (error) {

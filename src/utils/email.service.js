@@ -46,92 +46,51 @@ class EmailService {
         }
 
     }
-    async sendTicketEmail (response){     
-
-        
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>intentando enviar EMAIL >>>>>>>>>>>>>>>>>>>>>>>>")
-
-        let rejected = ""
-         if(response.rejectedProds){
-            let rejectedProducst = 
-            array.forEach(pr => {
-                const prod =
-                `<tr>                
-                    <td>${pr.product.title}</td>
-                    <td>${pr.quantity}</td>
-                </tr>`           
-                rejectedProducst.concat(prod)     
+    async sendTicketEmail (response){  
+        const title = `<h4> Hola, gusto en saludarte! Te dejamos tu resumen de compra abajo: </h4>`   
+        let rejected = "<h5>Todos los productos fueron confirmados para la compra</h5>"
+         if(response.rejectedProds.length>0){
+            let rejectedProducst = ""
+            response.rejectedProds.forEach(pr => {
+                const prod = `<li>${pr.product.title}, cantidad: ${pr.quantity}</li>`   
+                rejectedProducst += prod     
             });
-
             rejected = 
-            `            
-            <h5 class="text-center">Listado de productos rechazados, quedaran guardados en el carrito para la proxima compra</h6>
-            <table class="table table-striped text-center">
-                <thead>
-                    <tr>                
-                        <th scope="col">Producto</th>
-                        <th scope="col">Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${rejectedProducst}
-                </tbody>
-            </table>
-            `
+            `<h5>Listado de productos rechazados (No te preocupes, quedaran guardados en el carrito para la proxima compra)</h5>
+            <ul>              
+                ${rejectedProducst}
+            </ul>`
          }
 
          let accepted = ""
          if(response.acceptedProds){
-            let acceptedProducst = 
-            array.forEach(pr => {
-                const prod =
-                `<tr>                
-                    <td>${pr.product.title}</td>
-                    <td>${pr.quantity}</td>
-                </tr>`           
-                acceptedProducst.concat(prod)     
+            let acceptedProducst = ""
+            response.acceptedProds.forEach(pr => {
+                const prod = `<li>${pr.product.title}, cantidad: ${pr.quantity}</li>`   
+                acceptedProducst += prod    
             });
-
             accepted = 
-            `
+            `<div> 
+                <h5>Listado de productos Aceptados</h5>   
+                <ul>              
+                    ${acceptedProducst}
+                </ul>
+            </div>
+            
             <div> 
-                <h5 class="text-center">Listado de productos Aceptados</h5>
-                <table class="table table-striped text-center">
-                    <thead>
-                        <tr>                
-                            <th scope="col">Producto</th>
-                            <th scope="col">Cantidad</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${acceptedProducst}
-                    </tbody>
-                </table>
+            <h4>Detalles</h4>  
+                <p>Precio productos comprados: ${response.amount}</p>
+                <p>Comprador: ${response.purcharser} </p>
+                <p>Codigo de Ticket: ${response.code}</p>
+                <p>Fecha compra: ${response.purchase_datetime}</p>
             </div>
-
-            <div class=" border border-success rounded p-4 m-4">
-                <ul class="list-group list-group-horizontal w-100">
-                <li class="list-group-item  w-50">Precio productos comprados</li>
-                <li class="list-group-item  w-50 text-center">${response.amount}</li>
-                </ul>
-                <ul class="list-group list-group-horizontal w-100">
-                <li class="list-group-item  w-50">Comprador</li>
-                <li class="list-group-item  w-50 text-center">${response.purcharser}</li>
-                </ul>
-                <ul class="list-group list-group-horizontal w-100">
-                <li class="list-group-item  w-50">Codigo de Ticket</li>
-                <li class="list-group-item  w-50 text-center">${response.code}</li>
-                </ul>
-                <ul class="list-group list-group-horizontal w-100">
-                <li class="list-group-item  w-50">Fecha compra</li>
-                <li class="list-group-item  w-50 text-center">${response.purchase_datetime}</li>
-                </ul>
-            </div>
+            
+            <h4>¡Que tengas un excelente dia, saludos!</h4>  
             `
          }
 
 
-        const templateEmail = rejected.concat(accepted)
+        const templateEmail = title.concat(rejected.concat(accepted))  
         
         const email = validateEmail("Email",response.purcharser)
         const options ={
@@ -141,9 +100,6 @@ class EmailService {
             html : templateEmail ,      
             attachments:[]
         }
-        console.log("************* ENVIANDO EMAIL *************")
-        console.log(options)
-        console.log("************* ENVIANDO EMAIL *************")
         try {
             const sentEmail = await this.#nodeMailer.sendMail(options)
             winstonLogger.warning("Envio de email a => ",sentEmail.accepted)

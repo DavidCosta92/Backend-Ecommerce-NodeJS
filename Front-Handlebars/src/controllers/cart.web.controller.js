@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { cartService } from "../../../src/services/cartService.js";
+import { emailService } from "../../../src/utils/email.service.js";
 import { cartWebService } from "../service/cartsWebService.js";
 
 export async function getCartsWeb (req, res , next){
@@ -20,6 +21,7 @@ export async function getCartsByIDWEB (req, res , next){
 }
 export async function buyCartWeb (req, res , next) {
    try {
+        console.log("TRATANDO DE COMPRAR buyCart")
        const { purchaseTicket , user } = await cartService.buyCart (req, res , next)
 /* ERROR DE Handlebars => "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas */
        if ( purchaseTicket){
@@ -39,7 +41,8 @@ export async function buyCartWeb (req, res , next) {
                rejectedProds : rejectedProducts, 
                user : user,
                loguedUser: true
-            }                
+            }           
+            if(purcharser.includes("@")) emailService.sendTicketEmail(response)
            res.render("purchase", response)  
        }
    } catch (error) {
