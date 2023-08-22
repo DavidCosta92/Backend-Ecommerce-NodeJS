@@ -72,3 +72,6 @@ async function eliminarProductoAdmin (pid){
 function editProduct(pid){
     window.location.href =`/web/products/${pid}/edit/form`
 }
+function productDetails(pid){
+    window.location.href =`/web/products/${pid}`
+}

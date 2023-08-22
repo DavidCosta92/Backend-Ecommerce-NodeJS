@@ -9,6 +9,7 @@ class ProductsWebService {
         let dataRender = {}
         const user = await userService.getLoguedUser(req ,res, next)    
         const paginatedProducts = await productService.getProducts(req, res, next)
+        paginatedProducts.payload.forEach(pr => pr.preview = pr.thumbnails[0] );
         dataRender["loguedUser"] = true
         dataRender["paginatedProducts"] = paginatedProducts
         if(user !== undefined){

@@ -16,7 +16,7 @@ export async function getProductsWeb (req, res , next){
 export async function getProductsByIDWEB (req , res , next){
     try {
         const {user , loguedUser , title , product} = await productsWebService.getProductsByIdWeb(req, res, next)  
-        res.render("productByIdView", { user , loguedUser, title , product : {...product}} )        
+        res.render("productByIdView", { user , loguedUser, title , product : {...product}, images: product.thumbnails } )        
      } catch (error) {
         next(error)
      }
@@ -29,10 +29,3 @@ export async function mockingproductsWEB(req , res , next){
         next(error)
      }
 }
-
-/*
---- --- REVISAR SI ESTE METODO LO PIDE CODER, O CUAL ES LA RAZON DE TENERLO --- --- 
-export async function updateProductsByID (req , res , next){    
-    res.json(await productService.updateProductByID(req , res , next));
-}
-*/

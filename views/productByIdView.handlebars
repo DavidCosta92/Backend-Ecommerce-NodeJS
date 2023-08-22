@@ -67,7 +67,15 @@
         </tr>        
     </tbody>
     </table>
-
+    
+    <div class="border border-success rounded p-4 m-4 ">
+        <h4>Imagenes del producto</h4>
+        <div class="d-flex flex-wrap justify-content-around">
+        {{#each images}}
+            <img src={{this}}>             
+        {{/each}}
+        </div>
+    </div>
     {{else}}
         <h1 > No existe producto con el id solicitado</h1>
     {{/if}}

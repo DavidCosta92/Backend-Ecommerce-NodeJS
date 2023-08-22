@@ -8,10 +8,11 @@ export async function getCurrentUserWeb (req , res , next){
         res.render("home", {loguedUser :false}) 
       }else{      
         req.params.cid = user.cart
-        const cartById = await cartService.getCartsByID(req , next)   
+        let cartById = await cartService.getCartsByID(req , next)   
         /* Necesario para solucionar error handlebars "Handlebars: Access has been denied to resolve the property "_id" because it is not an "own property" of its parent." Buscar alternativas*/
         const productsInCart = []
-        cartById?.products.forEach(p=>{ productsInCart.push( p.toObject()) })
+        cartById?.products.forEach( p=> productsInCart.push( p.toObject()) )
+        productsInCart.map( item => item.product.preview = item.product.thumbnails[0] )
         res.render("currentUser", {loguedUser : user!=undefined, user : user, products : productsInCart})
       }       
    } catch (error) {
