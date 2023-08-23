@@ -15,6 +15,7 @@ import { validateAlphanumeric, validateDate, validateEmail, validateString } fro
 import { StorageError } from "../models/errors/storageError.js"
 import { DEPLOYMENT_DOMAIN } from "../config/config.js"
 import fs from 'fs/promises';
+import { productService } from "./productService.js"
 
 class UserService {
     userRepository
@@ -171,7 +172,8 @@ class UserService {
     }
     async uploadDocument(req ,res, next){
         try {
-            const uid = req.baseUrl.split("/api/users/")[1].split("/documents")[0]           
+            const uid = req.baseUrl.split("/api/users/")[1].split("/documents")[0]    
+            const pid = req.params?.pid       
             const fileName = req.file?.filename
             const path = req.file?.path.replace("public","")
 
@@ -192,6 +194,8 @@ class UserService {
                 userDocs.push({ name : fileName , reference : path })
                 update = await this.userRepository.updateOneGithubUserDocument(uid , userDocs)                
             }
+            if(pid) productService.updateProductPhoto(path, req , res , next)
+
             return update.modifiedCount > 0 ? {message: "Archivo subido correctamente",status : 201} : {message: "ERROR",status : 500}
         } catch (error) {
             next (error)
@@ -224,6 +228,22 @@ class UserService {
             const filenameToDelete = validateString("Nombre archivo",req.body.fileName )
             const user = await this.findUserById(req.body.userId)
             const filterDocs = user.documents.filter(doc => doc.name != filenameToDelete)
+
+            if(filenameToDelete.includes("product")){
+                // const userProducts = await userService.getUserProducts (req.body.userId , req, res, next )
+                // let proddddd
+                // const prodToDelete = userProducts.filter(prod => {
+                //     prod.thumbnails.forEach(element => {                        
+                //         if(element.includes(filenameToDelete)){
+                //             return element
+                //         }
+                //     });
+                //     proddddd = prod.thumbnails.filter( path =>{
+                //         path.includes(filenameToDelete)
+                //     })
+                // })
+                // await productService.deleteProductPhoto (filenameToDelete, docToDelete._id, req, res, next)
+            }
             
             await this.deleteDocumentByFileNameFileSystem(req ,res, next)
 
@@ -253,6 +273,16 @@ class UserService {
             return { profile : profileImages , documents : documentsImages , products : productsImages }
         } catch (error) {
             throw new NotFoundError("Usuario no encontrado")
+        }
+    }
+    async getUserProducts(inputId , req, res, next){
+        try {            
+            const uid = validateAlphanumeric("User Id",inputId)
+            const user = await this.findUserById(uid)
+            const userProducts = await productService.getProductsByOwner(user.email)
+            return userProducts
+        } catch (error) {
+            throw new NotFoundError("Usuario no encontrado")            
         }
     }
     async documentationIsComplete (inputId){

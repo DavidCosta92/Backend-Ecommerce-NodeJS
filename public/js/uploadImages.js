@@ -48,8 +48,8 @@ if(formUploadProduct instanceof HTMLFormElement){
         event.preventDefault()
         const formData = new FormData(formUploadProduct)       
         const uid = document.getElementById("userId").innerText
-
-        fetch(`/api/users/${uid}/documents/product/`,{
+        const productToUpdate =document.getElementById("productToUpdate").value
+        fetch(`/api/users/${uid}/documents/product/${productToUpdate}`,{
             method: "POST",
             body: formData
         })

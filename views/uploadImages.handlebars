@@ -99,6 +99,14 @@
         
         <form id="formUploadProduct"  method="post" enctype="multipart/form-data" class="p-2 m-2 border border-success rounded d-flex flex-wrap justify-content-around">
             <h5 class="w-25">Fotos de productos</h5>
+
+            <label for="productToUpdate">Producto al que quieras agregar la foto:</label>
+            <select name="productToUpdate" id="productToUpdate">
+                {{#each usersProducts}}
+                <option value={{this._doc._id}}>{{this._doc.title}}</option>
+                {{/each}}
+            </select>
+
             <input type="file" name="productPhoto" />
                 <span class=" m-2 d-flex justify-content-center">
                     <button type="submit" class="btn btn-success">¡ Subir archivo! </button>

@@ -18,12 +18,11 @@ userWebRouter.use(express.urlencoded({ extended: true }))
 // localhost:8080/web/users
 userWebRouter.get("/:uid/documents/", onlyAuthenticatedWeb, async (req, res, next)=>{        
 
-
-
     const user = userSessionService.getLoguedUser(req, res, next)  
     if(user){        
         const { profile , documents, products } = await userService.getUserDocuments(user._id)
-        res.render("uploadImages", { user : user , profileFiles : profile, documentsFiles : documents, productsFiles : products} )
+        const usersProducts = await userService.getUserProducts(user._id , req, res, next)
+        res.render("uploadImages", { user : user , profileFiles : profile, documentsFiles : documents, productsFiles : products , usersProducts : {...usersProducts}} )
     }  
 })  
 userWebRouter.get("/register", registerWebView)

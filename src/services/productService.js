@@ -50,6 +50,13 @@ class ProductService{
             next(error)
         }
     }
+    async getProductsByOwner(owner){
+        try {
+            return await this.productRepository.getProductsByOwner(owner);
+        } catch (error) {
+            next(error)
+        }
+    }
     async validateProductCode(code,next){
         try {
             if (await this.getProductByCode(code)) throw new RegisterErrorAlreadyExistCodeProduct("Codigo de producto ya existe")
@@ -105,6 +112,30 @@ class ProductService{
             return await this.productRepository.editProductsByID(pid, productEdited)
         } catch (error) {
             next(error)
+        }
+    }
+    async updateProductPhoto(path, req , res , next){
+        try {
+            const pid = validateAlphanumeric("Product ID",req.params.pid)   
+            const product = await this.getProductById(req , res , next)
+            if(product.thumbnails[0] == ""){
+                product.thumbnails[0] = path
+            } else{
+                product.thumbnails.push(path)
+            }
+            await this.productRepository.replaceOneProduct(pid, product)
+        } catch (error) {
+            next(error)            
+        }
+    }
+    async deleteProductPhoto(filenameToDelete,prodId,  req , res , next){
+        try {
+            const pid = validateAlphanumeric("Product ID", prodId)   
+            const product = await this.getProductById(req , res , next)
+            product.thumbnails = product.thumbnails.filter(path => path.includes(filenameToDelete))
+            await this.productRepository.replaceOneProduct(pid, product)
+        } catch (error) {
+            next(error)            
         }
     }
     async updateStockSoldByID (pid, quantity , req , res , next){   

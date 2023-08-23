@@ -58,6 +58,13 @@ export class ProductDAOMongo{
             throw new NotFoundError(`No se encontro producto con el code ${code}`)
         }
     }
+    async getProductsByOwner(owner){
+        try {
+            return await this.model.find({owner : owner})
+        } catch (error) {
+            throw new NotFoundError(`No se encontro producto con el code ${owner}`)
+        }
+    }
     async deleteProductByID (pid){
         try {            
             return await this.model.findByIdAndDelete(pid)

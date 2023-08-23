@@ -17,6 +17,9 @@ class ProductRepository{
     async getProductByCode (code){
         return await this.productDao.getProductByCode(code);
     } 
+    async getProductsByOwner (owner){
+        return await this.productDao.getProductsByOwner(owner);
+    } 
     async deleteProductByID (pid){
         return await this.productDao.deleteProductByID(pid);
     } 

@@ -42,7 +42,7 @@ const storageDocument = multer.diskStorage({
 })
 const uploadDocument = multer({ storage : storageDocument })
 
-documentsRouter.post('/product', onlyAuthenticatedApi , uploadProduct.single('productPhoto'), uploadPhoto)
+documentsRouter.post('/product/:pid', onlyAuthenticatedApi , uploadProduct.single('productPhoto'), uploadPhoto)
 documentsRouter.post('/document', onlyAuthenticatedApi , uploadDocument.single('documentPhoto'), uploadPhoto)
 documentsRouter.post('/profile', onlyAuthenticatedApi , uploadProfile.single('profilePhoto'), uploadPhoto)
 
